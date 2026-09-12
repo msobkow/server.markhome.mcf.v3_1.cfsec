@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CFSec
+		xmlns="http://mcf.markhome.server/mcf/v3_1/xsd/cfsec-structured.xsd"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xsi:schemaLocation="http://mcf.markhome.server/mcf/v3_1/xsd/cfsec-structured.xsd http://mcf.markhome.server/mcf/v3_1/xsd/cfsec-structured.xsd" >
+	<Cluster FullDomName="system" Description="system">
+		<Tenant TenantName="tenant">
+			<TSecGroup Name="TenantAdmin" IsVisible="true" >
+				<TSecGroupMember User="system" />
+			</TSecGroup>
+			<TSecGroup Name="CFSecAdmin" IsVisible="true" >
+				<TSecGroupInclude SubGroup="TenantAdmin" />
+			</TSecGroup>
+			<TSecGroup Name="CFSecReader" IsVisible="true" >
+				<TSecGroupInclude SubGroup="CFSecAdmin" />
+			</TSecGroup>
+			<TSecGroup Name="CFSecCreator" IsVisible="true" >
+				<TSecGroupInclude SubGroup="CFSecAdmin" />
+			</TSecGroup>
+			<TSecGroup Name="CFSecUpdater" IsVisible="true" >
+				<TSecGroupInclude SubGroup="CFSecAdmin" />
+			</TSecGroup>
+			<TSecGroup Name="CFSecDeleter" IsVisible="true" >
+				<TSecGroupInclude SubGroup="CFSecAdmin" />
+			</TSecGroup>
+			<TSecGroup Name="ReadSecTentGrp" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecReader" />
+			</TSecGroup>
+			<TSecGroup Name="CreateSecTentGrp" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecCreator" />
+			</TSecGroup>
+			<TSecGroup Name="UpdateSecTentGrp" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecUpdater" />
+			</TSecGroup>
+			<TSecGroup Name="DeleteSecTentGrp" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecDeleter" />
+			</TSecGroup>
+			<TSecGroup Name="ReadSecTentGrpMemb" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecReader" />
+			</TSecGroup>
+			<TSecGroup Name="CreateSecTentGrpMemb" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecCreator" />
+			</TSecGroup>
+			<TSecGroup Name="UpdateSecTentGrpMemb" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecUpdater" />
+			</TSecGroup>
+			<TSecGroup Name="DeleteSecTentGrpMemb" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecDeleter" />
+			</TSecGroup>
+			<TSecGroup Name="ReadSecTentRole" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecReader" />
+			</TSecGroup>
+			<TSecGroup Name="CreateSecTentRole" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecCreator" />
+			</TSecGroup>
+			<TSecGroup Name="UpdateSecTentRole" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecUpdater" />
+			</TSecGroup>
+			<TSecGroup Name="DeleteSecTentRole" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecDeleter" />
+			</TSecGroup>
+			<TSecGroup Name="ReadSecTentRoleMemb" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecReader" />
+			</TSecGroup>
+			<TSecGroup Name="CreateSecTentRoleMemb" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecCreator" />
+			</TSecGroup>
+			<TSecGroup Name="UpdateSecTentRoleMemb" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecUpdater" />
+			</TSecGroup>
+			<TSecGroup Name="DeleteSecTentRoleMemb" IsVisible="false" >
+				<TSecGroupInclude SubGroup="CFSecDeleter" />
+			</TSecGroup>
+		</Tenant>
+	</Cluster>
+</CFSec>

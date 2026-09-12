@@ -1,0 +1,563 @@
+// Description: Java 25 implementation of a SecUserPassword buffer
+
+/*
+ *	server.markhome.mcf.CFSec
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Mark's Code Fractal 3.1 CFSec - Security Services
+ *	
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow mark.sobkow@gmail.com
+ *	
+ *	These files are part of Mark's Code Fractal CFSec.
+ *	
+ *	Licensed under the Apache License, Version 2.0 (the "License");
+ *	you may not use this file except in compliance with the License.
+ *	You may obtain a copy of the License at
+ *	
+ *	http://www.apache.org/licenses/LICENSE-2.0
+ *	
+ *	Unless required by applicable law or agreed to in writing, software
+ *	distributed under the License is distributed on an "AS IS" BASIS,
+ *	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *	See the License for the specific language governing permissions and
+ *	limitations under the License.
+ *	
+ */
+
+package server.markhome.mcf.v3_1.cfsec.cfsec.buff;
+
+import java.lang.reflect.*;
+import java.io.*;
+import java.math.*;
+import java.net.*;
+import java.rmi.*;
+import java.sql.*;
+import java.text.*;
+import java.time.*;
+import java.util.*;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.text.StringEscapeUtils;
+import server.markhome.mcf.v3_1.cflib.*;
+import server.markhome.mcf.v3_1.cflib.dbutil.*;
+import server.markhome.mcf.v3_1.cflib.keyhash.*;
+import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
+import server.markhome.mcf.v3_1.cfsec.cfsec.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecobj.*;
+
+public class CFSecBuffSecUserPassword
+	implements ICFSecSecUserPassword, Comparable<Object>, Serializable
+{
+	protected ICFLibKeyHash256 requiredSecUserId;
+	protected int requiredRevision;
+	protected LocalDateTime requiredPWSetStamp;
+	protected String requiredPasswordHash;
+
+	public CFSecBuffSecUserPassword() {
+		requiredSecUserId = CFLibDbKeyHash256.fromHex( ICFSecSecUserPassword.SECUSERID_INIT_VALUE.toString() );
+		requiredPWSetStamp = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+	}
+
+	@Override
+	public $implCommaIJavaOptAtomType$ getPKey() {
+		return (requiredSecUserId);
+	}
+
+	@Override
+	public void setPKey($implCommaIJavaOptAtomType$ requiredSecUserId) {
+		if(requiredSecUserId != null) {
+			this.requiredSecUserId = requiredSecUserId;
+		}
+	}
+
+	@Override
+	public ICFLibKeyHash256 getRequiredSecUserId() {
+		return(requiredSecUserId);
+	}
+
+	public void setRequiredSecUserId( ICFLibKeyHash256 value ) {
+		if( value == null || value.isNull() ) {
+			throw new CFLibNullArgumentException( getClass(),
+				"setRequiredSecUserId",
+				1,
+				"value" );
+		}
+		requiredSecUserId = value;
+	}
+
+	@Override
+	public ICFSecSecUser getRequiredContainerUser() {
+		ICFSecSchema targetBackingCFSec = ICFSecSchema.getBackingCFSec();
+		if (targetBackingCFSec == null) {
+			throw new CFLibNullArgumentException(getClass(), "getRequiredContainerUser", 0, "ICFSecSchema.getBackingCFSec()");
+		}
+		ICFSecSecUserTable targetTable = targetBackingCFSec.getTableSecUser();
+		if (targetTable == null) {
+			throw new CFLibNullArgumentException(getClass(), "getRequiredContainerUser", 0, "ICFSecSchema.getBackingCFSec().getTableSecUser()");
+		}
+		ICFSecSecUser targetRec = targetTable.readDerived(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredSecUserId());
+		return(targetRec);
+	}
+
+	@Override
+	public ICFSecSecUser getRequiredContainerUser() {
+		ICFSecSchema targetBackingCFSec = ICFSecSchema.getBackingCFSec();
+		if (targetBackingCFSec == null) {
+			throw new CFLibNullArgumentException(getClass(), "getRequiredContainerUser", 0, "ICFSecSchema.getBackingCFSec()");
+		}
+		ICFSecSecUserTable targetTable = targetBackingCFSec.getTableSecUser();
+		if (targetTable == null) {
+			throw new CFLibNullArgumentException(getClass(), "getRequiredContainerUser", 0, "ICFSecSchema.getBackingCFSec().getTableSecUser()");
+		}
+		ICFSecSecUser targetRec = targetTable.readDerived(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredSecUserId());
+		return(targetRec);
+	}
+
+	@Override
+	public ICFSecSecUser getRequiredContainerUser() {
+		ICFSecSchema targetBackingCFSec = ICFSecSchema.getBackingCFSec();
+		if (targetBackingCFSec == null) {
+			throw new CFLibNullArgumentException(getClass(), "getRequiredContainerUser", 0, "ICFSecSchema.getBackingCFSec()");
+		}
+		ICFSecSecUserTable targetTable = targetBackingCFSec.getTableSecUser();
+		if (targetTable == null) {
+			throw new CFLibNullArgumentException(getClass(), "getRequiredContainerUser", 0, "ICFSecSchema.getBackingCFSec().getTableSecUser()");
+		}
+		ICFSecPubSecUser targetRec = targetTable.readDerived(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredSecUserId());
+		return(targetRec);
+	}
+
+	@Override
+	public void setRequiredContainerUser(ICFSecSecUser argObj) {
+		if(argObj == null) {
+			throw new CFLibNullArgumentException(getClass(), "setContainerUser", 1, "argObj");
+		}
+		else {
+			setRequiredSecUserId(argObj.getRequiredSecUserId());
+		}
+	}
+
+	@Override
+	public void setRequiredContainerUser(ICFSecProtSecUser argObj) {
+		if(argObj == null) {
+			throw new CFLibNullArgumentException(getClass(), "setContainerUser", 1, "argObj");
+		}
+		else {
+			setRequiredSecUserId(argObj.getRequiredSecUserId());
+		}
+	}
+
+	@Override
+	public void setRequiredContainerUser(ICFSecPubSecUser argObj) {
+		if(argObj == null) {
+			throw new CFLibNullArgumentException(getClass(), "setContainerUser", 1, "argObj");
+		}
+		else {
+			setRequiredSecUserId(argObj.getRequiredSecUserId());
+		}
+	}
+
+	@Override
+	public int getRequiredRevision() {
+		return( requiredRevision );
+	}
+
+	@Override
+	public void setRequiredRevision( int value ) {
+		requiredRevision = value;
+	}
+
+	@Override
+	public int getClassCode() {
+		return( ICFSecSecUserPassword.CLASS_CODE );
+	}
+
+	@Override
+	public LocalDateTime getRequiredPWSetStamp() {
+		return(requiredPWSetStamp);
+	}
+
+	public void setRequiredPWSetStamp( LocalDateTime value ) {
+		if( value == null ) {
+			throw new CFLibNullArgumentException( getClass(),
+				"setRequiredPWSetStamp",
+				1,
+				"value" );
+		}
+		requiredPWSetStamp = value;
+	}
+
+	@Override
+	public String getRequiredPasswordHash() {
+		return(requiredPasswordHash);
+	}
+
+	public void setRequiredPasswordHash( String value ) {
+		if( value == null ) {
+			throw new CFLibNullArgumentException( getClass(),
+				"setRequiredPasswordHash",
+				1,
+				"value" );
+		}
+		else if( value.length() > 256 ) {
+			throw new CFLibArgumentOverflowException( getClass(),
+				"setRequiredPasswordHash",
+				1,
+				"value.length()",
+				value.length(),
+				256 );
+		}
+		requiredPasswordHash = value;
+	}
+
+	@Override
+	public boolean equals( Object obj ) {
+		if( obj == null ) {
+			return( false );
+		}
+		else if( obj instanceof ICFSecSecUserPassword rhs ) {
+			if( getRequiredSecUserId() != null ) {
+				if( rhs.getRequiredSecUserId() != null ) {
+					if( ! getRequiredSecUserId().equals( rhs.getRequiredSecUserId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredSecUserId() != null ) {
+					return( false );
+				}
+			}
+			if( getRequiredPWSetStamp() != null ) {
+				if( rhs.getRequiredPWSetStamp() != null ) {
+					if( ! getRequiredPWSetStamp().equals( rhs.getRequiredPWSetStamp() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredPWSetStamp() != null ) {
+					return( false );
+				}
+			}
+			if( getRequiredPasswordHash() != null ) {
+				if( rhs.getRequiredPasswordHash() != null ) {
+					if( ! getRequiredPasswordHash().equals( rhs.getRequiredPasswordHash() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredPasswordHash() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof ICFSecSecUserPasswordH rhs ) {
+			if( getRequiredSecUserId() != null ) {
+				if( rhs.getRequiredSecUserId() != null ) {
+					if( ! getRequiredSecUserId().equals( rhs.getRequiredSecUserId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredSecUserId() != null ) {
+					return( false );
+				}
+			}
+			if( getRequiredPWSetStamp() != null ) {
+				if( rhs.getRequiredPWSetStamp() != null ) {
+					if( ! getRequiredPWSetStamp().equals( rhs.getRequiredPWSetStamp() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredPWSetStamp() != null ) {
+					return( false );
+				}
+			}
+			if( getRequiredPasswordHash() != null ) {
+				if( rhs.getRequiredPasswordHash() != null ) {
+					if( ! getRequiredPasswordHash().equals( rhs.getRequiredPasswordHash() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredPasswordHash() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof ICFSecSecUserPasswordHPKey ) {
+			ICFSecSecUserPasswordHPKey rhs = (ICFSecSecUserPasswordHPKey)obj;
+			if( getRequiredSecUserId() != null ) {
+				if( rhs.getRequiredSecUserId() != null ) {
+					if( ! getRequiredSecUserId().equals( rhs.getRequiredSecUserId() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredSecUserId() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else if( obj instanceof ICFSecSecUserPasswordBySetStampIdxKey rhs ) {
+			if( getRequiredPWSetStamp() != null ) {
+				if( rhs.getRequiredPWSetStamp() != null ) {
+					if( ! getRequiredPWSetStamp().equals( rhs.getRequiredPWSetStamp() ) ) {
+						return( false );
+					}
+				}
+				else {
+					return( false );
+				}
+			}
+			else {
+				if( rhs.getRequiredPWSetStamp() != null ) {
+					return( false );
+				}
+			}
+			return( true );
+		}
+		else {
+			boolean retval = super.equals( obj );
+			return( retval );
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		int hashCode = 0;
+		hashCode = hashCode + getRequiredSecUserId().hashCode();
+		if( getRequiredPWSetStamp() != null ) {
+			hashCode = hashCode + getRequiredPWSetStamp().hashCode();
+		}
+		if( getRequiredPasswordHash() != null ) {
+			hashCode = hashCode + getRequiredPasswordHash().hashCode();
+		}
+		return( hashCode & 0x7fffffff );
+	}
+
+	@Override
+	public int compareTo( Object obj ) {
+		int cmp;
+		if( obj == null ) {
+			return( -1 );
+		}
+		else if( obj instanceof ICFSecSecUserPassword rhs ) {
+			cmp = 0;
+			if (getRequiredSecUserId() != null) {
+				if (rhs.getRequiredSecUserId() != null) {
+					cmp = getRequiredSecUserId().compareTo( rhs.getRequiredSecUserId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredSecUserId() != null) {
+				return( -1 );
+			}
+			if (getRequiredPWSetStamp() != null) {
+				if (rhs.getRequiredPWSetStamp() != null) {
+					cmp = getRequiredPWSetStamp().compareTo( rhs.getRequiredPWSetStamp() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredPWSetStamp() != null) {
+				return( -1 );
+			}
+			if (getRequiredPasswordHash() != null) {
+				if (rhs.getRequiredPasswordHash() != null) {
+					cmp = getRequiredPasswordHash().compareTo( rhs.getRequiredPasswordHash() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredPasswordHash() != null) {
+				return( -1 );
+			}
+			return( 0 );
+		}
+		else if( obj instanceof ICFSecSecUserPasswordHPKey rhs ) {
+			if( getRequiredRevision() < rhs.getRequiredRevision() ) {
+				return( -1 );
+			}
+			else if( getRequiredRevision() > rhs.getRequiredRevision() ) {
+				return( 1 );
+			}
+			if (getRequiredSecUserId() != null) {
+				if (rhs.getRequiredSecUserId() != null) {
+					cmp = getRequiredSecUserId().compareTo( rhs.getRequiredSecUserId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredSecUserId() != null) {
+				return( -1 );
+			}
+			return( 0 );
+		}
+		else if( obj instanceof ICFSecSecUserPasswordH rhs ) {
+			cmp = 0;
+			if (getRequiredSecUserId() != null) {
+				if (rhs.getRequiredSecUserId() != null) {
+					cmp = getRequiredSecUserId().compareTo( rhs.getRequiredSecUserId() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredSecUserId() != null) {
+				return( -1 );
+			}
+			if (getRequiredPWSetStamp() != null) {
+				if (rhs.getRequiredPWSetStamp() != null) {
+					cmp = getRequiredPWSetStamp().compareTo( rhs.getRequiredPWSetStamp() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredPWSetStamp() != null) {
+				return( -1 );
+			}
+			if (getRequiredPasswordHash() != null) {
+				if (rhs.getRequiredPasswordHash() != null) {
+					cmp = getRequiredPasswordHash().compareTo( rhs.getRequiredPasswordHash() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredPasswordHash() != null) {
+				return( -1 );
+			}
+			return( 0 );
+		}
+		else if( obj instanceof ICFSecSecUserPasswordBySetStampIdxKey rhs ) {
+			if (getRequiredPWSetStamp() != null) {
+				if (rhs.getRequiredPWSetStamp() != null) {
+					cmp = getRequiredPWSetStamp().compareTo( rhs.getRequiredPWSetStamp() );
+					if( cmp != 0 ) {
+						return( cmp );
+					}
+				}
+				else {
+					return( 1 );
+				}
+			}
+			else if (rhs.getRequiredPWSetStamp() != null) {
+				return( -1 );
+			}			return( 0 );
+		}
+		else {
+			throw new CFLibUnsupportedClassException( getClass(),
+				"compareTo",
+				"obj",
+				obj,
+				null );
+		}
+	}
+
+	@Override
+	public void set( ICFSecSecUserPassword src ) {
+		setSecUserPassword( src );
+	}
+
+	@Override
+	public void setSecUserPassword( ICFSecSecUserPassword src ) {
+		setRequiredContainerUser(src.getRequiredContainerUser());
+		setRequiredSecUserId(src.getRequiredSecUserId());
+		setRequiredRevision( src.getRequiredRevision() );
+		setRequiredPWSetStamp(src.getRequiredPWSetStamp());
+		setRequiredPasswordHash(src.getRequiredPasswordHash());
+	}
+
+	@Override
+	public void set( ICFSecSecUserPasswordH src ) {
+		setSecUserPassword( src );
+	}
+
+	@Override
+	public void setSecUserPassword( ICFSecSecUserPasswordH src ) {
+		setRequiredContainerUser(src.getRequiredContainerUser());
+		setRequiredSecUserId(src.getRequiredSecUserId());
+		setRequiredPWSetStamp(src.getRequiredPWSetStamp());
+		setRequiredPasswordHash(src.getRequiredPasswordHash());
+	}
+
+	@Override
+	public String getXmlAttrFragment() {
+		String ret = ""
+			+ " RequiredSecUserId=" + "\"" + getRequiredSecUserId().toString() + "\""
+			+ " RequiredRevision=\"" + Integer.toString( getRequiredRevision() ) + "\""
+			+ " RequiredSecUserId=" + "\"" + getRequiredSecUserId().toString() + "\""
+			+ " RequiredPWSetStamp=" + "\"" + getRequiredPWSetStamp().toString() + "\""
+			+ " RequiredPasswordHash=" + "\"" + StringEscapeUtils.escapeXml11( getRequiredPasswordHash() ) + "\"";
+		return( ret );
+	}
+
+	@Override
+	public String toString() {
+		String ret = "<CFSecBuffSecUserPassword" + getXmlAttrFragment() + "/>";
+		return( ret );
+	}
+}

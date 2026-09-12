@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CFSec
+		xmlns="http://mcf.markhome.server/mcf/v3_1/xsd/cfsec-structured.xsd"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xsi:schemaLocation="http://mcf.markhome.server/mcf/v3_1/xsd/cfsec-structured.xsd http://mcf.markhome.server/mcf/v3_1/xsd/cfsec-structured.xsd" >
+	<Cluster FullDomName="system" Description="system">
+		<SecGroup Name="ClusterAdmin" IsVisible="true">
+			<SecGroupMember User="system" />
+		</SecGroup>
+		<SecGroup Name="CFSecAdmin" IsVisible="true">
+			<SecGroupInclude SubGroup="ClusterAdmin" />
+		</SecGroup>
+		<SecGroup Name="CFSecReader" IsVisible="true">
+			<SecGroupInclude SubGroup="CFSecAdmin" />
+		</SecGroup>
+		<SecGroup Name="CFSecCreator" IsVisible="true">
+			<SecGroupInclude SubGroup="CFSecAdmin" />
+		</SecGroup>
+		<SecGroup Name="CFSecUpdater" IsVisible="true">
+			<SecGroupInclude SubGroup="CFSecAdmin" />
+		</SecGroup>
+		<SecGroup Name="CFSecDeleter" IsVisible="true">
+			<SecGroupInclude SubGroup="CFSecAdmin" />
+		</SecGroup>
+		<SecGroup Name="ReadSecClusGrp" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecReader" />
+		</SecGroup>
+		<SecGroup Name="CreateSecClusGrp" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecCreator" />
+		</SecGroup>
+		<SecGroup Name="UpdateSecClusGrp" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecUpdater" />
+		</SecGroup>
+		<SecGroup Name="DeleteSecClusGrp" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecDeleter" />
+		</SecGroup>
+		<SecGroup Name="ReadSecClusGrpMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecReader" />
+		</SecGroup>
+		<SecGroup Name="CreateSecClusGrpMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecCreator" />
+		</SecGroup>
+		<SecGroup Name="UpdateSecClusGrpMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecUpdater" />
+		</SecGroup>
+		<SecGroup Name="DeleteSecClusGrpMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecDeleter" />
+		</SecGroup>
+		<SecGroup Name="ReadSecClusRole" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecReader" />
+		</SecGroup>
+		<SecGroup Name="CreateSecClusRole" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecCreator" />
+		</SecGroup>
+		<SecGroup Name="UpdateSecClusRole" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecUpdater" />
+		</SecGroup>
+		<SecGroup Name="DeleteSecClusRole" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecDeleter" />
+		</SecGroup>
+		<SecGroup Name="ReadSecClusRoleMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecReader" />
+		</SecGroup>
+		<SecGroup Name="CreateSecClusRoleMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecCreator" />
+		</SecGroup>
+		<SecGroup Name="UpdateSecClusRoleMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecUpdater" />
+		</SecGroup>
+		<SecGroup Name="DeleteSecClusRoleMemb" IsVisible="false" >
+			<SecGroupInclude SubGroup="CFSecDeleter" />
+		</SecGroup>
+	</Cluster>
+</CFSec>

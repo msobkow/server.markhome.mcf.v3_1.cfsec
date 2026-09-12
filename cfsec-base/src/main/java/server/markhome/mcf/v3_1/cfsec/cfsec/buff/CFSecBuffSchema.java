@@ -1,0 +1,1018 @@
+// Description: Java 25 buffer implementation of a CFSec schema.
+
+/*
+ *	server.markhome.mcf.CFSec
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Mark's Code Fractal 3.1 CFSec - Security Services
+ *	
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow mark.sobkow@gmail.com
+ *	
+ *	These files are part of Mark's Code Fractal CFSec.
+ *	
+ *	Licensed under the Apache License, Version 2.0 (the "License");
+ *	you may not use this file except in compliance with the License.
+ *	You may obtain a copy of the License at
+ *	
+ *	http://www.apache.org/licenses/LICENSE-2.0
+ *	
+ *	Unless required by applicable law or agreed to in writing, software
+ *	distributed under the License is distributed on an "AS IS" BASIS,
+ *	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *	See the License for the specific language governing permissions and
+ *	limitations under the License.
+ *	
+ */
+
+package server.markhome.mcf.v3_1.cfsec.cfsec.buff;
+
+import java.lang.reflect.*;
+import java.net.*;
+import java.rmi.*;
+import java.sql.*;
+import java.text.*;
+import java.time.*;
+import java.util.*;
+import server.markhome.mcf.v3_1.cflib.*;
+import server.markhome.mcf.v3_1.cflib.dbutil.*;
+import server.markhome.mcf.v3_1.cflib.keyhash.*;
+import org.apache.commons.text.StringEscapeUtils;
+import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
+import server.markhome.mcf.v3_1.cfsec.cfsec.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecobj.*;
+import server.markhome.mcf.v3_1.cfsec.cfsec.buff.CFSecBuffHooksSchema;
+
+public class CFSecBuffSchema
+	implements ICFSecSchema
+{
+	private static CFSecBuffHooksSchema cfsecBuffHooksSchema = null;
+
+	protected static ICFSecTablePerms tablePerms;
+
+	protected ICFSecClusterTable tableCluster;
+	protected ICFSecISOCcyTable tableISOCcy;
+	protected ICFSecISOCtryTable tableISOCtry;
+	protected ICFSecISOCtryCcyTable tableISOCtryCcy;
+	protected ICFSecISOCtryLangTable tableISOCtryLang;
+	protected ICFSecISOLangTable tableISOLang;
+	protected ICFSecISOTZoneTable tableISOTZone;
+	protected ICFSecSecClusGrpTable tableSecClusGrp;
+	protected ICFSecSecClusGrpMembTable tableSecClusGrpMemb;
+	protected ICFSecSecClusRoleTable tableSecClusRole;
+	protected ICFSecSecClusRoleMembTable tableSecClusRoleMemb;
+	protected ICFSecSecSessionTable tableSecSession;
+	protected ICFSecSecSysGrpTable tableSecSysGrp;
+	protected ICFSecSecSysGrpIncTable tableSecSysGrpInc;
+	protected ICFSecSecSysGrpMembTable tableSecSysGrpMemb;
+	protected ICFSecSecSysRoleTable tableSecSysRole;
+	protected ICFSecSecSysRoleEnablesTable tableSecSysRoleEnables;
+	protected ICFSecSecSysRoleMembTable tableSecSysRoleMemb;
+	protected ICFSecSecTentGrpTable tableSecTentGrp;
+	protected ICFSecSecTentGrpMembTable tableSecTentGrpMemb;
+	protected ICFSecSecTentRoleTable tableSecTentRole;
+	protected ICFSecSecTentRoleMembTable tableSecTentRoleMemb;
+	protected ICFSecSecUserTable tableSecUser;
+	protected ICFSecSecUserEMConfTable tableSecUserEMConf;
+	protected ICFSecSecUserPWHistoryTable tableSecUserPWHistory;
+	protected ICFSecSecUserPWResetTable tableSecUserPWReset;
+	protected ICFSecSecUserPasswordTable tableSecUserPassword;
+	protected ICFSecSysClusterTable tableSysCluster;
+	protected ICFSecTableInfoTable tableTableInfo;
+	protected ICFSecTenantTable tableTenant;
+
+	@Override
+	public int initClassMapEntries(int value) {
+		return( ICFSecSchema.doInitClassMapEntries(value) );
+	}
+
+	@Override
+	public void wireRecConstructors() {
+		ICFSecSchema.ClassMapEntry entry;
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecCluster.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecCluster ret = new CFSecBuffCluster();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecCluster.CLASS_CODE)[" + ICFSecCluster.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecTenant.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecTenant ret = new CFSecBuffTenant();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecTenant.CLASS_CODE)[" + ICFSecTenant.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecTableInfo.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecTableInfo ret = new CFSecBuffTableInfo();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecTableInfo.CLASS_CODE)[" + ICFSecTableInfo.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecISOCcy.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecISOCcy ret = new CFSecBuffISOCcy();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecISOCcy.CLASS_CODE)[" + ICFSecISOCcy.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecISOCtry.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecISOCtry ret = new CFSecBuffISOCtry();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecISOCtry.CLASS_CODE)[" + ICFSecISOCtry.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecISOCtryCcy.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecISOCtryCcy ret = new CFSecBuffISOCtryCcy();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecISOCtryCcy.CLASS_CODE)[" + ICFSecISOCtryCcy.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecISOCtryLang.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecISOCtryLang ret = new CFSecBuffISOCtryLang();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecISOCtryLang.CLASS_CODE)[" + ICFSecISOCtryLang.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecISOLang.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecISOLang ret = new CFSecBuffISOLang();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecISOLang.CLASS_CODE)[" + ICFSecISOLang.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecISOTZone.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecISOTZone ret = new CFSecBuffISOTZone();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecISOTZone.CLASS_CODE)[" + ICFSecISOTZone.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecUser.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecUser ret = new CFSecBuffSecUser();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecUser.CLASS_CODE)[" + ICFSecSecUser.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecUserPassword.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecUserPassword ret = new CFSecBuffSecUserPassword();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecUserPassword.CLASS_CODE)[" + ICFSecSecUserPassword.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecUserEMConf.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecUserEMConf ret = new CFSecBuffSecUserEMConf();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecUserEMConf.CLASS_CODE)[" + ICFSecSecUserEMConf.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecUserPWReset.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecUserPWReset ret = new CFSecBuffSecUserPWReset();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecUserPWReset.CLASS_CODE)[" + ICFSecSecUserPWReset.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecUserPWHistory.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecUserPWHistory ret = new CFSecBuffSecUserPWHistory();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecUserPWHistory.CLASS_CODE)[" + ICFSecSecUserPWHistory.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSysGrp.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecSysGrp ret = new CFSecBuffSecSysGrp();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSysGrp.CLASS_CODE)[" + ICFSecSecSysGrp.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSysGrpInc.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecSysGrpInc ret = new CFSecBuffSecSysGrpInc();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSysGrpInc.CLASS_CODE)[" + ICFSecSecSysGrpInc.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSysGrpMemb.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecSysGrpMemb ret = new CFSecBuffSecSysGrpMemb();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSysGrpMemb.CLASS_CODE)[" + ICFSecSecSysGrpMemb.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecClusGrp.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecClusGrp ret = new CFSecBuffSecClusGrp();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecClusGrp.CLASS_CODE)[" + ICFSecSecClusGrp.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecClusGrpMemb.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecClusGrpMemb ret = new CFSecBuffSecClusGrpMemb();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecClusGrpMemb.CLASS_CODE)[" + ICFSecSecClusGrpMemb.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecTentGrp.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecTentGrp ret = new CFSecBuffSecTentGrp();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecTentGrp.CLASS_CODE)[" + ICFSecSecTentGrp.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecTentGrpMemb.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecTentGrpMemb ret = new CFSecBuffSecTentGrpMemb();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecTentGrpMemb.CLASS_CODE)[" + ICFSecSecTentGrpMemb.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSysRole.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecSysRole ret = new CFSecBuffSecSysRole();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSysRole.CLASS_CODE)[" + ICFSecSecSysRole.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSysRoleEnables.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecSysRoleEnables ret = new CFSecBuffSecSysRoleEnables();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSysRoleEnables.CLASS_CODE)[" + ICFSecSecSysRoleEnables.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSysRoleMemb.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecSysRoleMemb ret = new CFSecBuffSecSysRoleMemb();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSysRoleMemb.CLASS_CODE)[" + ICFSecSecSysRoleMemb.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecClusRole.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecClusRole ret = new CFSecBuffSecClusRole();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecClusRole.CLASS_CODE)[" + ICFSecSecClusRole.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecClusRoleMemb.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecClusRoleMemb ret = new CFSecBuffSecClusRoleMemb();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecClusRoleMemb.CLASS_CODE)[" + ICFSecSecClusRoleMemb.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecTentRole.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecTentRole ret = new CFSecBuffSecTentRole();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecTentRole.CLASS_CODE)[" + ICFSecSecTentRole.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecTentRoleMemb.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecTentRoleMemb ret = new CFSecBuffSecTentRoleMemb();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecTentRoleMemb.CLASS_CODE)[" + ICFSecSecTentRoleMemb.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSession.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSecSession ret = new CFSecBuffSecSession();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSecSession.CLASS_CODE)[" + ICFSecSecSession.CLASS_CODE + "]");
+		}
+	
+		entry = ICFSecSchema.getClassMapByBackingClassCode(ICFSecSysCluster.CLASS_CODE);
+		if (entry != null) {
+			entry.setBackingRecConstructor( new BackingRecConstructor() {
+				@Override
+				public Object instantiate() {
+					ICFSecSysCluster ret = new CFSecBuffSysCluster();
+					return(ret);
+				}
+			});
+		}
+		else {
+			throw new CFLibNullArgumentException(CFSecBuffSchema.class, "wireRecConstructors", 0, "ICFSecSchema.getClassMapByBackingClassCode(ICFSecSysCluster.CLASS_CODE)[" + ICFSecSysCluster.CLASS_CODE + "]");
+		}
+	
+	}
+
+	@Override
+	public void wireTableTableInstances() {
+		throw new CFLibMustOverrideException(getClass(), "wireTableTableInstances");
+	}
+
+	@Override		
+	public ICFSecSchema getCFSecSchema() {
+		return( ICFSecSchema.getBackingCFSec() );
+	}
+
+	@Override
+	public void setCFSecSchema(ICFSecSchema schema) {
+		ICFSecSchema.setBackingCFSec(schema);
+		schema.wireRecConstructors();
+	}
+
+	public static CFSecBuffHooksSchema getBuffHooksSchema() {
+		return( cfsecBuffHooksSchema );
+	}
+
+	public static void setBuffHooksSchema(CFSecBuffHooksSchema buffHooksSchema) {
+		cfsecBuffHooksSchema = buffHooksSchema;
+	}
+
+	@Override
+	public ICFSecFactory getCFSecFactory() {
+		return(CFSecBuffSchema.getBuffHooksSchema().getFactoryService());
+	}
+
+	@Override
+	public CFSecBuffFactoryService getCFSecBuffFactory() {
+		return((CFSecBuffFactoryService)(CFSecBuffSchema.getBuffHooksSchema().getFactoryService()));
+	}
+
+	public CFSecBuffSchema() {
+
+	tableCluster = null; // new CFSecBuffClusterTable();
+	tableISOCcy = null; // new CFSecBuffISOCcyTable();
+	tableISOCtry = null; // new CFSecBuffISOCtryTable();
+	tableISOCtryCcy = null; // new CFSecBuffISOCtryCcyTable();
+	tableISOCtryLang = null; // new CFSecBuffISOCtryLangTable();
+	tableISOLang = null; // new CFSecBuffISOLangTable();
+	tableISOTZone = null; // new CFSecBuffISOTZoneTable();
+	tableSecClusGrp = null; // new CFSecBuffSecClusGrpTable();
+	tableSecClusGrpMemb = null; // new CFSecBuffSecClusGrpMembTable();
+	tableSecClusRole = null; // new CFSecBuffSecClusRoleTable();
+	tableSecClusRoleMemb = null; // new CFSecBuffSecClusRoleMembTable();
+	tableSecSession = null; // new CFSecBuffSecSessionTable();
+	tableSecSysGrp = null; // new CFSecBuffSecSysGrpTable();
+	tableSecSysGrpInc = null; // new CFSecBuffSecSysGrpIncTable();
+	tableSecSysGrpMemb = null; // new CFSecBuffSecSysGrpMembTable();
+	tableSecSysRole = null; // new CFSecBuffSecSysRoleTable();
+	tableSecSysRoleEnables = null; // new CFSecBuffSecSysRoleEnablesTable();
+	tableSecSysRoleMemb = null; // new CFSecBuffSecSysRoleMembTable();
+	tableSecTentGrp = null; // new CFSecBuffSecTentGrpTable();
+	tableSecTentGrpMemb = null; // new CFSecBuffSecTentGrpMembTable();
+	tableSecTentRole = null; // new CFSecBuffSecTentRoleTable();
+	tableSecTentRoleMemb = null; // new CFSecBuffSecTentRoleMembTable();
+	tableSecUser = null; // new CFSecBuffSecUserTable();
+	tableSecUserEMConf = null; // new CFSecBuffSecUserEMConfTable();
+	tableSecUserPWHistory = null; // new CFSecBuffSecUserPWHistoryTable();
+	tableSecUserPWReset = null; // new CFSecBuffSecUserPWResetTable();
+	tableSecUserPassword = null; // new CFSecBuffSecUserPasswordTable();
+	tableSysCluster = null; // new CFSecBuffSysClusterTable();
+	tableTableInfo = null; // new CFSecBuffTableInfoTable();
+	tableTenant = null; // new CFSecBuffTenantTable();
+	}
+
+	public ICFSecSchema newSchema() {
+		throw new CFLibMustOverrideException( getClass(), "newSchema" );
+	}
+
+	/**
+	 *	Get the next ISOCcyIdGen identifier.
+	 *
+	 *	@return	The next ISOCcyIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public short nextISOCcyIdGen() {
+		throw new CFLibMustOverrideException(getClass(), "nextISOCcyIdGen");
+	}
+
+	/**
+	 *	Get the next ISOCtryIdGen identifier.
+	 *
+	 *	@return	The next ISOCtryIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public short nextISOCtryIdGen() {
+		throw new CFLibMustOverrideException(getClass(), "nextISOCtryIdGen");
+	}
+
+	/**
+	 *	Get the next ISOLangIdGen identifier.
+	 *
+	 *	@return	The next ISOLangIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public short nextISOLangIdGen() {
+		throw new CFLibMustOverrideException(getClass(), "nextISOLangIdGen");
+	}
+
+	/**
+	 *	Get the next ISOTZoneIdGen identifier.
+	 *
+	 *	@return	The next ISOTZoneIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public short nextISOTZoneIdGen() {
+		throw new CFLibMustOverrideException(getClass(), "nextISOTZoneIdGen");
+	}
+
+	/**
+	 *	Get the next TableInfoIdGen identifier.
+	 *
+	 *	@return	The next TableInfoIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public int nextTableInfoIdGen() {
+		throw new CFLibMustOverrideException(getClass(), "nextTableInfoIdGen");
+	}
+
+	/**
+	 *	Get the next ClusterIdGen identifier.
+	 *
+	 *	@return	The next ClusterIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public CFLibDbKeyHash256 nextClusterIdGen() {
+		return( new CFLibDbKeyHash256(0) );
+	}
+
+	/**
+	 *	Get the next SecSessionIdGen identifier.
+	 *
+	 *	@return	The next SecSessionIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public CFLibDbKeyHash256 nextSecSessionIdGen() {
+		return( new CFLibDbKeyHash256(0) );
+	}
+
+	/**
+	 *	Get the next SecUserIdGen identifier.
+	 *
+	 *	@return	The next SecUserIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public CFLibDbKeyHash256 nextSecUserIdGen() {
+		return( new CFLibDbKeyHash256(0) );
+	}
+
+	/**
+	 *	Get the next TenantIdGen identifier.
+	 *
+	 *	@return	The next TenantIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public CFLibDbKeyHash256 nextTenantIdGen() {
+		return( new CFLibDbKeyHash256(0) );
+	}
+
+	/**
+	 *	Get the next SecSysGrpIdGen identifier.
+	 *
+	 *	@return	The next SecSysGrpIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public CFLibDbKeyHash256 nextSecSysGrpIdGen() {
+		return( new CFLibDbKeyHash256(0) );
+	}
+
+	/**
+	 *	Get the next SecClusGrpIdGen identifier.
+	 *
+	 *	@return	The next SecClusGrpIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public CFLibDbKeyHash256 nextSecClusGrpIdGen() {
+		return( new CFLibDbKeyHash256(0) );
+	}
+
+	/**
+	 *	Get the next SecClusRoleIdGen identifier.
+	 *
+	 *	@return	The next SecClusRoleIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public CFLibDbKeyHash256 nextSecClusRoleIdGen() {
+		return( new CFLibDbKeyHash256(0) );
+	}
+
+	/**
+	 *	Get the next SecTentGrpIdGen identifier.
+	 *
+	 *	@return	The next SecTentGrpIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public CFLibDbKeyHash256 nextSecTentGrpIdGen() {
+		return( new CFLibDbKeyHash256(0) );
+	}
+
+	/**
+	 *	Get the next SecTentRoleIdGen identifier.
+	 *
+	 *	@return	The next SecTentRoleIdGen identifier.
+	 *
+	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 */
+	public CFLibDbKeyHash256 nextSecTentRoleIdGen() {
+		return( new CFLibDbKeyHash256(0) );
+	}
+
+	public ICFSecClusterTable getTableCluster() {
+		return( tableCluster );
+	}
+
+	public void setTableCluster( ICFSecClusterTable value ) {
+		tableCluster = value;
+	}
+
+	public ICFSecISOCcyTable getTableISOCcy() {
+		return( tableISOCcy );
+	}
+
+	public void setTableISOCcy( ICFSecISOCcyTable value ) {
+		tableISOCcy = value;
+	}
+
+	public ICFSecISOCtryTable getTableISOCtry() {
+		return( tableISOCtry );
+	}
+
+	public void setTableISOCtry( ICFSecISOCtryTable value ) {
+		tableISOCtry = value;
+	}
+
+	public ICFSecISOCtryCcyTable getTableISOCtryCcy() {
+		return( tableISOCtryCcy );
+	}
+
+	public void setTableISOCtryCcy( ICFSecISOCtryCcyTable value ) {
+		tableISOCtryCcy = value;
+	}
+
+	public ICFSecISOCtryLangTable getTableISOCtryLang() {
+		return( tableISOCtryLang );
+	}
+
+	public void setTableISOCtryLang( ICFSecISOCtryLangTable value ) {
+		tableISOCtryLang = value;
+	}
+
+	public ICFSecISOLangTable getTableISOLang() {
+		return( tableISOLang );
+	}
+
+	public void setTableISOLang( ICFSecISOLangTable value ) {
+		tableISOLang = value;
+	}
+
+	public ICFSecISOTZoneTable getTableISOTZone() {
+		return( tableISOTZone );
+	}
+
+	public void setTableISOTZone( ICFSecISOTZoneTable value ) {
+		tableISOTZone = value;
+	}
+
+	public ICFSecSecClusGrpTable getTableSecClusGrp() {
+		return( tableSecClusGrp );
+	}
+
+	public void setTableSecClusGrp( ICFSecSecClusGrpTable value ) {
+		tableSecClusGrp = value;
+	}
+
+	public ICFSecSecClusGrpMembTable getTableSecClusGrpMemb() {
+		return( tableSecClusGrpMemb );
+	}
+
+	public void setTableSecClusGrpMemb( ICFSecSecClusGrpMembTable value ) {
+		tableSecClusGrpMemb = value;
+	}
+
+	public ICFSecSecClusRoleTable getTableSecClusRole() {
+		return( tableSecClusRole );
+	}
+
+	public void setTableSecClusRole( ICFSecSecClusRoleTable value ) {
+		tableSecClusRole = value;
+	}
+
+	public ICFSecSecClusRoleMembTable getTableSecClusRoleMemb() {
+		return( tableSecClusRoleMemb );
+	}
+
+	public void setTableSecClusRoleMemb( ICFSecSecClusRoleMembTable value ) {
+		tableSecClusRoleMemb = value;
+	}
+
+	public ICFSecSecSessionTable getTableSecSession() {
+		return( tableSecSession );
+	}
+
+	public void setTableSecSession( ICFSecSecSessionTable value ) {
+		tableSecSession = value;
+	}
+
+	public ICFSecSecSysGrpTable getTableSecSysGrp() {
+		return( tableSecSysGrp );
+	}
+
+	public void setTableSecSysGrp( ICFSecSecSysGrpTable value ) {
+		tableSecSysGrp = value;
+	}
+
+	public ICFSecSecSysGrpIncTable getTableSecSysGrpInc() {
+		return( tableSecSysGrpInc );
+	}
+
+	public void setTableSecSysGrpInc( ICFSecSecSysGrpIncTable value ) {
+		tableSecSysGrpInc = value;
+	}
+
+	public ICFSecSecSysGrpMembTable getTableSecSysGrpMemb() {
+		return( tableSecSysGrpMemb );
+	}
+
+	public void setTableSecSysGrpMemb( ICFSecSecSysGrpMembTable value ) {
+		tableSecSysGrpMemb = value;
+	}
+
+	public ICFSecSecSysRoleTable getTableSecSysRole() {
+		return( tableSecSysRole );
+	}
+
+	public void setTableSecSysRole( ICFSecSecSysRoleTable value ) {
+		tableSecSysRole = value;
+	}
+
+	public ICFSecSecSysRoleEnablesTable getTableSecSysRoleEnables() {
+		return( tableSecSysRoleEnables );
+	}
+
+	public void setTableSecSysRoleEnables( ICFSecSecSysRoleEnablesTable value ) {
+		tableSecSysRoleEnables = value;
+	}
+
+	public ICFSecSecSysRoleMembTable getTableSecSysRoleMemb() {
+		return( tableSecSysRoleMemb );
+	}
+
+	public void setTableSecSysRoleMemb( ICFSecSecSysRoleMembTable value ) {
+		tableSecSysRoleMemb = value;
+	}
+
+	public ICFSecSecTentGrpTable getTableSecTentGrp() {
+		return( tableSecTentGrp );
+	}
+
+	public void setTableSecTentGrp( ICFSecSecTentGrpTable value ) {
+		tableSecTentGrp = value;
+	}
+
+	public ICFSecSecTentGrpMembTable getTableSecTentGrpMemb() {
+		return( tableSecTentGrpMemb );
+	}
+
+	public void setTableSecTentGrpMemb( ICFSecSecTentGrpMembTable value ) {
+		tableSecTentGrpMemb = value;
+	}
+
+	public ICFSecSecTentRoleTable getTableSecTentRole() {
+		return( tableSecTentRole );
+	}
+
+	public void setTableSecTentRole( ICFSecSecTentRoleTable value ) {
+		tableSecTentRole = value;
+	}
+
+	public ICFSecSecTentRoleMembTable getTableSecTentRoleMemb() {
+		return( tableSecTentRoleMemb );
+	}
+
+	public void setTableSecTentRoleMemb( ICFSecSecTentRoleMembTable value ) {
+		tableSecTentRoleMemb = value;
+	}
+
+	public ICFSecSecUserTable getTableSecUser() {
+		return( tableSecUser );
+	}
+
+	public void setTableSecUser( ICFSecSecUserTable value ) {
+		tableSecUser = value;
+	}
+
+	public ICFSecSecUserEMConfTable getTableSecUserEMConf() {
+		return( tableSecUserEMConf );
+	}
+
+	public void setTableSecUserEMConf( ICFSecSecUserEMConfTable value ) {
+		tableSecUserEMConf = value;
+	}
+
+	public ICFSecSecUserPWHistoryTable getTableSecUserPWHistory() {
+		return( tableSecUserPWHistory );
+	}
+
+	public void setTableSecUserPWHistory( ICFSecSecUserPWHistoryTable value ) {
+		tableSecUserPWHistory = value;
+	}
+
+	public ICFSecSecUserPWResetTable getTableSecUserPWReset() {
+		return( tableSecUserPWReset );
+	}
+
+	public void setTableSecUserPWReset( ICFSecSecUserPWResetTable value ) {
+		tableSecUserPWReset = value;
+	}
+
+	public ICFSecSecUserPasswordTable getTableSecUserPassword() {
+		return( tableSecUserPassword );
+	}
+
+	public void setTableSecUserPassword( ICFSecSecUserPasswordTable value ) {
+		tableSecUserPassword = value;
+	}
+
+	public ICFSecSysClusterTable getTableSysCluster() {
+		return( tableSysCluster );
+	}
+
+	public void setTableSysCluster( ICFSecSysClusterTable value ) {
+		tableSysCluster = value;
+	}
+
+	public ICFSecTableInfoTable getTableTableInfo() {
+		return( tableTableInfo );
+	}
+
+	public void setTableTableInfo( ICFSecTableInfoTable value ) {
+		tableTableInfo = value;
+	}
+
+	public ICFSecTenantTable getTableTenant() {
+		return( tableTenant );
+	}
+
+	public void setTableTenant( ICFSecTenantTable value ) {
+		tableTenant = value;
+	}
+
+	public static String xmlEncodeString( String val ) {
+		StringBuffer buff = new StringBuffer();
+		int len = val.length();
+		for( int idx = 0; idx < len; idx ++ ) {
+			char c = val.charAt( idx );
+			switch( c ) {
+				case '&':
+					buff.append( "&amp;" );
+					break;
+				case '<':
+					buff.append( "&lt;" );
+					break;
+				case '>':
+					buff.append( "&gt;" );
+					break;
+				case '"':
+					buff.append( "&quot;" );
+					break;
+				case '\'':
+					buff.append( "&apos;" );
+					break;
+				default:
+					buff.append( c );
+					break;
+			}
+		}
+		return( buff.toString() );
+	}
+
+	public void bootstrapSchema(CFSecPubTableData tableData[]) {
+	}
+	
+	public void bootstrapAllTablesSecurity(CFLibDbKeyHash256 clusterId, CFLibDbKeyHash256 tenantId, CFSecPubTableData tableData[]) {
+	}
+}

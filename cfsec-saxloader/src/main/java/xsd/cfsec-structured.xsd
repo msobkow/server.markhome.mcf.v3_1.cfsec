@@ -1,0 +1,1383 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns="http://mcf.markhome.server/mcf/v3_1/xsd/cfsec-structured.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="http://mcf.markhome.server/mcf/v3_1/xsd/cfsec-structured.xsd" version="3.1">
+<xs:import namespace="http://mcf.markhome.server/mcf/v3_1/xsd/cflibdbutil-3.1.xsd" schemaLocation="http://mcf.markhome.server/mcf/v3_1/xsd/cflibdbutil-3.1.xsd"/>
+
+
+<xsd:annotation>
+	<xsd:documentation xml:lang="en">
+		CFSec schema CFSec
+	</xsd:documentation>
+</xsd:annotation>
+
+<!-- ************************************************************************
+ *
+ *	Schema Atomic Types
+ *
+ **************************************************************************-->
+
+<xsd:simpleType name="AuditActionEnumType">
+	<xsd:restriction base="xsd:token">
+		<xsd:minLength value="1"/>
+		<xsd:maxLength value="127"/>
+		<xsd:whiteSpace value="collapse"/>
+		<xsd:enumeration value="Created"/>
+		<xsd:enumeration value="Updated"/>
+		<xsd:enumeration value="Deleted"/>
+		<xsd:enumeration value="Mutated"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecLevelEnumType">
+	<xsd:restriction base="xsd:token">
+		<xsd:minLength value="1"/>
+		<xsd:maxLength value="127"/>
+		<xsd:whiteSpace value="collapse"/>
+		<xsd:enumeration value="System"/>
+		<xsd:enumeration value="Global"/>
+		<xsd:enumeration value="Cluster"/>
+		<xsd:enumeration value="Tenant"/>
+		<xsd:enumeration value="SysRole"/>
+		<xsd:enumeration value="ClusRole"/>
+		<xsd:enumeration value="TentRole"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecAccountStatusEnumType">
+	<xsd:restriction base="xsd:token">
+		<xsd:minLength value="1"/>
+		<xsd:maxLength value="127"/>
+		<xsd:whiteSpace value="collapse"/>
+		<xsd:enumeration value="System"/>
+		<xsd:enumeration value="VerifyingEmail"/>
+		<xsd:enumeration value="CreatingDevKey"/>
+		<xsd:enumeration value="NormalUser"/>
+		<xsd:enumeration value="ResettingPassword"/>
+		<xsd:enumeration value="Locked"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ClusterIdGenType">
+	<xsd:restriction base="DbKeyHash256"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISO6391LangCodeType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="2"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISO6392LangCodeType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="3"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCcyCodeType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="3"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCcyIdGenType">
+	<xsd:restriction base="xsd:short"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="TableInfoIdGenType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCtryCodeType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="2"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCtryCode3Type">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="3"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="LoginIdTypeType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="32"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="GroupNameType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="EMailAddrTypeType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="512"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCtryIdGenType">
+	<xsd:restriction base="xsd:short"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOLangIdGenType">
+	<xsd:restriction base="xsd:short"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOTZoneIdGenType">
+	<xsd:restriction base="xsd:short"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSessionIdGenType">
+	<xsd:restriction base="DbKeyHash256"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserIdGenType">
+	<xsd:restriction base="DbKeyHash256"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="TenantIdGenType">
+	<xsd:restriction base="DbKeyHash256"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysGrpIdGenType">
+	<xsd:restriction base="DbKeyHash256"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusGrpIdGenType">
+	<xsd:restriction base="DbKeyHash256"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusRoleIdGenType">
+	<xsd:restriction base="DbKeyHash256"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentGrpIdGenType">
+	<xsd:restriction base="DbKeyHash256"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentRoleIdGenType">
+	<xsd:restriction base="DbKeyHash256"/>
+</xsd:simpleType>
+
+<!-- ************************************************************************
+ *
+ *	Table Column Types
+ *
+ **************************************************************************-->
+
+<xsd:simpleType name="ClusterIdType">
+	<xsd:restriction base="ClusterIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ClusterFullDomNameType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="192"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ClusterDescriptionType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="128"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ClusterRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCcyISOCcyIdType">
+	<xsd:restriction base="ISOCcyIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCcyISOCodeType">
+	<xsd:restriction base="ISOCcyCodeType">
+		<xsd:maxLength value="3"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCcyNameType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCcyUnitSymbolType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="4"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCcyPrecisType">
+	<xsd:restriction base="xsd:short"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCcyRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCtryISOCtryIdType">
+	<xsd:restriction base="ISOCtryIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCtryISOCodeType">
+	<xsd:restriction base="ISOCtryCodeType">
+		<xsd:maxLength value="2"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCtryNameType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCtryRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCtryCcyISOCtryIdType">
+	<xsd:restriction base="ISOCtryIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCtryCcyISOCcyIdType">
+	<xsd:restriction base="ISOCcyIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCtryCcyRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCtryLangISOCtryIdType">
+	<xsd:restriction base="ISOCtryIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCtryLangISOLangIdType">
+	<xsd:restriction base="ISOLangIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOCtryLangRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOLangISOLangIdType">
+	<xsd:restriction base="ISOLangIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOLangISO6392CodeType">
+	<xsd:restriction base="ISO6392LangCodeType">
+		<xsd:maxLength value="3"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOLangISO6391CodeType">
+	<xsd:restriction base="ISO6391LangCodeType">
+		<xsd:maxLength value="2"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOLangEnglishNameType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOLangRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOTZoneISOTZoneIdType">
+	<xsd:restriction base="ISOTZoneIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOTZoneIso8601Type">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="6"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOTZoneTZNameType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOTZoneTZHourOffsetType">
+	<xsd:restriction base="xsd:short"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOTZoneTZMinOffsetType">
+	<xsd:restriction base="xsd:short"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOTZoneDescriptionType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="128"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOTZoneVisibleType">
+	<xsd:restriction base="xsd:boolean"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="ISOTZoneRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusGrpSecClusGrpIdType">
+	<xsd:restriction base="SecClusGrpIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusGrpClusterIdType">
+	<xsd:restriction base="ClusterIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusGrpNameType">
+	<xsd:restriction base="GroupNameType">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusGrpRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusGrpMembSecClusGrpIdType">
+	<xsd:restriction base="SecClusGrpIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusGrpMembLoginIdType">
+	<xsd:restriction base="LoginIdTypeType">
+		<xsd:maxLength value="32"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusGrpMembRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusRoleSecClusRoleIdType">
+	<xsd:restriction base="SecClusRoleIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusRoleClusterIdType">
+	<xsd:restriction base="ClusterIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusRoleNameType">
+	<xsd:restriction base="GroupNameType">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusRoleRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusRoleMembSecClusRoleIdType">
+	<xsd:restriction base="SecClusRoleIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusRoleMembLoginIdType">
+	<xsd:restriction base="LoginIdTypeType">
+		<xsd:maxLength value="32"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecClusRoleMembRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSessionSecSessionIdType">
+	<xsd:restriction base="SecSessionIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSessionSecUserIdType">
+	<xsd:restriction base="SecUserIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSessionStartType">
+	<xsd:restriction base="xsd:dateTime"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSessionFinishType">
+	<xsd:restriction base="xsd:dateTime"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSessionSecProxyIdType">
+	<xsd:restriction base="SecUserIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSessionRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysGrpSecSysGrpIdType">
+	<xsd:restriction base="SecSysGrpIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysGrpNameType">
+	<xsd:restriction base="GroupNameType">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysGrpSecLevelType">
+	<xsd:restriction base="SecLevelEnumType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysGrpRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysGrpIncSecSysGrpIdType">
+	<xsd:restriction base="SecSysGrpIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysGrpIncInclNameType">
+	<xsd:restriction base="GroupNameType">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysGrpIncRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysGrpMembSecSysGrpIdType">
+	<xsd:restriction base="SecSysGrpIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysGrpMembLoginIdType">
+	<xsd:restriction base="LoginIdTypeType">
+		<xsd:maxLength value="32"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysGrpMembRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysRoleSecSysRoleIdType">
+	<xsd:restriction base="SecSysGrpIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysRoleNameType">
+	<xsd:restriction base="GroupNameType">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysRoleRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysRoleEnablesSecSysRoleIdType">
+	<xsd:restriction base="SecSysGrpIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysRoleEnablesEnableNameType">
+	<xsd:restriction base="GroupNameType">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysRoleEnablesRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysRoleMembSecSysRoleIdType">
+	<xsd:restriction base="SecSysGrpIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysRoleMembLoginIdType">
+	<xsd:restriction base="LoginIdTypeType">
+		<xsd:maxLength value="32"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecSysRoleMembRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentGrpSecTentGrpIdType">
+	<xsd:restriction base="SecTentGrpIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentGrpTenantIdType">
+	<xsd:restriction base="TenantIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentGrpNameType">
+	<xsd:restriction base="GroupNameType">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentGrpRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentGrpMembSecTentGrpIdType">
+	<xsd:restriction base="SecTentGrpIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentGrpMembLoginIdType">
+	<xsd:restriction base="LoginIdTypeType">
+		<xsd:maxLength value="32"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentGrpMembRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentRoleSecTentRoleIdType">
+	<xsd:restriction base="SecTentRoleIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentRoleTenantIdType">
+	<xsd:restriction base="TenantIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentRoleNameType">
+	<xsd:restriction base="GroupNameType">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentRoleRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentRoleMembSecTentRoleIdType">
+	<xsd:restriction base="SecTentRoleIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentRoleMembLoginIdType">
+	<xsd:restriction base="LoginIdTypeType">
+		<xsd:maxLength value="32"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecTentRoleMembRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserSecUserIdType">
+	<xsd:restriction base="SecUserIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserLoginIdType">
+	<xsd:restriction base="LoginIdTypeType">
+		<xsd:maxLength value="32"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserAccountStatusType">
+	<xsd:restriction base="SecAccountStatusEnumType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserDfltSysGrpNameType">
+	<xsd:restriction base="GroupNameType">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserDfltClusGrpNameType">
+	<xsd:restriction base="GroupNameType">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserDfltTentGrpNameType">
+	<xsd:restriction base="GroupNameType">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserEMailAddressType">
+	<xsd:restriction base="EMailAddrTypeType">
+		<xsd:maxLength value="512"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserEMConfSecUserIdType">
+	<xsd:restriction base="SecUserIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserEMConfConfirmEMailAddrType">
+	<xsd:restriction base="EMailAddrTypeType">
+		<xsd:maxLength value="512"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserEMConfEMailSentStampType">
+	<xsd:restriction base="xsd:dateTime"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserEMConfEMConfirmationUuid6Type">
+	<xsd:restriction base="Uuid6"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserEMConfNewAccountType">
+	<xsd:restriction base="xsd:boolean"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserEMConfRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPWHistorySecUserIdType">
+	<xsd:restriction base="SecUserIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPWHistoryPWSetStampType">
+	<xsd:restriction base="xsd:dateTime"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPWHistoryPWReplacedStampType">
+	<xsd:restriction base="xsd:dateTime"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPWHistoryPasswordHashType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="256"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPWHistoryRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPWResetSecUserIdType">
+	<xsd:restriction base="SecUserIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPWResetSentToEMailAddrType">
+	<xsd:restriction base="EMailAddrTypeType">
+		<xsd:maxLength value="512"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPWResetPasswordResetUuid6Type">
+	<xsd:restriction base="Uuid6"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPWResetNewAccountType">
+	<xsd:restriction base="xsd:boolean"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPWResetRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPasswordSecUserIdType">
+	<xsd:restriction base="SecUserIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPasswordPWSetStampType">
+	<xsd:restriction base="xsd:dateTime"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPasswordPasswordHashType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="256"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SecUserPasswordRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SysClusterSingletonIdType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="SysClusterClusterIdType">
+	<xsd:restriction base="ClusterIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="SysClusterRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="TableInfoTableInfoIdType">
+	<xsd:restriction base="TableInfoIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="TableInfoSchemaNameType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="32"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="TableInfoTableNameType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="TableInfoSuperNameType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="64"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="TableInfoBackingClassCodeType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="TableInfoRuntimeClassCodeType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="TableInfoHasHistoryType">
+	<xsd:restriction base="xsd:boolean"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="TableInfoIsMutableType">
+	<xsd:restriction base="xsd:boolean"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="TableInfoSecScopeNameType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="32"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="TableInfoCodeVisType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="32"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="TableInfoRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="TenantIdType">
+	<xsd:restriction base="TenantIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="TenantClusterIdType">
+	<xsd:restriction base="ClusterIdGenType">
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="TenantTenantNameType">
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="192"/>
+		<xsd:whiteSpace value="preserve"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="TenantRevisionType">
+	<xsd:restriction base="xsd:integer"/>
+</xsd:simpleType>
+
+<!-- ************************************************************************
+ *
+ *	Schema Primary Index Types
+ *
+ **************************************************************************-->
+
+<xsd:complexType name="ClusterIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="Id" type="ClusterIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="ISOCcyIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="ISOCcyId" type="ISOCcyISOCcyIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="ISOCtryIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="ISOCtryId" type="ISOCtryISOCtryIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="ISOCtryCcyIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="ISOCtryId" type="ISOCtryCcyISOCtryIdType" use="required"/>
+	<xsd:attribute name="ISOCcyId" type="ISOCtryCcyISOCcyIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="ISOCtryLangIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="ISOCtryId" type="ISOCtryLangISOCtryIdType" use="required"/>
+	<xsd:attribute name="ISOLangId" type="ISOCtryLangISOLangIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="ISOLangIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="ISOLangId" type="ISOLangISOLangIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="ISOTZoneIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="ISOTZoneId" type="ISOTZoneISOTZoneIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecClusGrpIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecClusGrpId" type="SecClusGrpSecClusGrpIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecClusGrpMembIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecClusGrpId" type="SecClusGrpMembSecClusGrpIdType" use="required"/>
+	<xsd:attribute name="LoginId" type="SecClusGrpMembLoginIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecClusRoleIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecClusRoleId" type="SecClusRoleSecClusRoleIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecClusRoleMembIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecClusRoleId" type="SecClusRoleMembSecClusRoleIdType" use="required"/>
+	<xsd:attribute name="LoginId" type="SecClusRoleMembLoginIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSessionIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecSessionId" type="SecSessionSecSessionIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSysGrpIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecSysGrpId" type="SecSysGrpSecSysGrpIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSysGrpIncIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecSysGrpId" type="SecSysGrpIncSecSysGrpIdType" use="required"/>
+	<xsd:attribute name="InclName" type="SecSysGrpIncInclNameType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSysGrpMembIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecSysGrpId" type="SecSysGrpMembSecSysGrpIdType" use="required"/>
+	<xsd:attribute name="LoginId" type="SecSysGrpMembLoginIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSysRoleIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecSysRoleId" type="SecSysRoleSecSysRoleIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSysRoleEnablesIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecSysRoleId" type="SecSysRoleEnablesSecSysRoleIdType" use="required"/>
+	<xsd:attribute name="EnableName" type="SecSysRoleEnablesEnableNameType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSysRoleMembIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecSysRoleId" type="SecSysRoleMembSecSysRoleIdType" use="required"/>
+	<xsd:attribute name="LoginId" type="SecSysRoleMembLoginIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecTentGrpIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecTentGrpId" type="SecTentGrpSecTentGrpIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecTentGrpMembIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecTentGrpId" type="SecTentGrpMembSecTentGrpIdType" use="required"/>
+	<xsd:attribute name="LoginId" type="SecTentGrpMembLoginIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecTentRoleIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecTentRoleId" type="SecTentRoleSecTentRoleIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecTentRoleMembIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecTentRoleId" type="SecTentRoleMembSecTentRoleIdType" use="required"/>
+	<xsd:attribute name="LoginId" type="SecTentRoleMembLoginIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecUserIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecUserId" type="SecUserSecUserIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecUserEMConfIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecUserId" type="SecUserEMConfSecUserIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecUserPWHistIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecUserId" type="SecUserPWHistorySecUserIdType" use="required"/>
+	<xsd:attribute name="PWSetStamp" type="SecUserPWHistoryPWSetStampType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecUserPWResetIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecUserId" type="SecUserPWResetSecUserIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecUserPasswordIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SecUserId" type="SecUserPasswordSecUserIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SysClusterIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="SingletonId" type="SysClusterSingletonIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="TableInfoIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="TableInfoId" type="TableInfoTableInfoIdType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="TenantIdIdxType" mixed="true">
+	<xsd:sequence>
+	</xsd:sequence>
+	<xsd:attribute name="Id" type="TenantIdType" use="required"/>
+</xsd:complexType>
+
+<!-- ************************************************************************
+ *
+ *	Schema Table Object Types
+ *
+ **************************************************************************-->
+
+<xsd:complexType name="ClusterObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="Tenant" type="TenantObjType" />
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="FullDomName" type="ClusterFullDomNameType" use="required"/>
+	<xsd:attribute name="Description" type="ClusterDescriptionType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="ISOCcyObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="ISOCode" type="ISOCcyISOCodeType" use="required"/>
+	<xsd:attribute name="Name" type="ISOCcyNameType" use="required"/>
+	<xsd:attribute name="UnitSymbol" type="ISOCcyUnitSymbolType" use="optional"/>
+	<xsd:attribute name="Precis" type="ISOCcyPrecisType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="ISOCtryObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="ISOCtryCcy" type="ISOCtryCcyObjType" />
+			<xsd:element name="ISOCtryLang" type="ISOCtryLangObjType" />
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="ISOCode" type="ISOCtryISOCodeType" use="required"/>
+	<xsd:attribute name="Name" type="ISOCtryNameType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="ISOCtryCcyObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="Ccy" type="xsd:string" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="ISOCtryLangObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="Lang" type="xsd:string" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="ISOLangObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="ISO6392Code" type="ISOLangISO6392CodeType" use="required"/>
+	<xsd:attribute name="ISO6391Code" type="ISOLangISO6391CodeType" use="optional"/>
+	<xsd:attribute name="EnglishName" type="ISOLangEnglishNameType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="ISOTZoneObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="Iso8601" type="ISOTZoneIso8601Type" use="required"/>
+	<xsd:attribute name="TZName" type="ISOTZoneTZNameType" use="required"/>
+	<xsd:attribute name="TZHourOffset" type="ISOTZoneTZHourOffsetType" use="required"/>
+	<xsd:attribute name="TZMinOffset" type="ISOTZoneTZMinOffsetType" use="required"/>
+	<xsd:attribute name="Description" type="ISOTZoneDescriptionType" use="required"/>
+	<xsd:attribute name="Visible" type="ISOTZoneVisibleType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecClusGrpObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="SecClusGrpMembObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="User" type="xsd:string" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecClusRoleObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="SecClusRoleMembObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="User" type="xsd:string" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSessionObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="Start" type="SecSessionStartType" use="required"/>
+	<xsd:attribute name="Finish" type="SecSessionFinishType" use="optional"/>
+	<xsd:attribute name="SecProxy" type="xsd:string" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSysGrpObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="SecSysGrpInc" type="SecSysGrpIncObjType" />
+			<xsd:element name="SecClusGrp" type="SecClusGrpObjType" />
+			<xsd:element name="SecTentGrp" type="SecTentGrpObjType" />
+			<xsd:element name="SecClusRole" type="SecClusRoleObjType" />
+			<xsd:element name="SecTentRole" type="SecTentRoleObjType" />
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="Name" type="SecSysGrpNameType" use="optional"/>
+	<xsd:attribute name="SecLevel" type="SecSysGrpSecLevelType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSysGrpIncObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="SubGroup" type="xsd:string" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSysGrpMembObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="User" type="xsd:string" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSysRoleObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="SecSysRoleEnables" type="SecSysRoleEnablesObjType" />
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="Name" type="SecSysRoleNameType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSysRoleEnablesObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="EnableGroup" type="xsd:string" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecSysRoleMembObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="User" type="xsd:string" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecTentGrpObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="SecTentGrpMembObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="User" type="xsd:string" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecTentRoleObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="SecTentRoleMembObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="User" type="xsd:string" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecUserObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="SecSession" type="SecSessionObjType" />
+			<xsd:element name="SecUserPassword" type="SecUserPasswordObjType" />
+			<xsd:element name="SecUserEMConf" type="SecUserEMConfObjType" />
+			<xsd:element name="SecUserPWReset" type="SecUserPWResetObjType" />
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="LoginId" type="SecUserLoginIdType" use="required"/>
+	<xsd:attribute name="AccountStatus" type="SecUserAccountStatusType" use="required"/>
+	<xsd:attribute name="DfltSysGrpName" type="SecUserDfltSysGrpNameType" use="optional"/>
+	<xsd:attribute name="DfltClusGrpName" type="SecUserDfltClusGrpNameType" use="optional"/>
+	<xsd:attribute name="DfltTentGrpName" type="SecUserDfltTentGrpNameType" use="optional"/>
+	<xsd:attribute name="EMailAddress" type="SecUserEMailAddressType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecUserEMConfObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="ConfirmEMailAddr" type="SecUserEMConfConfirmEMailAddrType" use="required"/>
+	<xsd:attribute name="EMailSentStamp" type="SecUserEMConfEMailSentStampType" use="required"/>
+	<xsd:attribute name="EMConfirmationUuid6" type="SecUserEMConfEMConfirmationUuid6Type" use="required"/>
+	<xsd:attribute name="NewAccount" type="SecUserEMConfNewAccountType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecUserPWHistoryObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="PWReplacedStamp" type="SecUserPWHistoryPWReplacedStampType" use="required"/>
+	<xsd:attribute name="PasswordHash" type="SecUserPWHistoryPasswordHashType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecUserPWResetObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="SentToEMailAddr" type="SecUserPWResetSentToEMailAddrType" use="required"/>
+	<xsd:attribute name="PasswordResetUuid6" type="SecUserPWResetPasswordResetUuid6Type" use="required"/>
+	<xsd:attribute name="NewAccount" type="SecUserPWResetNewAccountType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SecUserPasswordObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="PWSetStamp" type="SecUserPasswordPWSetStampType" use="required"/>
+	<xsd:attribute name="PasswordHash" type="SecUserPasswordPasswordHashType" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="SysClusterObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="TableInfoObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="SchemaName" type="TableInfoSchemaNameType" use="required"/>
+	<xsd:attribute name="TableName" type="TableInfoTableNameType" use="required"/>
+	<xsd:attribute name="BackingClassCode" type="TableInfoBackingClassCodeType" use="required"/>
+	<xsd:attribute name="RuntimeClassCode" type="TableInfoRuntimeClassCodeType" use="required"/>
+	<xsd:attribute name="HasHistory" type="TableInfoHasHistoryType" use="required"/>
+	<xsd:attribute name="IsMutable" type="TableInfoIsMutableType" use="required"/>
+	<xsd:attribute name="SecScopeName" type="TableInfoSecScopeNameType" use="required"/>
+	<xsd:attribute name="CodeVis" type="TableInfoCodeVisType" use="required"/>
+	<xsd:attribute name="SuperRef" type="xsd:string" use="optional"/>
+</xsd:complexType>
+
+<xsd:complexType name="TenantObjType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+		</xsd:choice>
+	</xsd:sequence>
+	<xsd:attribute name="TenantName" type="TenantTenantNameType" use="required"/>
+</xsd:complexType>
+
+<!-- ************************************************************************
+ *
+ *	Schema Root Document
+ *
+ **************************************************************************-->
+
+<xsd:complexType name="CFSecType" mixed="true">
+	<xsd:sequence>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="Cluster" type="ClusterObjType" />
+			<xsd:element name="ISOCcy" type="ISOCcyObjType" />
+			<xsd:element name="ISOCtry" type="ISOCtryObjType" />
+			<xsd:element name="ISOLang" type="ISOLangObjType" />
+			<xsd:element name="ISOTZone" type="ISOTZoneObjType" />
+			<xsd:element name="SecSysGrp" type="SecSysGrpObjType" />
+			<xsd:element name="SecSysRole" type="SecSysRoleObjType" />
+			<xsd:element name="SecUser" type="SecUserObjType" />
+			<xsd:element name="SecUserPWHistory" type="SecUserPWHistoryObjType" />
+			<xsd:element name="TableInfo" type="TableInfoObjType" />
+		</xsd:choice>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:element name="CFSec" type="CFSecType" />
+
+</xsd:schema>

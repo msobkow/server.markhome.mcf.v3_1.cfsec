@@ -1,0 +1,209 @@
+
+// Description: Java 25 Factory service implementation for SecClusGrpMemb buffers
+
+/*
+ *	server.markhome.mcf.CFSec
+ *
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow
+ *	
+ *	Mark's Code Fractal 3.1 CFSec - Security Services
+ *	
+ *	Copyright (c) 2016-2026 Mark Stephen Sobkow mark.sobkow@gmail.com
+ *	
+ *	These files are part of Mark's Code Fractal CFSec.
+ *	
+ *	Licensed under the Apache License, Version 2.0 (the "License");
+ *	you may not use this file except in compliance with the License.
+ *	You may obtain a copy of the License at
+ *	
+ *	http://www.apache.org/licenses/LICENSE-2.0
+ *	
+ *	Unless required by applicable law or agreed to in writing, software
+ *	distributed under the License is distributed on an "AS IS" BASIS,
+ *	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *	See the License for the specific language governing permissions and
+ *	limitations under the License.
+ *	
+ */
+
+package server.markhome.mcf.v3_1.cfsec.cfsec.buff;
+
+import java.lang.reflect.*;
+import java.net.*;
+import java.rmi.*;
+import java.sql.*;
+import java.text.*;
+import java.time.*;
+import java.util.*;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.text.StringEscapeUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import server.markhome.mcf.v3_1.cflib.*;
+import server.markhome.mcf.v3_1.cflib.dbutil.*;
+import server.markhome.mcf.v3_1.cflib.keyhash.*;
+import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
+import server.markhome.mcf.v3_1.cfsec.cfsec.*;
+import server.markhome.mcf.v3_1.cfsec.cfsecobj.*;
+
+/*
+ *	Java 25 Factory service implementation for SecClusGrpMemb buffers.
+ */
+@Service("cfsec31BuffSecClusGrpMembFactoryService")
+public class CFSecBuffSecClusGrpMembFactoryService
+	implements ICFSecSecClusGrpMembFactory
+{
+	public CFSecBuffSecClusGrpMembFactoryService() {
+	}
+
+    @Override
+    public ICFSecSecClusGrpMembPKey newPKey() {
+        ICFSecSecClusGrpMembPKey pkey =
+            new CFSecBuffSecClusGrpMembPKey();
+        return( pkey );
+    }
+
+	public CFSecBuffSecClusGrpMembPKey ensurePKey(ICFSecSecClusGrpMembPKey key) {
+		if (key == null) {
+			return( null );
+		}
+		else if (key instanceof CFSecBuffSecClusGrpMembPKey) {
+			return( (CFSecBuffSecClusGrpMembPKey)key );
+		}
+		else {
+			CFSecBuffSecClusGrpMembPKey mapped = new CFSecBuffSecClusGrpMembPKey();
+			mapped.setRequiredSecClusGrpId( key.getRequiredSecClusGrpId() );
+			mapped.setRequiredLoginId( key.getRequiredLoginId() );
+			return( mapped );
+		}
+	}
+
+	@Override
+	public ICFSecSecClusGrpMembHPKey newHPKey() {
+		ICFSecSecClusGrpMembHPKey hpkey =
+			new CFSecBuffSecClusGrpMembHPKey();
+		return( hpkey );
+	}
+
+	public CFSecBuffSecClusGrpMembHPKey ensureHPKey(ICFSecSecClusGrpMembHPKey key) {
+		if (key == null) {
+			return( null );
+		}
+		else if( key instanceof CFSecBuffSecClusGrpMembHPKey) {
+			return( (CFSecBuffSecClusGrpMembHPKey)key );
+		}
+		else {
+			CFSecBuffSecClusGrpMembHPKey mapped = new CFSecBuffSecClusGrpMembHPKey();
+			mapped.setAuditClusterId(key.getAuditClusterId());
+			mapped.setAuditActionId(key.getAuditActionId());
+			mapped.setAuditSessionId(key.getAuditSessionId());
+			mapped.setAuditStamp(key.getAuditStamp());
+			mapped.setRequiredSecClusGrpId( key.getRequiredSecClusGrpId() );
+			mapped.setRequiredLoginId( key.getRequiredLoginId() );
+			return( mapped );
+		}
+	}
+
+	@Override
+	public ICFSecSecClusGrpMembByClusGrpIdxKey newByClusGrpIdxKey() {
+		ICFSecSecClusGrpMembByClusGrpIdxKey key =
+			new CFSecBuffSecClusGrpMembByClusGrpIdxKey();
+		return( key );
+	}
+
+	public CFSecBuffSecClusGrpMembByClusGrpIdxKey ensureByClusGrpIdxKey(ICFSecSecClusGrpMembByClusGrpIdxKey key) {
+		if (key == null) {
+			return( null );
+		}
+		else if (key instanceof CFSecBuffSecClusGrpMembByClusGrpIdxKey) {
+			return( (CFSecBuffSecClusGrpMembByClusGrpIdxKey)key );
+		}
+		else {
+			CFSecBuffSecClusGrpMembByClusGrpIdxKey mapped = new CFSecBuffSecClusGrpMembByClusGrpIdxKey();
+			mapped.setRequiredSecClusGrpId( key.getRequiredSecClusGrpId() );
+			return( mapped );
+		}
+	}
+
+	@Override
+	public ICFSecSecClusGrpMembByLoginIdxKey newByLoginIdxKey() {
+		ICFSecSecClusGrpMembByLoginIdxKey key =
+			new CFSecBuffSecClusGrpMembByLoginIdxKey();
+		return( key );
+	}
+
+	public CFSecBuffSecClusGrpMembByLoginIdxKey ensureByLoginIdxKey(ICFSecSecClusGrpMembByLoginIdxKey key) {
+		if (key == null) {
+			return( null );
+		}
+		else if (key instanceof CFSecBuffSecClusGrpMembByLoginIdxKey) {
+			return( (CFSecBuffSecClusGrpMembByLoginIdxKey)key );
+		}
+		else {
+			CFSecBuffSecClusGrpMembByLoginIdxKey mapped = new CFSecBuffSecClusGrpMembByLoginIdxKey();
+			mapped.setRequiredLoginId( key.getRequiredLoginId() );
+			return( mapped );
+		}
+	}
+
+	@Override
+	public ICFSecSecClusGrpMemb newRec() {
+		ICFSecSecClusGrpMemb rec =
+			new CFSecBuffSecClusGrpMemb();
+		return( rec );
+	}
+
+	public CFSecBuffSecClusGrpMemb ensureRec(ICFSecSecClusGrpMemb rec) {
+		if( rec == null ) {
+			return( null );
+		}
+		else if (rec instanceof CFSecBuffSecClusGrpMemb) {
+			return ((CFSecBuffSecClusGrpMemb)rec);
+		}
+		else {	
+			switch (rec.getClassCode()) {
+				case ICFSecSecClusGrpMemb.CLASS_CODE: {
+					CFSecBuffSecClusGrpMemb mapped = new CFSecBuffSecClusGrpMemb();
+					mapped.set(rec);
+					return(mapped); }
+				default:
+					throw new CFLibUnsupportedClassException(getClass(), "ensureRec",
+						"Unsupported class code " + rec.getClassCode() + " is not a derivative of CFSecSecClusGrpMemb",
+						"Unsupported class code " + rec.getClassCode() + " is not a derivative of CFSecSecClusGrpMemb");
+			}
+		}
+	}
+
+	@Override
+	public ICFSecSecClusGrpMembH newHRec() {
+		ICFSecSecClusGrpMembH hrec =
+			new CFSecBuffSecClusGrpMembH();
+		return( hrec );
+	}
+
+	public CFSecBuffSecClusGrpMembH ensureHRec(ICFSecSecClusGrpMembH hrec) {
+		if( hrec == null ) {
+			return( null );
+		}
+		else if (hrec instanceof CFSecBuffSecClusGrpMembH) {
+			return ((CFSecBuffSecClusGrpMembH)hrec);
+		}
+		else {	
+			switch (hrec.getClassCode()) {
+				case ICFSecSecClusGrpMemb.CLASS_CODE: {
+					CFSecBuffSecClusGrpMembH mapped = new CFSecBuffSecClusGrpMembH();
+					mapped.set(hrec);
+					return(mapped); }
+				default:
+					throw new CFLibUnsupportedClassException(getClass(), "ensureHRec",
+						"Unsupported class code " + hrec.getClassCode() + " is not a derivative of CFSecSecClusGrpMemb",
+						"Unsupported class code " + hrec.getClassCode() + " is not a derivative of CFSecSecClusGrpMemb");
+			}
+		}
+	}
+}
