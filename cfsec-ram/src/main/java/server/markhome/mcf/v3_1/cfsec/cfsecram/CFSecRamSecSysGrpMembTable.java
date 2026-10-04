@@ -100,7 +100,7 @@ public class CFSecRamSecSysGrpMembTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		// Validate foreign keys
@@ -112,7 +112,7 @@ public class CFSecRamSecSysGrpMembTable
 				if( null == schema.getTableSecSysGrp().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredSecSysGrpId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
 						"Container",
@@ -160,14 +160,14 @@ public class CFSecRamSecSysGrpMembTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
 
 	@Override
 	public ICFSecSecSysGrpMemb readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String LoginId )
 	{
 		{	$implCommaIJavaOptAtomType$ testSecSysGrpId = SecSysGrpId;
@@ -235,7 +235,7 @@ public class CFSecRamSecSysGrpMembTable
 
 	@Override
 	public ICFSecSecSysGrpMemb[] readDerivedBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId )
+		IMCFKeyHash256 SecSysGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpMemb.readDerivedBySysGrpIdx";
 		CFSecBuffSecSysGrpMembBySysGrpIdxKey key = (CFSecBuffSecSysGrpMembBySysGrpIdxKey)schema.getCFSecBuffFactory().getFactorySecSysGrpMemb().newBySysGrpIdxKey();
@@ -291,7 +291,7 @@ public class CFSecRamSecSysGrpMembTable
 
 	@Override
 	public ICFSecSecSysGrpMemb readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpMemb.readDerivedByIdIdx() ";
@@ -310,7 +310,7 @@ public class CFSecRamSecSysGrpMembTable
 
 	@Override
 	public ICFSecSecSysGrpMemb readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String LoginId )
 	{
 		CFSecBuffSecSysGrpMembPKey key = (CFSecBuffSecSysGrpMembPKey)(schema.getCFSecBuffFactory().getFactorySecSysGrpMemb().newPKey());
@@ -368,16 +368,16 @@ public class CFSecRamSecSysGrpMembTable
 	 */
 	@Override
 	public ICFSecSecSysGrpMemb[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageAllRec";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	@Override
 	public ICFSecSecSysGrpMemb readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String LoginId )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpMemb.readRecByIdIdx() ";
@@ -394,7 +394,7 @@ public class CFSecRamSecSysGrpMembTable
 
 	@Override
 	public ICFSecSecSysGrpMemb[] readRecBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId )
+		IMCFKeyHash256 SecSysGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrpMemb.readRecBySysGrpIdx() ";
 		ICFSecSecSysGrpMemb buff;
@@ -437,16 +437,16 @@ public class CFSecRamSecSysGrpMembTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecSecSysGrpMemb[] pageRecBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
-		ICFLibKeyHash256 priorSecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageRecBySysGrpIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	/**
@@ -458,16 +458,16 @@ public class CFSecRamSecSysGrpMembTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecSecSysGrpMemb[] pageRecByLoginIdx( ICFSecAuthorization Authorization,
 		String LoginId,
-		ICFLibKeyHash256 priorSecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageRecByLoginIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	@Override
@@ -479,7 +479,7 @@ public class CFSecRamSecSysGrpMembTable
 		pkey = (CFSecBuffSecSysGrpMembPKey)Buff.getPKey();
 		CFSecBuffSecSysGrpMemb existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateSecSysGrpMemb",
 				"Existing record not found",
 				"Existing record not found",
@@ -488,7 +488,7 @@ public class CFSecRamSecSysGrpMembTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateSecSysGrpMemb",
 				pkey );
 		}
@@ -516,7 +516,7 @@ public class CFSecRamSecSysGrpMembTable
 				if( null == schema.getTableSecSysGrp().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredSecSysGrpId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateSecSysGrpMemb",
 						"Container",
 						"Container",
@@ -579,7 +579,7 @@ public class CFSecRamSecSysGrpMembTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteSecSysGrpMemb",
 				pkey );
 		}
@@ -605,7 +605,7 @@ public class CFSecRamSecSysGrpMembTable
 	}
 	@Override
 	public void deleteSecSysGrpMembByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String LoginId )
 	{
 		CFSecBuffSecSysGrpMembPKey key = (CFSecBuffSecSysGrpMembPKey)(schema.getCFSecBuffFactory().getFactorySecSysGrpMemb().newPKey());
@@ -649,7 +649,7 @@ public class CFSecRamSecSysGrpMembTable
 
 	@Override
 	public void deleteSecSysGrpMembBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecSysGrpId )
+		IMCFKeyHash256 argSecSysGrpId )
 	{
 		CFSecBuffSecSysGrpMembBySysGrpIdxKey key = (CFSecBuffSecSysGrpMembBySysGrpIdxKey)schema.getCFSecBuffFactory().getFactorySecSysGrpMemb().newBySysGrpIdxKey();
 		key.setRequiredSecSysGrpId( argSecSysGrpId );

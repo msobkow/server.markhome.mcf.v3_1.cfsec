@@ -99,7 +99,7 @@ public interface ICFSecSecClusRoleTable
 	 *	@param	ClusterId	The SecClusRole key attribute of the instance generating the id.
 	 */
 	void deleteSecClusRoleByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId );
+		IMCFKeyHash256 argClusterId );
 
 	/**
 	 *	Delete the SecClusRole instances identified by the key ClusterIdx.
@@ -139,7 +139,7 @@ public interface ICFSecSecClusRoleTable
 	 *	@param	Name	The SecClusRole key attribute of the instance generating the id.
 	 */
 	void deleteSecClusRoleByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId,
+		IMCFKeyHash256 argClusterId,
 		String argName );
 
 	/**
@@ -199,7 +199,7 @@ public interface ICFSecSecClusRoleTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecClusRole readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusRoleId );
+		IMCFKeyHash256 SecClusRoleId );
 
 	/**
 	 *	Read an array of the derived SecClusRole record instances identified by the duplicate key ClusterIdx.
@@ -211,7 +211,7 @@ public interface ICFSecSecClusRoleTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	ICFSecSecClusRole[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId );
+		IMCFKeyHash256 ClusterId );
 
 	/**
 	 *	Read an array of the derived SecClusRole record instances identified by the duplicate key NameIdx.
@@ -238,7 +238,7 @@ public interface ICFSecSecClusRoleTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecClusRole readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String Name );
 
 	/**
@@ -251,7 +251,7 @@ public interface ICFSecSecClusRoleTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecClusRole readRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -266,7 +266,7 @@ public interface ICFSecSecClusRoleTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecClusRole lockRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -290,10 +290,10 @@ public interface ICFSecSecClusRoleTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecClusRole readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusRoleId );
+		IMCFKeyHash256 SecClusRoleId );
 
 	/**
 	 *	Read an array of the specific SecClusRole record instances identified by the duplicate key ClusterIdx.
@@ -304,10 +304,10 @@ public interface ICFSecSecClusRoleTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecClusRole[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId );
+		IMCFKeyHash256 ClusterId );
 
 	/**
 	 *	Read an array of the specific SecClusRole record instances identified by the duplicate key NameIdx.
@@ -318,7 +318,7 @@ public interface ICFSecSecClusRoleTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecClusRole[] readRecByNameIdx( ICFSecAuthorization Authorization,
 		String Name );
@@ -335,9 +335,9 @@ public interface ICFSecSecClusRoleTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecClusRole readRecByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String Name );
 }

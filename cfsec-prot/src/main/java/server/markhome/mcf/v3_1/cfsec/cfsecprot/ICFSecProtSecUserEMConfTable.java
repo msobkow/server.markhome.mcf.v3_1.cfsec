@@ -92,7 +92,7 @@ public interface ICFSecProtSecUserEMConfTable
 	 *	@param	argKey	The primary key identifying the instance to be deleted.
 	 */
 	public void protdeleteSecUserEMConfByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 argKey );
+		MCFDbKeyHash256 argKey );
 	/**
 	 *	Delete the SecUserEMConf instances identified by the key UUuid6Idx.
 	 *
@@ -101,7 +101,7 @@ public interface ICFSecProtSecUserEMConfTable
 	 *	@param	EMConfirmationUuid6	The SecUserEMConf key attribute of the instance generating the id.
 	 */
 	public void protdeleteSecUserEMConfByUUuid6Idx( ICFSecPubAuthorization Authorization,
-		ICFLibUuid6 argEMConfirmationUuid6 );
+		IMCFUuid6 argEMConfirmationUuid6 );
 
 	/**
 	 *	Delete the SecUserEMConf instances identified by the key UUuid6Idx.
@@ -182,7 +182,7 @@ public interface ICFSecProtSecUserEMConfTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecUserEMConf protreadDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the derived SecUserEMConf record instance by protected primary key.
@@ -195,7 +195,7 @@ public interface ICFSecProtSecUserEMConfTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecUserEMConf protlockDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all SecUserEMConf instances.
@@ -217,7 +217,7 @@ public interface ICFSecProtSecUserEMConfTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecUserEMConf protreadDerivedByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read the derived SecUserEMConf record instance identified by the unique key UUuid6Idx.
@@ -230,7 +230,7 @@ public interface ICFSecProtSecUserEMConfTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecUserEMConf protreadDerivedByUUuid6Idx( ICFSecPubAuthorization Authorization,
-		ICFLibUuid6 EMConfirmationUuid6 );
+		IMCFUuid6 EMConfirmationUuid6 );
 
 	/**
 	 *	Read an array of the derived SecUserEMConf record instances identified by the duplicate key ConfEMAddrIdx.
@@ -278,10 +278,10 @@ public interface ICFSecProtSecUserEMConfTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUserEMConf protreadRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the specific SecUserEMConf record instance identified by the primary key.
@@ -293,10 +293,10 @@ public interface ICFSecProtSecUserEMConfTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUserEMConf protlockRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all the specific SecUserEMConf record instances.
@@ -315,7 +315,7 @@ public interface ICFSecProtSecUserEMConfTable
 	 *	@return All the specific SecUserEMConf instances in the database accessible for the Authorization.
 	 */
 	public ICFSecProtSecUserEMConf[] protpageAllRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 priorSecUserId );
+		MCFDbKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read the specific SecUserEMConf record instance identified by the unique key IdIdx.
@@ -327,10 +327,10 @@ public interface ICFSecProtSecUserEMConfTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUserEMConf protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read the specific SecUserEMConf record instance identified by the unique key UUuid6Idx.
@@ -342,10 +342,10 @@ public interface ICFSecProtSecUserEMConfTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUserEMConf protreadRecByUUuid6Idx( ICFSecPubAuthorization Authorization,
-		ICFLibUuid6 EMConfirmationUuid6 );
+		IMCFUuid6 EMConfirmationUuid6 );
 
 	/**
 	 *	Read an array of the specific SecUserEMConf record instances identified by the duplicate key ConfEMAddrIdx.
@@ -356,7 +356,7 @@ public interface ICFSecProtSecUserEMConfTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUserEMConf[] protreadRecByConfEMAddrIdx( ICFSecPubAuthorization Authorization,
 		String ConfirmEMailAddr );
@@ -370,7 +370,7 @@ public interface ICFSecProtSecUserEMConfTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUserEMConf[] protreadRecBySentStampIdx( ICFSecPubAuthorization Authorization,
 		LocalDateTime EMailSentStamp );
@@ -384,7 +384,7 @@ public interface ICFSecProtSecUserEMConfTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUserEMConf[] protreadRecByNewAcctIdx( ICFSecPubAuthorization Authorization,
 		boolean NewAccount );
@@ -398,11 +398,11 @@ public interface ICFSecProtSecUserEMConfTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUserEMConf[] protpageRecByConfEMAddrIdx( ICFSecPubAuthorization Authorization,
 		String ConfirmEMailAddr,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read a page array of the specific SecUserEMConf record instances identified by the duplicate key SentStampIdx.
@@ -413,11 +413,11 @@ public interface ICFSecProtSecUserEMConfTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUserEMConf[] protpageRecBySentStampIdx( ICFSecPubAuthorization Authorization,
 		LocalDateTime EMailSentStamp,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read a page array of the specific SecUserEMConf record instances identified by the duplicate key NewAcctIdx.
@@ -428,9 +428,9 @@ public interface ICFSecProtSecUserEMConfTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUserEMConf[] protpageRecByNewAcctIdx( ICFSecPubAuthorization Authorization,
 		boolean NewAccount,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 }

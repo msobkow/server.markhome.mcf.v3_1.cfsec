@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
@@ -47,46 +47,46 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 public interface ICFSecProtSecUserEMConf
 {
 	public static final String S_INIT_CREATED_BY = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 INIT_CREATED_BY = CFLibDbKeyHash256.fromHex(S_INIT_CREATED_BY);
+	public static final MCFDbKeyHash256 INIT_CREATED_BY = MCFDbKeyHash256.fromHex(S_INIT_CREATED_BY);
 	public static final String S_INIT_UPDATED_BY = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 INIT_UPDATED_BY = CFLibDbKeyHash256.fromHex(S_INIT_UPDATED_BY);
+	public static final MCFDbKeyHash256 INIT_UPDATED_BY = MCFDbKeyHash256.fromHex(S_INIT_UPDATED_BY);
 	public static final String S_SECUSERID_INIT_VALUE = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 SECUSERID_INIT_VALUE = CFLibDbKeyHash256.fromHex( S_SECUSERID_INIT_VALUE );
+	public static final MCFDbKeyHash256 SECUSERID_INIT_VALUE = MCFDbKeyHash256.fromHex( S_SECUSERID_INIT_VALUE );
 	public static final String CONFIRMEMAILADDR_INIT_VALUE = new String( "" );
-	public static final LocalDateTime EMAILSENTSTAMP_INIT_VALUE = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+	public static final LocalDateTime EMAILSENTSTAMP_INIT_VALUE = MCFXmlUtil.parseTimestamp("2020-01-01T00:00:00");
 	public final static boolean NEWACCOUNT_INIT_VALUE = false;
 	public final static int CLASS_CODE = 0xa00b;
 	public final static String S_CLASS_CODE = "a00b";
 
 	public int getClassCode();
 
-	public CFLibDbKeyHash256 getCreatedByUserId();
+	public MCFDbKeyHash256 getCreatedByUserId();
 
-	public void setCreatedByUserId( CFLibDbKeyHash256 value );
+	public void setCreatedByUserId( MCFDbKeyHash256 value );
 
 	public LocalDateTime getCreatedAt();
 
 	public void setCreatedAt( LocalDateTime value );
 
-	public CFLibDbKeyHash256 getUpdatedByUserId();
+	public MCFDbKeyHash256 getUpdatedByUserId();
 
-	public void setUpdatedByUserId( CFLibDbKeyHash256 value );
+	public void setUpdatedByUserId( MCFDbKeyHash256 value );
 
 	public LocalDateTime getUpdatedAt();
 
 	public void setUpdatedAt( LocalDateTime value );
 
-	public CFLibDbKeyHash256 getPKey();
-	public void setPKey(CFLibDbKeyHash256 requiredSecUserId);
+	public MCFDbKeyHash256 getPKey();
+	public void setPKey(MCFDbKeyHash256 requiredSecUserId);
 	public ICFSecProtSecUser getRequiredContainerUser();
 
-	public void setRequiredContainerUser(ICFLibKeyHash256 argSecUserId);
+	public void setRequiredContainerUser(IMCFKeyHash256 argSecUserId);
 
 
 	public void setRequiredContainerUser(ICFSecProtSecUser argObj);
 
-	public ICFLibKeyHash256 getRequiredSecUserId();
-	public void setRequiredSecUserId( ICFLibKeyHash256 value );
+	public IMCFKeyHash256 getRequiredSecUserId();
+	public void setRequiredSecUserId( IMCFKeyHash256 value );
 	public int getRequiredRevision();
 	public void setRequiredRevision( int value );
 
@@ -94,8 +94,8 @@ public interface ICFSecProtSecUserEMConf
 	public void setRequiredConfirmEMailAddr( String value );
 	public LocalDateTime getRequiredEMailSentStamp();
 	public void setRequiredEMailSentStamp( LocalDateTime value );
-	public ICFLibUuid6 getRequiredEMConfirmationUuid6();
-	public void setRequiredEMConfirmationUuid6( ICFLibUuid6 value );
+	public IMCFUuid6 getRequiredEMConfirmationUuid6();
+	public void setRequiredEMConfirmationUuid6( IMCFUuid6 value );
 	public boolean getRequiredNewAccount();
 	public void setRequiredNewAccount( boolean value );
 	public boolean equals( Object obj );

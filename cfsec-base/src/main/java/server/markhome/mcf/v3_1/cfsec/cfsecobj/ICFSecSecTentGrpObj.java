@@ -44,7 +44,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 
 public interface ICFSecSecTentGrpObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecSecTentGrp.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -118,7 +118,7 @@ public interface ICFSecSecTentGrpObj
 	/**
 	 *	End this edition of this SecTentGrp instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 
@@ -260,18 +260,18 @@ public interface ICFSecSecTentGrpObj
 	List<ICFSecSecTentGrpMembObj> getOptionalChildrenMembByGrp( boolean forceRead );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecTentGrpId.
+	 *	Get the required IMCFKeyHash256 attribute SecTentGrpId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecTentGrpId.
+	 *	@return	The required IMCFKeyHash256 attribute SecTentGrpId.
 	 */
-	ICFLibKeyHash256 getRequiredSecTentGrpId();
+	IMCFKeyHash256 getRequiredSecTentGrpId();
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute TenantId.
+	 *	Get the required IMCFKeyHash256 attribute TenantId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute TenantId.
+	 *	@return	The required IMCFKeyHash256 attribute TenantId.
 	 */
-	ICFLibKeyHash256 getRequiredTenantId();
+	IMCFKeyHash256 getRequiredTenantId();
 
 	/**
 	 *	Get the required String attribute Name.

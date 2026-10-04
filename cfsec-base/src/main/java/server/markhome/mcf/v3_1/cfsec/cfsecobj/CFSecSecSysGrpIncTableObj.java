@@ -112,7 +112,7 @@ public class CFSecSecSysGrpIncTableObj
 	 */
 	static void setRuntimeClassCode(int argNewClassCode ) {
 		if (argNewClassCode <= 0) {
-			throw new CFLibArgumentUnderflowException(CFSecSecSysGrpIncTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
+			throw new MCFArgumentUnderflowException(CFSecSecSysGrpIncTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
 		}
 		runtimeClassCode = argNewClassCode;
 	}
@@ -333,14 +333,14 @@ public class CFSecSecSysGrpIncTableObj
 	}
 
 	@Override
-	public ICFSecSecSysGrpIncObj readSecSysGrpInc( ICFLibKeyHash256 SecSysGrpId,
+	public ICFSecSecSysGrpIncObj readSecSysGrpInc( IMCFKeyHash256 SecSysGrpId,
 		String InclName ) {
 		return( readSecSysGrpInc( SecSysGrpId,
 			InclName, false ) );
 	}
 
 	@Override
-	public ICFSecSecSysGrpIncObj readSecSysGrpInc( ICFLibKeyHash256 SecSysGrpId,
+	public ICFSecSecSysGrpIncObj readSecSysGrpInc( IMCFKeyHash256 SecSysGrpId,
 		String InclName, boolean forceRead ) {
 		ICFSecSecSysGrpIncObj obj = null;
 		ICFSecSecSysGrpInc readRec = schema.getCFSecBackingStore().getTableSecSysGrpInc().readDerivedByIdIdx( null,
@@ -425,7 +425,7 @@ public class CFSecSecSysGrpIncTableObj
 			locked = (ICFSecSecSysGrpIncObj)locked.realise();
 		}
 		else {
-			throw new CFLibCollisionDetectedException( getClass(), "lockSecSysGrpInc", pkey );
+			throw new MCFCollisionDetectedException( getClass(), "lockSecSysGrpInc", pkey );
 		}
 		return( locked );
 	}
@@ -460,7 +460,7 @@ public class CFSecSecSysGrpIncTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -468,7 +468,7 @@ public class CFSecSecSysGrpIncTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -520,7 +520,7 @@ public class CFSecSecSysGrpIncTableObj
 				arr[idx++] = valIter.next();
 			}
 			if( idx < len ) {
-				throw new CFLibArgumentUnderflowException( getClass(),
+				throw new MCFArgumentUnderflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -528,7 +528,7 @@ public class CFSecSecSysGrpIncTableObj
 					len );
 			}
 			else if( valIter.hasNext() ) {
-				throw new CFLibArgumentOverflowException( getClass(),
+				throw new MCFArgumentOverflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -571,7 +571,7 @@ public class CFSecSecSysGrpIncTableObj
 	 *		may include an empty set.
 	 */
 	@Override
-	public List<ICFSecSecSysGrpIncObj> pageAllSecSysGrpInc(ICFLibKeyHash256 priorSecSysGrpId,
+	public List<ICFSecSecSysGrpIncObj> pageAllSecSysGrpInc(IMCFKeyHash256 priorSecSysGrpId,
 		String priorInclName )
 	{
 		final String S_ProcName = "pageAllSecSysGrpInc";
@@ -595,7 +595,7 @@ public class CFSecSecSysGrpIncTableObj
 	}
 
 	@Override
-	public ICFSecSecSysGrpIncObj readSecSysGrpIncByIdIdx( ICFLibKeyHash256 SecSysGrpId,
+	public ICFSecSecSysGrpIncObj readSecSysGrpIncByIdIdx( IMCFKeyHash256 SecSysGrpId,
 		String InclName )
 	{
 		return( readSecSysGrpIncByIdIdx( SecSysGrpId,
@@ -604,7 +604,7 @@ public class CFSecSecSysGrpIncTableObj
 	}
 
 	@Override
-	public ICFSecSecSysGrpIncObj readSecSysGrpIncByIdIdx( ICFLibKeyHash256 SecSysGrpId,
+	public ICFSecSecSysGrpIncObj readSecSysGrpIncByIdIdx( IMCFKeyHash256 SecSysGrpId,
 		String InclName, boolean forceRead )
 	{
 		ICFSecSecSysGrpIncPKey pkey = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecSysGrpInc().newPKey();
@@ -615,14 +615,14 @@ public class CFSecSecSysGrpIncTableObj
 	}
 
 	@Override
-	public List<ICFSecSecSysGrpIncObj> readSecSysGrpIncBySysGrpIdx( ICFLibKeyHash256 SecSysGrpId )
+	public List<ICFSecSecSysGrpIncObj> readSecSysGrpIncBySysGrpIdx( IMCFKeyHash256 SecSysGrpId )
 	{
 		return( readSecSysGrpIncBySysGrpIdx( SecSysGrpId,
 			false ) );
 	}
 
 	@Override
-	public List<ICFSecSecSysGrpIncObj> readSecSysGrpIncBySysGrpIdx( ICFLibKeyHash256 SecSysGrpId,
+	public List<ICFSecSecSysGrpIncObj> readSecSysGrpIncBySysGrpIdx( IMCFKeyHash256 SecSysGrpId,
 		boolean forceRead )
 	{
 		final String S_ProcName = "readSecSysGrpIncBySysGrpIdx";
@@ -660,7 +660,7 @@ public class CFSecSecSysGrpIncTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -668,7 +668,7 @@ public class CFSecSecSysGrpIncTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -753,7 +753,7 @@ public class CFSecSecSysGrpIncTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -761,7 +761,7 @@ public class CFSecSecSysGrpIncTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -801,7 +801,7 @@ public class CFSecSecSysGrpIncTableObj
 	}
 
 	@Override
-	public ICFSecSecSysGrpIncObj readCachedSecSysGrpIncByIdIdx( ICFLibKeyHash256 SecSysGrpId,
+	public ICFSecSecSysGrpIncObj readCachedSecSysGrpIncByIdIdx( IMCFKeyHash256 SecSysGrpId,
 		String InclName )
 	{
 		ICFSecSecSysGrpIncObj obj = null;
@@ -815,7 +815,7 @@ public class CFSecSecSysGrpIncTableObj
 	}
 
 	@Override
-	public List<ICFSecSecSysGrpIncObj> readCachedSecSysGrpIncBySysGrpIdx( ICFLibKeyHash256 SecSysGrpId )
+	public List<ICFSecSecSysGrpIncObj> readCachedSecSysGrpIncBySysGrpIdx( IMCFKeyHash256 SecSysGrpId )
 	{
 		final String S_ProcName = "readCachedSecSysGrpIncBySysGrpIdx";
 		ICFSecSecSysGrpIncBySysGrpIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecSysGrpInc().newBySysGrpIdxKey();
@@ -833,7 +833,7 @@ public class CFSecSecSysGrpIncTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -841,7 +841,7 @@ public class CFSecSecSysGrpIncTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -910,7 +910,7 @@ public class CFSecSecSysGrpIncTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -918,7 +918,7 @@ public class CFSecSecSysGrpIncTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -969,7 +969,7 @@ public class CFSecSecSysGrpIncTableObj
 	}
 
 	@Override
-	public void deepDisposeSecSysGrpIncByIdIdx( ICFLibKeyHash256 SecSysGrpId,
+	public void deepDisposeSecSysGrpIncByIdIdx( IMCFKeyHash256 SecSysGrpId,
 		String InclName )
 	{
 		ICFSecSecSysGrpIncObj obj = readCachedSecSysGrpIncByIdIdx( SecSysGrpId,
@@ -980,7 +980,7 @@ public class CFSecSecSysGrpIncTableObj
 	}
 
 	@Override
-	public void deepDisposeSecSysGrpIncBySysGrpIdx( ICFLibKeyHash256 SecSysGrpId )
+	public void deepDisposeSecSysGrpIncBySysGrpIdx( IMCFKeyHash256 SecSysGrpId )
 	{
 		final String S_ProcName = "deepDisposeSecSysGrpIncBySysGrpIdx";
 		ICFSecSecSysGrpIncObj obj;
@@ -1023,8 +1023,8 @@ public class CFSecSecSysGrpIncTableObj
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
 	@Override
-	public List<ICFSecSecSysGrpIncObj> pageSecSysGrpIncBySysGrpIdx( ICFLibKeyHash256 SecSysGrpId,
-		ICFLibKeyHash256 priorSecSysGrpId,
+	public List<ICFSecSecSysGrpIncObj> pageSecSysGrpIncBySysGrpIdx( IMCFKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorInclName )
 	{
 		final String S_ProcName = "pageSecSysGrpIncBySysGrpIdx";
@@ -1059,7 +1059,7 @@ public class CFSecSecSysGrpIncTableObj
 	 */
 	@Override
 	public List<ICFSecSecSysGrpIncObj> pageSecSysGrpIncByNameIdx( String InclName,
-		ICFLibKeyHash256 priorSecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorInclName )
 	{
 		final String S_ProcName = "pageSecSysGrpIncByNameIdx";
@@ -1102,7 +1102,7 @@ public class CFSecSecSysGrpIncTableObj
 	}
 
 	@Override
-	public void deleteSecSysGrpIncByIdIdx( ICFLibKeyHash256 SecSysGrpId,
+	public void deleteSecSysGrpIncByIdIdx( IMCFKeyHash256 SecSysGrpId,
 		String InclName )
 	{
 		ICFSecSecSysGrpIncObj obj = readSecSysGrpInc(SecSysGrpId,
@@ -1135,7 +1135,7 @@ public class CFSecSecSysGrpIncTableObj
 	}
 
 	@Override
-	public void deleteSecSysGrpIncBySysGrpIdx( ICFLibKeyHash256 SecSysGrpId )
+	public void deleteSecSysGrpIncBySysGrpIdx( IMCFKeyHash256 SecSysGrpId )
 	{
 		ICFSecSecSysGrpIncBySysGrpIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecSysGrpInc().newBySysGrpIdxKey();
 		key.setRequiredSecSysGrpId( SecSysGrpId );

@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 
@@ -46,12 +46,12 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 public interface ICFSecSecSession
 {
 	public static final String S_SECSESSIONID_INIT_VALUE = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 SECSESSIONID_INIT_VALUE = CFLibDbKeyHash256.fromHex( S_SECSESSIONID_INIT_VALUE );
+	public static final MCFDbKeyHash256 SECSESSIONID_INIT_VALUE = MCFDbKeyHash256.fromHex( S_SECSESSIONID_INIT_VALUE );
 	public static final String S_SECUSERID_INIT_VALUE = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 SECUSERID_INIT_VALUE = CFLibDbKeyHash256.fromHex( S_SECUSERID_INIT_VALUE );
-	public static final LocalDateTime START_INIT_VALUE = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+	public static final MCFDbKeyHash256 SECUSERID_INIT_VALUE = MCFDbKeyHash256.fromHex( S_SECUSERID_INIT_VALUE );
+	public static final LocalDateTime START_INIT_VALUE = MCFXmlUtil.parseTimestamp("2020-01-01T00:00:00");
 	public static final String S_SECPROXYID_INIT_VALUE = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 SECPROXYID_INIT_VALUE = CFLibDbKeyHash256.fromHex( S_SECPROXYID_INIT_VALUE );
+	public static final MCFDbKeyHash256 SECPROXYID_INIT_VALUE = MCFDbKeyHash256.fromHex( S_SECPROXYID_INIT_VALUE );
 	public final static int CLASS_CODE = 0xa01e;
 	public final static String S_CLASS_CODE = "a01e";
 
@@ -59,14 +59,14 @@ public interface ICFSecSecSession
 
 	public $implCommaIJavaOptAtomType$ getPKey();
 	public void setPKey($implCommaIJavaOptAtomType$ requiredSecSessionId);
-	public ICFLibKeyHash256 getRequiredSecSessionId();
-	public void setRequiredSecSessionId( ICFLibKeyHash256 value );
+	public IMCFKeyHash256 getRequiredSecSessionId();
+	public void setRequiredSecSessionId( IMCFKeyHash256 value );
 	public int getRequiredRevision();
 	public void setRequiredRevision( int value );
 
 	public ICFSecSecUser getRequiredContainerSecUser();
 
-	public void setRequiredContainerSecUser(ICFLibKeyHash256 argSecUserId);
+	public void setRequiredContainerSecUser(IMCFKeyHash256 argSecUserId);
 
 	public void setRequiredContainerSecUser(ICFSecSecUser argObj);
 
@@ -76,7 +76,7 @@ public interface ICFSecSecSession
 
 	public ICFSecSecUser getRequiredParentSecProxy();
 
-	public void setRequiredParentSecProxy(ICFLibKeyHash256 argSecProxyId);
+	public void setRequiredParentSecProxy(IMCFKeyHash256 argSecProxyId);
 
 	public void setRequiredParentSecProxy(ICFSecSecUser argObj);
 
@@ -84,14 +84,14 @@ public interface ICFSecSecSession
 
 	public void setRequiredParentSecProxy(ICFSecPubSecUser argObj);
 
-	public ICFLibKeyHash256 getRequiredSecUserId();
-	public void setRequiredSecUserId( ICFLibKeyHash256 value );
+	public IMCFKeyHash256 getRequiredSecUserId();
+	public void setRequiredSecUserId( IMCFKeyHash256 value );
 	public LocalDateTime getRequiredStart();
 	public void setRequiredStart( LocalDateTime value );
 	public LocalDateTime getOptionalFinish();
 	public void setOptionalFinish( LocalDateTime value );
-	public ICFLibKeyHash256 getOptionalSecProxyId();
-	public void setOptionalSecProxyId( ICFLibKeyHash256 value );
+	public IMCFKeyHash256 getOptionalSecProxyId();
+	public void setOptionalSecProxyId( IMCFKeyHash256 value );
 	public boolean equals( Object obj );
 
 	public int hashCode();

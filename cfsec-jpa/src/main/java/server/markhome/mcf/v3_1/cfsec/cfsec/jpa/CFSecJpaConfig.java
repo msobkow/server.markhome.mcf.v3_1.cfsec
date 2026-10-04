@@ -54,7 +54,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 
 @Configuration
@@ -253,7 +253,7 @@ public class CFSecJpaConfig
             }
             else {
                 System.err.println("ERROR: CFSec31JpaConfig.cfsec31TransactionManager() cfsec31EntityManagerFactoryBean.getObject() returned null");
-				throw new CFLibNullArgumentException(getClass(), "cfsec31TransactionManater", 0, "cfsec31EntityManagerFactoryBean.getObject()");
+				throw new MCFNullArgumentException(getClass(), "cfsec31TransactionManater", 0, "cfsec31EntityManagerFactoryBean.getObject()");
             }
     }
 }

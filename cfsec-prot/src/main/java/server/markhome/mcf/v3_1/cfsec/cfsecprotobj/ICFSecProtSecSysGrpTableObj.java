@@ -99,7 +99,7 @@ public interface ICFSecProtSecSysGrpTableObj
 	 *	@return	The SecSysGrp-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecProtSecSysGrpObj readSecSysGrp( CFLibDbKeyHash256 pkey );
+	ICFSecProtSecSysGrpObj readSecSysGrp( MCFDbKeyHash256 pkey );
 
 	/**
 	 *	Read a SecSysGrp-derived instance by it's primary key.
@@ -109,19 +109,19 @@ public interface ICFSecProtSecSysGrpTableObj
 	 *	@return	The SecSysGrp-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecProtSecSysGrpObj readSecSysGrp( CFLibDbKeyHash256 pkey,
+	ICFSecProtSecSysGrpObj readSecSysGrp( MCFDbKeyHash256 pkey,
 		boolean forceRead );
 
-	ICFSecProtSecSysGrpObj readCachedSecSysGrp( CFLibDbKeyHash256 pkey );
+	ICFSecProtSecSysGrpObj readCachedSecSysGrp( MCFDbKeyHash256 pkey );
 
 	public void reallyDeepDisposeSecSysGrp( ICFSecProtSecSysGrpObj obj );
 
-	void deepDisposeSecSysGrp( CFLibDbKeyHash256 pkey );
+	void deepDisposeSecSysGrp( MCFDbKeyHash256 pkey );
 
 	/**
 	 *	Internal use only.
 	 */
-	ICFSecProtSecSysGrpObj lockSecSysGrp( CFLibDbKeyHash256 pkey );
+	ICFSecProtSecSysGrpObj lockSecSysGrp( MCFDbKeyHash256 pkey );
 
 	/**
 	 *	Return a sorted list of all the SecSysGrp-derived instances in the database.
@@ -149,7 +149,7 @@ public interface ICFSecProtSecSysGrpTableObj
 	 *	@return	ICFSecProtSecSysGrpObj cached instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecProtSecSysGrpObj readSecSysGrpByIdIdx( ICFLibKeyHash256 SecSysGrpId );
+	ICFSecProtSecSysGrpObj readSecSysGrpByIdIdx( IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Get the ICFSecProtSecSysGrpObj instance for the primary key attributes.
@@ -159,7 +159,7 @@ public interface ICFSecProtSecSysGrpTableObj
 	 *	@return	ICFSecProtSecSysGrpObj refreshed instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecProtSecSysGrpObj readSecSysGrpByIdIdx( ICFLibKeyHash256 SecSysGrpId,
+	ICFSecProtSecSysGrpObj readSecSysGrpByIdIdx( IMCFKeyHash256 SecSysGrpId,
 		boolean forceRead );
 
 	/**
@@ -204,13 +204,13 @@ public interface ICFSecProtSecSysGrpTableObj
 	List<ICFSecProtSecSysGrpObj> readSecSysGrpBySecLevelIdx( ICFSecPubSchema.SecLevelEnum SecLevel,
 		boolean forceRead );
 
-	ICFSecProtSecSysGrpObj readCachedSecSysGrpByIdIdx( ICFLibKeyHash256 SecSysGrpId );
+	ICFSecProtSecSysGrpObj readCachedSecSysGrpByIdIdx( IMCFKeyHash256 SecSysGrpId );
 
 	ICFSecProtSecSysGrpObj readCachedSecSysGrpByUNameIdx( String Name );
 
 	List<List<ICFSecProtSecSysGrpObj>> readCachedSecSysGrpBySecLevelIdx( ICFSecPubSchema.SecLevelEnum SecLevel );
 
-	void deepDisposeSecSysGrpByIdIdx( ICFLibKeyHash256 SecSysGrpId );
+	void deepDisposeSecSysGrpByIdIdx( IMCFKeyHash256 SecSysGrpId );
 
 	void deepDisposeSecSysGrpByUNameIdx( String Name );
 
@@ -231,7 +231,7 @@ public interface ICFSecProtSecSysGrpTableObj
 	 *
 	 *	@param	SecSysGrpId	The SecSysGrp key attribute of the instance generating the id.
 	 */
-	void deleteSecSysGrpByIdIdx( ICFLibKeyHash256 SecSysGrpId );
+	void deleteSecSysGrpByIdIdx( IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Internal use only.

@@ -92,7 +92,7 @@ public interface ICFSecSecSysRoleMembTable
 	 *	@param	LoginId	The SecSysRoleMemb key attribute of the instance generating the id.
 	 */
 	void deleteSecSysRoleMembByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecSysRoleId,
+		IMCFKeyHash256 argSecSysRoleId,
 		String argLoginId );
 	/**
 	 *	Delete the SecSysRoleMemb instance identified by the primary key.
@@ -111,7 +111,7 @@ public interface ICFSecSecSysRoleMembTable
 	 *	@param	SecSysRoleId	The SecSysRoleMemb key attribute of the instance generating the id.
 	 */
 	void deleteSecSysRoleMembBySysRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecSysRoleId );
+		IMCFKeyHash256 argSecSysRoleId );
 
 	/**
 	 *	Delete the SecSysRoleMemb instances identified by the key SysRoleIdx.
@@ -165,7 +165,7 @@ public interface ICFSecSecSysRoleMembTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecSysRoleMemb readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
+		IMCFKeyHash256 SecSysRoleId,
 		String LoginId );
 
 	/**
@@ -203,7 +203,7 @@ public interface ICFSecSecSysRoleMembTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecSysRoleMemb readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
+		IMCFKeyHash256 SecSysRoleId,
 		String LoginId );
 
 	/**
@@ -216,7 +216,7 @@ public interface ICFSecSecSysRoleMembTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	ICFSecSecSysRoleMemb[] readDerivedBySysRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId );
+		IMCFKeyHash256 SecSysRoleId );
 
 	/**
 	 *	Read an array of the derived SecSysRoleMemb record instances identified by the duplicate key LoginIdx.
@@ -240,7 +240,7 @@ public interface ICFSecSecSysRoleMembTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysRoleMemb readRec( ICFSecAuthorization Authorization,
 		ICFSecSecSysRoleMembPKey PKey );
@@ -255,10 +255,10 @@ public interface ICFSecSecSysRoleMembTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysRoleMemb readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
+		IMCFKeyHash256 SecSysRoleId,
 		String LoginId );
 
 	/**
@@ -271,7 +271,7 @@ public interface ICFSecSecSysRoleMembTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysRoleMemb lockRec( ICFSecAuthorization Authorization,
 		ICFSecSecSysRoleMembPKey PKey );
@@ -293,7 +293,7 @@ public interface ICFSecSecSysRoleMembTable
 	 *	@return All the specific SecSysRoleMemb instances in the database accessible for the Authorization.
 	 */
 	ICFSecSecSysRoleMemb[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecSysRoleId,
+		IMCFKeyHash256 priorSecSysRoleId,
 		String priorLoginId );
 
 	/**
@@ -308,10 +308,10 @@ public interface ICFSecSecSysRoleMembTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysRoleMemb readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
+		IMCFKeyHash256 SecSysRoleId,
 		String LoginId );
 
 	/**
@@ -323,10 +323,10 @@ public interface ICFSecSecSysRoleMembTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysRoleMemb[] readRecBySysRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId );
+		IMCFKeyHash256 SecSysRoleId );
 
 	/**
 	 *	Read an array of the specific SecSysRoleMemb record instances identified by the duplicate key LoginIdx.
@@ -337,7 +337,7 @@ public interface ICFSecSecSysRoleMembTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysRoleMemb[] readRecByLoginIdx( ICFSecAuthorization Authorization,
 		String LoginId );
@@ -351,11 +351,11 @@ public interface ICFSecSecSysRoleMembTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysRoleMemb[] pageRecBySysRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
-		ICFLibKeyHash256 priorSecSysRoleId,
+		IMCFKeyHash256 SecSysRoleId,
+		IMCFKeyHash256 priorSecSysRoleId,
 		String priorLoginId );
 
 	/**
@@ -367,10 +367,10 @@ public interface ICFSecSecSysRoleMembTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysRoleMemb[] pageRecByLoginIdx( ICFSecAuthorization Authorization,
 		String LoginId,
-		ICFLibKeyHash256 priorSecSysRoleId,
+		IMCFKeyHash256 priorSecSysRoleId,
 		String priorLoginId );
 }

@@ -52,14 +52,14 @@ import server.markhome.mcf.v3_1.cfsec.cfsecobj.ICFSecSecUserObj;
  */
 public interface ICFSecAuthorization extends ICFSecProtAuthorization
 {
-	public void setAuthUuid6( ICFLibUuid6 value );
+	public void setAuthUuid6( IMCFUuid6 value );
 
-	public void setSecClusterId( CFLibDbKeyHash256 clusterId );
+	public void setSecClusterId( MCFDbKeyHash256 clusterId );
 	public void setSecCluster(ICFSecClusterObj cluster);
-	public void setSecTenantId( CFLibDbKeyHash256 tenantId );
+	public void setSecTenantId( MCFDbKeyHash256 tenantId );
 	public void setSecTenant(ICFSecTenantObj tenant);
-	public void setSecSessionId( CFLibDbKeyHash256 sessionId );
+	public void setSecSessionId( MCFDbKeyHash256 sessionId );
 	public void setSecSession(ICFSecSecSessionObj session);
-	public void setSecUserId( CFLibDbKeyHash256 userId );
+	public void setSecUserId( MCFDbKeyHash256 userId );
 	public void setSecUser(ICFSecSecUserObj user);
 }

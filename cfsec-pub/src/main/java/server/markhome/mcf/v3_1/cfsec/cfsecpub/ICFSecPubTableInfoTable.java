@@ -314,7 +314,7 @@ public interface ICFSecPubTableInfoTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTableInfo pubreadRec( ICFSecPubAuthorization Authorization,
 		Integer PKey );
@@ -329,7 +329,7 @@ public interface ICFSecPubTableInfoTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTableInfo publockRec( ICFSecPubAuthorization Authorization,
 		Integer PKey );
@@ -353,7 +353,7 @@ public interface ICFSecPubTableInfoTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTableInfo pubreadRecByIdIdx( ICFSecPubAuthorization Authorization,
 		int TableInfoId );
@@ -368,7 +368,7 @@ public interface ICFSecPubTableInfoTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTableInfo pubreadRecByTableNameIdx( ICFSecPubAuthorization Authorization,
 		String TableName );
@@ -382,7 +382,7 @@ public interface ICFSecPubTableInfoTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTableInfo[] pubreadRecBySuperNameIdx( ICFSecPubAuthorization Authorization,
 		String SuperName );
@@ -396,7 +396,7 @@ public interface ICFSecPubTableInfoTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTableInfo[] pubreadRecBySchemaNameIdx( ICFSecPubAuthorization Authorization,
 		String SchemaName );
@@ -413,7 +413,7 @@ public interface ICFSecPubTableInfoTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTableInfo pubreadRecBySchemaBkCodeIdx( ICFSecPubAuthorization Authorization,
 		String SchemaName,
@@ -429,7 +429,7 @@ public interface ICFSecPubTableInfoTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTableInfo pubreadRecBySchemaRTCodeIdx( ICFSecPubAuthorization Authorization,
 		int RuntimeClassCode );

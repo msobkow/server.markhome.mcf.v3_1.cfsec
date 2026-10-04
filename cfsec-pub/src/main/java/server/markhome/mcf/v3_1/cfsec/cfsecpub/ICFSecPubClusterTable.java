@@ -89,7 +89,7 @@ public interface ICFSecPubClusterTable
 	 *	@param	argKey	The primary key identifying the instance to be deleted.
 	 */
 	public void pubdeleteClusterByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 argKey );
+		IMCFKeyHash256 argKey );
 	/**
 	 *	Delete the Cluster instances identified by the key UDomNameIdx.
 	 *
@@ -141,7 +141,7 @@ public interface ICFSecPubClusterTable
 	 *		no such existing key value.
 	 */
 	public ICFSecPubCluster pubreadDerived( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 PKey );
+		IMCFKeyHash256 PKey );
 
 	/**
 	 *	Lock the derived Cluster record instance by primary key.
@@ -154,7 +154,7 @@ public interface ICFSecPubClusterTable
 	 *		no such existing key value.
 	 */
 	public ICFSecPubCluster publockDerived( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 PKey );
+		IMCFKeyHash256 PKey );
 
 	/**
 	 *	Read all Cluster instances.
@@ -176,7 +176,7 @@ public interface ICFSecPubClusterTable
 	 *		no such existing key value.
 	 */
 	public ICFSecPubCluster pubreadDerivedByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 Id );
+		MCFDbKeyHash256 Id );
 
 	/**
 	 *	Read the derived Cluster record instance identified by the unique key UDomNameIdx.
@@ -214,10 +214,10 @@ public interface ICFSecPubClusterTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubCluster pubreadRec( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 PKey );
+		IMCFKeyHash256 PKey );
 
 	/**
 	 *	Lock the specific Cluster record instance identified by the primary key.
@@ -229,10 +229,10 @@ public interface ICFSecPubClusterTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubCluster publockRec( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 PKey );
+		IMCFKeyHash256 PKey );
 
 	/**
 	 *	Read all the specific Cluster record instances.
@@ -251,7 +251,7 @@ public interface ICFSecPubClusterTable
 	 *	@return All the specific Cluster instances in the database accessible for the Authorization.
 	 */
 	public ICFSecPubCluster[] pubpageAllRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 priorId );
+		MCFDbKeyHash256 priorId );
 
 	/**
 	 *	Read the specific Cluster record instance identified by the unique key IdIdx.
@@ -263,10 +263,10 @@ public interface ICFSecPubClusterTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubCluster pubreadRecByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 Id );
+		MCFDbKeyHash256 Id );
 
 	/**
 	 *	Read the specific Cluster record instance identified by the unique key UDomNameIdx.
@@ -278,7 +278,7 @@ public interface ICFSecPubClusterTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubCluster pubreadRecByUDomNameIdx( ICFSecPubAuthorization Authorization,
 		String FullDomName );
@@ -293,7 +293,7 @@ public interface ICFSecPubClusterTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubCluster pubreadRecByUDescrIdx( ICFSecPubAuthorization Authorization,
 		String Description );

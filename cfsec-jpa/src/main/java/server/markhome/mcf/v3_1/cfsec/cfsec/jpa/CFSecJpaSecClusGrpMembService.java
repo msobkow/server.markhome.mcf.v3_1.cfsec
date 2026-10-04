@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +75,7 @@ public class CFSecJpaSecClusGrpMembService {
 			return( null );
 		}
 		if (data.getRequiredContainerGroup() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -86,7 +86,7 @@ public class CFSecJpaSecClusGrpMembService {
 				null);
 		}
 		if (data.getRequiredParentUser() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Parent",
 				"Parent",
@@ -109,7 +109,7 @@ public class CFSecJpaSecClusGrpMembService {
 			return cfsec31SecClusGrpMembRepository.save(data);
 		}
 		catch(Exception ex) {
-			throw new CFLibDbException(getClass(),
+			throw new MCFDbException(getClass(),
 				S_ProcName,
 				ex);
 		}
@@ -129,13 +129,13 @@ public class CFSecJpaSecClusGrpMembService {
 			return( null );
 		}
 		if (data.getPKey() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.getPKey()");
 		}
 		if (data.getRequiredContainerGroup() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -146,7 +146,7 @@ public class CFSecJpaSecClusGrpMembService {
 				null);
 		}
 		if (data.getRequiredParentUser() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Parent",
 				"Parent",
@@ -158,9 +158,9 @@ public class CFSecJpaSecClusGrpMembService {
 		}
 		// Ensure the entity exists and that the revision matches
 		CFSecJpaSecClusGrpMemb existing = cfsec31SecClusGrpMembRepository.findById((CFSecJpaSecClusGrpMembPKey)(data.getPKey()))
-			.orElseThrow(() -> new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
+			.orElseThrow(() -> new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
 		if (existing.getRequiredRevision() != data.getRequiredRevision()) {
-			throw new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
+			throw new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
 		}
 		// Apply superior data relationships of CFSecSecClusGrpMemb to existing object
 		// Apply data columns of CFSecSecClusGrpMemb to existing object
@@ -179,7 +179,7 @@ public class CFSecJpaSecClusGrpMembService {
 	 *		@return The retrieved entity, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecClusGrpMemb find(@Param("secClusGrpId") ICFLibKeyHash256 requiredSecClusGrpId,
+	public CFSecJpaSecClusGrpMemb find(@Param("secClusGrpId") IMCFKeyHash256 requiredSecClusGrpId,
 		@Param("loginId") String requiredLoginId) {
 		return( cfsec31SecClusGrpMembRepository.get(requiredSecClusGrpId,
 			requiredLoginId));
@@ -217,7 +217,7 @@ public class CFSecJpaSecClusGrpMembService {
 	 *		@return List&lt;CFSecJpaSecClusGrpMemb&gt; of the found entities, or an empty list if no such entities exist.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public List<CFSecJpaSecClusGrpMemb> findByClusGrpIdx(@Param("secClusGrpId") ICFLibKeyHash256 requiredSecClusGrpId) {
+	public List<CFSecJpaSecClusGrpMemb> findByClusGrpIdx(@Param("secClusGrpId") IMCFKeyHash256 requiredSecClusGrpId) {
 		return( cfsec31SecClusGrpMembRepository.findByClusGrpIdx(requiredSecClusGrpId));
 	}
 
@@ -268,7 +268,7 @@ public class CFSecJpaSecClusGrpMembService {
 	 *		@return The locked entity, refreshed from the data store, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecClusGrpMemb lockByIdIdx(@Param("secClusGrpId") ICFLibKeyHash256 requiredSecClusGrpId,
+	public CFSecJpaSecClusGrpMemb lockByIdIdx(@Param("secClusGrpId") IMCFKeyHash256 requiredSecClusGrpId,
 		@Param("loginId") String requiredLoginId) {
 		return( cfsec31SecClusGrpMembRepository.lockByIdIdx(requiredSecClusGrpId,
 			requiredLoginId));
@@ -294,7 +294,7 @@ public class CFSecJpaSecClusGrpMembService {
 	 *		@return A list of locked entities, refreshed from the data store, or an empty list if no such entities exist.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public List<CFSecJpaSecClusGrpMemb> lockByClusGrpIdx(@Param("secClusGrpId") ICFLibKeyHash256 requiredSecClusGrpId) {
+	public List<CFSecJpaSecClusGrpMemb> lockByClusGrpIdx(@Param("secClusGrpId") IMCFKeyHash256 requiredSecClusGrpId) {
 		return( cfsec31SecClusGrpMembRepository.lockByClusGrpIdx(requiredSecClusGrpId));
 	}
 
@@ -343,7 +343,7 @@ public class CFSecJpaSecClusGrpMembService {
 	 *		@param requiredLoginId
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByIdIdx(@Param("secClusGrpId") ICFLibKeyHash256 requiredSecClusGrpId,
+	public void deleteByIdIdx(@Param("secClusGrpId") IMCFKeyHash256 requiredSecClusGrpId,
 		@Param("loginId") String requiredLoginId) {
 		cfsec31SecClusGrpMembRepository.deleteByIdIdx(requiredSecClusGrpId,
 			requiredLoginId);
@@ -365,7 +365,7 @@ public class CFSecJpaSecClusGrpMembService {
 	 *		@param requiredSecClusGrpId
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByClusGrpIdx(@Param("secClusGrpId") ICFLibKeyHash256 requiredSecClusGrpId) {
+	public void deleteByClusGrpIdx(@Param("secClusGrpId") IMCFKeyHash256 requiredSecClusGrpId) {
 		cfsec31SecClusGrpMembRepository.deleteByClusGrpIdx(requiredSecClusGrpId);
 	}
 

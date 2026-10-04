@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -65,7 +65,7 @@ public interface CFSecJpaSecUserRepository extends JpaRepository<CFSecJpaSecUser
 	 *		@return The retrieved entity, usually from the JPA cache, or null if no such entity exists.
 	 */
 	@Query("select r from CFSecJpaSecUser r where r.requiredSecUserId = :secUserId")
-	CFSecJpaSecUser get(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId);
+	CFSecJpaSecUser get(@Param("secUserId") IMCFKeyHash256 requiredSecUserId);
 
 	// CFSecJpaSecUser specified index readers
 
@@ -123,7 +123,7 @@ public interface CFSecJpaSecUserRepository extends JpaRepository<CFSecJpaSecUser
 	@Transactional
 	@Lock(LockModeType.WRITE)
 	@Query("select r from CFSecJpaSecUser r where r.requiredSecUserId = :secUserId")
-	CFSecJpaSecUser lockByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId);
+	CFSecJpaSecUser lockByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId);
 
 	/**
 	 *	Argument-based lock database entity for compatibility with the current MSS code factory code base, uses @Transactional to acquire a JPA entity locks, which may or may not imply an actual database lock during the transaction.
@@ -181,7 +181,7 @@ public interface CFSecJpaSecUserRepository extends JpaRepository<CFSecJpaSecUser
 	@Transactional
 	@Modifying
 	@Query("delete from CFSecJpaSecUser r where r.requiredSecUserId = :secUserId")
-	void deleteByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId);
+	void deleteByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId);
 
 	/**
 	 *	Argument-based delete entity for compatibility with the current MSS code factory code base, uses @Transactional to acquire a JPA entity lock, which may or may not imply an actual database lock during the transaction.

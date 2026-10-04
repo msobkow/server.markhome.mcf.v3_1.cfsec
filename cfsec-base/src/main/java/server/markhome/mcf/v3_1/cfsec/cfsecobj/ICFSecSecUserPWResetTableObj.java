@@ -149,7 +149,7 @@ public interface ICFSecSecUserPWResetTableObj
 	 *	@return	List of ICFSecSecUserPWResetObj instance, sorted by their primary keys, which
 	 *		may include an empty set.
 	 */
-	List<ICFSecSecUserPWResetObj> pageAllSecUserPWReset(ICFLibKeyHash256 priorSecUserId );
+	List<ICFSecSecUserPWResetObj> pageAllSecUserPWReset(IMCFKeyHash256 priorSecUserId );
 
 	/**
 	 *	Get the CFSecSecUserPWResetObj instance for the primary key attributes.
@@ -159,7 +159,7 @@ public interface ICFSecSecUserPWResetTableObj
 	 *	@return	CFSecSecUserPWResetObj cached instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecUserPWResetObj readSecUserPWResetByIdIdx( ICFLibKeyHash256 SecUserId );
+	ICFSecSecUserPWResetObj readSecUserPWResetByIdIdx( IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Get the CFSecSecUserPWResetObj instance for the primary key attributes.
@@ -169,7 +169,7 @@ public interface ICFSecSecUserPWResetTableObj
 	 *	@return	CFSecSecUserPWResetObj refreshed instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecUserPWResetObj readSecUserPWResetByIdIdx( ICFLibKeyHash256 SecUserId,
+	ICFSecSecUserPWResetObj readSecUserPWResetByIdIdx( IMCFKeyHash256 SecUserId,
 		boolean forceRead );
 
 	/**
@@ -180,7 +180,7 @@ public interface ICFSecSecUserPWResetTableObj
 	 *	@return	CFSecSecUserPWResetObj cached instance for the unique UUuid6Idx key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecUserPWResetObj readSecUserPWResetByUUuid6Idx(ICFLibUuid6 PasswordResetUuid6 );
+	ICFSecSecUserPWResetObj readSecUserPWResetByUUuid6Idx(IMCFUuid6 PasswordResetUuid6 );
 
 	/**
 	 *	Get the CFSecSecUserPWResetObj instance for the unique UUuid6Idx key.
@@ -190,7 +190,7 @@ public interface ICFSecSecUserPWResetTableObj
 	 *	@return	CFSecSecUserPWResetObj refreshed instance for the unique UUuid6Idx key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecUserPWResetObj readSecUserPWResetByUUuid6Idx(ICFLibUuid6 PasswordResetUuid6,
+	ICFSecSecUserPWResetObj readSecUserPWResetByUUuid6Idx(IMCFUuid6 PasswordResetUuid6,
 		boolean forceRead );
 
 	/**
@@ -235,17 +235,17 @@ public interface ICFSecSecUserPWResetTableObj
 	List<ICFSecSecUserPWResetObj> readSecUserPWResetByNewAcctIdx( boolean NewAccount,
 		boolean forceRead );
 
-	ICFSecSecUserPWResetObj readCachedSecUserPWResetByIdIdx( ICFLibKeyHash256 SecUserId );
+	ICFSecSecUserPWResetObj readCachedSecUserPWResetByIdIdx( IMCFKeyHash256 SecUserId );
 
-	ICFSecSecUserPWResetObj readCachedSecUserPWResetByUUuid6Idx( ICFLibUuid6 PasswordResetUuid6 );
+	ICFSecSecUserPWResetObj readCachedSecUserPWResetByUUuid6Idx( IMCFUuid6 PasswordResetUuid6 );
 
 	List<ICFSecSecUserPWResetObj> readCachedSecUserPWResetBySentEMAddrIdx( String SentToEMailAddr );
 
 	List<ICFSecSecUserPWResetObj> readCachedSecUserPWResetByNewAcctIdx( boolean NewAccount );
 
-	void deepDisposeSecUserPWResetByIdIdx( ICFLibKeyHash256 SecUserId );
+	void deepDisposeSecUserPWResetByIdIdx( IMCFKeyHash256 SecUserId );
 
-	void deepDisposeSecUserPWResetByUUuid6Idx( ICFLibUuid6 PasswordResetUuid6 );
+	void deepDisposeSecUserPWResetByUUuid6Idx( IMCFUuid6 PasswordResetUuid6 );
 
 	void deepDisposeSecUserPWResetBySentEMAddrIdx( String SentToEMailAddr );
 
@@ -261,7 +261,7 @@ public interface ICFSecSecUserPWResetTableObj
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
 	List<ICFSecSecUserPWResetObj> pageSecUserPWResetBySentEMAddrIdx( String SentToEMailAddr,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read a page of data as a List of SecUserPWReset-derived instances sorted by their primary keys,
@@ -273,7 +273,7 @@ public interface ICFSecSecUserPWResetTableObj
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
 	List<ICFSecSecUserPWResetObj> pageSecUserPWResetByNewAcctIdx( boolean NewAccount,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 
 	/**
 	 *	Internal use only.
@@ -290,14 +290,14 @@ public interface ICFSecSecUserPWResetTableObj
 	 *
 	 *	@param	SecUserId	The SecUserPWReset key attribute of the instance generating the id.
 	 */
-	void deleteSecUserPWResetByIdIdx( ICFLibKeyHash256 SecUserId );
+	void deleteSecUserPWResetByIdIdx( IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Internal use only.
 	 *
 	 *	@param	PasswordResetUuid6	The SecUserPWReset key attribute of the instance generating the id.
 	 */
-	void deleteSecUserPWResetByUUuid6Idx(ICFLibUuid6 PasswordResetUuid6 );
+	void deleteSecUserPWResetByUUuid6Idx(IMCFUuid6 PasswordResetUuid6 );
 
 	/**
 	 *	Internal use only.

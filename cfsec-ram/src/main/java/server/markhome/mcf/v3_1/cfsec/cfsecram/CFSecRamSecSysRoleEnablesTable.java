@@ -100,7 +100,7 @@ public class CFSecRamSecSysRoleEnablesTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		// Validate foreign keys
@@ -112,7 +112,7 @@ public class CFSecRamSecSysRoleEnablesTable
 				if( null == schema.getTableSecSysRole().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredSecSysRoleId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
 						"Container",
@@ -160,14 +160,14 @@ public class CFSecRamSecSysRoleEnablesTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
 
 	@Override
 	public ICFSecSecSysRoleEnables readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
+		IMCFKeyHash256 SecSysRoleId,
 		String EnableName )
 	{
 		{	$implCommaIJavaOptAtomType$ testSecSysRoleId = SecSysRoleId;
@@ -235,7 +235,7 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public ICFSecSecSysRoleEnables[] readDerivedBySysRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId )
+		IMCFKeyHash256 SecSysRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecSysRoleEnables.readDerivedBySysRoleIdx";
 		CFSecBuffSecSysRoleEnablesBySysRoleIdxKey key = (CFSecBuffSecSysRoleEnablesBySysRoleIdxKey)schema.getCFSecBuffFactory().getFactorySecSysRoleEnables().newBySysRoleIdxKey();
@@ -291,7 +291,7 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public ICFSecSecSysRoleEnables readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
+		IMCFKeyHash256 SecSysRoleId,
 		String EnableName )
 	{
 		final String S_ProcName = "CFSecRamSecSysRoleEnables.readDerivedByIdIdx() ";
@@ -310,7 +310,7 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public ICFSecSecSysRoleEnables readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
+		IMCFKeyHash256 SecSysRoleId,
 		String EnableName )
 	{
 		CFSecBuffSecSysRoleEnablesPKey key = (CFSecBuffSecSysRoleEnablesPKey)(schema.getCFSecBuffFactory().getFactorySecSysRoleEnables().newPKey());
@@ -368,16 +368,16 @@ public class CFSecRamSecSysRoleEnablesTable
 	 */
 	@Override
 	public ICFSecSecSysRoleEnables[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecSysRoleId,
+		IMCFKeyHash256 priorSecSysRoleId,
 		String priorEnableName )
 	{
 		final String S_ProcName = "pageAllRec";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	@Override
 	public ICFSecSecSysRoleEnables readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
+		IMCFKeyHash256 SecSysRoleId,
 		String EnableName )
 	{
 		final String S_ProcName = "CFSecRamSecSysRoleEnables.readRecByIdIdx() ";
@@ -394,7 +394,7 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public ICFSecSecSysRoleEnables[] readRecBySysRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId )
+		IMCFKeyHash256 SecSysRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecSysRoleEnables.readRecBySysRoleIdx() ";
 		ICFSecSecSysRoleEnables buff;
@@ -437,16 +437,16 @@ public class CFSecRamSecSysRoleEnablesTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecSecSysRoleEnables[] pageRecBySysRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
-		ICFLibKeyHash256 priorSecSysRoleId,
+		IMCFKeyHash256 SecSysRoleId,
+		IMCFKeyHash256 priorSecSysRoleId,
 		String priorEnableName )
 	{
 		final String S_ProcName = "pageRecBySysRoleIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	/**
@@ -458,16 +458,16 @@ public class CFSecRamSecSysRoleEnablesTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecSecSysRoleEnables[] pageRecByNameIdx( ICFSecAuthorization Authorization,
 		String EnableName,
-		ICFLibKeyHash256 priorSecSysRoleId,
+		IMCFKeyHash256 priorSecSysRoleId,
 		String priorEnableName )
 	{
 		final String S_ProcName = "pageRecByNameIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	@Override
@@ -479,7 +479,7 @@ public class CFSecRamSecSysRoleEnablesTable
 		pkey = (CFSecBuffSecSysRoleEnablesPKey)Buff.getPKey();
 		CFSecBuffSecSysRoleEnables existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateSecSysRoleEnables",
 				"Existing record not found",
 				"Existing record not found",
@@ -488,7 +488,7 @@ public class CFSecRamSecSysRoleEnablesTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateSecSysRoleEnables",
 				pkey );
 		}
@@ -516,7 +516,7 @@ public class CFSecRamSecSysRoleEnablesTable
 				if( null == schema.getTableSecSysRole().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredSecSysRoleId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateSecSysRoleEnables",
 						"Container",
 						"Container",
@@ -579,7 +579,7 @@ public class CFSecRamSecSysRoleEnablesTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteSecSysRoleEnables",
 				pkey );
 		}
@@ -605,7 +605,7 @@ public class CFSecRamSecSysRoleEnablesTable
 	}
 	@Override
 	public void deleteSecSysRoleEnablesByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId,
+		IMCFKeyHash256 SecSysRoleId,
 		String EnableName )
 	{
 		CFSecBuffSecSysRoleEnablesPKey key = (CFSecBuffSecSysRoleEnablesPKey)(schema.getCFSecBuffFactory().getFactorySecSysRoleEnables().newPKey());
@@ -649,7 +649,7 @@ public class CFSecRamSecSysRoleEnablesTable
 
 	@Override
 	public void deleteSecSysRoleEnablesBySysRoleIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecSysRoleId )
+		IMCFKeyHash256 argSecSysRoleId )
 	{
 		CFSecBuffSecSysRoleEnablesBySysRoleIdxKey key = (CFSecBuffSecSysRoleEnablesBySysRoleIdxKey)schema.getCFSecBuffFactory().getFactorySecSysRoleEnables().newBySysRoleIdxKey();
 		key.setRequiredSecSysRoleId( argSecSysRoleId );

@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -65,7 +65,7 @@ public interface CFSecJpaSecSysGrpRepository extends JpaRepository<CFSecJpaSecSy
 	 *		@return The retrieved entity, usually from the JPA cache, or null if no such entity exists.
 	 */
 	@Query("select r from CFSecJpaSecSysGrp r where r.requiredSecSysGrpId = :secSysGrpId")
-	CFSecJpaSecSysGrp get(@Param("secSysGrpId") ICFLibKeyHash256 requiredSecSysGrpId);
+	CFSecJpaSecSysGrp get(@Param("secSysGrpId") IMCFKeyHash256 requiredSecSysGrpId);
 
 	// CFSecJpaSecSysGrp specified index readers
 
@@ -123,7 +123,7 @@ public interface CFSecJpaSecSysGrpRepository extends JpaRepository<CFSecJpaSecSy
 	@Transactional
 	@Lock(LockModeType.WRITE)
 	@Query("select r from CFSecJpaSecSysGrp r where r.requiredSecSysGrpId = :secSysGrpId")
-	CFSecJpaSecSysGrp lockByIdIdx(@Param("secSysGrpId") ICFLibKeyHash256 requiredSecSysGrpId);
+	CFSecJpaSecSysGrp lockByIdIdx(@Param("secSysGrpId") IMCFKeyHash256 requiredSecSysGrpId);
 
 	/**
 	 *	Argument-based lock database entity for compatibility with the current MSS code factory code base, uses @Transactional to acquire a JPA entity locks, which may or may not imply an actual database lock during the transaction.
@@ -181,7 +181,7 @@ public interface CFSecJpaSecSysGrpRepository extends JpaRepository<CFSecJpaSecSy
 	@Transactional
 	@Modifying
 	@Query("delete from CFSecJpaSecSysGrp r where r.requiredSecSysGrpId = :secSysGrpId")
-	void deleteByIdIdx(@Param("secSysGrpId") ICFLibKeyHash256 requiredSecSysGrpId);
+	void deleteByIdIdx(@Param("secSysGrpId") IMCFKeyHash256 requiredSecSysGrpId);
 
 	/**
 	 *	Argument-based delete entity for compatibility with the current MSS code factory code base, uses @Transactional to acquire a JPA entity lock, which may or may not imply an actual database lock during the transaction.

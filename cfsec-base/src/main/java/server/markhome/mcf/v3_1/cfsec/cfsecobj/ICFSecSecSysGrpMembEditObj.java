@@ -153,11 +153,11 @@ public interface ICFSecSecSysGrpMembEditObj
 	void setRequiredParentUser( ICFSecSecUserObj value );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecSysGrpId.
+	 *	Get the required IMCFKeyHash256 attribute SecSysGrpId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecSysGrpId.
+	 *	@return	The required IMCFKeyHash256 attribute SecSysGrpId.
 	 */
-	ICFLibKeyHash256 getRequiredSecSysGrpId();
+	IMCFKeyHash256 getRequiredSecSysGrpId();
 
 	/**
 	 *	Get the required String attribute LoginId.

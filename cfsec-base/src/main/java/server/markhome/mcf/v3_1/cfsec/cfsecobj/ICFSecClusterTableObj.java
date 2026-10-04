@@ -149,7 +149,7 @@ public interface ICFSecClusterTableObj
 	 *	@return	List of ICFSecClusterObj instance, sorted by their primary keys, which
 	 *		may include an empty set.
 	 */
-	List<ICFSecClusterObj> pageAllCluster(ICFLibKeyHash256 priorId );
+	List<ICFSecClusterObj> pageAllCluster(IMCFKeyHash256 priorId );
 
 	/**
 	 *	Get the CFSecClusterObj instance for the primary key attributes.
@@ -159,7 +159,7 @@ public interface ICFSecClusterTableObj
 	 *	@return	CFSecClusterObj cached instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecClusterObj readClusterByIdIdx( ICFLibKeyHash256 Id );
+	ICFSecClusterObj readClusterByIdIdx( IMCFKeyHash256 Id );
 
 	/**
 	 *	Get the CFSecClusterObj instance for the primary key attributes.
@@ -169,7 +169,7 @@ public interface ICFSecClusterTableObj
 	 *	@return	CFSecClusterObj refreshed instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecClusterObj readClusterByIdIdx( ICFLibKeyHash256 Id,
+	ICFSecClusterObj readClusterByIdIdx( IMCFKeyHash256 Id,
 		boolean forceRead );
 
 	/**
@@ -214,13 +214,13 @@ public interface ICFSecClusterTableObj
 	ICFSecClusterObj readClusterByUDescrIdx(String Description,
 		boolean forceRead );
 
-	ICFSecClusterObj readCachedClusterByIdIdx( ICFLibKeyHash256 Id );
+	ICFSecClusterObj readCachedClusterByIdIdx( IMCFKeyHash256 Id );
 
 	ICFSecClusterObj readCachedClusterByUDomNameIdx( String FullDomName );
 
 	ICFSecClusterObj readCachedClusterByUDescrIdx( String Description );
 
-	void deepDisposeClusterByIdIdx( ICFLibKeyHash256 Id );
+	void deepDisposeClusterByIdIdx( IMCFKeyHash256 Id );
 
 	void deepDisposeClusterByUDomNameIdx( String FullDomName );
 
@@ -241,7 +241,7 @@ public interface ICFSecClusterTableObj
 	 *
 	 *	@param	Id	The Cluster key attribute of the instance generating the id.
 	 */
-	void deleteClusterByIdIdx( ICFLibKeyHash256 Id );
+	void deleteClusterByIdIdx( IMCFKeyHash256 Id );
 
 	/**
 	 *	Internal use only.

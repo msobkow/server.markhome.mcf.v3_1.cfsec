@@ -38,7 +38,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 
 /**
@@ -49,26 +49,26 @@ public class CFSecJpaSecSessionH
     implements ICFSecSecSessionH, Comparable<Object>, Serializable
 {
 	@AttributeOverrides({
-		@AttributeOverride(name="auditClusterId", column = @Column( name="auditClusterId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) ),
+		@AttributeOverride(name="auditClusterId", column = @Column( name="auditClusterId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) ),
 		@AttributeOverride(name="auditStamp", column = @Column( name="auditStamp", nullable=false ) ),
 		@AttributeOverride(name="auditAction", column = @Column( name="auditAction", nullable=false ) ),
 		@AttributeOverride(name="requiredRevision", column = @Column( name="requiredRevision", nullable=false ) ),
-		@AttributeOverride(name="auditSessionId", column = @Column( name="auditSessionId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) ),
-		@AttributeOverride(name="SecSessionId", column = @Column( name="SecSessionId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride(name="auditSessionId", column = @Column( name="auditSessionId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) ),
+		@AttributeOverride(name="SecSessionId", column = @Column( name="SecSessionId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
     protected CFSecJpaSecSessionHPKey pkey;
-	protected ICFLibKeyHash256 requiredSecUserId;
+	protected IMCFKeyHash256 requiredSecUserId;
 	protected LocalDateTime requiredStart;
 	protected LocalDateTime optionalFinish;
-	protected ICFLibKeyHash256 optionalSecProxyId;
+	protected IMCFKeyHash256 optionalSecProxyId;
 
     public CFSecJpaSecSessionH() {
             // The primary key member attributes are initialized on construction
             pkey = new CFSecJpaSecSessionHPKey();
-		requiredSecUserId = CFLibDbKeyHash256.fromHex( ICFSecPubSecSession.SECUSERID_INIT_VALUE.toString() );
-		requiredStart = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+		requiredSecUserId = MCFDbKeyHash256.fromHex( ICFSecPubSecSession.SECUSERID_INIT_VALUE.toString() );
+		requiredStart = MCFXmlUtil.parseTimestamp("2020-01-01T00:00:00");
 		optionalFinish = null;
-		optionalSecProxyId = CFLibDbKeyHash256.nullGet();
+		optionalSecProxyId = MCFDbKeyHash256.nullGet();
     }
 
     @Override
@@ -88,18 +88,18 @@ public class CFSecJpaSecSessionH
                 this.pkey = (CFSecJpaSecSessionHPKey)pkey;
             }
             else {
-                throw new CFLibUnsupportedClassException(getClass(), "setPKey", "pkey", pkey, "CFSecJpaSecSessionHPKey");
+                throw new MCFUnsupportedClassException(getClass(), "setPKey", "pkey", pkey, "CFSecJpaSecSessionHPKey");
             }
         }
     }
 
     @Override
-    public CFLibDbKeyHash256 getAuditClusterId() {
+    public MCFDbKeyHash256 getAuditClusterId() {
         return pkey.getAuditClusterId();
     }
 
     @Override
-    public void setAuditClusterId(CFLibDbKeyHash256 auditClusterId) {
+    public void setAuditClusterId(MCFDbKeyHash256 auditClusterId) {
         pkey.setAuditClusterId(auditClusterId);
     }
 
@@ -134,33 +134,33 @@ public class CFSecJpaSecSessionH
     }
 
     @Override
-    public CFLibDbKeyHash256 getAuditSessionId() {
+    public MCFDbKeyHash256 getAuditSessionId() {
         return pkey.getAuditSessionId();
     }
 
     @Override
-    public void setAuditSessionId(CFLibDbKeyHash256 auditSessionId) {
+    public void setAuditSessionId(MCFDbKeyHash256 auditSessionId) {
         pkey.setAuditSessionId(auditSessionId);
     }
 
     @Override
-    public ICFLibKeyHash256 getRequiredSecSessionId() {
+    public IMCFKeyHash256 getRequiredSecSessionId() {
         return( pkey.getRequiredSecSessionId() );
     }
 
     @Override
-    public void setRequiredSecSessionId( ICFLibKeyHash256 requiredSecSessionId ) {
+    public void setRequiredSecSessionId( IMCFKeyHash256 requiredSecSessionId ) {
         pkey.setRequiredSecSessionId( requiredSecSessionId );
     }
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecUserId() {
+	public IMCFKeyHash256 getRequiredSecUserId() {
 		return(requiredSecUserId);
 	}
 
-	public void setRequiredSecUserId( ICFLibKeyHash256 value ) {
+	public void setRequiredSecUserId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecUserId",
 				1,
 				"value" );
@@ -175,7 +175,7 @@ public class CFSecJpaSecSessionH
 
 	public void setRequiredStart( LocalDateTime value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredStart",
 				1,
 				"value" );
@@ -193,11 +193,11 @@ public class CFSecJpaSecSessionH
 	}
 
 	@Override
-	public ICFLibKeyHash256 getOptionalSecProxyId() {
+	public IMCFKeyHash256 getOptionalSecProxyId() {
 		return(optionalSecProxyId);
 	}
 
-	public void setOptionalSecProxyId( ICFLibKeyHash256 value ) {
+	public void setOptionalSecProxyId( IMCFKeyHash256 value ) {
 		optionalSecProxyId = value;
 	}
 
@@ -787,7 +787,7 @@ public class CFSecJpaSecSessionH
             return( 0 );
         }
         else {
-            throw new CFLibUnsupportedClassException( getClass(),
+            throw new MCFUnsupportedClassException( getClass(),
                 "compareTo",
                 "obj",
                 obj,

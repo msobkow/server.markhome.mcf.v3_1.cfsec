@@ -38,7 +38,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 
 /**
@@ -61,51 +61,51 @@ public class CFSecJpaSecTentGrpH
     implements ICFSecSecTentGrpH, Comparable<Object>, Serializable
 {
 	@AttributeOverrides({
-		@AttributeOverride(name="auditClusterId", column = @Column( name="auditClusterId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) ),
+		@AttributeOverride(name="auditClusterId", column = @Column( name="auditClusterId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) ),
 		@AttributeOverride(name="auditStamp", column = @Column( name="auditStamp", nullable=false ) ),
 		@AttributeOverride(name="auditAction", column = @Column( name="auditAction", nullable=false ) ),
 		@AttributeOverride(name="requiredRevision", column = @Column( name="requiredRevision", nullable=false ) ),
-		@AttributeOverride(name="auditSessionId", column = @Column( name="auditSessionId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) ),
-		@AttributeOverride(name="SecTentGrpId", column = @Column( name="SecTentGrpId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride(name="auditSessionId", column = @Column( name="auditSessionId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) ),
+		@AttributeOverride(name="SecTentGrpId", column = @Column( name="SecTentGrpId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
     @EmbeddedId
     protected CFSecJpaSecTentGrpHPKey pkey;
 	@AttributeOverrides({
-		@AttributeOverride( name="bytes", column = @Column( name="CreatedByUserId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride( name="bytes", column = @Column( name="CreatedByUserId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected CFLibDbKeyHash256 createdByUserId = CFLibDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_CREATED_BY);
+	protected MCFDbKeyHash256 createdByUserId = MCFDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_CREATED_BY);
 
 	@AttributeOverrides({
-		@AttributeOverride( name="bytes", column = @Column( name="CreatedBySessionId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride( name="bytes", column = @Column( name="CreatedBySessionId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected CFLibDbKeyHash256 createdBySessionId = CFLibDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
+	protected MCFDbKeyHash256 createdBySessionId = MCFDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
 
 	@Column(name="CreatedAt", nullable=false)
 	protected LocalDateTime createdAt = LocalDateTime.now();
 
 	@AttributeOverrides({
-		@AttributeOverride( name="bytes", column= @Column( name="UpdatedByUserId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride( name="bytes", column= @Column( name="UpdatedByUserId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected CFLibDbKeyHash256 updatedByUserId = CFLibDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_UPDATED_BY);
+	protected MCFDbKeyHash256 updatedByUserId = MCFDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_UPDATED_BY);
 
 	@AttributeOverrides({
-		@AttributeOverride( name="bytes", column= @Column( name="UpdatedBySessionId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride( name="bytes", column= @Column( name="UpdatedBySessionId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected CFLibDbKeyHash256 updatedBySessionId = CFLibDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
+	protected MCFDbKeyHash256 updatedBySessionId = MCFDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
 
 	@Column(name="UpdatedAt", nullable=false)
 	protected LocalDateTime updatedAt = LocalDateTime.now();
 	@AttributeOverrides({
-		@AttributeOverride(name="bytes", column = @Column( name="TenantId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride(name="bytes", column = @Column( name="TenantId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected ICFLibKeyHash256 requiredTenantId;
+	protected IMCFKeyHash256 requiredTenantId;
 	@Column( name="safe_name", nullable=false, length=64 )
 	protected String requiredName;
 
     public CFSecJpaSecTentGrpH() {
             // The primary key member attributes are initialized on construction
             pkey = new CFSecJpaSecTentGrpHPKey();
-		requiredTenantId = CFLibDbKeyHash256.fromHex( ICFSecProtSecTentGrp.TENANTID_INIT_VALUE.toString() );
+		requiredTenantId = MCFDbKeyHash256.fromHex( ICFSecProtSecTentGrp.TENANTID_INIT_VALUE.toString() );
 		requiredName = ICFSecProtSecTentGrp.NAME_INIT_VALUE;
     }
 
@@ -115,14 +115,14 @@ public class CFSecJpaSecTentGrpH
     }
 
     @Override
-    public CFLibDbKeyHash256 getCreatedByUserId() {
+    public MCFDbKeyHash256 getCreatedByUserId() {
         return( createdByUserId );
     }
 
     @Override
-    public void setCreatedByUserId( CFLibDbKeyHash256 value ) {
+    public void setCreatedByUserId( MCFDbKeyHash256 value ) {
         if (value == null || value.isNull()) {
-            throw new CFLibNullArgumentException(getClass(), "setCreatedByUserId", 1, "value");
+            throw new MCFNullArgumentException(getClass(), "setCreatedByUserId", 1, "value");
         }
         createdByUserId = value;
     }
@@ -135,20 +135,20 @@ public class CFSecJpaSecTentGrpH
     @Override
     public void setCreatedAt( LocalDateTime value ) {
         if (value == null) {
-            throw new CFLibNullArgumentException(getClass(), "setCreatedAt", 1, "value");
+            throw new MCFNullArgumentException(getClass(), "setCreatedAt", 1, "value");
         }
         createdAt = value;
     }
 
     @Override
-    public CFLibDbKeyHash256 getUpdatedByUserId() {
+    public MCFDbKeyHash256 getUpdatedByUserId() {
         return( updatedByUserId );
     }
 
     @Override
-    public void setUpdatedByUserId( CFLibDbKeyHash256 value ) {
+    public void setUpdatedByUserId( MCFDbKeyHash256 value ) {
         if (value == null || value.isNull()) {
-            throw new CFLibNullArgumentException(getClass(), "setUpdatedByUserId", 1, "value");
+            throw new MCFNullArgumentException(getClass(), "setUpdatedByUserId", 1, "value");
         }
         updatedByUserId = value;
     }
@@ -161,7 +161,7 @@ public class CFSecJpaSecTentGrpH
     @Override
     public void setUpdatedAt( LocalDateTime value ) {
         if (value == null) {
-            throw new CFLibNullArgumentException(getClass(), "setUpdatedAt", 1, "value");
+            throw new MCFNullArgumentException(getClass(), "setUpdatedAt", 1, "value");
         }
         updatedAt = value;
     }
@@ -178,18 +178,18 @@ public class CFSecJpaSecTentGrpH
                 this.pkey = (CFSecJpaSecTentGrpHPKey)pkey;
             }
             else {
-                throw new CFLibUnsupportedClassException(getClass(), "setPKey", "pkey", pkey, "CFSecJpaSecTentGrpHPKey");
+                throw new MCFUnsupportedClassException(getClass(), "setPKey", "pkey", pkey, "CFSecJpaSecTentGrpHPKey");
             }
         }
     }
 
     @Override
-    public CFLibDbKeyHash256 getAuditClusterId() {
+    public MCFDbKeyHash256 getAuditClusterId() {
         return pkey.getAuditClusterId();
     }
 
     @Override
-    public void setAuditClusterId(CFLibDbKeyHash256 auditClusterId) {
+    public void setAuditClusterId(MCFDbKeyHash256 auditClusterId) {
         pkey.setAuditClusterId(auditClusterId);
     }
 
@@ -224,33 +224,33 @@ public class CFSecJpaSecTentGrpH
     }
 
     @Override
-    public CFLibDbKeyHash256 getAuditSessionId() {
+    public MCFDbKeyHash256 getAuditSessionId() {
         return pkey.getAuditSessionId();
     }
 
     @Override
-    public void setAuditSessionId(CFLibDbKeyHash256 auditSessionId) {
+    public void setAuditSessionId(MCFDbKeyHash256 auditSessionId) {
         pkey.setAuditSessionId(auditSessionId);
     }
 
     @Override
-    public ICFLibKeyHash256 getRequiredSecTentGrpId() {
+    public IMCFKeyHash256 getRequiredSecTentGrpId() {
         return( pkey.getRequiredSecTentGrpId() );
     }
 
     @Override
-    public void setRequiredSecTentGrpId( ICFLibKeyHash256 requiredSecTentGrpId ) {
+    public void setRequiredSecTentGrpId( IMCFKeyHash256 requiredSecTentGrpId ) {
         pkey.setRequiredSecTentGrpId( requiredSecTentGrpId );
     }
 
 	@Override
-	public ICFLibKeyHash256 getRequiredTenantId() {
+	public IMCFKeyHash256 getRequiredTenantId() {
 		return(requiredTenantId);
 	}
 
-	public void setRequiredTenantId( ICFLibKeyHash256 value ) {
+	public void setRequiredTenantId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredTenantId",
 				1,
 				"value" );
@@ -265,13 +265,13 @@ public class CFSecJpaSecTentGrpH
 
 	public void setRequiredName( String value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredName",
 				1,
 				"value" );
 		}
 		else if( value.length() > 64 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredName",
 				1,
 				"value.length()",
@@ -667,7 +667,7 @@ public class CFSecJpaSecTentGrpH
             return( 0 );
         }
         else {
-            throw new CFLibUnsupportedClassException( getClass(),
+            throw new MCFUnsupportedClassException( getClass(),
                 "compareTo",
                 "obj",
                 obj,

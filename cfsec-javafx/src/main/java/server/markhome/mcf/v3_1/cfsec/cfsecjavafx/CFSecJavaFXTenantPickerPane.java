@@ -70,7 +70,7 @@ implements ICFSecJavaFXTenantPaneList
 	protected CFButton buttonMoreData = null;
 	protected boolean endOfData = true;
 	protected ObservableList<ICFSecTenantObj> observableListOfTenant = null;
-	protected TableColumn<ICFSecTenantObj, ICFLibKeyHash256> tableColumnId = null;
+	protected TableColumn<ICFSecTenantObj, IMCFKeyHash256> tableColumnId = null;
 	protected TableColumn<ICFSecTenantObj, String> tableColumnTenantName = null;
 	protected TableView<ICFSecTenantObj> dataTable = null;
 	protected CFHBox hboxMenu = null;
@@ -118,24 +118,24 @@ implements ICFSecJavaFXTenantPaneList
 		javafxContainer = argContainer;
 		pageCallback = argPageCallback;
 		dataTable = new TableView<ICFSecTenantObj>();
-		tableColumnId = new TableColumn<ICFSecTenantObj,ICFLibKeyHash256>( "Id" );
-		tableColumnId.setCellValueFactory( new Callback<CellDataFeatures<ICFSecTenantObj,ICFLibKeyHash256>,ObservableValue<ICFLibKeyHash256> >() {
-			public ObservableValue<ICFLibKeyHash256> call( CellDataFeatures<ICFSecTenantObj, ICFLibKeyHash256> p ) {
+		tableColumnId = new TableColumn<ICFSecTenantObj,IMCFKeyHash256>( "Id" );
+		tableColumnId.setCellValueFactory( new Callback<CellDataFeatures<ICFSecTenantObj,IMCFKeyHash256>,ObservableValue<IMCFKeyHash256> >() {
+			public ObservableValue<IMCFKeyHash256> call( CellDataFeatures<ICFSecTenantObj, IMCFKeyHash256> p ) {
 				ICFSecTenantObj obj = p.getValue();
 				if( obj == null ) {
 					return( null );
 				}
 				else {
-					ICFLibKeyHash256 value = obj.getRequiredId();
-					ReadOnlyObjectWrapper<ICFLibKeyHash256> observable = new ReadOnlyObjectWrapper<ICFLibKeyHash256>();
+					IMCFKeyHash256 value = obj.getRequiredId();
+					ReadOnlyObjectWrapper<IMCFKeyHash256> observable = new ReadOnlyObjectWrapper<IMCFKeyHash256>();
 					observable.setValue( value );
 					return( observable );
 				}
 			}
 		});
-		tableColumnId.setCellFactory( new Callback<TableColumn<ICFSecTenantObj,ICFLibKeyHash256>,TableCell<ICFSecTenantObj,ICFLibKeyHash256>>() {
-			@Override public TableCell<ICFSecTenantObj,ICFLibKeyHash256> call(
-				TableColumn<ICFSecTenantObj,ICFLibKeyHash256> arg)
+		tableColumnId.setCellFactory( new Callback<TableColumn<ICFSecTenantObj,IMCFKeyHash256>,TableCell<ICFSecTenantObj,IMCFKeyHash256>>() {
+			@Override public TableCell<ICFSecTenantObj,IMCFKeyHash256> call(
+				TableColumn<ICFSecTenantObj,IMCFKeyHash256> arg)
 			{
 				return new CFDbKeyHash256TableCell<ICFSecTenantObj>();
 			}

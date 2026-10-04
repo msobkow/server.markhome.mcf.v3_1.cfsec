@@ -63,8 +63,8 @@ public class CFSecRamTestTestSchema {
 		{
 			try {
 				LocalDateTime now = LocalDateTime.now();
-				CFLibDbKeyHash256 adminpid = new CFLibDbKeyHash256("f012301230123012301230123012301230123012301230123012301230123012");
-				CFLibDbKeyHash256 mgrpid =   new CFLibDbKeyHash256("fabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabc");
+				MCFDbKeyHash256 adminpid = new MCFDbKeyHash256("f012301230123012301230123012301230123012301230123012301230123012");
+				MCFDbKeyHash256 mgrpid =   new MCFDbKeyHash256("fabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabc");
 				ICFSecSecUser secUserResults = ICFSecSchema.getBackingCFSec().getTableSecUser().readDerived(null, adminpid);
 				if( secUserResults == null ) {
 					CFSecBuffSecUser newuser = (CFSecBuffSecUser)(ICFSecSchema.getBackingCFSec().getCFSecFactory().getFactorySecUser().newRec());

@@ -43,7 +43,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 
 public interface ICFSecProtSecClusGrpMembObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecProtSecClusGrpMemb.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -117,7 +117,7 @@ public interface ICFSecProtSecClusGrpMembObj
 	/**
 	 *	End this edition of this SecClusGrpMemb instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 
@@ -217,11 +217,11 @@ public interface ICFSecProtSecClusGrpMembObj
 	void setIsNew( boolean value );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecClusGrpId.
+	 *	Get the required IMCFKeyHash256 attribute SecClusGrpId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecClusGrpId.
+	 *	@return	The required IMCFKeyHash256 attribute SecClusGrpId.
 	 */
-	ICFLibKeyHash256 getRequiredSecClusGrpId();
+	IMCFKeyHash256 getRequiredSecClusGrpId();
 
 	/**
 	 *	Get the required String attribute LoginId.

@@ -43,7 +43,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 
 public interface ICFSecProtSecSessionObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecProtSecSession.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -90,7 +90,7 @@ public interface ICFSecProtSecSessionObj
 	/**
 	 *	End this edition of this SecSession instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 
@@ -159,18 +159,18 @@ public interface ICFSecProtSecSessionObj
 	/**
 	 *	Get the primary key of this instance.
 	 *
-	 *	@return	CFLibDbKeyHash256 primary key for this instance.
+	 *	@return	MCFDbKeyHash256 primary key for this instance.
 	 */
-	CFLibDbKeyHash256 getPKey();
+	MCFDbKeyHash256 getPKey();
 
 	/**
 	 *	Set the primary key of this instance.
 	 *	<p>
 	 *	This method should only be invoked by implementation internals.
 	 *
-	 *	@param CFLibDbKeyHash256 primary key value for this instance.
+	 *	@param MCFDbKeyHash256 primary key value for this instance.
 	 */
-	void setPKey( CFLibDbKeyHash256 value );
+	void setPKey( MCFDbKeyHash256 value );
 
 	/**
 	 *	Is this a new instance?
@@ -204,18 +204,18 @@ public interface ICFSecProtSecSessionObj
 	ICFSecProtSecUserObj getRequiredContainerSecUser( boolean forceRead );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecSessionId.
+	 *	Get the required IMCFKeyHash256 attribute SecSessionId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecSessionId.
+	 *	@return	The required IMCFKeyHash256 attribute SecSessionId.
 	 */
-	ICFLibKeyHash256 getRequiredSecSessionId();
+	IMCFKeyHash256 getRequiredSecSessionId();
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecUserId.
+	 *	Get the required IMCFKeyHash256 attribute SecUserId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecUserId.
+	 *	@return	The required IMCFKeyHash256 attribute SecUserId.
 	 */
-	ICFLibKeyHash256 getRequiredSecUserId();
+	IMCFKeyHash256 getRequiredSecUserId();
 
 	/**
 	 *	Get the required LocalDateTime attribute Start.
@@ -232,11 +232,11 @@ public interface ICFSecProtSecSessionObj
 	LocalDateTime getOptionalFinish();
 
 	/**
-	 *	Get the optional CFLibDbKeyHash256 attribute SecProxyId.
+	 *	Get the optional MCFDbKeyHash256 attribute SecProxyId.
 	 *
-	 *	@return	The optional CFLibDbKeyHash256 attribute SecProxyId.
+	 *	@return	The optional MCFDbKeyHash256 attribute SecProxyId.
 	 */
-	CFLibDbKeyHash256 getOptionalSecProxyId();
+	MCFDbKeyHash256 getOptionalSecProxyId();
 
 	/**
 	 *	Internal use only.

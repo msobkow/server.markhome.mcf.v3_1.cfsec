@@ -75,7 +75,7 @@ implements ICFSecJavaFXSecUserPaneList
 	protected CFButton buttonEditSelected = null;
 	protected CFButton buttonDeleteSelected = null;
 	protected TableView<ICFSecSecUserObj> dataTable = null;
-	protected TableColumn<ICFSecSecUserObj, ICFLibKeyHash256> tableColumnSecUserId = null;
+	protected TableColumn<ICFSecSecUserObj, IMCFKeyHash256> tableColumnSecUserId = null;
 	protected TableColumn<ICFSecSecUserObj, String> tableColumnLoginId = null;
 	protected TableColumn<ICFSecSecUserObj, ICFSecPubSchema.SecAccountStatusEnum> tableColumnAccountStatus = null;
 	protected TableColumn<ICFSecSecUserObj, String> tableColumnDfltSysGrpName = null;
@@ -170,24 +170,24 @@ implements ICFSecJavaFXSecUserPaneList
 		javafxSortByChain = sortByChain;
 		pageCallback = argPageCallback;
 		dataTable = new TableView<ICFSecSecUserObj>();
-		tableColumnSecUserId = new TableColumn<ICFSecSecUserObj,ICFLibKeyHash256>( "Security User Id" );
-		tableColumnSecUserId.setCellValueFactory( new Callback<CellDataFeatures<ICFSecSecUserObj,ICFLibKeyHash256>,ObservableValue<ICFLibKeyHash256> >() {
-			public ObservableValue<ICFLibKeyHash256> call( CellDataFeatures<ICFSecSecUserObj, ICFLibKeyHash256> p ) {
+		tableColumnSecUserId = new TableColumn<ICFSecSecUserObj,IMCFKeyHash256>( "Security User Id" );
+		tableColumnSecUserId.setCellValueFactory( new Callback<CellDataFeatures<ICFSecSecUserObj,IMCFKeyHash256>,ObservableValue<IMCFKeyHash256> >() {
+			public ObservableValue<IMCFKeyHash256> call( CellDataFeatures<ICFSecSecUserObj, IMCFKeyHash256> p ) {
 				ICFSecSecUserObj obj = p.getValue();
 				if( obj == null ) {
 					return( null );
 				}
 				else {
-					ICFLibKeyHash256 value = obj.getRequiredSecUserId();
-					ReadOnlyObjectWrapper<ICFLibKeyHash256> observable = new ReadOnlyObjectWrapper<ICFLibKeyHash256>();
+					IMCFKeyHash256 value = obj.getRequiredSecUserId();
+					ReadOnlyObjectWrapper<IMCFKeyHash256> observable = new ReadOnlyObjectWrapper<IMCFKeyHash256>();
 					observable.setValue( value );
 					return( observable );
 				}
 			}
 		});
-		tableColumnSecUserId.setCellFactory( new Callback<TableColumn<ICFSecSecUserObj,ICFLibKeyHash256>,TableCell<ICFSecSecUserObj,ICFLibKeyHash256>>() {
-			@Override public TableCell<ICFSecSecUserObj,ICFLibKeyHash256> call(
-				TableColumn<ICFSecSecUserObj,ICFLibKeyHash256> arg)
+		tableColumnSecUserId.setCellFactory( new Callback<TableColumn<ICFSecSecUserObj,IMCFKeyHash256>,TableCell<ICFSecSecUserObj,IMCFKeyHash256>>() {
+			@Override public TableCell<ICFSecSecUserObj,IMCFKeyHash256> call(
+				TableColumn<ICFSecSecUserObj,IMCFKeyHash256> arg)
 			{
 				return new CFDbKeyHash256TableCell<ICFSecSecUserObj>();
 			}

@@ -89,7 +89,7 @@ public interface ICFSecPubTenantTable
 	 *	@param	argKey	The primary key identifying the instance to be deleted.
 	 */
 	public void pubdeleteTenantByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 argKey );
+		IMCFKeyHash256 argKey );
 	/**
 	 *	Delete the Tenant instances identified by the key ClusterIdx.
 	 *
@@ -98,7 +98,7 @@ public interface ICFSecPubTenantTable
 	 *	@param	ClusterId	The Tenant key attribute of the instance generating the id.
 	 */
 	public void pubdeleteTenantByClusterIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 argClusterId );
+		MCFDbKeyHash256 argClusterId );
 
 	/**
 	 *	Delete the Tenant instances identified by the key ClusterIdx.
@@ -119,7 +119,7 @@ public interface ICFSecPubTenantTable
 	 *	@param	TenantName	The Tenant key attribute of the instance generating the id.
 	 */
 	public void pubdeleteTenantByUNameIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 argClusterId,
+		MCFDbKeyHash256 argClusterId,
 		String argTenantName );
 
 	/**
@@ -144,7 +144,7 @@ public interface ICFSecPubTenantTable
 	 *		no such existing key value.
 	 */
 	public ICFSecPubTenant pubreadDerived( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 PKey );
+		IMCFKeyHash256 PKey );
 
 	/**
 	 *	Lock the derived Tenant record instance by primary key.
@@ -157,7 +157,7 @@ public interface ICFSecPubTenantTable
 	 *		no such existing key value.
 	 */
 	public ICFSecPubTenant publockDerived( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 PKey );
+		IMCFKeyHash256 PKey );
 
 	/**
 	 *	Read all Tenant instances.
@@ -179,7 +179,7 @@ public interface ICFSecPubTenantTable
 	 *		no such existing key value.
 	 */
 	public ICFSecPubTenant pubreadDerivedByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 Id );
+		MCFDbKeyHash256 Id );
 
 	/**
 	 *	Read an array of the derived Tenant record instances identified by the duplicate key ClusterIdx.
@@ -191,7 +191,7 @@ public interface ICFSecPubTenantTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	public ICFSecPubTenant[] pubreadDerivedByClusterIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 ClusterId );
+		MCFDbKeyHash256 ClusterId );
 
 	/**
 	 *	Read the derived Tenant record instance identified by the unique key UNameIdx.
@@ -206,7 +206,7 @@ public interface ICFSecPubTenantTable
 	 *		no such existing key value.
 	 */
 	public ICFSecPubTenant pubreadDerivedByUNameIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 ClusterId,
+		MCFDbKeyHash256 ClusterId,
 		String TenantName );
 
 	/**
@@ -219,10 +219,10 @@ public interface ICFSecPubTenantTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTenant pubreadRec( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 PKey );
+		IMCFKeyHash256 PKey );
 
 	/**
 	 *	Lock the specific Tenant record instance identified by the primary key.
@@ -234,10 +234,10 @@ public interface ICFSecPubTenantTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTenant publockRec( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 PKey );
+		IMCFKeyHash256 PKey );
 
 	/**
 	 *	Read all the specific Tenant record instances.
@@ -256,7 +256,7 @@ public interface ICFSecPubTenantTable
 	 *	@return All the specific Tenant instances in the database accessible for the Authorization.
 	 */
 	public ICFSecPubTenant[] pubpageAllRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 priorId );
+		MCFDbKeyHash256 priorId );
 
 	/**
 	 *	Read the specific Tenant record instance identified by the unique key IdIdx.
@@ -268,10 +268,10 @@ public interface ICFSecPubTenantTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTenant pubreadRecByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 Id );
+		MCFDbKeyHash256 Id );
 
 	/**
 	 *	Read an array of the specific Tenant record instances identified by the duplicate key ClusterIdx.
@@ -282,10 +282,10 @@ public interface ICFSecPubTenantTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTenant[] pubreadRecByClusterIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 ClusterId );
+		MCFDbKeyHash256 ClusterId );
 
 	/**
 	 *	Read the specific Tenant record instance identified by the unique key UNameIdx.
@@ -299,10 +299,10 @@ public interface ICFSecPubTenantTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTenant pubreadRecByUNameIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 ClusterId,
+		MCFDbKeyHash256 ClusterId,
 		String TenantName );
 
 	/**
@@ -314,9 +314,9 @@ public interface ICFSecPubTenantTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTenant[] pubpageRecByClusterIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
-		ICFLibKeyHash256 priorId );
+		IMCFKeyHash256 ClusterId,
+		IMCFKeyHash256 priorId );
 }

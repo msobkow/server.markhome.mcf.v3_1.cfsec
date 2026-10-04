@@ -99,7 +99,7 @@ public interface ICFSecSecTentRoleTable
 	 *	@param	TenantId	The SecTentRole key attribute of the instance generating the id.
 	 */
 	void deleteSecTentRoleByTenantIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argTenantId );
+		IMCFKeyHash256 argTenantId );
 
 	/**
 	 *	Delete the SecTentRole instances identified by the key TenantIdx.
@@ -139,7 +139,7 @@ public interface ICFSecSecTentRoleTable
 	 *	@param	Name	The SecTentRole key attribute of the instance generating the id.
 	 */
 	void deleteSecTentRoleByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argTenantId,
+		IMCFKeyHash256 argTenantId,
 		String argName );
 
 	/**
@@ -199,7 +199,7 @@ public interface ICFSecSecTentRoleTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecTentRole readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId );
+		IMCFKeyHash256 SecTentRoleId );
 
 	/**
 	 *	Read an array of the derived SecTentRole record instances identified by the duplicate key TenantIdx.
@@ -211,7 +211,7 @@ public interface ICFSecSecTentRoleTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	ICFSecSecTentRole[] readDerivedByTenantIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 TenantId );
+		IMCFKeyHash256 TenantId );
 
 	/**
 	 *	Read an array of the derived SecTentRole record instances identified by the duplicate key NameIdx.
@@ -238,7 +238,7 @@ public interface ICFSecSecTentRoleTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecTentRole readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 TenantId,
+		IMCFKeyHash256 TenantId,
 		String Name );
 
 	/**
@@ -251,7 +251,7 @@ public interface ICFSecSecTentRoleTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecTentRole readRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -266,7 +266,7 @@ public interface ICFSecSecTentRoleTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecTentRole lockRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -290,10 +290,10 @@ public interface ICFSecSecTentRoleTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecTentRole readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId );
+		IMCFKeyHash256 SecTentRoleId );
 
 	/**
 	 *	Read an array of the specific SecTentRole record instances identified by the duplicate key TenantIdx.
@@ -304,10 +304,10 @@ public interface ICFSecSecTentRoleTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecTentRole[] readRecByTenantIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 TenantId );
+		IMCFKeyHash256 TenantId );
 
 	/**
 	 *	Read an array of the specific SecTentRole record instances identified by the duplicate key NameIdx.
@@ -318,7 +318,7 @@ public interface ICFSecSecTentRoleTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecTentRole[] readRecByNameIdx( ICFSecAuthorization Authorization,
 		String Name );
@@ -335,9 +335,9 @@ public interface ICFSecSecTentRoleTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecTentRole readRecByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 TenantId,
+		IMCFKeyHash256 TenantId,
 		String Name );
 }

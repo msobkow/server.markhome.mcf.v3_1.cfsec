@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 
@@ -46,11 +46,11 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 public interface ICFSecSecUserPWReset
 {
 	public static final String S_INIT_CREATED_BY = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 INIT_CREATED_BY = CFLibDbKeyHash256.fromHex(S_INIT_CREATED_BY);
+	public static final MCFDbKeyHash256 INIT_CREATED_BY = MCFDbKeyHash256.fromHex(S_INIT_CREATED_BY);
 	public static final String S_INIT_UPDATED_BY = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 INIT_UPDATED_BY = CFLibDbKeyHash256.fromHex(S_INIT_UPDATED_BY);
+	public static final MCFDbKeyHash256 INIT_UPDATED_BY = MCFDbKeyHash256.fromHex(S_INIT_UPDATED_BY);
 	public static final String S_SECUSERID_INIT_VALUE = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 SECUSERID_INIT_VALUE = CFLibDbKeyHash256.fromHex( S_SECUSERID_INIT_VALUE );
+	public static final MCFDbKeyHash256 SECUSERID_INIT_VALUE = MCFDbKeyHash256.fromHex( S_SECUSERID_INIT_VALUE );
 	public static final String SENTTOEMAILADDR_INIT_VALUE = new String( "" );
 	public final static boolean NEWACCOUNT_INIT_VALUE = false;
 	public final static int CLASS_CODE = 0xa00c;
@@ -58,17 +58,17 @@ public interface ICFSecSecUserPWReset
 
 	public int getClassCode();
 
-	public CFLibDbKeyHash256 getCreatedByUserId();
+	public MCFDbKeyHash256 getCreatedByUserId();
 
-	public void setCreatedByUserId( CFLibDbKeyHash256 value );
+	public void setCreatedByUserId( MCFDbKeyHash256 value );
 
 	public LocalDateTime getCreatedAt();
 
 	public void setCreatedAt( LocalDateTime value );
 
-	public CFLibDbKeyHash256 getUpdatedByUserId();
+	public MCFDbKeyHash256 getUpdatedByUserId();
 
-	public void setUpdatedByUserId( CFLibDbKeyHash256 value );
+	public void setUpdatedByUserId( MCFDbKeyHash256 value );
 
 	public LocalDateTime getUpdatedAt();
 
@@ -78,7 +78,7 @@ public interface ICFSecSecUserPWReset
 	public void setPKey($implCommaIJavaOptAtomType$ requiredSecUserId);
 	public ICFSecSecUser getRequiredContainerUser();
 
-	public void setRequiredContainerUser(ICFLibKeyHash256 argSecUserId);
+	public void setRequiredContainerUser(IMCFKeyHash256 argSecUserId);
 
 	public void setRequiredContainerUser(ICFSecSecUser argObj);
 
@@ -86,15 +86,15 @@ public interface ICFSecSecUserPWReset
 
 	public void setRequiredContainerUser(ICFSecPubSecUser argObj);
 
-	public ICFLibKeyHash256 getRequiredSecUserId();
-	public void setRequiredSecUserId( ICFLibKeyHash256 value );
+	public IMCFKeyHash256 getRequiredSecUserId();
+	public void setRequiredSecUserId( IMCFKeyHash256 value );
 	public int getRequiredRevision();
 	public void setRequiredRevision( int value );
 
 	public String getRequiredSentToEMailAddr();
 	public void setRequiredSentToEMailAddr( String value );
-	public ICFLibUuid6 getRequiredPasswordResetUuid6();
-	public void setRequiredPasswordResetUuid6( ICFLibUuid6 value );
+	public IMCFUuid6 getRequiredPasswordResetUuid6();
+	public void setRequiredPasswordResetUuid6( IMCFUuid6 value );
 	public boolean getRequiredNewAccount();
 	public void setRequiredNewAccount( boolean value );
 	public boolean equals( Object obj );

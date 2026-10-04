@@ -92,7 +92,7 @@ public interface ICFSecProtSecClusRoleTable
 	 *	@param	argKey	The primary key identifying the instance to be deleted.
 	 */
 	public void protdeleteSecClusRoleByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 argKey );
+		MCFDbKeyHash256 argKey );
 	/**
 	 *	Delete the SecClusRole instances identified by the key ClusterIdx.
 	 *
@@ -101,7 +101,7 @@ public interface ICFSecProtSecClusRoleTable
 	 *	@param	ClusterId	The SecClusRole key attribute of the instance generating the id.
 	 */
 	public void protdeleteSecClusRoleByClusterIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId );
+		IMCFKeyHash256 argClusterId );
 
 	/**
 	 *	Delete the SecClusRole instances identified by the key ClusterIdx.
@@ -141,7 +141,7 @@ public interface ICFSecProtSecClusRoleTable
 	 *	@param	Name	The SecClusRole key attribute of the instance generating the id.
 	 */
 	public void protdeleteSecClusRoleByUNameIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId,
+		IMCFKeyHash256 argClusterId,
 		String argName );
 
 	/**
@@ -166,7 +166,7 @@ public interface ICFSecProtSecClusRoleTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecClusRole protreadDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the derived SecClusRole record instance by protected primary key.
@@ -179,7 +179,7 @@ public interface ICFSecProtSecClusRoleTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecClusRole protlockDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all SecClusRole instances.
@@ -201,7 +201,7 @@ public interface ICFSecProtSecClusRoleTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecClusRole protreadDerivedByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecClusRoleId );
+		IMCFKeyHash256 SecClusRoleId );
 
 	/**
 	 *	Read an array of the derived SecClusRole record instances identified by the duplicate key ClusterIdx.
@@ -213,7 +213,7 @@ public interface ICFSecProtSecClusRoleTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	public ICFSecProtSecClusRole[] protreadDerivedByClusterIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId );
+		IMCFKeyHash256 ClusterId );
 
 	/**
 	 *	Read an array of the derived SecClusRole record instances identified by the duplicate key NameIdx.
@@ -240,7 +240,7 @@ public interface ICFSecProtSecClusRoleTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecClusRole protreadDerivedByUNameIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String Name );
 
 	/**
@@ -253,10 +253,10 @@ public interface ICFSecProtSecClusRoleTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecClusRole protreadRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the specific SecClusRole record instance identified by the primary key.
@@ -268,10 +268,10 @@ public interface ICFSecProtSecClusRoleTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecClusRole protlockRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all the specific SecClusRole record instances.
@@ -292,10 +292,10 @@ public interface ICFSecProtSecClusRoleTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecClusRole protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecClusRoleId );
+		IMCFKeyHash256 SecClusRoleId );
 
 	/**
 	 *	Read an array of the specific SecClusRole record instances identified by the duplicate key ClusterIdx.
@@ -306,10 +306,10 @@ public interface ICFSecProtSecClusRoleTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecClusRole[] protreadRecByClusterIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId );
+		IMCFKeyHash256 ClusterId );
 
 	/**
 	 *	Read an array of the specific SecClusRole record instances identified by the duplicate key NameIdx.
@@ -320,7 +320,7 @@ public interface ICFSecProtSecClusRoleTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecClusRole[] protreadRecByNameIdx( ICFSecPubAuthorization Authorization,
 		String Name );
@@ -337,9 +337,9 @@ public interface ICFSecProtSecClusRoleTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecClusRole protreadRecByUNameIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String Name );
 }

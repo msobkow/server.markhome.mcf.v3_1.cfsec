@@ -38,7 +38,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 
 @Entity
@@ -76,27 +76,27 @@ public class CFSecJpaISOCtryLang
 
 
 	@AttributeOverrides({
-		@AttributeOverride( name="bytes", column = @Column( name="CreatedByUserId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride( name="bytes", column = @Column( name="CreatedByUserId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected CFLibDbKeyHash256 createdByUserId = CFLibDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_CREATED_BY);
+	protected MCFDbKeyHash256 createdByUserId = MCFDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_CREATED_BY);
 
 	@AttributeOverrides({
-		@AttributeOverride( name="bytes", column = @Column( name="CreatedBySessionId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride( name="bytes", column = @Column( name="CreatedBySessionId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected CFLibDbKeyHash256 createdBySessionId = CFLibDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
+	protected MCFDbKeyHash256 createdBySessionId = MCFDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
 
 	@Column(name="CreatedAt", nullable=false)
 	protected LocalDateTime createdAt = LocalDateTime.now();
 
 	@AttributeOverrides({
-		@AttributeOverride( name="bytes", column= @Column( name="UpdatedByUserId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride( name="bytes", column= @Column( name="UpdatedByUserId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected CFLibDbKeyHash256 updatedByUserId = CFLibDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_UPDATED_BY);
+	protected MCFDbKeyHash256 updatedByUserId = MCFDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_UPDATED_BY);
 
 	@AttributeOverrides({
-		@AttributeOverride( name="bytes", column= @Column( name="UpdatedBySessionId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride( name="bytes", column= @Column( name="UpdatedBySessionId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected CFLibDbKeyHash256 updatedBySessionId = CFLibDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
+	protected MCFDbKeyHash256 updatedBySessionId = MCFDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
 
 	@Column(name="UpdatedAt", nullable=false)
 	protected LocalDateTime updatedAt = LocalDateTime.now();
@@ -118,7 +118,7 @@ public class CFSecJpaISOCtryLang
 	@Override
 	public void setRequiredContainerCtry(ICFSecISOCtry argObj) {
 		if(argObj == null) {
-			throw new CFLibNullArgumentException(getClass(), "setContainerCtry", 1, "argObj");
+			throw new MCFNullArgumentException(getClass(), "setContainerCtry", 1, "argObj");
 		}
 		else if (argObj instanceof CFSecJpaISOCtry) {
 			requiredContainerCtry = (CFSecJpaISOCtry)argObj;
@@ -129,7 +129,7 @@ public class CFSecJpaISOCtryLang
 			}
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "setContainerCtry", "argObj", argObj, "CFSecJpaISOCtry");
+			throw new MCFUnsupportedClassException(getClass(), "setContainerCtry", "argObj", argObj, "CFSecJpaISOCtry");
 		}
 	
 	}
@@ -148,11 +148,11 @@ public class CFSecJpaISOCtryLang
 	public void setRequiredContainerCtry(short argISOCtryId) {
 		ICFSecSchema targetBackingSchema = ICFSecSchema.getBackingCFSec();
 		if (targetBackingSchema == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredContainerCtry", 0, "ICFSecSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredContainerCtry", 0, "ICFSecSchema.getBackingCFSec()");
 		}
 		ICFSecISOCtryTable targetTable = targetBackingSchema.getTableISOCtry();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredContainerCtry", 0, "ICFSecSchema.getBackingCFSec().getTableISOCtry()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredContainerCtry", 0, "ICFSecSchema.getBackingCFSec().getTableISOCtry()");
 		}
 		ICFSecISOCtry targetRec = targetTable.readDerivedByIdIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), argISOCtryId);
 		setRequiredContainerCtry(targetRec);
@@ -166,7 +166,7 @@ public class CFSecJpaISOCtryLang
 	@Override
 	public void setRequiredParentLang(ICFSecISOLang argObj) {
 		if(argObj == null) {
-			throw new CFLibNullArgumentException(getClass(), "setParentLang", 1, "argObj");
+			throw new MCFNullArgumentException(getClass(), "setParentLang", 1, "argObj");
 		}
 		else if (argObj instanceof CFSecJpaISOLang) {
 			requiredParentLang = (CFSecJpaISOLang)argObj;
@@ -177,7 +177,7 @@ public class CFSecJpaISOCtryLang
 			}
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "setParentLang", "argObj", argObj, "CFSecJpaISOLang");
+			throw new MCFUnsupportedClassException(getClass(), "setParentLang", "argObj", argObj, "CFSecJpaISOLang");
 		}
 	
 	}
@@ -196,25 +196,25 @@ public class CFSecJpaISOCtryLang
 	public void setRequiredParentLang(short argISOLangId) {
 		ICFSecSchema targetBackingSchema = ICFSecSchema.getBackingCFSec();
 		if (targetBackingSchema == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredParentLang", 0, "ICFSecSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredParentLang", 0, "ICFSecSchema.getBackingCFSec()");
 		}
 		ICFSecISOLangTable targetTable = targetBackingSchema.getTableISOLang();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredParentLang", 0, "ICFSecSchema.getBackingCFSec().getTableISOLang()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredParentLang", 0, "ICFSecSchema.getBackingCFSec().getTableISOLang()");
 		}
 		ICFSecISOLang targetRec = targetTable.readDerivedByIdIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), argISOLangId);
 		setRequiredParentLang(targetRec);
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getCreatedByUserId() {
+	public MCFDbKeyHash256 getCreatedByUserId() {
 		return( createdByUserId );
 	}
 
 	@Override
-	public void setCreatedByUserId( CFLibDbKeyHash256 value ) {
+	public void setCreatedByUserId( MCFDbKeyHash256 value ) {
 		if (value == null || value.isNull()) {
-			throw new CFLibNullArgumentException(getClass(), "setCreatedByUserId", 1, "value");
+			throw new MCFNullArgumentException(getClass(), "setCreatedByUserId", 1, "value");
 		}
 		createdByUserId = value;
 	}
@@ -227,20 +227,20 @@ public class CFSecJpaISOCtryLang
 	@Override
 	public void setCreatedAt( LocalDateTime value ) {
 		if (value == null) {
-			throw new CFLibNullArgumentException(getClass(), "setCreatedAt", 1, "value");
+			throw new MCFNullArgumentException(getClass(), "setCreatedAt", 1, "value");
 		}
 		createdAt = value;
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getUpdatedByUserId() {
+	public MCFDbKeyHash256 getUpdatedByUserId() {
 		return( updatedByUserId );
 	}
 
 	@Override
-	public void setUpdatedByUserId( CFLibDbKeyHash256 value ) {
+	public void setUpdatedByUserId( MCFDbKeyHash256 value ) {
 		if (value == null || value.isNull()) {
-			throw new CFLibNullArgumentException(getClass(), "setUpdatedByUserId", 1, "value");
+			throw new MCFNullArgumentException(getClass(), "setUpdatedByUserId", 1, "value");
 		}
 		updatedByUserId = value;
 	}
@@ -253,7 +253,7 @@ public class CFSecJpaISOCtryLang
 	@Override
 	public void setUpdatedAt( LocalDateTime value ) {
 		if (value == null) {
-			throw new CFLibNullArgumentException(getClass(), "setUpdatedAt", 1, "value");
+			throw new MCFNullArgumentException(getClass(), "setUpdatedAt", 1, "value");
 		}
 		updatedAt = value;
 	}
@@ -266,10 +266,10 @@ public class CFSecJpaISOCtryLang
 	@Override
 	public void setPKey(ICFSecISOCtryLangPKey pkey ) {
 		if (pkey == null) {
-			throw new CFLibNullArgumentException(getClass(), "setPKey", 1, "pkey");
+			throw new MCFNullArgumentException(getClass(), "setPKey", 1, "pkey");
 		}
 		else if (!(pkey instanceof CFSecJpaISOCtryLangPKey)) {
-			throw new CFLibUnsupportedClassException(getClass(), "setPKey", "pkey", pkey, "CFSecJpaISOCtryLangPKey");
+			throw new MCFUnsupportedClassException(getClass(), "setPKey", "pkey", pkey, "CFSecJpaISOCtryLangPKey");
 		}
 		this.pkey = (CFSecJpaISOCtryLangPKey)pkey;
 	}
@@ -505,7 +505,7 @@ public class CFSecJpaISOCtryLang
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException( getClass(),
+			throw new MCFUnsupportedClassException( getClass(),
 				"compareTo",
 				"obj",
 				obj,

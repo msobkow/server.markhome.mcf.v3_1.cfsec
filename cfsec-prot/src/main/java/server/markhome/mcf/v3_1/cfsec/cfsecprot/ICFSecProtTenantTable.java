@@ -115,7 +115,7 @@ extends ICFSecPubTenantTable
 	 *	@param	argKey	The primary key identifying the instance to be deleted.
 	 */
 	public void protdeleteTenantByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 argKey );
+		MCFDbKeyHash256 argKey );
 	/**
 	 *	Delete the Tenant instances identified by the key ClusterIdx.
 	 *
@@ -124,7 +124,7 @@ extends ICFSecPubTenantTable
 	 *	@param	ClusterId	The Tenant key attribute of the instance generating the id.
 	 */
 	public void protdeleteTenantByClusterIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId );
+		IMCFKeyHash256 argClusterId );
 
 	/**
 	 *	Delete the Tenant instances identified by the key ClusterIdx.
@@ -154,7 +154,7 @@ extends ICFSecPubTenantTable
 	 *	@param	TenantName	The Tenant key attribute of the instance generating the id.
 	 */
 	public void protdeleteTenantByUNameIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId,
+		IMCFKeyHash256 argClusterId,
 		String argTenantName );
 
 	/**
@@ -198,7 +198,7 @@ extends ICFSecPubTenantTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtTenant protreadDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the derived Tenant record instance by protected primary key.
@@ -211,7 +211,7 @@ extends ICFSecPubTenantTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtTenant protlockDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all Tenant instances.
@@ -233,7 +233,7 @@ extends ICFSecPubTenantTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtTenant protreadDerivedByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 Id );
+		IMCFKeyHash256 Id );
 
 	/**
 	 *	Read an array of the derived Tenant record instances identified by the duplicate key ClusterIdx.
@@ -245,7 +245,7 @@ extends ICFSecPubTenantTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	public ICFSecProtTenant[] protreadDerivedByClusterIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId );
+		IMCFKeyHash256 ClusterId );
 
 	/**
 	 *	Read the derived Tenant record instance identified by the unique key UNameIdx.
@@ -260,7 +260,7 @@ extends ICFSecPubTenantTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtTenant protreadDerivedByUNameIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String TenantName );
 
 	/**
@@ -273,10 +273,10 @@ extends ICFSecPubTenantTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtTenant protreadRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the specific Tenant record instance identified by the primary key.
@@ -288,10 +288,10 @@ extends ICFSecPubTenantTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtTenant protlockRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all the specific Tenant record instances.
@@ -310,7 +310,7 @@ extends ICFSecPubTenantTable
 	 *	@return All the specific Tenant instances in the database accessible for the Authorization.
 	 */
 	public ICFSecProtTenant[] protpageAllRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 priorId );
+		MCFDbKeyHash256 priorId );
 
 	/**
 	 *	Read the specific Tenant record instance identified by the unique key IdIdx.
@@ -322,10 +322,10 @@ extends ICFSecPubTenantTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtTenant protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 Id );
+		IMCFKeyHash256 Id );
 
 	/**
 	 *	Read an array of the specific Tenant record instances identified by the duplicate key ClusterIdx.
@@ -336,10 +336,10 @@ extends ICFSecPubTenantTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtTenant[] protreadRecByClusterIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId );
+		IMCFKeyHash256 ClusterId );
 
 	/**
 	 *	Read the specific Tenant record instance identified by the unique key UNameIdx.
@@ -353,10 +353,10 @@ extends ICFSecPubTenantTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtTenant protreadRecByUNameIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String TenantName );
 
 	/**
@@ -368,9 +368,9 @@ extends ICFSecPubTenantTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtTenant[] protpageRecByClusterIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
-		ICFLibKeyHash256 priorId );
+		IMCFKeyHash256 ClusterId,
+		IMCFKeyHash256 priorId );
 }

@@ -38,7 +38,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 
 @Entity
@@ -62,9 +62,9 @@ public class CFSecJpaSecUserEMConf
 {
 	@Id
 	@AttributeOverrides({
-		@AttributeOverride(name="bytes", column = @Column( name="SecUserId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride(name="bytes", column = @Column( name="SecUserId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected ICFLibKeyHash256 requiredSecUserId;
+	protected IMCFKeyHash256 requiredSecUserId;
 	@OneToOne(fetch=FetchType.LAZY, optional=false)
 	@JoinColumn( name="SecUserIdUser", referencedColumnName="SecUserId" )
 	protected CFSecJpaSecUser requiredContainerUser;
@@ -72,27 +72,27 @@ public class CFSecJpaSecUserEMConf
 
 
 	@AttributeOverrides({
-		@AttributeOverride( name="bytes", column = @Column( name="CreatedByUserId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride( name="bytes", column = @Column( name="CreatedByUserId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected CFLibDbKeyHash256 createdByUserId = CFLibDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_CREATED_BY);
+	protected MCFDbKeyHash256 createdByUserId = MCFDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_CREATED_BY);
 
 	@AttributeOverrides({
-		@AttributeOverride( name="bytes", column = @Column( name="CreatedBySessionId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride( name="bytes", column = @Column( name="CreatedBySessionId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected CFLibDbKeyHash256 createdBySessionId = CFLibDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
+	protected MCFDbKeyHash256 createdBySessionId = MCFDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
 
 	@Column(name="CreatedAt", nullable=false)
 	protected LocalDateTime createdAt = LocalDateTime.now();
 
 	@AttributeOverrides({
-		@AttributeOverride( name="bytes", column= @Column( name="UpdatedByUserId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride( name="bytes", column= @Column( name="UpdatedByUserId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected CFLibDbKeyHash256 updatedByUserId = CFLibDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_UPDATED_BY);
+	protected MCFDbKeyHash256 updatedByUserId = MCFDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_UPDATED_BY);
 
 	@AttributeOverrides({
-		@AttributeOverride( name="bytes", column= @Column( name="UpdatedBySessionId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride( name="bytes", column= @Column( name="UpdatedBySessionId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected CFLibDbKeyHash256 updatedBySessionId = CFLibDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
+	protected MCFDbKeyHash256 updatedBySessionId = MCFDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
 
 	@Column(name="UpdatedAt", nullable=false)
 	protected LocalDateTime updatedAt = LocalDateTime.now();
@@ -101,16 +101,16 @@ public class CFSecJpaSecUserEMConf
 	@Column( name="conf_sent", nullable=false )
 	protected LocalDateTime requiredEMailSentStamp;
 	@AttributeOverrides({
-		@AttributeOverride(name="bytes", column = @Column( name="conf_uuid6", nullable=false, length=ICFLibUuid6.TOTAL_BYTES ) )
+		@AttributeOverride(name="bytes", column = @Column( name="conf_uuid6", nullable=false, length=IMCFUuid6.TOTAL_BYTES ) )
 	})
-	protected ICFLibUuid6 requiredEMConfirmationUuid6;
+	protected IMCFUuid6 requiredEMConfirmationUuid6;
 	@Column( name="conf_newacct", nullable=false )
 	protected boolean requiredNewAccount;
 
 	public CFSecJpaSecUserEMConf() {
-		requiredSecUserId = CFLibDbKeyHash256.fromHex( ICFSecProtSecUserEMConf.SECUSERID_INIT_VALUE.toString() );
+		requiredSecUserId = MCFDbKeyHash256.fromHex( ICFSecProtSecUserEMConf.SECUSERID_INIT_VALUE.toString() );
 		requiredConfirmEMailAddr = ICFSecProtSecUserEMConf.CONFIRMEMAILADDR_INIT_VALUE;
-		requiredEMailSentStamp = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+		requiredEMailSentStamp = MCFXmlUtil.parseTimestamp("2020-01-01T00:00:00");
 		requiredNewAccount = ICFSecProtSecUserEMConf.NEWACCOUNT_INIT_VALUE;
 	}
 
@@ -127,7 +127,7 @@ public class CFSecJpaSecUserEMConf
 	@Override
 	public void setRequiredContainerUser(ICFSecSecUser argObj) {
 		if(argObj == null) {
-			throw new CFLibNullArgumentException(getClass(), "setContainerUser", 1, "argObj");
+			throw new MCFNullArgumentException(getClass(), "setContainerUser", 1, "argObj");
 		}
 		else if (argObj instanceof CFSecJpaSecUser) {
 			requiredContainerUser = (CFSecJpaSecUser)argObj;
@@ -138,7 +138,7 @@ public class CFSecJpaSecUserEMConf
 			}
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "setContainerUser", "argObj", argObj, "CFSecJpaSecUser");
+			throw new MCFUnsupportedClassException(getClass(), "setContainerUser", "argObj", argObj, "CFSecJpaSecUser");
 		}
 	
 	}
@@ -154,28 +154,28 @@ public class CFSecJpaSecUserEMConf
 	}
 
 	@Override
-	public void setRequiredContainerUser(ICFLibKeyHash256 argSecUserId) {
+	public void setRequiredContainerUser(IMCFKeyHash256 argSecUserId) {
 		ICFSecSchema targetBackingSchema = ICFSecSchema.getBackingCFSec();
 		if (targetBackingSchema == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredContainerUser", 0, "ICFSecSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredContainerUser", 0, "ICFSecSchema.getBackingCFSec()");
 		}
 		ICFSecSecUserTable targetTable = targetBackingSchema.getTableSecUser();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredContainerUser", 0, "ICFSecSchema.getBackingCFSec().getTableSecUser()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredContainerUser", 0, "ICFSecSchema.getBackingCFSec().getTableSecUser()");
 		}
 		ICFSecSecUser targetRec = targetTable.readDerivedByIdIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), argSecUserId);
 		setRequiredContainerUser(targetRec);
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getCreatedByUserId() {
+	public MCFDbKeyHash256 getCreatedByUserId() {
 		return( createdByUserId );
 	}
 
 	@Override
-	public void setCreatedByUserId( CFLibDbKeyHash256 value ) {
+	public void setCreatedByUserId( MCFDbKeyHash256 value ) {
 		if (value == null || value.isNull()) {
-			throw new CFLibNullArgumentException(getClass(), "setCreatedByUserId", 1, "value");
+			throw new MCFNullArgumentException(getClass(), "setCreatedByUserId", 1, "value");
 		}
 		createdByUserId = value;
 	}
@@ -188,20 +188,20 @@ public class CFSecJpaSecUserEMConf
 	@Override
 	public void setCreatedAt( LocalDateTime value ) {
 		if (value == null) {
-			throw new CFLibNullArgumentException(getClass(), "setCreatedAt", 1, "value");
+			throw new MCFNullArgumentException(getClass(), "setCreatedAt", 1, "value");
 		}
 		createdAt = value;
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getUpdatedByUserId() {
+	public MCFDbKeyHash256 getUpdatedByUserId() {
 		return( updatedByUserId );
 	}
 
 	@Override
-	public void setUpdatedByUserId( CFLibDbKeyHash256 value ) {
+	public void setUpdatedByUserId( MCFDbKeyHash256 value ) {
 		if (value == null || value.isNull()) {
-			throw new CFLibNullArgumentException(getClass(), "setUpdatedByUserId", 1, "value");
+			throw new MCFNullArgumentException(getClass(), "setUpdatedByUserId", 1, "value");
 		}
 		updatedByUserId = value;
 	}
@@ -214,7 +214,7 @@ public class CFSecJpaSecUserEMConf
 	@Override
 	public void setUpdatedAt( LocalDateTime value ) {
 		if (value == null) {
-			throw new CFLibNullArgumentException(getClass(), "setUpdatedAt", 1, "value");
+			throw new MCFNullArgumentException(getClass(), "setUpdatedAt", 1, "value");
 		}
 		updatedAt = value;
 	}
@@ -230,13 +230,13 @@ public class CFSecJpaSecUserEMConf
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecUserId() {
+	public IMCFKeyHash256 getRequiredSecUserId() {
 		return(getPKey().getRequiredSecUserId());
 	}
 
-	public void setRequiredSecUserId( ICFLibKeyHash256 value ) {
+	public void setRequiredSecUserId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecUserId",
 				1,
 				"value" );
@@ -261,13 +261,13 @@ public class CFSecJpaSecUserEMConf
 
 	public void setRequiredConfirmEMailAddr( String value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredConfirmEMailAddr",
 				1,
 				"value" );
 		}
 		else if( value.length() > 512 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredConfirmEMailAddr",
 				1,
 				"value.length()",
@@ -284,7 +284,7 @@ public class CFSecJpaSecUserEMConf
 
 	public void setRequiredEMailSentStamp( LocalDateTime value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredEMailSentStamp",
 				1,
 				"value" );
@@ -293,13 +293,13 @@ public class CFSecJpaSecUserEMConf
 	}
 
 	@Override
-	public ICFLibUuid6 getRequiredEMConfirmationUuid6() {
+	public IMCFUuid6 getRequiredEMConfirmationUuid6() {
 		return(requiredEMConfirmationUuid6);
 	}
 
-	public void setRequiredEMConfirmationUuid6( ICFLibUuid6 value ) {
+	public void setRequiredEMConfirmationUuid6( IMCFUuid6 value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredEMConfirmationUuid6",
 				1,
 				"value" );
@@ -858,7 +858,7 @@ public class CFSecJpaSecUserEMConf
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException( getClass(),
+			throw new MCFUnsupportedClassException( getClass(),
 				"compareTo",
 				"obj",
 				obj,

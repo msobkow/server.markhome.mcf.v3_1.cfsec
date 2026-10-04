@@ -41,7 +41,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
@@ -57,22 +57,22 @@ import server.markhome.mcf.v3_1.cfsec.cfsecobj.*;
 public class CFSecBuffSecUserPWHistoryPKey
 	implements ICFSecSecUserPWHistoryPKey, Comparable<Object>, Serializable
 {
-	protected ICFLibKeyHash256 requiredSecUserId;
+	protected IMCFKeyHash256 requiredSecUserId;
 	protected LocalDateTime requiredPWSetStamp;
 
 	public CFSecBuffSecUserPWHistoryPKey() {
-		requiredSecUserId = CFLibDbKeyHash256.fromHex( ICFSecSecUserPWHistory.SECUSERID_INIT_VALUE.toString() );
-		requiredPWSetStamp = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+		requiredSecUserId = MCFDbKeyHash256.fromHex( ICFSecSecUserPWHistory.SECUSERID_INIT_VALUE.toString() );
+		requiredPWSetStamp = MCFXmlUtil.parseTimestamp("2020-01-01T00:00:00");
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecUserId() {
+	public IMCFKeyHash256 getRequiredSecUserId() {
 		return(requiredSecUserId);
 	}
 
-	public void setRequiredSecUserId( ICFLibKeyHash256 value ) {
+	public void setRequiredSecUserId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecUserId",
 				1,
 				"value" );
@@ -87,7 +87,7 @@ public class CFSecBuffSecUserPWHistoryPKey
 
 	public void setRequiredPWSetStamp( LocalDateTime value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredPWSetStamp",
 				1,
 				"value" );

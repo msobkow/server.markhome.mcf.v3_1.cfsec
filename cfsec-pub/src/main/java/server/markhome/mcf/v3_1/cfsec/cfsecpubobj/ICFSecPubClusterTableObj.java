@@ -97,7 +97,7 @@ public interface ICFSecPubClusterTableObj
 	 *	@return	The Cluster-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecPubClusterObj readCluster( ICFLibKeyHash256 pkey );
+	ICFSecPubClusterObj readCluster( IMCFKeyHash256 pkey );
 
 	/**
 	 *	Read a Cluster-derived instance by it's primary key.
@@ -107,19 +107,19 @@ public interface ICFSecPubClusterTableObj
 	 *	@return	The Cluster-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecPubClusterObj readCluster( ICFLibKeyHash256 pkey,
+	ICFSecPubClusterObj readCluster( IMCFKeyHash256 pkey,
 		boolean forceRead );
 
-	ICFSecPubClusterObj readCachedCluster( ICFLibKeyHash256 pkey );
+	ICFSecPubClusterObj readCachedCluster( IMCFKeyHash256 pkey );
 
 	public void reallyDeepDisposeCluster( ICFSecPubClusterObj obj );
 
-	void deepDisposeCluster( ICFLibKeyHash256 pkey );
+	void deepDisposeCluster( IMCFKeyHash256 pkey );
 
 	/**
 	 *	Internal use only.
 	 */
-	ICFSecPubClusterObj lockCluster( ICFLibKeyHash256 pkey );
+	ICFSecPubClusterObj lockCluster( IMCFKeyHash256 pkey );
 
 	/**
 	 *	Return a sorted list of all the Cluster-derived instances in the database.
@@ -145,7 +145,7 @@ public interface ICFSecPubClusterTableObj
 	 *	@return	List of ICFSecPubClusterObj instance, sorted by their primary keys, which
 	 *		may include an empty set.
 	 */
-	List<ICFSecPubClusterObj> pageAllCluster(CFLibDbKeyHash256 priorId );
+	List<ICFSecPubClusterObj> pageAllCluster(MCFDbKeyHash256 priorId );
 
 	/**
 	 *	Get the CFSecPubClusterObj instance for the primary key attributes.
@@ -155,7 +155,7 @@ public interface ICFSecPubClusterTableObj
 	 *	@return	CFSecPubClusterObj cached instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecPubClusterObj readClusterByIdIdx( CFLibDbKeyHash256 Id );
+	ICFSecPubClusterObj readClusterByIdIdx( MCFDbKeyHash256 Id );
 
 	/**
 	 *	Get the CFSecPubClusterObj instance for the primary key attributes.
@@ -165,7 +165,7 @@ public interface ICFSecPubClusterTableObj
 	 *	@return	CFSecPubClusterObj refreshed instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecPubClusterObj readClusterByIdIdx( CFLibDbKeyHash256 Id,
+	ICFSecPubClusterObj readClusterByIdIdx( MCFDbKeyHash256 Id,
 		boolean forceRead );
 
 	/**
@@ -210,13 +210,13 @@ public interface ICFSecPubClusterTableObj
 	ICFSecPubClusterObj readClusterByUDescrIdx(String Description,
 		boolean forceRead );
 
-	ICFSecPubClusterObj readCachedClusterByIdIdx( CFLibDbKeyHash256 Id );
+	ICFSecPubClusterObj readCachedClusterByIdIdx( MCFDbKeyHash256 Id );
 
 	ICFSecPubClusterObj readCachedClusterByUDomNameIdx( String FullDomName );
 
 	ICFSecPubClusterObj readCachedClusterByUDescrIdx( String Description );
 
-	void deepDisposeClusterByIdIdx( CFLibDbKeyHash256 Id );
+	void deepDisposeClusterByIdIdx( MCFDbKeyHash256 Id );
 
 	void deepDisposeClusterByUDomNameIdx( String FullDomName );
 
@@ -237,7 +237,7 @@ public interface ICFSecPubClusterTableObj
 	 *
 	 *	@param	Id	The Cluster key attribute of the instance generating the id.
 	 */
-	void deleteClusterByIdIdx( CFLibDbKeyHash256 Id );
+	void deleteClusterByIdIdx( MCFDbKeyHash256 Id );
 
 	/**
 	 *	Internal use only.

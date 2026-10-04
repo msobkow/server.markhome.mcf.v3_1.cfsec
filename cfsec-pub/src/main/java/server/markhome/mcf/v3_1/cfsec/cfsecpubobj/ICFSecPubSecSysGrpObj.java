@@ -40,7 +40,7 @@ import server.markhome.mcf.v3_1.cflib.keyhash.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 
 public interface ICFSecPubSecSysGrpObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecPubSecSysGrp.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -114,7 +114,7 @@ public interface ICFSecPubSecSysGrpObj
 	/**
 	 *	End this edition of this SecSysGrp instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 
@@ -183,18 +183,18 @@ public interface ICFSecPubSecSysGrpObj
 	/**
 	 *	Get the primary key of this instance.
 	 *
-	 *	@return	ICFLibKeyHash256 primary key for this instance.
+	 *	@return	IMCFKeyHash256 primary key for this instance.
 	 */
-	ICFLibKeyHash256 getPKey();
+	IMCFKeyHash256 getPKey();
 
 	/**
 	 *	Set the primary key of this instance.
 	 *	<p>
 	 *	This method should only be invoked by implementation internals.
 	 *
-	 *	@param ICFLibKeyHash256 primary key value for this instance.
+	 *	@param IMCFKeyHash256 primary key value for this instance.
 	 */
-	void setPKey( ICFLibKeyHash256 value );
+	void setPKey( IMCFKeyHash256 value );
 
 	/**
 	 *	Is this a new instance?
@@ -228,11 +228,11 @@ public interface ICFSecPubSecSysGrpObj
 	ICFSecPubSecSysRoleObj getOptionalComponentsImplSysRole( boolean forceRead );
 
 	/**
-	 *	Get the required CFLibDbKeyHash256 attribute SecSysGrpId.
+	 *	Get the required MCFDbKeyHash256 attribute SecSysGrpId.
 	 *
-	 *	@return	The required CFLibDbKeyHash256 attribute SecSysGrpId.
+	 *	@return	The required MCFDbKeyHash256 attribute SecSysGrpId.
 	 */
-	CFLibDbKeyHash256 getRequiredSecSysGrpId();
+	MCFDbKeyHash256 getRequiredSecSysGrpId();
 
 	/**
 	 *	Get the required String attribute Name.

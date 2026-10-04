@@ -35,7 +35,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 //import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 
 /**
@@ -47,7 +47,7 @@ public interface ICFSecPubSysCluster
 	public static final int SINGLETONID_MAX_VALUE = 1;
 	public static final int SINGLETONID_INIT_VALUE = 1;
 	public static final String S_CLUSTERID_INIT_VALUE = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 CLUSTERID_INIT_VALUE = CFLibDbKeyHash256.fromHex( S_CLUSTERID_INIT_VALUE );
+	public static final MCFDbKeyHash256 CLUSTERID_INIT_VALUE = MCFDbKeyHash256.fromHex( S_CLUSTERID_INIT_VALUE );
 	public final static int CLASS_CODE = 0xa01f;
 	public final static String S_CLASS_CODE = "a01f";
 
@@ -63,10 +63,10 @@ public interface ICFSecPubSysCluster
 	public ICFSecPubCluster getRequiredContainerCluster();
 
 	public void setRequiredContainerCluster(ICFSecPubCluster argObj);
-	public void setRequiredContainerCluster(ICFLibKeyHash256 argClusterId);
+	public void setRequiredContainerCluster(IMCFKeyHash256 argClusterId);
 
-	public CFLibDbKeyHash256 getRequiredClusterId();
-	public void setRequiredClusterId( CFLibDbKeyHash256 value );
+	public MCFDbKeyHash256 getRequiredClusterId();
+	public void setRequiredClusterId( MCFDbKeyHash256 value );
 	public boolean equals( Object obj );
 
 	public int hashCode();

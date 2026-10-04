@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +75,7 @@ public class CFSecJpaSecUserPasswordService {
 			return( null );
 		}
 		if (data.getRequiredContainerUser() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -86,13 +86,13 @@ public class CFSecJpaSecUserPasswordService {
 				null);
 		}
 		if(data.getRequiredPWSetStamp() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredPWSetStamp");
 		}
 		if(data.getRequiredPasswordHash() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredPasswordHash");
@@ -107,7 +107,7 @@ public class CFSecJpaSecUserPasswordService {
 			return cfsec31SecUserPasswordRepository.save(data);
 		}
 		catch(Exception ex) {
-			throw new CFLibDbException(getClass(),
+			throw new MCFDbException(getClass(),
 				S_ProcName,
 				ex);
 		}
@@ -127,13 +127,13 @@ public class CFSecJpaSecUserPasswordService {
 			return( null );
 		}
 		if (data.getPKey() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.getPKey()");
 		}
 		if (data.getRequiredContainerUser() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -144,22 +144,22 @@ public class CFSecJpaSecUserPasswordService {
 				null);
 		}
 		if(data.getRequiredPWSetStamp() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredPWSetStamp");
 		}
 		if(data.getRequiredPasswordHash() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredPasswordHash");
 		}
 		// Ensure the entity exists and that the revision matches
 		CFSecJpaSecUserPassword existing = cfsec31SecUserPasswordRepository.findById(($implCommaIJavaOptAtomType$)(data.getPKey()))
-			.orElseThrow(() -> new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
+			.orElseThrow(() -> new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
 		if (existing.getRequiredRevision() != data.getRequiredRevision()) {
-			throw new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
+			throw new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
 		}
 		// Apply superior data relationships of CFSecSecUserPassword to existing object
 		// Apply data columns of CFSecSecUserPassword to existing object
@@ -177,7 +177,7 @@ public class CFSecJpaSecUserPasswordService {
 	 *		@return The retrieved entity, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserPassword find(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public CFSecJpaSecUserPassword find(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		return( cfsec31SecUserPasswordRepository.get(requiredSecUserId));
 	}
 
@@ -227,7 +227,7 @@ public class CFSecJpaSecUserPasswordService {
 	 *		@return The locked entity, refreshed from the data store, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserPassword lockByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public CFSecJpaSecUserPassword lockByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		return( cfsec31SecUserPasswordRepository.lockByIdIdx(requiredSecUserId));
 	}
 
@@ -263,7 +263,7 @@ public class CFSecJpaSecUserPasswordService {
 	 *		@param requiredSecUserId
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public void deleteByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		cfsec31SecUserPasswordRepository.deleteByIdIdx(requiredSecUserId);
 	}
 

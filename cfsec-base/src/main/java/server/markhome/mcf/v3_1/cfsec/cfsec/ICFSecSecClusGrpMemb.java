@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 
@@ -46,28 +46,28 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 public interface ICFSecSecClusGrpMemb
 {
 	public static final String S_INIT_CREATED_BY = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 INIT_CREATED_BY = CFLibDbKeyHash256.fromHex(S_INIT_CREATED_BY);
+	public static final MCFDbKeyHash256 INIT_CREATED_BY = MCFDbKeyHash256.fromHex(S_INIT_CREATED_BY);
 	public static final String S_INIT_UPDATED_BY = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 INIT_UPDATED_BY = CFLibDbKeyHash256.fromHex(S_INIT_UPDATED_BY);
+	public static final MCFDbKeyHash256 INIT_UPDATED_BY = MCFDbKeyHash256.fromHex(S_INIT_UPDATED_BY);
 	public static final String S_SECCLUSGRPID_INIT_VALUE = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 SECCLUSGRPID_INIT_VALUE = CFLibDbKeyHash256.fromHex( S_SECCLUSGRPID_INIT_VALUE );
+	public static final MCFDbKeyHash256 SECCLUSGRPID_INIT_VALUE = MCFDbKeyHash256.fromHex( S_SECCLUSGRPID_INIT_VALUE );
 	public static final String LOGINID_INIT_VALUE = new String( "" );
 	public final static int CLASS_CODE = 0xa013;
 	public final static String S_CLASS_CODE = "a013";
 
 	public int getClassCode();
 
-	public CFLibDbKeyHash256 getCreatedByUserId();
+	public MCFDbKeyHash256 getCreatedByUserId();
 
-	public void setCreatedByUserId( CFLibDbKeyHash256 value );
+	public void setCreatedByUserId( MCFDbKeyHash256 value );
 
 	public LocalDateTime getCreatedAt();
 
 	public void setCreatedAt( LocalDateTime value );
 
-	public CFLibDbKeyHash256 getUpdatedByUserId();
+	public MCFDbKeyHash256 getUpdatedByUserId();
 
-	public void setUpdatedByUserId( CFLibDbKeyHash256 value );
+	public void setUpdatedByUserId( MCFDbKeyHash256 value );
 
 	public LocalDateTime getUpdatedAt();
 
@@ -77,7 +77,7 @@ public interface ICFSecSecClusGrpMemb
 	public void setPKey(ICFSecSecClusGrpMembPKey pkey );
 	public ICFSecSecClusGrp getRequiredContainerGroup();
 
-	public void setRequiredContainerGroup(ICFLibKeyHash256 argSecClusGrpId);
+	public void setRequiredContainerGroup(IMCFKeyHash256 argSecClusGrpId);
 
 	public void setRequiredContainerGroup(ICFSecSecClusGrp argObj);
 
@@ -93,9 +93,9 @@ public interface ICFSecSecClusGrpMemb
 
 	public void setRequiredParentUser(ICFSecPubSecUser argObj);
 
-	public ICFLibKeyHash256 getRequiredSecClusGrpId();
+	public IMCFKeyHash256 getRequiredSecClusGrpId();
 
-	public void setRequiredSecClusGrpId(ICFLibKeyHash256 value);
+	public void setRequiredSecClusGrpId(IMCFKeyHash256 value);
 
 	public String getRequiredLoginId();
 

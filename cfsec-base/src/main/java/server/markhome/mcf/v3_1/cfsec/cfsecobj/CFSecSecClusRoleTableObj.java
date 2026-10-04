@@ -116,7 +116,7 @@ public class CFSecSecClusRoleTableObj
 	 */
 	static void setRuntimeClassCode(int argNewClassCode ) {
 		if (argNewClassCode <= 0) {
-			throw new CFLibArgumentUnderflowException(CFSecSecClusRoleTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
+			throw new MCFArgumentUnderflowException(CFSecSecClusRoleTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
 		}
 		runtimeClassCode = argNewClassCode;
 	}
@@ -439,7 +439,7 @@ public class CFSecSecClusRoleTableObj
 			locked = (ICFSecSecClusRoleObj)locked.realise();
 		}
 		else {
-			throw new CFLibCollisionDetectedException( getClass(), "lockSecClusRole", pkey );
+			throw new MCFCollisionDetectedException( getClass(), "lockSecClusRole", pkey );
 		}
 		return( locked );
 	}
@@ -474,7 +474,7 @@ public class CFSecSecClusRoleTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -482,7 +482,7 @@ public class CFSecSecClusRoleTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -534,7 +534,7 @@ public class CFSecSecClusRoleTableObj
 				arr[idx++] = valIter.next();
 			}
 			if( idx < len ) {
-				throw new CFLibArgumentUnderflowException( getClass(),
+				throw new MCFArgumentUnderflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -542,7 +542,7 @@ public class CFSecSecClusRoleTableObj
 					len );
 			}
 			else if( valIter.hasNext() ) {
-				throw new CFLibArgumentOverflowException( getClass(),
+				throw new MCFArgumentOverflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -579,28 +579,28 @@ public class CFSecSecClusRoleTableObj
 	}
 
 	@Override
-	public ICFSecSecClusRoleObj readSecClusRoleByIdIdx( ICFLibKeyHash256 SecClusRoleId )
+	public ICFSecSecClusRoleObj readSecClusRoleByIdIdx( IMCFKeyHash256 SecClusRoleId )
 	{
 		return( readSecClusRoleByIdIdx( SecClusRoleId,
 			false ) );
 	}
 
 	@Override
-	public ICFSecSecClusRoleObj readSecClusRoleByIdIdx( ICFLibKeyHash256 SecClusRoleId, boolean forceRead )
+	public ICFSecSecClusRoleObj readSecClusRoleByIdIdx( IMCFKeyHash256 SecClusRoleId, boolean forceRead )
 	{
 		ICFSecSecClusRoleObj obj = readSecClusRole( SecClusRoleId, forceRead );
 		return( obj );
 	}
 
 	@Override
-	public List<ICFSecSecClusRoleObj> readSecClusRoleByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public List<ICFSecSecClusRoleObj> readSecClusRoleByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		return( readSecClusRoleByClusterIdx( ClusterId,
 			false ) );
 	}
 
 	@Override
-	public List<ICFSecSecClusRoleObj> readSecClusRoleByClusterIdx( ICFLibKeyHash256 ClusterId,
+	public List<ICFSecSecClusRoleObj> readSecClusRoleByClusterIdx( IMCFKeyHash256 ClusterId,
 		boolean forceRead )
 	{
 		final String S_ProcName = "readSecClusRoleByClusterIdx";
@@ -638,7 +638,7 @@ public class CFSecSecClusRoleTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -646,7 +646,7 @@ public class CFSecSecClusRoleTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -731,7 +731,7 @@ public class CFSecSecClusRoleTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -739,7 +739,7 @@ public class CFSecSecClusRoleTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -779,7 +779,7 @@ public class CFSecSecClusRoleTableObj
 	}
 
 	@Override
-	public ICFSecSecClusRoleObj readSecClusRoleByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public ICFSecSecClusRoleObj readSecClusRoleByUNameIdx( IMCFKeyHash256 ClusterId,
 		String Name )
 	{
 		return( readSecClusRoleByUNameIdx( ClusterId,
@@ -788,7 +788,7 @@ public class CFSecSecClusRoleTableObj
 	}
 
 	@Override
-	public ICFSecSecClusRoleObj readSecClusRoleByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public ICFSecSecClusRoleObj readSecClusRoleByUNameIdx( IMCFKeyHash256 ClusterId,
 		String Name, boolean forceRead )
 	{
 		if( indexByUNameIdx == null ) {
@@ -817,7 +817,7 @@ public class CFSecSecClusRoleTableObj
 	}
 
 	@Override
-	public ICFSecSecClusRoleObj readCachedSecClusRoleByIdIdx( ICFLibKeyHash256 SecClusRoleId )
+	public ICFSecSecClusRoleObj readCachedSecClusRoleByIdIdx( IMCFKeyHash256 SecClusRoleId )
 	{
 		ICFSecSecClusRoleObj obj = null;
 		obj = readCachedSecClusRole( SecClusRoleId );
@@ -825,7 +825,7 @@ public class CFSecSecClusRoleTableObj
 	}
 
 	@Override
-	public List<ICFSecSecClusRoleObj> readCachedSecClusRoleByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public List<ICFSecSecClusRoleObj> readCachedSecClusRoleByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "readCachedSecClusRoleByClusterIdx";
 		ICFSecSecClusRoleByClusterIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecClusRole().newByClusterIdxKey();
@@ -843,7 +843,7 @@ public class CFSecSecClusRoleTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -851,7 +851,7 @@ public class CFSecSecClusRoleTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -920,7 +920,7 @@ public class CFSecSecClusRoleTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -928,7 +928,7 @@ public class CFSecSecClusRoleTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -979,7 +979,7 @@ public class CFSecSecClusRoleTableObj
 	}
 
 	@Override
-	public ICFSecSecClusRoleObj readCachedSecClusRoleByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public ICFSecSecClusRoleObj readCachedSecClusRoleByUNameIdx( IMCFKeyHash256 ClusterId,
 		String Name )
 	{
 		ICFSecSecClusRoleObj obj = null;
@@ -1017,7 +1017,7 @@ public class CFSecSecClusRoleTableObj
 	}
 
 	@Override
-	public void deepDisposeSecClusRoleByIdIdx( ICFLibKeyHash256 SecClusRoleId )
+	public void deepDisposeSecClusRoleByIdIdx( IMCFKeyHash256 SecClusRoleId )
 	{
 		ICFSecSecClusRoleObj obj = readCachedSecClusRoleByIdIdx( SecClusRoleId );
 		if( obj != null ) {
@@ -1026,7 +1026,7 @@ public class CFSecSecClusRoleTableObj
 	}
 
 	@Override
-	public void deepDisposeSecClusRoleByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public void deepDisposeSecClusRoleByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "deepDisposeSecClusRoleByClusterIdx";
 		ICFSecSecClusRoleObj obj;
@@ -1060,7 +1060,7 @@ public class CFSecSecClusRoleTableObj
 	}
 
 	@Override
-	public void deepDisposeSecClusRoleByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public void deepDisposeSecClusRoleByUNameIdx( IMCFKeyHash256 ClusterId,
 		String Name )
 	{
 		ICFSecSecClusRoleObj obj = readCachedSecClusRoleByUNameIdx( ClusterId,
@@ -1089,7 +1089,7 @@ public class CFSecSecClusRoleTableObj
 	}
 
 	@Override
-	public void deleteSecClusRoleByIdIdx( ICFLibKeyHash256 SecClusRoleId )
+	public void deleteSecClusRoleByIdIdx( IMCFKeyHash256 SecClusRoleId )
 	{
 		ICFSecSecClusRoleObj obj = readSecClusRole(SecClusRoleId);
 		if( obj != null ) {
@@ -1119,7 +1119,7 @@ public class CFSecSecClusRoleTableObj
 	}
 
 	@Override
-	public void deleteSecClusRoleByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public void deleteSecClusRoleByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		ICFSecSecClusRoleByClusterIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecClusRole().newByClusterIdxKey();
 		key.setRequiredClusterId( ClusterId );
@@ -1187,7 +1187,7 @@ public class CFSecSecClusRoleTableObj
 	}
 
 	@Override
-	public void deleteSecClusRoleByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public void deleteSecClusRoleByUNameIdx( IMCFKeyHash256 ClusterId,
 		String Name )
 	{
 		if( indexByUNameIdx == null ) {

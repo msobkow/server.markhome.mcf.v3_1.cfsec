@@ -38,7 +38,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 
 /**
@@ -48,7 +48,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 public class CFSecJpaSecUserPasswordHPKey
 	implements ICFSecSecUserPasswordHPKey, Comparable<Object>, Serializable
 {
-	protected CFLibDbKeyHash256 auditClusterId;
+	protected MCFDbKeyHash256 auditClusterId;
 
 	protected LocalDateTime auditStamp;
 
@@ -56,26 +56,26 @@ public class CFSecJpaSecUserPasswordHPKey
 
 	protected int requiredRevision;
 
-	protected CFLibDbKeyHash256 auditSessionId;
+	protected MCFDbKeyHash256 auditSessionId;
 
-	protected ICFLibKeyHash256 requiredSecUserId;
+	protected IMCFKeyHash256 requiredSecUserId;
 
 	public CFSecJpaSecUserPasswordHPKey() {
 		auditClusterId = ICFSecCluster.ID_INIT_VALUE;
 		auditStamp = LocalDateTime.now();
 		auditActionId = 0;
 		requiredRevision = 1;
-		auditSessionId = CFLibDbKeyHash256.nullGet();
-		requiredSecUserId = CFLibDbKeyHash256.fromHex( ICFSecSecUserPassword.SECUSERID_INIT_VALUE.toString() );
+		auditSessionId = MCFDbKeyHash256.nullGet();
+		requiredSecUserId = MCFDbKeyHash256.fromHex( ICFSecSecUserPassword.SECUSERID_INIT_VALUE.toString() );
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getAuditClusterId() {
+	public MCFDbKeyHash256 getAuditClusterId() {
 		return( auditClusterId );
 	}
 
 	@Override
-	public void setAuditClusterId( CFLibDbKeyHash256 value ) {
+	public void setAuditClusterId( MCFDbKeyHash256 value ) {
 		auditClusterId = value;
 	}
 
@@ -110,23 +110,23 @@ public class CFSecJpaSecUserPasswordHPKey
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getAuditSessionId() {
+	public MCFDbKeyHash256 getAuditSessionId() {
 		return( auditSessionId );
 	}
 
 	@Override
-	public void setAuditSessionId( CFLibDbKeyHash256 value ) {
+	public void setAuditSessionId( MCFDbKeyHash256 value ) {
 		auditSessionId = value;
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecUserId() {
+	public IMCFKeyHash256 getRequiredSecUserId() {
 		return(requiredSecUserId);
 	}
 
-	public void setRequiredSecUserId( ICFLibKeyHash256 value ) {
+	public void setRequiredSecUserId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecUserId",
 				1,
 				"value" );
@@ -479,7 +479,7 @@ public class CFSecJpaSecUserPasswordHPKey
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException( getClass(),
+			throw new MCFUnsupportedClassException( getClass(),
 				"compareTo",
 				"obj",
 				obj,
@@ -490,7 +490,7 @@ public class CFSecJpaSecUserPasswordHPKey
 	@Override
 	public String getXmlAttrFragment() {
 		String ret = " auditClusterId=\"" + (auditClusterId != null ? auditClusterId.toString() : "null" ) + "\""
-			+ " auditStamp=\"" + (auditStamp != null ? CFLibXmlUtil.formatTimestamp(auditStamp) : "null") + "\""
+			+ " auditStamp=\"" + (auditStamp != null ? MCFXmlUtil.formatTimestamp(auditStamp) : "null") + "\""
 			+ " auditAction=\"" + auditActionId + "\""
 			+ " requiredRevision=\"" + requiredRevision + "\""
 			+ " auditSessionId=\"" + (getAuditSessionId() != null ? getAuditSessionId().toString() : "null") + "\""

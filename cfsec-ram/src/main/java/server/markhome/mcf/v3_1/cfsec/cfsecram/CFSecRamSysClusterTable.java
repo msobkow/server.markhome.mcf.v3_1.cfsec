@@ -85,7 +85,7 @@ public class CFSecRamSysClusterTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		// Validate foreign keys
@@ -97,7 +97,7 @@ public class CFSecRamSysClusterTable
 				if( null == schema.getTableCluster().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredClusterId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
 						"Container",
@@ -135,7 +135,7 @@ public class CFSecRamSysClusterTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -187,7 +187,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public ICFSecSysCluster[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSysCluster.readDerivedByClusterIdx";
 		CFSecBuffSysClusterByClusterIdxKey key = (CFSecBuffSysClusterByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySysCluster().newByClusterIdxKey();
@@ -285,7 +285,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public ICFSecSysCluster[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSysCluster.readRecByClusterIdx() ";
 		ICFSecSysCluster buff;
@@ -308,7 +308,7 @@ public class CFSecRamSysClusterTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffSysCluster existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateSysCluster",
 				"Existing record not found",
 				"Existing record not found",
@@ -317,7 +317,7 @@ public class CFSecRamSysClusterTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateSysCluster",
 				pkey );
 		}
@@ -339,7 +339,7 @@ public class CFSecRamSysClusterTable
 				if( null == schema.getTableCluster().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredClusterId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateSysCluster",
 						"Container",
 						"Container",
@@ -389,7 +389,7 @@ public class CFSecRamSysClusterTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteSysCluster",
 				pkey );
 		}
@@ -436,7 +436,7 @@ public class CFSecRamSysClusterTable
 
 	@Override
 	public void deleteSysClusterByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId )
+		IMCFKeyHash256 argClusterId )
 	{
 		CFSecBuffSysClusterByClusterIdxKey key = (CFSecBuffSysClusterByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySysCluster().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );

@@ -40,7 +40,7 @@ import server.markhome.mcf.v3_1.cflib.keyhash.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 
 public interface ICFSecPubISOCcyObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecPubISOCcy.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -114,7 +114,7 @@ public interface ICFSecPubISOCcyObj
 	/**
 	 *	End this edition of this ISOCcy instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 

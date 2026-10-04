@@ -97,7 +97,7 @@ public interface ICFSecPubSecUserTableObj
 	 *	@return	The SecUser-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecPubSecUserObj readSecUser( ICFLibKeyHash256 pkey );
+	ICFSecPubSecUserObj readSecUser( IMCFKeyHash256 pkey );
 
 	/**
 	 *	Read a SecUser-derived instance by it's primary key.
@@ -107,19 +107,19 @@ public interface ICFSecPubSecUserTableObj
 	 *	@return	The SecUser-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecPubSecUserObj readSecUser( ICFLibKeyHash256 pkey,
+	ICFSecPubSecUserObj readSecUser( IMCFKeyHash256 pkey,
 		boolean forceRead );
 
-	ICFSecPubSecUserObj readCachedSecUser( ICFLibKeyHash256 pkey );
+	ICFSecPubSecUserObj readCachedSecUser( IMCFKeyHash256 pkey );
 
 	public void reallyDeepDisposeSecUser( ICFSecPubSecUserObj obj );
 
-	void deepDisposeSecUser( ICFLibKeyHash256 pkey );
+	void deepDisposeSecUser( IMCFKeyHash256 pkey );
 
 	/**
 	 *	Internal use only.
 	 */
-	ICFSecPubSecUserObj lockSecUser( ICFLibKeyHash256 pkey );
+	ICFSecPubSecUserObj lockSecUser( IMCFKeyHash256 pkey );
 
 	/**
 	 *	Return a sorted list of all the SecUser-derived instances in the database.
@@ -145,7 +145,7 @@ public interface ICFSecPubSecUserTableObj
 	 *	@return	List of ICFSecPubSecUserObj instance, sorted by their primary keys, which
 	 *		may include an empty set.
 	 */
-	List<ICFSecPubSecUserObj> pageAllSecUser(CFLibDbKeyHash256 priorSecUserId );
+	List<ICFSecPubSecUserObj> pageAllSecUser(MCFDbKeyHash256 priorSecUserId );
 
 	/**
 	 *	Get the CFSecPubSecUserObj instance for the primary key attributes.
@@ -155,7 +155,7 @@ public interface ICFSecPubSecUserTableObj
 	 *	@return	CFSecPubSecUserObj cached instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecPubSecUserObj readSecUserByIdIdx( CFLibDbKeyHash256 SecUserId );
+	ICFSecPubSecUserObj readSecUserByIdIdx( MCFDbKeyHash256 SecUserId );
 
 	/**
 	 *	Get the CFSecPubSecUserObj instance for the primary key attributes.
@@ -165,7 +165,7 @@ public interface ICFSecPubSecUserTableObj
 	 *	@return	CFSecPubSecUserObj refreshed instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecPubSecUserObj readSecUserByIdIdx( CFLibDbKeyHash256 SecUserId,
+	ICFSecPubSecUserObj readSecUserByIdIdx( MCFDbKeyHash256 SecUserId,
 		boolean forceRead );
 
 	/**
@@ -189,11 +189,11 @@ public interface ICFSecPubSecUserTableObj
 	ICFSecPubSecUserObj readSecUserByULoginIdx(String LoginId,
 		boolean forceRead );
 
-	ICFSecPubSecUserObj readCachedSecUserByIdIdx( CFLibDbKeyHash256 SecUserId );
+	ICFSecPubSecUserObj readCachedSecUserByIdIdx( MCFDbKeyHash256 SecUserId );
 
 	ICFSecPubSecUserObj readCachedSecUserByULoginIdx( String LoginId );
 
-	void deepDisposeSecUserByIdIdx( CFLibDbKeyHash256 SecUserId );
+	void deepDisposeSecUserByIdIdx( MCFDbKeyHash256 SecUserId );
 
 	void deepDisposeSecUserByULoginIdx( String LoginId );
 
@@ -212,7 +212,7 @@ public interface ICFSecPubSecUserTableObj
 	 *
 	 *	@param	SecUserId	The SecUser key attribute of the instance generating the id.
 	 */
-	void deleteSecUserByIdIdx( CFLibDbKeyHash256 SecUserId );
+	void deleteSecUserByIdIdx( MCFDbKeyHash256 SecUserId );
 
 	/**
 	 *	Internal use only.

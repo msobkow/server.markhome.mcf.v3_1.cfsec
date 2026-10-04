@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,13 +58,13 @@ public class CFSecJpaIdGenService {
     private LocalContainerEntityManagerFactoryBean cfsecEntityManagerFactory;
 
 	/**
-	 *	Generate a ClusterIdGen CFLibDbKeyHash256 id.
+	 *	Generate a ClusterIdGen MCFDbKeyHash256 id.
 	 *
-	 *		@return A cryptographically-random generated CFLibDBKeyHash128 value
+	 *		@return A cryptographically-random generated MCFDBKeyHash128 value
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
-	public CFLibDbKeyHash256 generateClusterIdGen() {
-		return( new CFLibDbKeyHash256(0) );
+	public MCFDbKeyHash256 generateClusterIdGen() {
+		return( new MCFDbKeyHash256(0) );
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class CFSecJpaIdGenService {
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
 	@SequenceGenerator(name = "ISOCcyIdGenSeq", allocationSize = 1, initialValue = 0, schema = "CFSec31")
 	public short generateISOCcyIdGen() {
-		throw new CFLibNotImplementedYetException( getClass(), "generateISOCcyIdGen" );
+		throw new MCFNotImplementedYetException( getClass(), "generateISOCcyIdGen" );
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class CFSecJpaIdGenService {
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
 	@SequenceGenerator(name = "cfsec_tblinfoidgenseq", allocationSize = 1, initialValue = 0, schema = "CFSec31")
 	public int generateTableInfoIdGen() {
-		throw new CFLibNotImplementedYetException( getClass(), "generateTableInfoIdGen" );
+		throw new MCFNotImplementedYetException( getClass(), "generateTableInfoIdGen" );
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class CFSecJpaIdGenService {
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
 	@SequenceGenerator(name = "ISOCtryIdGenSeq", allocationSize = 1, initialValue = 0, schema = "CFSec31")
 	public short generateISOCtryIdGen() {
-		throw new CFLibNotImplementedYetException( getClass(), "generateISOCtryIdGen" );
+		throw new MCFNotImplementedYetException( getClass(), "generateISOCtryIdGen" );
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class CFSecJpaIdGenService {
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
 	@SequenceGenerator(name = "ISOLangIdGenSeq", allocationSize = 1, initialValue = 0, schema = "CFSec31")
 	public short generateISOLangIdGen() {
-		throw new CFLibNotImplementedYetException( getClass(), "generateISOLangIdGen" );
+		throw new MCFNotImplementedYetException( getClass(), "generateISOLangIdGen" );
 	}
 
 	/**
@@ -119,87 +119,87 @@ public class CFSecJpaIdGenService {
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
 	@SequenceGenerator(name = "ISOTZoneIdGenSeq", allocationSize = 1, initialValue = 0, schema = "CFSec31")
 	public short generateISOTZoneIdGen() {
-		throw new CFLibNotImplementedYetException( getClass(), "generateISOTZoneIdGen" );
+		throw new MCFNotImplementedYetException( getClass(), "generateISOTZoneIdGen" );
 	}
 
 	/**
-	 *	Generate a SecSessionIdGen CFLibDbKeyHash256 id.
+	 *	Generate a SecSessionIdGen MCFDbKeyHash256 id.
 	 *
-	 *		@return A cryptographically-random generated CFLibDBKeyHash128 value
+	 *		@return A cryptographically-random generated MCFDBKeyHash128 value
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
-	public CFLibDbKeyHash256 generateSecSessionIdGen() {
-		return( new CFLibDbKeyHash256(0) );
+	public MCFDbKeyHash256 generateSecSessionIdGen() {
+		return( new MCFDbKeyHash256(0) );
 	}
 
 	/**
-	 *	Generate a SecUserIdGen CFLibDbKeyHash256 id.
+	 *	Generate a SecUserIdGen MCFDbKeyHash256 id.
 	 *
-	 *		@return A cryptographically-random generated CFLibDBKeyHash128 value
+	 *		@return A cryptographically-random generated MCFDBKeyHash128 value
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
-	public CFLibDbKeyHash256 generateSecUserIdGen() {
-		return( new CFLibDbKeyHash256(0) );
+	public MCFDbKeyHash256 generateSecUserIdGen() {
+		return( new MCFDbKeyHash256(0) );
 	}
 
 	/**
-	 *	Generate a TenantIdGen CFLibDbKeyHash256 id.
+	 *	Generate a TenantIdGen MCFDbKeyHash256 id.
 	 *
-	 *		@return A cryptographically-random generated CFLibDBKeyHash128 value
+	 *		@return A cryptographically-random generated MCFDBKeyHash128 value
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
-	public CFLibDbKeyHash256 generateTenantIdGen() {
-		return( new CFLibDbKeyHash256(0) );
+	public MCFDbKeyHash256 generateTenantIdGen() {
+		return( new MCFDbKeyHash256(0) );
 	}
 
 	/**
-	 *	Generate a SecSysGrpIdGen CFLibDbKeyHash256 id.
+	 *	Generate a SecSysGrpIdGen MCFDbKeyHash256 id.
 	 *
-	 *		@return A cryptographically-random generated CFLibDBKeyHash128 value
+	 *		@return A cryptographically-random generated MCFDBKeyHash128 value
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
-	public CFLibDbKeyHash256 generateSecSysGrpIdGen() {
-		return( new CFLibDbKeyHash256(0) );
+	public MCFDbKeyHash256 generateSecSysGrpIdGen() {
+		return( new MCFDbKeyHash256(0) );
 	}
 
 	/**
-	 *	Generate a SecClusGrpIdGen CFLibDbKeyHash256 id.
+	 *	Generate a SecClusGrpIdGen MCFDbKeyHash256 id.
 	 *
-	 *		@return A cryptographically-random generated CFLibDBKeyHash128 value
+	 *		@return A cryptographically-random generated MCFDBKeyHash128 value
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
-	public CFLibDbKeyHash256 generateSecClusGrpIdGen() {
-		return( new CFLibDbKeyHash256(0) );
+	public MCFDbKeyHash256 generateSecClusGrpIdGen() {
+		return( new MCFDbKeyHash256(0) );
 	}
 
 	/**
-	 *	Generate a SecClusRoleIdGen CFLibDbKeyHash256 id.
+	 *	Generate a SecClusRoleIdGen MCFDbKeyHash256 id.
 	 *
-	 *		@return A cryptographically-random generated CFLibDBKeyHash128 value
+	 *		@return A cryptographically-random generated MCFDBKeyHash128 value
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
-	public CFLibDbKeyHash256 generateSecClusRoleIdGen() {
-		return( new CFLibDbKeyHash256(0) );
+	public MCFDbKeyHash256 generateSecClusRoleIdGen() {
+		return( new MCFDbKeyHash256(0) );
 	}
 
 	/**
-	 *	Generate a SecTentGrpIdGen CFLibDbKeyHash256 id.
+	 *	Generate a SecTentGrpIdGen MCFDbKeyHash256 id.
 	 *
-	 *		@return A cryptographically-random generated CFLibDBKeyHash128 value
+	 *		@return A cryptographically-random generated MCFDBKeyHash128 value
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
-	public CFLibDbKeyHash256 generateSecTentGrpIdGen() {
-		return( new CFLibDbKeyHash256(0) );
+	public MCFDbKeyHash256 generateSecTentGrpIdGen() {
+		return( new MCFDbKeyHash256(0) );
 	}
 
 	/**
-	 *	Generate a SecTentRoleIdGen CFLibDbKeyHash256 id.
+	 *	Generate a SecTentRoleIdGen MCFDbKeyHash256 id.
 	 *
-	 *		@return A cryptographically-random generated CFLibDBKeyHash128 value
+	 *		@return A cryptographically-random generated MCFDBKeyHash128 value
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsecTransactionManager")
-	public CFLibDbKeyHash256 generateSecTentRoleIdGen() {
-		return( new CFLibDbKeyHash256(0) );
+	public MCFDbKeyHash256 generateSecTentRoleIdGen() {
+		return( new MCFDbKeyHash256(0) );
 	}
 
 }

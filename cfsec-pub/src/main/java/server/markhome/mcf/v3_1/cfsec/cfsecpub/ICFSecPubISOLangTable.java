@@ -213,7 +213,7 @@ public interface ICFSecPubISOLangTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOLang pubreadRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -228,7 +228,7 @@ public interface ICFSecPubISOLangTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOLang publockRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -252,7 +252,7 @@ public interface ICFSecPubISOLangTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOLang pubreadRecByIdIdx( ICFSecPubAuthorization Authorization,
 		short ISOLangId );
@@ -267,7 +267,7 @@ public interface ICFSecPubISOLangTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOLang pubreadRecByCode3Idx( ICFSecPubAuthorization Authorization,
 		String ISO6392Code );
@@ -281,7 +281,7 @@ public interface ICFSecPubISOLangTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOLang[] pubreadRecByCode2Idx( ICFSecPubAuthorization Authorization,
 		String ISO6391Code );

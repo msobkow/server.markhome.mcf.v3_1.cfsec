@@ -90,11 +90,11 @@ public class CFSecRamISOCtryTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByISOCodeIdx.containsKey( keyISOCodeIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"ISOCtryCodeIdx",
 				"ISOCtryCodeIdx",
@@ -102,7 +102,7 @@ public class CFSecRamISOCtryTable
 		}
 
 		if( dictByNameIdx.containsKey( keyNameIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"ISOCtryNameIdx",
 				"ISOCtryNameIdx",
@@ -130,7 +130,7 @@ public class CFSecRamISOCtryTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -323,7 +323,7 @@ public class CFSecRamISOCtryTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffISOCtry existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateISOCtry",
 				"Existing record not found",
 				"Existing record not found",
@@ -332,7 +332,7 @@ public class CFSecRamISOCtryTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateISOCtry",
 				pkey );
 		}
@@ -353,7 +353,7 @@ public class CFSecRamISOCtryTable
 
 		if( ! existingKeyISOCodeIdx.equals( newKeyISOCodeIdx ) ) {
 			if( dictByISOCodeIdx.containsKey( newKeyISOCodeIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateISOCtry",
 					"ISOCtryCodeIdx",
 					"ISOCtryCodeIdx",
@@ -363,7 +363,7 @@ public class CFSecRamISOCtryTable
 
 		if( ! existingKeyNameIdx.equals( newKeyNameIdx ) ) {
 			if( dictByNameIdx.containsKey( newKeyNameIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateISOCtry",
 					"ISOCtryNameIdx",
 					"ISOCtryNameIdx",
@@ -403,7 +403,7 @@ public class CFSecRamISOCtryTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteISOCtry",
 				pkey );
 		}

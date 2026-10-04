@@ -90,7 +90,7 @@ public class CFSecRamSchema
 
 	@Override
 	public ICFSecSchema newSchema() {
-		throw new CFLibMustOverrideException( getClass(), "newSchema" );
+		throw new MCFMustOverrideException( getClass(), "newSchema" );
 	}
 
 	@Override
@@ -124,56 +124,56 @@ public class CFSecRamSchema
 	}
 
 	@Override
-	public CFLibDbKeyHash256 nextClusterIdGen() {
-		CFLibDbKeyHash256 retval = new CFLibDbKeyHash256(0);
+	public MCFDbKeyHash256 nextClusterIdGen() {
+		MCFDbKeyHash256 retval = new MCFDbKeyHash256(0);
 		return( retval );
 	}
 
 	@Override
-	public CFLibDbKeyHash256 nextSecSessionIdGen() {
-		CFLibDbKeyHash256 retval = new CFLibDbKeyHash256(0);
+	public MCFDbKeyHash256 nextSecSessionIdGen() {
+		MCFDbKeyHash256 retval = new MCFDbKeyHash256(0);
 		return( retval );
 	}
 
 	@Override
-	public CFLibDbKeyHash256 nextSecUserIdGen() {
-		CFLibDbKeyHash256 retval = new CFLibDbKeyHash256(0);
+	public MCFDbKeyHash256 nextSecUserIdGen() {
+		MCFDbKeyHash256 retval = new MCFDbKeyHash256(0);
 		return( retval );
 	}
 
 	@Override
-	public CFLibDbKeyHash256 nextTenantIdGen() {
-		CFLibDbKeyHash256 retval = new CFLibDbKeyHash256(0);
+	public MCFDbKeyHash256 nextTenantIdGen() {
+		MCFDbKeyHash256 retval = new MCFDbKeyHash256(0);
 		return( retval );
 	}
 
 	@Override
-	public CFLibDbKeyHash256 nextSecSysGrpIdGen() {
-		CFLibDbKeyHash256 retval = new CFLibDbKeyHash256(0);
+	public MCFDbKeyHash256 nextSecSysGrpIdGen() {
+		MCFDbKeyHash256 retval = new MCFDbKeyHash256(0);
 		return( retval );
 	}
 
 	@Override
-	public CFLibDbKeyHash256 nextSecClusGrpIdGen() {
-		CFLibDbKeyHash256 retval = new CFLibDbKeyHash256(0);
+	public MCFDbKeyHash256 nextSecClusGrpIdGen() {
+		MCFDbKeyHash256 retval = new MCFDbKeyHash256(0);
 		return( retval );
 	}
 
 	@Override
-	public CFLibDbKeyHash256 nextSecClusRoleIdGen() {
-		CFLibDbKeyHash256 retval = new CFLibDbKeyHash256(0);
+	public MCFDbKeyHash256 nextSecClusRoleIdGen() {
+		MCFDbKeyHash256 retval = new MCFDbKeyHash256(0);
 		return( retval );
 	}
 
 	@Override
-	public CFLibDbKeyHash256 nextSecTentGrpIdGen() {
-		CFLibDbKeyHash256 retval = new CFLibDbKeyHash256(0);
+	public MCFDbKeyHash256 nextSecTentGrpIdGen() {
+		MCFDbKeyHash256 retval = new MCFDbKeyHash256(0);
 		return( retval );
 	}
 
 	@Override
-	public CFLibDbKeyHash256 nextSecTentRoleIdGen() {
-		CFLibDbKeyHash256 retval = new CFLibDbKeyHash256(0);
+	public MCFDbKeyHash256 nextSecTentRoleIdGen() {
+		MCFDbKeyHash256 retval = new MCFDbKeyHash256(0);
 		return( retval );
 	}
 
@@ -183,13 +183,13 @@ public class CFSecRamSchema
 	{
 		final String S_ProcName = "fileImport";
 		if( ( fileName == null ) || ( fileName.length() <= 0 ) ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				S_ProcName,
 				1,
 				"fileName" );
 		}
 		if( ( fileContent == null ) || ( fileContent.length() <= 0 ) ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				S_ProcName,
 				2,
 				"fileContent" );
@@ -201,7 +201,7 @@ public class CFSecRamSchema
 		saxLoader.setSchemaObj( schemaObj );
 		ICFSecClusterObj useCluster = schemaObj.getClusterTableObj().readClusterByIdIdx( Authorization.getSecClusterId() );
 		ICFSecTenantObj useTenant = schemaObj.getTenantTableObj().readTenantByIdIdx( Authorization.getSecTenantId() );
-		CFLibCachedMessageLog runlog = new CFLibCachedMessageLog();
+		MCFCachedMessageLog runlog = new MCFCachedMessageLog();
 		saxLoader.setLog( runlog );
 		saxLoader.setUseCluster( useCluster );
 		saxLoader.setUseTenant( useTenant );

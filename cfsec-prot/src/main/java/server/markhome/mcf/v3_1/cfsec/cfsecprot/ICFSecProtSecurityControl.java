@@ -63,9 +63,9 @@ public interface ICFSecProtSecurityControl extends ICFSecProtSecurityService {
 	 *	@param permissionNames List of permission name strings
 	 */
 	public void forgetAbout(List<String> userLogins,
-		List<CFLibDbKeyHash256> userIds,
-		List<CFLibDbKeyHash256> clusterIds,
-		List<CFLibDbKeyHash256> tenantIds,
+		List<MCFDbKeyHash256> userIds,
+		List<MCFDbKeyHash256> clusterIds,
+		List<MCFDbKeyHash256> tenantIds,
 		List<String> permissionNames);
 
 	/**

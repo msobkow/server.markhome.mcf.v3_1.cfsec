@@ -177,7 +177,7 @@ public interface ICFSecSecSysGrpTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecSysGrp readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId );
+		IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Read the derived SecSysGrp record instance identified by the unique key UNameIdx.
@@ -214,7 +214,7 @@ public interface ICFSecSecSysGrpTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrp readRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -229,7 +229,7 @@ public interface ICFSecSecSysGrpTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrp lockRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -253,10 +253,10 @@ public interface ICFSecSecSysGrpTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrp readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId );
+		IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Read the specific SecSysGrp record instance identified by the unique key UNameIdx.
@@ -268,7 +268,7 @@ public interface ICFSecSecSysGrpTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrp readRecByUNameIdx( ICFSecAuthorization Authorization,
 		String Name );
@@ -282,7 +282,7 @@ public interface ICFSecSecSysGrpTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrp[] readRecBySecLevelIdx( ICFSecAuthorization Authorization,
 		ICFSecPubSchema.SecLevelEnum SecLevel );

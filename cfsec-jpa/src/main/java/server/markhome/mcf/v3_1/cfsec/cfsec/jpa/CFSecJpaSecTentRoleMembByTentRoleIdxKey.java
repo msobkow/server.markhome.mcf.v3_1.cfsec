@@ -38,25 +38,25 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 
 public class CFSecJpaSecTentRoleMembByTentRoleIdxKey
 	implements ICFSecSecTentRoleMembByTentRoleIdxKey, Comparable<Object>, Serializable
 {
-	protected ICFLibKeyHash256 requiredSecTentRoleId;
+	protected IMCFKeyHash256 requiredSecTentRoleId;
 	public CFSecJpaSecTentRoleMembByTentRoleIdxKey() {
-		requiredSecTentRoleId = CFLibDbKeyHash256.fromHex( ICFSecProtSecTentRoleMemb.SECTENTROLEID_INIT_VALUE.toString() );
+		requiredSecTentRoleId = MCFDbKeyHash256.fromHex( ICFSecProtSecTentRoleMemb.SECTENTROLEID_INIT_VALUE.toString() );
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecTentRoleId() {
+	public IMCFKeyHash256 getRequiredSecTentRoleId() {
 		return(getPKey().getRequiredSecTentRoleId());
 	}
 
-	public void setRequiredSecTentRoleId( ICFLibKeyHash256 value ) {
+	public void setRequiredSecTentRoleId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecTentRoleId",
 				1,
 				"value" );
@@ -199,7 +199,7 @@ public class CFSecJpaSecTentRoleMembByTentRoleIdxKey
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(),
+			throw new MCFUnsupportedClassException(getClass(),
 				"compareTo",
 				"obj",
 				obj,

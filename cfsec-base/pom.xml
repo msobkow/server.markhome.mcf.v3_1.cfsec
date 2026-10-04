@@ -4,14 +4,14 @@
   <parent>
     <groupId>server.markhome.mcf</groupId>
     <artifactId>server.markhome.mcf.v3_1</artifactId>
-    <version>3.1.42-2026091111</version>
+    <version>3.1.42-20260918</version>
   </parent>
 
   <groupId>server.markhome.mcf.v3_1</groupId>
   <artifactId>server.markhome.mcf.v3_1.cfsec.cfsec</artifactId>
-  <version>3.1.42-2026091111</version>
+  <version>3.1.42-20260918</version>
   <name>server.markhome.mcf.v3_1.cfsec.cfsec</name>
-  <description>mcf 3.1.42-2026091111 CFSec CFSec - Base package of foundation objects</description>
+  <description>mcf 3.1.42-20260918 CFSec CFSec - Base package of foundation objects</description>
   <url>mailto:mark.sobkow@gmail.com</url>
 
   <properties>
@@ -34,12 +34,12 @@
     <dependency>
       <groupId>server.markhome.mcf.v3_1</groupId>
       <artifactId>server.markhome.mcf.v3_1.cflib</artifactId>
-      <version>3.1.42-2026091111</version>
+      <version>3.1.42-20260918</version>
     </dependency>
     <dependency>
       <groupId>server.markhome.mcf.v3_1</groupId>
       <artifactId>server.markhome.mcf.v3_1.cflib.dbutil</artifactId>
-      <version>3.1.42-2026091111</version>
+      <version>3.1.42-20260918</version>
     </dependency>
     <dependency>
         <groupId>ch.qos.logback</groupId>
@@ -86,12 +86,12 @@
     <dependency>
         <groupId>server.markhome.mcf.v3_1</groupId>
         <artifactId>server.markhome.mcf.v3_1.cfsec.cfsecpub</artifactId>
-        <version>3.1.42-2026091111</version>
+        <version>3.1.42-20260918</version>
     </dependency>
     <dependency>
         <groupId>server.markhome.mcf.v3_1</groupId>
         <artifactId>server.markhome.mcf.v3_1.cfsec.cfsecprot</artifactId>
-        <version>3.1.42-2026091111</version>
+        <version>3.1.42-20260918</version>
     </dependency>
   </dependencies>
 

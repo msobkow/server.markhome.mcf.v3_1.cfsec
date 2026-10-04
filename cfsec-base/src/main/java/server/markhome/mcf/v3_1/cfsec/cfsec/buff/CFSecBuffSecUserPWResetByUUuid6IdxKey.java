@@ -41,7 +41,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
@@ -52,18 +52,18 @@ import server.markhome.mcf.v3_1.cfsec.cfsecobj.*;
 public class CFSecBuffSecUserPWResetByUUuid6IdxKey
 	implements ICFSecSecUserPWResetByUUuid6IdxKey, Comparable<Object>, Serializable
 {
-	protected ICFLibUuid6 requiredPasswordResetUuid6;
+	protected IMCFUuid6 requiredPasswordResetUuid6;
 	public CFSecBuffSecUserPWResetByUUuid6IdxKey() {
 	}
 
 	@Override
-	public ICFLibUuid6 getRequiredPasswordResetUuid6() {
+	public IMCFUuid6 getRequiredPasswordResetUuid6() {
 		return(requiredPasswordResetUuid6);
 	}
 
-	public void setRequiredPasswordResetUuid6( ICFLibUuid6 value ) {
+	public void setRequiredPasswordResetUuid6( IMCFUuid6 value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredPasswordResetUuid6",
 				1,
 				"value" );
@@ -169,7 +169,7 @@ public class CFSecBuffSecUserPWResetByUUuid6IdxKey
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException( getClass(),
+			throw new MCFUnsupportedClassException( getClass(),
 				"compareTo",
 				"obj",
 				obj,

@@ -112,7 +112,7 @@ public class CFSecSecTentGrpMembTableObj
 	 */
 	static void setRuntimeClassCode(int argNewClassCode ) {
 		if (argNewClassCode <= 0) {
-			throw new CFLibArgumentUnderflowException(CFSecSecTentGrpMembTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
+			throw new MCFArgumentUnderflowException(CFSecSecTentGrpMembTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
 		}
 		runtimeClassCode = argNewClassCode;
 	}
@@ -333,14 +333,14 @@ public class CFSecSecTentGrpMembTableObj
 	}
 
 	@Override
-	public ICFSecSecTentGrpMembObj readSecTentGrpMemb( ICFLibKeyHash256 SecTentGrpId,
+	public ICFSecSecTentGrpMembObj readSecTentGrpMemb( IMCFKeyHash256 SecTentGrpId,
 		String LoginId ) {
 		return( readSecTentGrpMemb( SecTentGrpId,
 			LoginId, false ) );
 	}
 
 	@Override
-	public ICFSecSecTentGrpMembObj readSecTentGrpMemb( ICFLibKeyHash256 SecTentGrpId,
+	public ICFSecSecTentGrpMembObj readSecTentGrpMemb( IMCFKeyHash256 SecTentGrpId,
 		String LoginId, boolean forceRead ) {
 		ICFSecSecTentGrpMembObj obj = null;
 		ICFSecSecTentGrpMemb readRec = schema.getCFSecBackingStore().getTableSecTentGrpMemb().readDerivedByIdIdx( null,
@@ -425,7 +425,7 @@ public class CFSecSecTentGrpMembTableObj
 			locked = (ICFSecSecTentGrpMembObj)locked.realise();
 		}
 		else {
-			throw new CFLibCollisionDetectedException( getClass(), "lockSecTentGrpMemb", pkey );
+			throw new MCFCollisionDetectedException( getClass(), "lockSecTentGrpMemb", pkey );
 		}
 		return( locked );
 	}
@@ -460,7 +460,7 @@ public class CFSecSecTentGrpMembTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -468,7 +468,7 @@ public class CFSecSecTentGrpMembTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -520,7 +520,7 @@ public class CFSecSecTentGrpMembTableObj
 				arr[idx++] = valIter.next();
 			}
 			if( idx < len ) {
-				throw new CFLibArgumentUnderflowException( getClass(),
+				throw new MCFArgumentUnderflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -528,7 +528,7 @@ public class CFSecSecTentGrpMembTableObj
 					len );
 			}
 			else if( valIter.hasNext() ) {
-				throw new CFLibArgumentOverflowException( getClass(),
+				throw new MCFArgumentOverflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -571,7 +571,7 @@ public class CFSecSecTentGrpMembTableObj
 	 *		may include an empty set.
 	 */
 	@Override
-	public List<ICFSecSecTentGrpMembObj> pageAllSecTentGrpMemb(ICFLibKeyHash256 priorSecTentGrpId,
+	public List<ICFSecSecTentGrpMembObj> pageAllSecTentGrpMemb(IMCFKeyHash256 priorSecTentGrpId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageAllSecTentGrpMemb";
@@ -595,7 +595,7 @@ public class CFSecSecTentGrpMembTableObj
 	}
 
 	@Override
-	public ICFSecSecTentGrpMembObj readSecTentGrpMembByIdIdx( ICFLibKeyHash256 SecTentGrpId,
+	public ICFSecSecTentGrpMembObj readSecTentGrpMembByIdIdx( IMCFKeyHash256 SecTentGrpId,
 		String LoginId )
 	{
 		return( readSecTentGrpMembByIdIdx( SecTentGrpId,
@@ -604,7 +604,7 @@ public class CFSecSecTentGrpMembTableObj
 	}
 
 	@Override
-	public ICFSecSecTentGrpMembObj readSecTentGrpMembByIdIdx( ICFLibKeyHash256 SecTentGrpId,
+	public ICFSecSecTentGrpMembObj readSecTentGrpMembByIdIdx( IMCFKeyHash256 SecTentGrpId,
 		String LoginId, boolean forceRead )
 	{
 		ICFSecSecTentGrpMembPKey pkey = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecTentGrpMemb().newPKey();
@@ -615,14 +615,14 @@ public class CFSecSecTentGrpMembTableObj
 	}
 
 	@Override
-	public List<ICFSecSecTentGrpMembObj> readSecTentGrpMembByTentGrpIdx( ICFLibKeyHash256 SecTentGrpId )
+	public List<ICFSecSecTentGrpMembObj> readSecTentGrpMembByTentGrpIdx( IMCFKeyHash256 SecTentGrpId )
 	{
 		return( readSecTentGrpMembByTentGrpIdx( SecTentGrpId,
 			false ) );
 	}
 
 	@Override
-	public List<ICFSecSecTentGrpMembObj> readSecTentGrpMembByTentGrpIdx( ICFLibKeyHash256 SecTentGrpId,
+	public List<ICFSecSecTentGrpMembObj> readSecTentGrpMembByTentGrpIdx( IMCFKeyHash256 SecTentGrpId,
 		boolean forceRead )
 	{
 		final String S_ProcName = "readSecTentGrpMembByTentGrpIdx";
@@ -660,7 +660,7 @@ public class CFSecSecTentGrpMembTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -668,7 +668,7 @@ public class CFSecSecTentGrpMembTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -753,7 +753,7 @@ public class CFSecSecTentGrpMembTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -761,7 +761,7 @@ public class CFSecSecTentGrpMembTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -801,7 +801,7 @@ public class CFSecSecTentGrpMembTableObj
 	}
 
 	@Override
-	public ICFSecSecTentGrpMembObj readCachedSecTentGrpMembByIdIdx( ICFLibKeyHash256 SecTentGrpId,
+	public ICFSecSecTentGrpMembObj readCachedSecTentGrpMembByIdIdx( IMCFKeyHash256 SecTentGrpId,
 		String LoginId )
 	{
 		ICFSecSecTentGrpMembObj obj = null;
@@ -815,7 +815,7 @@ public class CFSecSecTentGrpMembTableObj
 	}
 
 	@Override
-	public List<ICFSecSecTentGrpMembObj> readCachedSecTentGrpMembByTentGrpIdx( ICFLibKeyHash256 SecTentGrpId )
+	public List<ICFSecSecTentGrpMembObj> readCachedSecTentGrpMembByTentGrpIdx( IMCFKeyHash256 SecTentGrpId )
 	{
 		final String S_ProcName = "readCachedSecTentGrpMembByTentGrpIdx";
 		ICFSecSecTentGrpMembByTentGrpIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecTentGrpMemb().newByTentGrpIdxKey();
@@ -833,7 +833,7 @@ public class CFSecSecTentGrpMembTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -841,7 +841,7 @@ public class CFSecSecTentGrpMembTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -910,7 +910,7 @@ public class CFSecSecTentGrpMembTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -918,7 +918,7 @@ public class CFSecSecTentGrpMembTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -969,7 +969,7 @@ public class CFSecSecTentGrpMembTableObj
 	}
 
 	@Override
-	public void deepDisposeSecTentGrpMembByIdIdx( ICFLibKeyHash256 SecTentGrpId,
+	public void deepDisposeSecTentGrpMembByIdIdx( IMCFKeyHash256 SecTentGrpId,
 		String LoginId )
 	{
 		ICFSecSecTentGrpMembObj obj = readCachedSecTentGrpMembByIdIdx( SecTentGrpId,
@@ -980,7 +980,7 @@ public class CFSecSecTentGrpMembTableObj
 	}
 
 	@Override
-	public void deepDisposeSecTentGrpMembByTentGrpIdx( ICFLibKeyHash256 SecTentGrpId )
+	public void deepDisposeSecTentGrpMembByTentGrpIdx( IMCFKeyHash256 SecTentGrpId )
 	{
 		final String S_ProcName = "deepDisposeSecTentGrpMembByTentGrpIdx";
 		ICFSecSecTentGrpMembObj obj;
@@ -1023,8 +1023,8 @@ public class CFSecSecTentGrpMembTableObj
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
 	@Override
-	public List<ICFSecSecTentGrpMembObj> pageSecTentGrpMembByTentGrpIdx( ICFLibKeyHash256 SecTentGrpId,
-		ICFLibKeyHash256 priorSecTentGrpId,
+	public List<ICFSecSecTentGrpMembObj> pageSecTentGrpMembByTentGrpIdx( IMCFKeyHash256 SecTentGrpId,
+		IMCFKeyHash256 priorSecTentGrpId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageSecTentGrpMembByTentGrpIdx";
@@ -1059,7 +1059,7 @@ public class CFSecSecTentGrpMembTableObj
 	 */
 	@Override
 	public List<ICFSecSecTentGrpMembObj> pageSecTentGrpMembByUserIdx( String LoginId,
-		ICFLibKeyHash256 priorSecTentGrpId,
+		IMCFKeyHash256 priorSecTentGrpId,
 		String priorLoginId )
 	{
 		final String S_ProcName = "pageSecTentGrpMembByUserIdx";
@@ -1102,7 +1102,7 @@ public class CFSecSecTentGrpMembTableObj
 	}
 
 	@Override
-	public void deleteSecTentGrpMembByIdIdx( ICFLibKeyHash256 SecTentGrpId,
+	public void deleteSecTentGrpMembByIdIdx( IMCFKeyHash256 SecTentGrpId,
 		String LoginId )
 	{
 		ICFSecSecTentGrpMembObj obj = readSecTentGrpMemb(SecTentGrpId,
@@ -1135,7 +1135,7 @@ public class CFSecSecTentGrpMembTableObj
 	}
 
 	@Override
-	public void deleteSecTentGrpMembByTentGrpIdx( ICFLibKeyHash256 SecTentGrpId )
+	public void deleteSecTentGrpMembByTentGrpIdx( IMCFKeyHash256 SecTentGrpId )
 	{
 		ICFSecSecTentGrpMembByTentGrpIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecTentGrpMemb().newByTentGrpIdxKey();
 		key.setRequiredSecTentGrpId( SecTentGrpId );

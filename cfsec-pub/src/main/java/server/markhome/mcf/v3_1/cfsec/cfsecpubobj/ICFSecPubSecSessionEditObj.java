@@ -101,25 +101,25 @@ public interface ICFSecPubSecSessionEditObj
 	void setRequiredContainerSecUser( ICFSecPubSecUserObj value );
 
 	/**
-	 *	Get the required CFLibDbKeyHash256 attribute SecSessionId.
+	 *	Get the required MCFDbKeyHash256 attribute SecSessionId.
 	 *
-	 *	@return	The required CFLibDbKeyHash256 attribute SecSessionId.
+	 *	@return	The required MCFDbKeyHash256 attribute SecSessionId.
 	 */
-	CFLibDbKeyHash256 getRequiredSecSessionId();
+	MCFDbKeyHash256 getRequiredSecSessionId();
 
 	/**
-	 *	Set the required CFLibDbKeyHash256 attribute SecSessionId.
+	 *	Set the required MCFDbKeyHash256 attribute SecSessionId.
 	 *
-	 *	@param value The required CFLibDbKeyHash256 attribute SecSessionId value to be applied.
+	 *	@param value The required MCFDbKeyHash256 attribute SecSessionId value to be applied.
 	 */
-	void setRequiredSecSessionId(CFLibDbKeyHash256 value);
+	void setRequiredSecSessionId(MCFDbKeyHash256 value);
 
 	/**
-	 *	Get the required CFLibDbKeyHash256 attribute SecUserId.
+	 *	Get the required MCFDbKeyHash256 attribute SecUserId.
 	 *
-	 *	@return	The required CFLibDbKeyHash256 attribute SecUserId.
+	 *	@return	The required MCFDbKeyHash256 attribute SecUserId.
 	 */
-	CFLibDbKeyHash256 getRequiredSecUserId();
+	MCFDbKeyHash256 getRequiredSecUserId();
 
 	/**
 	 *	Get the required LocalDateTime attribute Start.

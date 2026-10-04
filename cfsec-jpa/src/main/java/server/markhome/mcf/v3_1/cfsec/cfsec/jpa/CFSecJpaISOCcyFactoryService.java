@@ -144,7 +144,7 @@ public class CFSecJpaISOCcyFactoryService
 					mapped.set(rec);
 					return( mapped ); }
 				default:
-					throw new CFLibUnsupportedClassException(getClass(), "ensureRec",
+					throw new MCFUnsupportedClassException(getClass(), "ensureRec",
 						"Unsupported class code " + rec.getClassCode() + " is not a derivative of CFSecISOCcy",
 						"Unsupported class code " + rec.getClassCode() + " is not a derivative of CFSecISOCcy");
 			}
@@ -172,7 +172,7 @@ public class CFSecJpaISOCcyFactoryService
 					mapped.set(hrec);
 					return( mapped ); }
 				default:
-					throw new CFLibUnsupportedClassException(getClass(), "ensureHRec",
+					throw new MCFUnsupportedClassException(getClass(), "ensureHRec",
 						"Unsupported class code " + hrec.getClassCode() + " is not a derivative of CFSecISOCcy",
 						"Unsupported class code " + hrec.getClassCode() + " is not a derivative of CFSecISOCcy");
 			}

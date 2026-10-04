@@ -44,7 +44,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 
 public interface ICFSecSecSysGrpObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecSecSysGrp.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -118,7 +118,7 @@ public interface ICFSecSecSysGrpObj
 	/**
 	 *	End this edition of this SecSysGrp instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 
@@ -344,11 +344,11 @@ public interface ICFSecSecSysGrpObj
 	List<ICFSecSecSysRoleEnablesObj> getOptionalChildrenRoleByEnableName( boolean forceRead );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecSysGrpId.
+	 *	Get the required IMCFKeyHash256 attribute SecSysGrpId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecSysGrpId.
+	 *	@return	The required IMCFKeyHash256 attribute SecSysGrpId.
 	 */
-	ICFLibKeyHash256 getRequiredSecSysGrpId();
+	IMCFKeyHash256 getRequiredSecSysGrpId();
 
 	/**
 	 *	Get the required String attribute Name.

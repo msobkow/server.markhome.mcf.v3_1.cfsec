@@ -44,7 +44,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 
 public interface ICFSecSecSessionObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecSecSession.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -91,7 +91,7 @@ public interface ICFSecSecSessionObj
 	/**
 	 *	End this edition of this SecSession instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 
@@ -219,18 +219,18 @@ public interface ICFSecSecSessionObj
 	ICFSecSecUserObj getRequiredParentSecProxy( boolean forceRead );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecSessionId.
+	 *	Get the required IMCFKeyHash256 attribute SecSessionId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecSessionId.
+	 *	@return	The required IMCFKeyHash256 attribute SecSessionId.
 	 */
-	ICFLibKeyHash256 getRequiredSecSessionId();
+	IMCFKeyHash256 getRequiredSecSessionId();
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecUserId.
+	 *	Get the required IMCFKeyHash256 attribute SecUserId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecUserId.
+	 *	@return	The required IMCFKeyHash256 attribute SecUserId.
 	 */
-	ICFLibKeyHash256 getRequiredSecUserId();
+	IMCFKeyHash256 getRequiredSecUserId();
 
 	/**
 	 *	Get the required LocalDateTime attribute Start.
@@ -247,11 +247,11 @@ public interface ICFSecSecSessionObj
 	LocalDateTime getOptionalFinish();
 
 	/**
-	 *	Get the optional ICFLibKeyHash256 attribute SecProxyId.
+	 *	Get the optional IMCFKeyHash256 attribute SecProxyId.
 	 *
-	 *	@return	The optional ICFLibKeyHash256 attribute SecProxyId.
+	 *	@return	The optional IMCFKeyHash256 attribute SecProxyId.
 	 */
-	ICFLibKeyHash256 getOptionalSecProxyId();
+	IMCFKeyHash256 getOptionalSecProxyId();
 
 	/**
 	 *	Internal use only.

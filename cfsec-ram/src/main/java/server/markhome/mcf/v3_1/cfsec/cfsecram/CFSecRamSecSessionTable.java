@@ -112,11 +112,11 @@ public class CFSecRamSecSessionTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByStartIdx.containsKey( keyStartIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"SessionStartIdx",
 				"SessionStartIdx",
@@ -132,7 +132,7 @@ public class CFSecRamSecSessionTable
 				if( null == schema.getTableSecUser().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredSecUserId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
 						"Container",
@@ -192,7 +192,7 @@ public class CFSecRamSecSessionTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -244,7 +244,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession[] readDerivedBySecUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		IMCFKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readDerivedBySecUserIdx";
 		CFSecBuffSecSessionBySecUserIdxKey key = (CFSecBuffSecSessionBySecUserIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newBySecUserIdxKey();
@@ -272,7 +272,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession readDerivedByStartIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime Start )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readDerivedByStartIdx";
@@ -292,7 +292,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession[] readDerivedByFinishIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime Finish )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readDerivedByFinishIdx";
@@ -322,7 +322,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession[] readDerivedBySecProxyIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecProxyId )
+		IMCFKeyHash256 SecProxyId )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readDerivedBySecProxyIdx";
 		CFSecBuffSecSessionBySecProxyIdxKey key = (CFSecBuffSecSessionBySecProxyIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newBySecProxyIdxKey();
@@ -350,7 +350,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSessionId )
+		IMCFKeyHash256 SecSessionId )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readDerivedByIdIdx() ";
 		ICFSecSecSession buff;
@@ -412,15 +412,15 @@ public class CFSecRamSecSessionTable
 	 */
 	@Override
 	public ICFSecSecSession[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecSessionId )
+		IMCFKeyHash256 priorSecSessionId )
 	{
 		final String S_ProcName = "pageAllRec";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	@Override
 	public ICFSecSecSession readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSessionId )
+		IMCFKeyHash256 SecSessionId )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readRecByIdIdx() ";
 		ICFSecSecSession buff = readDerivedByIdIdx( Authorization,
@@ -435,7 +435,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession[] readRecBySecUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		IMCFKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readRecBySecUserIdx() ";
 		ICFSecSecSession buff;
@@ -453,7 +453,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession readRecByStartIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime Start )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readRecByStartIdx() ";
@@ -470,7 +470,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession[] readRecByFinishIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime Finish )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readRecByFinishIdx() ";
@@ -490,7 +490,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public ICFSecSecSession[] readRecBySecProxyIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecProxyId )
+		IMCFKeyHash256 SecProxyId )
 	{
 		final String S_ProcName = "CFSecRamSecSession.readRecBySecProxyIdx() ";
 		ICFSecSecSession buff;
@@ -515,15 +515,15 @@ public class CFSecRamSecSessionTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecSecSession[] pageRecBySecUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
-		ICFLibKeyHash256 priorSecSessionId )
+		IMCFKeyHash256 SecUserId,
+		IMCFKeyHash256 priorSecSessionId )
 	{
 		final String S_ProcName = "pageRecBySecUserIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	/**
@@ -537,16 +537,16 @@ public class CFSecRamSecSessionTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecSecSession[] pageRecByFinishIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime Finish,
-		ICFLibKeyHash256 priorSecSessionId )
+		IMCFKeyHash256 priorSecSessionId )
 	{
 		final String S_ProcName = "pageRecByFinishIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	/**
@@ -558,15 +558,15 @@ public class CFSecRamSecSessionTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecSecSession[] pageRecBySecProxyIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecProxyId,
-		ICFLibKeyHash256 priorSecSessionId )
+		IMCFKeyHash256 SecProxyId,
+		IMCFKeyHash256 priorSecSessionId )
 	{
 		final String S_ProcName = "pageRecBySecProxyIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	public ICFSecSecSession updateSecSession( ICFSecAuthorization Authorization,
@@ -576,7 +576,7 @@ public class CFSecRamSecSessionTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffSecSession existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateSecSession",
 				"Existing record not found",
 				"Existing record not found",
@@ -585,7 +585,7 @@ public class CFSecRamSecSessionTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateSecSession",
 				pkey );
 		}
@@ -622,7 +622,7 @@ public class CFSecRamSecSessionTable
 
 		if( ! existingKeyStartIdx.equals( newKeyStartIdx ) ) {
 			if( dictByStartIdx.containsKey( newKeyStartIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateSecSession",
 					"SessionStartIdx",
 					"SessionStartIdx",
@@ -639,7 +639,7 @@ public class CFSecRamSecSessionTable
 				if( null == schema.getTableSecUser().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredSecUserId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateSecSession",
 						"Container",
 						"Container",
@@ -718,7 +718,7 @@ public class CFSecRamSecSessionTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteSecSession",
 				pkey );
 		}
@@ -784,7 +784,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public void deleteSecSessionBySecUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecUserId )
+		IMCFKeyHash256 argSecUserId )
 	{
 		CFSecBuffSecSessionBySecUserIdxKey key = (CFSecBuffSecSessionBySecUserIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newBySecUserIdxKey();
 		key.setRequiredSecUserId( argSecUserId );
@@ -820,7 +820,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public void deleteSecSessionByStartIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecUserId,
+		IMCFKeyHash256 argSecUserId,
 		LocalDateTime argStart )
 	{
 		CFSecBuffSecSessionByStartIdxKey key = (CFSecBuffSecSessionByStartIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newByStartIdxKey();
@@ -859,7 +859,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public void deleteSecSessionByFinishIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecUserId,
+		IMCFKeyHash256 argSecUserId,
 		LocalDateTime argFinish )
 	{
 		CFSecBuffSecSessionByFinishIdxKey key = (CFSecBuffSecSessionByFinishIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newByFinishIdxKey();
@@ -900,7 +900,7 @@ public class CFSecRamSecSessionTable
 
 	@Override
 	public void deleteSecSessionBySecProxyIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecProxyId )
+		IMCFKeyHash256 argSecProxyId )
 	{
 		CFSecBuffSecSessionBySecProxyIdxKey key = (CFSecBuffSecSessionBySecProxyIdxKey)schema.getCFSecBuffFactory().getFactorySecSession().newBySecProxyIdxKey();
 		key.setOptionalSecProxyId( argSecProxyId );

@@ -41,7 +41,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
@@ -53,12 +53,12 @@ public class CFSecBuffSysClusterH
     implements ICFSecSysClusterH, Comparable<Object>, Serializable
 {
     protected CFSecBuffSysClusterHPKey pkey;
-	protected ICFLibKeyHash256 requiredClusterId;
+	protected IMCFKeyHash256 requiredClusterId;
 
     public CFSecBuffSysClusterH() {
             // The primary key member attributes are initialized on construction
             pkey = new CFSecBuffSysClusterHPKey();
-		requiredClusterId = CFLibDbKeyHash256.fromHex( ICFSecPubSysCluster.CLUSTERID_INIT_VALUE.toString() );
+		requiredClusterId = MCFDbKeyHash256.fromHex( ICFSecPubSysCluster.CLUSTERID_INIT_VALUE.toString() );
     }
 
     @Override
@@ -78,18 +78,18 @@ public class CFSecBuffSysClusterH
                 this.pkey = (CFSecBuffSysClusterHPKey)pkey;
             }
             else {
-                throw new CFLibUnsupportedClassException(getClass(), "setPKey", "pkey", pkey, "CFSecBuffSysClusterHPKey");
+                throw new MCFUnsupportedClassException(getClass(), "setPKey", "pkey", pkey, "CFSecBuffSysClusterHPKey");
             }
         }
     }
 
     @Override
-    public CFLibDbKeyHash256 getAuditClusterId() {
+    public MCFDbKeyHash256 getAuditClusterId() {
         return pkey.getAuditClusterId();
     }
 
     @Override
-    public void setAuditClusterId(CFLibDbKeyHash256 auditClusterId) {
+    public void setAuditClusterId(MCFDbKeyHash256 auditClusterId) {
         pkey.setAuditClusterId(auditClusterId);
     }
 
@@ -124,12 +124,12 @@ public class CFSecBuffSysClusterH
     }
 
     @Override
-    public CFLibDbKeyHash256 getAuditSessionId() {
+    public MCFDbKeyHash256 getAuditSessionId() {
         return pkey.getAuditSessionId();
     }
 
     @Override
-    public void setAuditSessionId(CFLibDbKeyHash256 auditSessionId) {
+    public void setAuditSessionId(MCFDbKeyHash256 auditSessionId) {
         pkey.setAuditSessionId(auditSessionId);
     }
 
@@ -141,7 +141,7 @@ public class CFSecBuffSysClusterH
 	@Override
 	public void setRequiredSingletonId( int value ) {
 		if( value < ICFSecPubSysCluster.SINGLETONID_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				"setRequiredSingletonId",
 				1,
 				"value",
@@ -149,7 +149,7 @@ public class CFSecBuffSysClusterH
 				ICFSecPubSysCluster.SINGLETONID_MIN_VALUE );
 		}
 		if( value > ICFSecPubSysCluster.SINGLETONID_MAX_VALUE ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredSingletonId",
 				1,
 				"value",
@@ -160,13 +160,13 @@ public class CFSecBuffSysClusterH
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredClusterId() {
+	public IMCFKeyHash256 getRequiredClusterId() {
 		return(requiredClusterId);
 	}
 
-	public void setRequiredClusterId( ICFLibKeyHash256 value ) {
+	public void setRequiredClusterId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredClusterId",
 				1,
 				"value" );
@@ -384,7 +384,7 @@ public class CFSecBuffSysClusterH
             return( 0 );
         }
         else {
-            throw new CFLibUnsupportedClassException( getClass(),
+            throw new MCFUnsupportedClassException( getClass(),
                 "compareTo",
                 "obj",
                 obj,

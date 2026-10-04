@@ -99,7 +99,7 @@ public interface ICFSecTenantTable
 	 *	@param	ClusterId	The Tenant key attribute of the instance generating the id.
 	 */
 	void deleteTenantByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId );
+		IMCFKeyHash256 argClusterId );
 
 	/**
 	 *	Delete the Tenant instances identified by the key ClusterIdx.
@@ -120,7 +120,7 @@ public interface ICFSecTenantTable
 	 *	@param	TenantName	The Tenant key attribute of the instance generating the id.
 	 */
 	void deleteTenantByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId,
+		IMCFKeyHash256 argClusterId,
 		String argTenantName );
 
 	/**
@@ -180,7 +180,7 @@ public interface ICFSecTenantTable
 	 *		no such existing key value.
 	 */
 	ICFSecTenant readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 Id );
+		IMCFKeyHash256 Id );
 
 	/**
 	 *	Read an array of the derived Tenant record instances identified by the duplicate key ClusterIdx.
@@ -192,7 +192,7 @@ public interface ICFSecTenantTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	ICFSecTenant[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId );
+		IMCFKeyHash256 ClusterId );
 
 	/**
 	 *	Read the derived Tenant record instance identified by the unique key UNameIdx.
@@ -207,7 +207,7 @@ public interface ICFSecTenantTable
 	 *		no such existing key value.
 	 */
 	ICFSecTenant readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String TenantName );
 
 	/**
@@ -220,7 +220,7 @@ public interface ICFSecTenantTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTenant readRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -235,7 +235,7 @@ public interface ICFSecTenantTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTenant lockRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -257,7 +257,7 @@ public interface ICFSecTenantTable
 	 *	@return All the specific Tenant instances in the database accessible for the Authorization.
 	 */
 	ICFSecTenant[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorId );
+		IMCFKeyHash256 priorId );
 
 	/**
 	 *	Read the specific Tenant record instance identified by the unique key IdIdx.
@@ -269,10 +269,10 @@ public interface ICFSecTenantTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTenant readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 Id );
+		IMCFKeyHash256 Id );
 
 	/**
 	 *	Read an array of the specific Tenant record instances identified by the duplicate key ClusterIdx.
@@ -283,10 +283,10 @@ public interface ICFSecTenantTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTenant[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId );
+		IMCFKeyHash256 ClusterId );
 
 	/**
 	 *	Read the specific Tenant record instance identified by the unique key UNameIdx.
@@ -300,10 +300,10 @@ public interface ICFSecTenantTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTenant readRecByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String TenantName );
 
 	/**
@@ -315,9 +315,9 @@ public interface ICFSecTenantTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTenant[] pageRecByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
-		ICFLibKeyHash256 priorId );
+		IMCFKeyHash256 ClusterId,
+		IMCFKeyHash256 priorId );
 }

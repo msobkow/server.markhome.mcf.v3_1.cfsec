@@ -240,7 +240,7 @@ public interface ICFSecISOCtryCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecISOCtryCcy readRec( ICFSecAuthorization Authorization,
 		ICFSecISOCtryCcyPKey PKey );
@@ -255,7 +255,7 @@ public interface ICFSecISOCtryCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecISOCtryCcy readRec( ICFSecAuthorization Authorization,
 		short ISOCtryId,
@@ -271,7 +271,7 @@ public interface ICFSecISOCtryCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecISOCtryCcy lockRec( ICFSecAuthorization Authorization,
 		ICFSecISOCtryCcyPKey PKey );
@@ -297,7 +297,7 @@ public interface ICFSecISOCtryCcyTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecISOCtryCcy readRecByIdIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId,
@@ -312,7 +312,7 @@ public interface ICFSecISOCtryCcyTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecISOCtryCcy[] readRecByCtryIdx( ICFSecAuthorization Authorization,
 		short ISOCtryId );
@@ -326,7 +326,7 @@ public interface ICFSecISOCtryCcyTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecISOCtryCcy[] readRecByCcyIdx( ICFSecAuthorization Authorization,
 		short ISOCcyId );

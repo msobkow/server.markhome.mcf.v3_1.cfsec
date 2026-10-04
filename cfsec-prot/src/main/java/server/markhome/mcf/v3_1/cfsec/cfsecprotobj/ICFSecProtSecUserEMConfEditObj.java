@@ -130,11 +130,11 @@ public interface ICFSecProtSecUserEMConfEditObj
 	void setRequiredContainerUser( ICFSecProtSecUserObj value );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecUserId.
+	 *	Get the required IMCFKeyHash256 attribute SecUserId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecUserId.
+	 *	@return	The required IMCFKeyHash256 attribute SecUserId.
 	 */
-	ICFLibKeyHash256 getRequiredSecUserId();
+	IMCFKeyHash256 getRequiredSecUserId();
 
 	/**
 	 *	Get the required String attribute ConfirmEMailAddr.
@@ -165,18 +165,18 @@ public interface ICFSecProtSecUserEMConfEditObj
 	void setRequiredEMailSentStamp(LocalDateTime value);
 
 	/**
-	 *	Get the required ICFLibUuid6 attribute EMConfirmationUuid6.
+	 *	Get the required IMCFUuid6 attribute EMConfirmationUuid6.
 	 *
-	 *	@return	The required ICFLibUuid6 attribute EMConfirmationUuid6.
+	 *	@return	The required IMCFUuid6 attribute EMConfirmationUuid6.
 	 */
-	ICFLibUuid6 getRequiredEMConfirmationUuid6();
+	IMCFUuid6 getRequiredEMConfirmationUuid6();
 
 	/**
-	 *	Set the required ICFLibUuid6 attribute EMConfirmationUuid6.
+	 *	Set the required IMCFUuid6 attribute EMConfirmationUuid6.
 	 *
-	 *	@param value The required ICFLibUuid6 attribute EMConfirmationUuid6 value to be applied.
+	 *	@param value The required IMCFUuid6 attribute EMConfirmationUuid6 value to be applied.
 	 */
-	void setRequiredEMConfirmationUuid6(ICFLibUuid6 value);
+	void setRequiredEMConfirmationUuid6(IMCFUuid6 value);
 
 	/**
 	 *	Get the required boolean attribute NewAccount.

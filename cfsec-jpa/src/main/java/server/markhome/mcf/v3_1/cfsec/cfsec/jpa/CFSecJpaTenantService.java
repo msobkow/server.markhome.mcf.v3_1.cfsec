@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,10 +74,10 @@ public class CFSecJpaTenantService {
 		if (data == null) {
 			return( null );
 		}
-		ICFLibKeyHash256 originalRequiredId = data.getRequiredId();
+		IMCFKeyHash256 originalRequiredId = data.getRequiredId();
 		boolean generatedRequiredId = false;
 		if (data.getRequiredContainerCluster() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -88,13 +88,13 @@ public class CFSecJpaTenantService {
 				null);
 		}
 		if(data.getRequiredClusterId() == null || data.getRequiredClusterId().isNull()) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredClusterId");
 		}
 		if(data.getRequiredTenantName() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredTenantName");
@@ -107,7 +107,7 @@ public class CFSecJpaTenantService {
 				data.setRequiredRevision(1);
 			}
 			if (data.getRequiredId() == null || data.getRequiredId().isNull()) {
-				data.setRequiredId(new CFLibDbKeyHash256(0));
+				data.setRequiredId(new MCFDbKeyHash256(0));
 				generatedRequiredId = true;
 			}
 			LocalDateTime now = LocalDateTime.now();
@@ -119,7 +119,7 @@ public class CFSecJpaTenantService {
 				if(generatedRequiredId) {
 					data.setRequiredId(originalRequiredId);
 				}
-			throw new CFLibDbException(getClass(),
+			throw new MCFDbException(getClass(),
 				S_ProcName,
 				ex);
 		}
@@ -139,13 +139,13 @@ public class CFSecJpaTenantService {
 			return( null );
 		}
 		if (data.getPKey() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.getPKey()");
 		}
 		if (data.getRequiredContainerCluster() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -156,22 +156,22 @@ public class CFSecJpaTenantService {
 				null);
 		}
 		if(data.getRequiredClusterId() == null || data.getRequiredClusterId().isNull()) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredClusterId");
 		}
 		if(data.getRequiredTenantName() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredTenantName");
 		}
 		// Ensure the entity exists and that the revision matches
 		CFSecJpaTenant existing = cfsec31TenantRepository.findById(($implCommaIJavaOptAtomType$)(data.getPKey()))
-			.orElseThrow(() -> new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
+			.orElseThrow(() -> new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
 		if (existing.getRequiredRevision() != data.getRequiredRevision()) {
-			throw new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
+			throw new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
 		}
 		// Apply superior data relationships of CFSecTenant to existing object
 		existing.setRequiredContainerCluster(data.getRequiredContainerCluster());
@@ -192,7 +192,7 @@ public class CFSecJpaTenantService {
 	 *		@return The retrieved entity, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaTenant find(@Param("id") ICFLibKeyHash256 requiredId) {
+	public CFSecJpaTenant find(@Param("id") IMCFKeyHash256 requiredId) {
 		return( cfsec31TenantRepository.get(requiredId));
 	}
 
@@ -216,7 +216,7 @@ public class CFSecJpaTenantService {
 	 *		@return List&lt;CFSecJpaTenant&gt; of the found entities, or an empty list if no such entities exist.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public List<CFSecJpaTenant> findByClusterIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId) {
+	public List<CFSecJpaTenant> findByClusterIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId) {
 		return( cfsec31TenantRepository.findByClusterIdx(requiredClusterId));
 	}
 
@@ -241,7 +241,7 @@ public class CFSecJpaTenantService {
 	 *		@return The found entity, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaTenant findByUNameIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId,
+	public CFSecJpaTenant findByUNameIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId,
 		@Param("tenantName") String requiredTenantName) {
 		return( cfsec31TenantRepository.findByUNameIdx(requiredClusterId,
 			requiredTenantName));
@@ -269,7 +269,7 @@ public class CFSecJpaTenantService {
 	 *		@return The locked entity, refreshed from the data store, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaTenant lockByIdIdx(@Param("id") ICFLibKeyHash256 requiredId) {
+	public CFSecJpaTenant lockByIdIdx(@Param("id") IMCFKeyHash256 requiredId) {
 		return( cfsec31TenantRepository.lockByIdIdx(requiredId));
 	}
 
@@ -281,7 +281,7 @@ public class CFSecJpaTenantService {
 	 *		@return A list of locked entities, refreshed from the data store, or an empty list if no such entities exist.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public List<CFSecJpaTenant> lockByClusterIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId) {
+	public List<CFSecJpaTenant> lockByClusterIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId) {
 		return( cfsec31TenantRepository.lockByClusterIdx(requiredClusterId));
 	}
 
@@ -306,7 +306,7 @@ public class CFSecJpaTenantService {
 	 *		@return The locked entity, refreshed from the data store, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaTenant lockByUNameIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId,
+	public CFSecJpaTenant lockByUNameIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId,
 		@Param("tenantName") String requiredTenantName) {
 		return( cfsec31TenantRepository.lockByUNameIdx(requiredClusterId,
 			requiredTenantName));
@@ -332,7 +332,7 @@ public class CFSecJpaTenantService {
 	 *		@param requiredId
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByIdIdx(@Param("id") ICFLibKeyHash256 requiredId) {
+	public void deleteByIdIdx(@Param("id") IMCFKeyHash256 requiredId) {
 		cfsec31TenantRepository.deleteByIdIdx(requiredId);
 	}
 
@@ -342,7 +342,7 @@ public class CFSecJpaTenantService {
 	 *		@param requiredClusterId
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByClusterIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId) {
+	public void deleteByClusterIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId) {
 		cfsec31TenantRepository.deleteByClusterIdx(requiredClusterId);
 	}
 
@@ -363,7 +363,7 @@ public class CFSecJpaTenantService {
 	 *		@param requiredTenantName
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByUNameIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId,
+	public void deleteByUNameIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId,
 		@Param("tenantName") String requiredTenantName) {
 		cfsec31TenantRepository.deleteByUNameIdx(requiredClusterId,
 			requiredTenantName);

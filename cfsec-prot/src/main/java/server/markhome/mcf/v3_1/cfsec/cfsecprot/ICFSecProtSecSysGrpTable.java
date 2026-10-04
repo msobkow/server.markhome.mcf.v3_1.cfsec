@@ -115,7 +115,7 @@ extends ICFSecPubSecSysGrpTable
 	 *	@param	argKey	The primary key identifying the instance to be deleted.
 	 */
 	public void protdeleteSecSysGrpByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 argKey );
+		MCFDbKeyHash256 argKey );
 	/**
 	 *	Delete the SecSysGrp instances identified by the key UNameIdx.
 	 *
@@ -195,7 +195,7 @@ extends ICFSecPubSecSysGrpTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecSysGrp protreadDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the derived SecSysGrp record instance by protected primary key.
@@ -208,7 +208,7 @@ extends ICFSecPubSecSysGrpTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecSysGrp protlockDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all SecSysGrp instances.
@@ -230,7 +230,7 @@ extends ICFSecPubSecSysGrpTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecSysGrp protreadDerivedByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId );
+		IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Read the derived SecSysGrp record instance identified by the unique key UNameIdx.
@@ -267,10 +267,10 @@ extends ICFSecPubSecSysGrpTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysGrp protreadRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the specific SecSysGrp record instance identified by the primary key.
@@ -282,10 +282,10 @@ extends ICFSecPubSecSysGrpTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysGrp protlockRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all the specific SecSysGrp record instances.
@@ -306,10 +306,10 @@ extends ICFSecPubSecSysGrpTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysGrp protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId );
+		IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Read the specific SecSysGrp record instance identified by the unique key UNameIdx.
@@ -321,7 +321,7 @@ extends ICFSecPubSecSysGrpTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysGrp protreadRecByUNameIdx( ICFSecPubAuthorization Authorization,
 		String Name );
@@ -335,7 +335,7 @@ extends ICFSecPubSecSysGrpTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysGrp[] protreadRecBySecLevelIdx( ICFSecPubAuthorization Authorization,
 		ICFSecPubSchema.SecLevelEnum SecLevel );

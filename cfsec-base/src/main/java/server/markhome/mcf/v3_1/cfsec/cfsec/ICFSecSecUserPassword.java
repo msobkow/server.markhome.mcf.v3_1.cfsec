@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 
@@ -46,8 +46,8 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 public interface ICFSecSecUserPassword
 {
 	public static final String S_SECUSERID_INIT_VALUE = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 SECUSERID_INIT_VALUE = CFLibDbKeyHash256.fromHex( S_SECUSERID_INIT_VALUE );
-	public static final LocalDateTime PWSETSTAMP_INIT_VALUE = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+	public static final MCFDbKeyHash256 SECUSERID_INIT_VALUE = MCFDbKeyHash256.fromHex( S_SECUSERID_INIT_VALUE );
+	public static final LocalDateTime PWSETSTAMP_INIT_VALUE = MCFXmlUtil.parseTimestamp("2020-01-01T00:00:00");
 	public final static int CLASS_CODE = 0xa00a;
 	public final static String S_CLASS_CODE = "a00a";
 
@@ -57,7 +57,7 @@ public interface ICFSecSecUserPassword
 	public void setPKey($implCommaIJavaOptAtomType$ requiredSecUserId);
 	public ICFSecSecUser getRequiredContainerUser();
 
-	public void setRequiredContainerUser(ICFLibKeyHash256 argSecUserId);
+	public void setRequiredContainerUser(IMCFKeyHash256 argSecUserId);
 
 	public void setRequiredContainerUser(ICFSecSecUser argObj);
 
@@ -65,8 +65,8 @@ public interface ICFSecSecUserPassword
 
 	public void setRequiredContainerUser(ICFSecPubSecUser argObj);
 
-	public ICFLibKeyHash256 getRequiredSecUserId();
-	public void setRequiredSecUserId( ICFLibKeyHash256 value );
+	public IMCFKeyHash256 getRequiredSecUserId();
+	public void setRequiredSecUserId( IMCFKeyHash256 value );
 	public int getRequiredRevision();
 	public void setRequiredRevision( int value );
 

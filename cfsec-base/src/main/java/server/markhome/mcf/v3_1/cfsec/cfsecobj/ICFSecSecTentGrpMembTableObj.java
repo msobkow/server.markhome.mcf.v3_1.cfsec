@@ -120,7 +120,7 @@ public interface ICFSecSecTentGrpMembTableObj
 	 *	@return	The SecTentGrpMemb-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecSecTentGrpMembObj readSecTentGrpMemb( ICFLibKeyHash256 SecTentGrpId,
+	ICFSecSecTentGrpMembObj readSecTentGrpMemb( IMCFKeyHash256 SecTentGrpId,
 		String LoginId );
 
 	/**
@@ -129,7 +129,7 @@ public interface ICFSecSecTentGrpMembTableObj
 	 *	@return	The SecTentGrpMemb-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecSecTentGrpMembObj readSecTentGrpMemb( ICFLibKeyHash256 SecTentGrpId,
+	ICFSecSecTentGrpMembObj readSecTentGrpMemb( IMCFKeyHash256 SecTentGrpId,
 		String LoginId,
 		boolean forceRead );
 
@@ -168,7 +168,7 @@ public interface ICFSecSecTentGrpMembTableObj
 	 *	@return	List of ICFSecSecTentGrpMembObj instance, sorted by their primary keys, which
 	 *		may include an empty set.
 	 */
-	List<ICFSecSecTentGrpMembObj> pageAllSecTentGrpMemb(ICFLibKeyHash256 priorSecTentGrpId,
+	List<ICFSecSecTentGrpMembObj> pageAllSecTentGrpMemb(IMCFKeyHash256 priorSecTentGrpId,
 		String priorLoginId );
 
 	/**
@@ -181,7 +181,7 @@ public interface ICFSecSecTentGrpMembTableObj
 	 *	@return	CFSecSecTentGrpMembObj cached instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecTentGrpMembObj readSecTentGrpMembByIdIdx( ICFLibKeyHash256 SecTentGrpId,
+	ICFSecSecTentGrpMembObj readSecTentGrpMembByIdIdx( IMCFKeyHash256 SecTentGrpId,
 		String LoginId );
 
 	/**
@@ -194,7 +194,7 @@ public interface ICFSecSecTentGrpMembTableObj
 	 *	@return	CFSecSecTentGrpMembObj refreshed instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecTentGrpMembObj readSecTentGrpMembByIdIdx( ICFLibKeyHash256 SecTentGrpId,
+	ICFSecSecTentGrpMembObj readSecTentGrpMembByIdIdx( IMCFKeyHash256 SecTentGrpId,
 		String LoginId,
 		boolean forceRead );
 
@@ -206,7 +206,7 @@ public interface ICFSecSecTentGrpMembTableObj
 	 *	@return	List of CFSecSecTentGrpMembObj cached instances sorted by their primary keys for the duplicate TentGrpIdx key,
 	 *		which may be an empty set.
 	 */
-	List<ICFSecSecTentGrpMembObj> readSecTentGrpMembByTentGrpIdx( ICFLibKeyHash256 SecTentGrpId );
+	List<ICFSecSecTentGrpMembObj> readSecTentGrpMembByTentGrpIdx( IMCFKeyHash256 SecTentGrpId );
 
 	/**
 	 *	Get the map of CFSecSecTentGrpMembObj instances sorted by their primary keys for the duplicate TentGrpIdx key.
@@ -216,7 +216,7 @@ public interface ICFSecSecTentGrpMembTableObj
 	 *	@return	List of CFSecSecTentGrpMembObj cached instances sorted by their primary keys for the duplicate TentGrpIdx key,
 	 *		which may be an empty set.
 	 */
-	List<ICFSecSecTentGrpMembObj> readSecTentGrpMembByTentGrpIdx( ICFLibKeyHash256 SecTentGrpId,
+	List<ICFSecSecTentGrpMembObj> readSecTentGrpMembByTentGrpIdx( IMCFKeyHash256 SecTentGrpId,
 		boolean forceRead );
 
 	/**
@@ -240,17 +240,17 @@ public interface ICFSecSecTentGrpMembTableObj
 	List<ICFSecSecTentGrpMembObj> readSecTentGrpMembByUserIdx( String LoginId,
 		boolean forceRead );
 
-	ICFSecSecTentGrpMembObj readCachedSecTentGrpMembByIdIdx( ICFLibKeyHash256 SecTentGrpId,
+	ICFSecSecTentGrpMembObj readCachedSecTentGrpMembByIdIdx( IMCFKeyHash256 SecTentGrpId,
 		String LoginId );
 
-	List<ICFSecSecTentGrpMembObj> readCachedSecTentGrpMembByTentGrpIdx( ICFLibKeyHash256 SecTentGrpId );
+	List<ICFSecSecTentGrpMembObj> readCachedSecTentGrpMembByTentGrpIdx( IMCFKeyHash256 SecTentGrpId );
 
 	List<ICFSecSecTentGrpMembObj> readCachedSecTentGrpMembByUserIdx( String LoginId );
 
-	void deepDisposeSecTentGrpMembByIdIdx( ICFLibKeyHash256 SecTentGrpId,
+	void deepDisposeSecTentGrpMembByIdIdx( IMCFKeyHash256 SecTentGrpId,
 		String LoginId );
 
-	void deepDisposeSecTentGrpMembByTentGrpIdx( ICFLibKeyHash256 SecTentGrpId );
+	void deepDisposeSecTentGrpMembByTentGrpIdx( IMCFKeyHash256 SecTentGrpId );
 
 	void deepDisposeSecTentGrpMembByUserIdx( String LoginId );
 
@@ -263,8 +263,8 @@ public interface ICFSecSecTentGrpMembTableObj
 	 *	@return	A List of SecTentGrpMemb-derived instances sorted by their primary keys,
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
-	List<ICFSecSecTentGrpMembObj> pageSecTentGrpMembByTentGrpIdx( ICFLibKeyHash256 SecTentGrpId,
-		ICFLibKeyHash256 priorSecTentGrpId,
+	List<ICFSecSecTentGrpMembObj> pageSecTentGrpMembByTentGrpIdx( IMCFKeyHash256 SecTentGrpId,
+		IMCFKeyHash256 priorSecTentGrpId,
 		String priorLoginId );
 
 	/**
@@ -277,7 +277,7 @@ public interface ICFSecSecTentGrpMembTableObj
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
 	List<ICFSecSecTentGrpMembObj> pageSecTentGrpMembByUserIdx( String LoginId,
-		ICFLibKeyHash256 priorSecTentGrpId,
+		IMCFKeyHash256 priorSecTentGrpId,
 		String priorLoginId );
 
 	/**
@@ -297,7 +297,7 @@ public interface ICFSecSecTentGrpMembTableObj
 	 *
 	 *	@param	LoginId	The SecTentGrpMemb key attribute of the instance generating the id.
 	 */
-	void deleteSecTentGrpMembByIdIdx( ICFLibKeyHash256 SecTentGrpId,
+	void deleteSecTentGrpMembByIdIdx( IMCFKeyHash256 SecTentGrpId,
 		String LoginId );
 
 	/**
@@ -305,7 +305,7 @@ public interface ICFSecSecTentGrpMembTableObj
 	 *
 	 *	@param	SecTentGrpId	The SecTentGrpMemb key attribute of the instance generating the id.
 	 */
-	void deleteSecTentGrpMembByTentGrpIdx( ICFLibKeyHash256 SecTentGrpId );
+	void deleteSecTentGrpMembByTentGrpIdx( IMCFKeyHash256 SecTentGrpId );
 
 	/**
 	 *	Internal use only.

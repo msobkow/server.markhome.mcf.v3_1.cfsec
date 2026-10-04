@@ -41,7 +41,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
@@ -97,7 +97,7 @@ public class CFSecBuffTableInfo
 	@Override
 	public void setRequiredTableInfoId( int value ) {
 		if( value < ICFSecPubTableInfo.TABLEINFOID_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				"setRequiredTableInfoId",
 				1,
 				"value",
@@ -126,11 +126,11 @@ public class CFSecBuffTableInfo
 	public ICFSecTableInfo getOptionalParentSuperRef() {
 		ICFSecSchema targetBackingCFSec = ICFSecSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec()");
 		}
 		ICFSecTableInfoTable targetTable = targetBackingCFSec.getTableTableInfo();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec().getTableTableInfo()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec().getTableTableInfo()");
 		}
 		ICFSecTableInfo targetRec = targetTable.readDerivedByTableNameIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getOptionalSuperName());
 		return(targetRec);
@@ -140,11 +140,11 @@ public class CFSecBuffTableInfo
 	public ICFSecTableInfo getOptionalParentSuperRef() {
 		ICFSecSchema targetBackingCFSec = ICFSecSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec()");
 		}
 		ICFSecTableInfoTable targetTable = targetBackingCFSec.getTableTableInfo();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec().getTableTableInfo()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec().getTableTableInfo()");
 		}
 		ICFSecTableInfo targetRec = targetTable.readDerivedByTableNameIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getOptionalSuperName());
 		return(targetRec);
@@ -154,11 +154,11 @@ public class CFSecBuffTableInfo
 	public ICFSecTableInfo getOptionalParentSuperRef() {
 		ICFSecSchema targetBackingCFSec = ICFSecSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec()");
 		}
 		ICFSecTableInfoTable targetTable = targetBackingCFSec.getTableTableInfo();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec().getTableTableInfo()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec().getTableTableInfo()");
 		}
 		ICFSecPubTableInfo targetRec = targetTable.readDerivedByTableNameIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getOptionalSuperName());
 		return(targetRec);
@@ -168,18 +168,18 @@ public class CFSecBuffTableInfo
 	public void setOptionalParentSuperRef(String argSuperName) {
 		ICFSecSchema targetBackingCFSec = ICFSecSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "setOptionalParentSuperRef-args", 0, "ICFSecSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "setOptionalParentSuperRef-args", 0, "ICFSecSchema.getBackingCFSec()");
 		}
 		ICFSecTableInfoTable targetTable = targetBackingCFSec.getTableTableInfo();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "setOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "setOptionalParentSuperRef", 0, "ICFSecSchema.getBackingCFSec()");
 		}
 		ICFSecTableInfo found = targetTable.readDerivedByTableNameIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), argSuperName);
 		if (found == null || (found != null && ((found instanceof ICFSecTableInfo) || (found instanceof ICFSecProtTableInfo) || (found instanceof ICFSecPubTableInfo)))) {
 		optionalSuperName = argSuperName;
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "setOptionalParentSuperRef-args", "found", found, "ICFSecTableInfoICFSecProtTableInfoICFSecPubTableInfo");
+			throw new MCFUnsupportedClassException(getClass(), "setOptionalParentSuperRef-args", "found", found, "ICFSecTableInfoICFSecProtTableInfoICFSecPubTableInfo");
 		}
 	}
 
@@ -197,11 +197,11 @@ public class CFSecBuffTableInfo
 	public List<ICFSecTableInfo> getOptionalChildrenSubRefs() {
 		ICFSecSchema targetBackingCFSec = ICFSecSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenSubRefs", 0, "ICFSecSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenSubRefs", 0, "ICFSecSchema.getBackingCFSec()");
 		}
 		ICFSecTableInfoTable targetTable = targetBackingCFSec.getTableTableInfo();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenSubRefs", 0, "ICFSecSchema.getBackingCFSec().getTableTableInfo()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenSubRefs", 0, "ICFSecSchema.getBackingCFSec().getTableTableInfo()");
 		}
 		ICFSecTableInfo[] targetArr = targetTable.readDerivedBySuperNameIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredTableName());
 		if( targetArr != null ) {
@@ -221,11 +221,11 @@ public class CFSecBuffTableInfo
 	public List<ICFSecTableInfo> getOptionalChildrenSubRefs() {
 		ICFSecSchema targetBackingCFSec = ICFSecSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenSubRefs", 0, "ICFSecSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenSubRefs", 0, "ICFSecSchema.getBackingCFSec()");
 		}
 		ICFSecTableInfoTable targetTable = targetBackingCFSec.getTableTableInfo();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenSubRefs", 0, "ICFSecSchema.getBackingCFSec().getTableTableInfo()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenSubRefs", 0, "ICFSecSchema.getBackingCFSec().getTableTableInfo()");
 		}
 		ICFSecTableInfo[] targetArr = targetTable.readDerivedBySuperNameIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredTableName());
 		if( targetArr != null ) {
@@ -245,11 +245,11 @@ public class CFSecBuffTableInfo
 	public List<ICFSecTableInfo> getOptionalChildrenSubRefs() {
 		ICFSecSchema targetBackingCFSec = ICFSecSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenSubRefs", 0, "ICFSecSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenSubRefs", 0, "ICFSecSchema.getBackingCFSec()");
 		}
 		ICFSecTableInfoTable targetTable = targetBackingCFSec.getTableTableInfo();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenSubRefs", 0, "ICFSecSchema.getBackingCFSec().getTableTableInfo()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenSubRefs", 0, "ICFSecSchema.getBackingCFSec().getTableTableInfo()");
 		}
 		ICFSecPubTableInfo[] targetArr = targetTable.readDerivedBySuperNameIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredTableName());
 		if( targetArr != null ) {
@@ -272,13 +272,13 @@ public class CFSecBuffTableInfo
 
 	public void setRequiredSchemaName( String value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSchemaName",
 				1,
 				"value" );
 		}
 		else if( value.length() > 32 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredSchemaName",
 				1,
 				"value.length()",
@@ -295,13 +295,13 @@ public class CFSecBuffTableInfo
 
 	public void setRequiredTableName( String value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredTableName",
 				1,
 				"value" );
 		}
 		else if( value.length() > 64 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredTableName",
 				1,
 				"value.length()",
@@ -318,7 +318,7 @@ public class CFSecBuffTableInfo
 
 	public void setOptionalSuperName( String value ) {
 		if( value != null && value.length() > 64 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setOptionalSuperName",
 				1,
 				"value.length()",
@@ -336,7 +336,7 @@ public class CFSecBuffTableInfo
 	@Override
 	public void setRequiredBackingClassCode( int value ) {
 		if( value < ICFSecPubTableInfo.BACKINGCLASSCODE_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				"setRequiredBackingClassCode",
 				1,
 				"value",
@@ -354,7 +354,7 @@ public class CFSecBuffTableInfo
 	@Override
 	public void setRequiredRuntimeClassCode( int value ) {
 		if( value < ICFSecPubTableInfo.RUNTIMECLASSCODE_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				"setRequiredRuntimeClassCode",
 				1,
 				"value",
@@ -389,13 +389,13 @@ public class CFSecBuffTableInfo
 
 	public void setRequiredSecScopeName( String value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecScopeName",
 				1,
 				"value" );
 		}
 		else if( value.length() > 32 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredSecScopeName",
 				1,
 				"value.length()",
@@ -412,13 +412,13 @@ public class CFSecBuffTableInfo
 
 	public void setRequiredCodeVis( String value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredCodeVis",
 				1,
 				"value" );
 		}
 		else if( value.length() > 32 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredCodeVis",
 				1,
 				"value.length()",
@@ -2271,7 +2271,7 @@ public class CFSecBuffTableInfo
 			}			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException( getClass(),
+			throw new MCFUnsupportedClassException( getClass(),
 				"compareTo",
 				"obj",
 				obj,

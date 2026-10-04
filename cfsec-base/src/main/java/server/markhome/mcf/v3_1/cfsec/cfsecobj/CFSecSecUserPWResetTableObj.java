@@ -116,7 +116,7 @@ public class CFSecSecUserPWResetTableObj
 	 */
 	static void setRuntimeClassCode(int argNewClassCode ) {
 		if (argNewClassCode <= 0) {
-			throw new CFLibArgumentUnderflowException(CFSecSecUserPWResetTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
+			throw new MCFArgumentUnderflowException(CFSecSecUserPWResetTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
 		}
 		runtimeClassCode = argNewClassCode;
 	}
@@ -434,7 +434,7 @@ public class CFSecSecUserPWResetTableObj
 			locked = (ICFSecSecUserPWResetObj)locked.realise();
 		}
 		else {
-			throw new CFLibCollisionDetectedException( getClass(), "lockSecUserPWReset", pkey );
+			throw new MCFCollisionDetectedException( getClass(), "lockSecUserPWReset", pkey );
 		}
 		return( locked );
 	}
@@ -469,7 +469,7 @@ public class CFSecSecUserPWResetTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -477,7 +477,7 @@ public class CFSecSecUserPWResetTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -529,7 +529,7 @@ public class CFSecSecUserPWResetTableObj
 				arr[idx++] = valIter.next();
 			}
 			if( idx < len ) {
-				throw new CFLibArgumentUnderflowException( getClass(),
+				throw new MCFArgumentUnderflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -537,7 +537,7 @@ public class CFSecSecUserPWResetTableObj
 					len );
 			}
 			else if( valIter.hasNext() ) {
-				throw new CFLibArgumentOverflowException( getClass(),
+				throw new MCFArgumentOverflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -580,7 +580,7 @@ public class CFSecSecUserPWResetTableObj
 	 *		may include an empty set.
 	 */
 	@Override
-	public List<ICFSecSecUserPWResetObj> pageAllSecUserPWReset(ICFLibKeyHash256 priorSecUserId )
+	public List<ICFSecSecUserPWResetObj> pageAllSecUserPWReset(IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageAllSecUserPWReset";
 		Map<$implCommaIJavaOptAtomType$, ICFSecSecUserPWResetObj> map = new HashMap<$implCommaIJavaOptAtomType$,ICFSecSecUserPWResetObj>();
@@ -602,28 +602,28 @@ public class CFSecSecUserPWResetTableObj
 	}
 
 	@Override
-	public ICFSecSecUserPWResetObj readSecUserPWResetByIdIdx( ICFLibKeyHash256 SecUserId )
+	public ICFSecSecUserPWResetObj readSecUserPWResetByIdIdx( IMCFKeyHash256 SecUserId )
 	{
 		return( readSecUserPWResetByIdIdx( SecUserId,
 			false ) );
 	}
 
 	@Override
-	public ICFSecSecUserPWResetObj readSecUserPWResetByIdIdx( ICFLibKeyHash256 SecUserId, boolean forceRead )
+	public ICFSecSecUserPWResetObj readSecUserPWResetByIdIdx( IMCFKeyHash256 SecUserId, boolean forceRead )
 	{
 		ICFSecSecUserPWResetObj obj = readSecUserPWReset( SecUserId, forceRead );
 		return( obj );
 	}
 
 	@Override
-	public ICFSecSecUserPWResetObj readSecUserPWResetByUUuid6Idx( ICFLibUuid6 PasswordResetUuid6 )
+	public ICFSecSecUserPWResetObj readSecUserPWResetByUUuid6Idx( IMCFUuid6 PasswordResetUuid6 )
 	{
 		return( readSecUserPWResetByUUuid6Idx( PasswordResetUuid6,
 			false ) );
 	}
 
 	@Override
-	public ICFSecSecUserPWResetObj readSecUserPWResetByUUuid6Idx( ICFLibUuid6 PasswordResetUuid6, boolean forceRead )
+	public ICFSecSecUserPWResetObj readSecUserPWResetByUUuid6Idx( IMCFUuid6 PasswordResetUuid6, boolean forceRead )
 	{
 		if( indexByUUuid6Idx == null ) {
 			indexByUUuid6Idx = new HashMap< ICFSecSecUserPWResetByUUuid6IdxKey,
@@ -694,7 +694,7 @@ public class CFSecSecUserPWResetTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -702,7 +702,7 @@ public class CFSecSecUserPWResetTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -787,7 +787,7 @@ public class CFSecSecUserPWResetTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -795,7 +795,7 @@ public class CFSecSecUserPWResetTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -835,7 +835,7 @@ public class CFSecSecUserPWResetTableObj
 	}
 
 	@Override
-	public ICFSecSecUserPWResetObj readCachedSecUserPWResetByIdIdx( ICFLibKeyHash256 SecUserId )
+	public ICFSecSecUserPWResetObj readCachedSecUserPWResetByIdIdx( IMCFKeyHash256 SecUserId )
 	{
 		ICFSecSecUserPWResetObj obj = null;
 		obj = readCachedSecUserPWReset( SecUserId );
@@ -843,7 +843,7 @@ public class CFSecSecUserPWResetTableObj
 	}
 
 	@Override
-	public ICFSecSecUserPWResetObj readCachedSecUserPWResetByUUuid6Idx( ICFLibUuid6 PasswordResetUuid6 )
+	public ICFSecSecUserPWResetObj readCachedSecUserPWResetByUUuid6Idx( IMCFUuid6 PasswordResetUuid6 )
 	{
 		ICFSecSecUserPWResetObj obj = null;
 		ICFSecSecUserPWResetByUUuid6IdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecUserPWReset().newByUUuid6IdxKey();
@@ -897,7 +897,7 @@ public class CFSecSecUserPWResetTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -905,7 +905,7 @@ public class CFSecSecUserPWResetTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -974,7 +974,7 @@ public class CFSecSecUserPWResetTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -982,7 +982,7 @@ public class CFSecSecUserPWResetTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -1033,7 +1033,7 @@ public class CFSecSecUserPWResetTableObj
 	}
 
 	@Override
-	public void deepDisposeSecUserPWResetByIdIdx( ICFLibKeyHash256 SecUserId )
+	public void deepDisposeSecUserPWResetByIdIdx( IMCFKeyHash256 SecUserId )
 	{
 		ICFSecSecUserPWResetObj obj = readCachedSecUserPWResetByIdIdx( SecUserId );
 		if( obj != null ) {
@@ -1042,7 +1042,7 @@ public class CFSecSecUserPWResetTableObj
 	}
 
 	@Override
-	public void deepDisposeSecUserPWResetByUUuid6Idx( ICFLibUuid6 PasswordResetUuid6 )
+	public void deepDisposeSecUserPWResetByUUuid6Idx( IMCFUuid6 PasswordResetUuid6 )
 	{
 		ICFSecSecUserPWResetObj obj = readCachedSecUserPWResetByUUuid6Idx( PasswordResetUuid6 );
 		if( obj != null ) {
@@ -1095,7 +1095,7 @@ public class CFSecSecUserPWResetTableObj
 	 */
 	@Override
 	public List<ICFSecSecUserPWResetObj> pageSecUserPWResetBySentEMAddrIdx( String SentToEMailAddr,
-		ICFLibKeyHash256 priorSecUserId )
+		IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageSecUserPWResetBySentEMAddrIdx";
 		ICFSecSecUserPWResetBySentEMAddrIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecUserPWReset().newBySentEMAddrIdxKey();
@@ -1128,7 +1128,7 @@ public class CFSecSecUserPWResetTableObj
 	 */
 	@Override
 	public List<ICFSecSecUserPWResetObj> pageSecUserPWResetByNewAcctIdx( boolean NewAccount,
-		ICFLibKeyHash256 priorSecUserId )
+		IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageSecUserPWResetByNewAcctIdx";
 		ICFSecSecUserPWResetByNewAcctIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecUserPWReset().newByNewAcctIdxKey();
@@ -1169,7 +1169,7 @@ public class CFSecSecUserPWResetTableObj
 	}
 
 	@Override
-	public void deleteSecUserPWResetByIdIdx( ICFLibKeyHash256 SecUserId )
+	public void deleteSecUserPWResetByIdIdx( IMCFKeyHash256 SecUserId )
 	{
 		ICFSecSecUserPWResetObj obj = readSecUserPWReset(SecUserId);
 		if( obj != null ) {
@@ -1199,7 +1199,7 @@ public class CFSecSecUserPWResetTableObj
 	}
 
 	@Override
-	public void deleteSecUserPWResetByUUuid6Idx( ICFLibUuid6 PasswordResetUuid6 )
+	public void deleteSecUserPWResetByUUuid6Idx( IMCFUuid6 PasswordResetUuid6 )
 	{
 		if( indexByUUuid6Idx == null ) {
 			indexByUUuid6Idx = new HashMap< ICFSecSecUserPWResetByUUuid6IdxKey,

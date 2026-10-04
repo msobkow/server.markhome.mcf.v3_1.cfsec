@@ -70,7 +70,7 @@ implements ICFSecJavaFXClusterPaneList
 	protected CFButton buttonMoreData = null;
 	protected boolean endOfData = true;
 	protected ObservableList<ICFSecClusterObj> observableListOfCluster = null;
-	protected TableColumn<ICFSecClusterObj, ICFLibKeyHash256> tableColumnId = null;
+	protected TableColumn<ICFSecClusterObj, IMCFKeyHash256> tableColumnId = null;
 	protected TableColumn<ICFSecClusterObj, String> tableColumnFullDomName = null;
 	protected TableColumn<ICFSecClusterObj, String> tableColumnDescription = null;
 	protected TableView<ICFSecClusterObj> dataTable = null;
@@ -119,24 +119,24 @@ implements ICFSecJavaFXClusterPaneList
 		javafxContainer = argContainer;
 		pageCallback = argPageCallback;
 		dataTable = new TableView<ICFSecClusterObj>();
-		tableColumnId = new TableColumn<ICFSecClusterObj,ICFLibKeyHash256>( "Id" );
-		tableColumnId.setCellValueFactory( new Callback<CellDataFeatures<ICFSecClusterObj,ICFLibKeyHash256>,ObservableValue<ICFLibKeyHash256> >() {
-			public ObservableValue<ICFLibKeyHash256> call( CellDataFeatures<ICFSecClusterObj, ICFLibKeyHash256> p ) {
+		tableColumnId = new TableColumn<ICFSecClusterObj,IMCFKeyHash256>( "Id" );
+		tableColumnId.setCellValueFactory( new Callback<CellDataFeatures<ICFSecClusterObj,IMCFKeyHash256>,ObservableValue<IMCFKeyHash256> >() {
+			public ObservableValue<IMCFKeyHash256> call( CellDataFeatures<ICFSecClusterObj, IMCFKeyHash256> p ) {
 				ICFSecClusterObj obj = p.getValue();
 				if( obj == null ) {
 					return( null );
 				}
 				else {
-					ICFLibKeyHash256 value = obj.getRequiredId();
-					ReadOnlyObjectWrapper<ICFLibKeyHash256> observable = new ReadOnlyObjectWrapper<ICFLibKeyHash256>();
+					IMCFKeyHash256 value = obj.getRequiredId();
+					ReadOnlyObjectWrapper<IMCFKeyHash256> observable = new ReadOnlyObjectWrapper<IMCFKeyHash256>();
 					observable.setValue( value );
 					return( observable );
 				}
 			}
 		});
-		tableColumnId.setCellFactory( new Callback<TableColumn<ICFSecClusterObj,ICFLibKeyHash256>,TableCell<ICFSecClusterObj,ICFLibKeyHash256>>() {
-			@Override public TableCell<ICFSecClusterObj,ICFLibKeyHash256> call(
-				TableColumn<ICFSecClusterObj,ICFLibKeyHash256> arg)
+		tableColumnId.setCellFactory( new Callback<TableColumn<ICFSecClusterObj,IMCFKeyHash256>,TableCell<ICFSecClusterObj,IMCFKeyHash256>>() {
+			@Override public TableCell<ICFSecClusterObj,IMCFKeyHash256> call(
+				TableColumn<ICFSecClusterObj,IMCFKeyHash256> arg)
 			{
 				return new CFDbKeyHash256TableCell<ICFSecClusterObj>();
 			}

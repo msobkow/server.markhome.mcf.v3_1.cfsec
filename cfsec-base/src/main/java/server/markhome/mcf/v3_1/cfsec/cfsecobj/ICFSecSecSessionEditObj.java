@@ -125,25 +125,25 @@ public interface ICFSecSecSessionEditObj
 	void setRequiredParentSecProxy( ICFSecSecUserObj value );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecSessionId.
+	 *	Get the required IMCFKeyHash256 attribute SecSessionId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecSessionId.
+	 *	@return	The required IMCFKeyHash256 attribute SecSessionId.
 	 */
-	ICFLibKeyHash256 getRequiredSecSessionId();
+	IMCFKeyHash256 getRequiredSecSessionId();
 
 	/**
-	 *	Set the required ICFLibKeyHash256 attribute SecSessionId.
+	 *	Set the required IMCFKeyHash256 attribute SecSessionId.
 	 *
-	 *	@param value The required ICFLibKeyHash256 attribute SecSessionId value to be applied.
+	 *	@param value The required IMCFKeyHash256 attribute SecSessionId value to be applied.
 	 */
-	void setRequiredSecSessionId(ICFLibKeyHash256 value);
+	void setRequiredSecSessionId(IMCFKeyHash256 value);
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecUserId.
+	 *	Get the required IMCFKeyHash256 attribute SecUserId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecUserId.
+	 *	@return	The required IMCFKeyHash256 attribute SecUserId.
 	 */
-	ICFLibKeyHash256 getRequiredSecUserId();
+	IMCFKeyHash256 getRequiredSecUserId();
 
 	/**
 	 *	Get the required LocalDateTime attribute Start.
@@ -174,11 +174,11 @@ public interface ICFSecSecSessionEditObj
 	void setOptionalFinish(LocalDateTime value);
 
 	/**
-	 *	Get the optional ICFLibKeyHash256 attribute SecProxyId.
+	 *	Get the optional IMCFKeyHash256 attribute SecProxyId.
 	 *
-	 *	@return	The optional ICFLibKeyHash256 attribute SecProxyId.
+	 *	@return	The optional IMCFKeyHash256 attribute SecProxyId.
 	 */
-	ICFLibKeyHash256 getOptionalSecProxyId();
+	IMCFKeyHash256 getOptionalSecProxyId();
 
 	public void copyRecToOrig();
 	public void copyOrigToRec();

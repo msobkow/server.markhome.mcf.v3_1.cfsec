@@ -43,7 +43,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 
 public interface ICFSecProtISOCtryObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecProtISOCtry.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -117,7 +117,7 @@ public interface ICFSecProtISOCtryObj
 	/**
 	 *	End this edition of this ISOCtry instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 

@@ -146,7 +146,7 @@ public class CFSecAppSetup
             Properties props = new Properties();
             File userFile = new File(System.getProperty("user.home"), ".cfsecappsrv.properties");
             if (userFile.exists()) {
-				throw new CFLibUsageException(CFSecAppSetup.class,
+				throw new MCFUsageException(CFSecAppSetup.class,
 					"getUserProperties",
 					String.format("%1$s already exists - application initialization previously completed", userFile.getPath ( ) ), String.format ( "%1$s already exists - application initialization previously completed", userFile.getPath()));
                 

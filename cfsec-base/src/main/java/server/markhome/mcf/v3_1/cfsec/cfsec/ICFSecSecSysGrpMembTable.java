@@ -92,7 +92,7 @@ public interface ICFSecSecSysGrpMembTable
 	 *	@param	LoginId	The SecSysGrpMemb key attribute of the instance generating the id.
 	 */
 	void deleteSecSysGrpMembByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecSysGrpId,
+		IMCFKeyHash256 argSecSysGrpId,
 		String argLoginId );
 	/**
 	 *	Delete the SecSysGrpMemb instance identified by the primary key.
@@ -111,7 +111,7 @@ public interface ICFSecSecSysGrpMembTable
 	 *	@param	SecSysGrpId	The SecSysGrpMemb key attribute of the instance generating the id.
 	 */
 	void deleteSecSysGrpMembBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecSysGrpId );
+		IMCFKeyHash256 argSecSysGrpId );
 
 	/**
 	 *	Delete the SecSysGrpMemb instances identified by the key SysGrpIdx.
@@ -165,7 +165,7 @@ public interface ICFSecSecSysGrpMembTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecSysGrpMemb readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String LoginId );
 
 	/**
@@ -203,7 +203,7 @@ public interface ICFSecSecSysGrpMembTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecSysGrpMemb readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String LoginId );
 
 	/**
@@ -216,7 +216,7 @@ public interface ICFSecSecSysGrpMembTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	ICFSecSecSysGrpMemb[] readDerivedBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId );
+		IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Read an array of the derived SecSysGrpMemb record instances identified by the duplicate key LoginIdx.
@@ -240,7 +240,7 @@ public interface ICFSecSecSysGrpMembTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpMemb readRec( ICFSecAuthorization Authorization,
 		ICFSecSecSysGrpMembPKey PKey );
@@ -255,10 +255,10 @@ public interface ICFSecSecSysGrpMembTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpMemb readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String LoginId );
 
 	/**
@@ -271,7 +271,7 @@ public interface ICFSecSecSysGrpMembTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpMemb lockRec( ICFSecAuthorization Authorization,
 		ICFSecSecSysGrpMembPKey PKey );
@@ -293,7 +293,7 @@ public interface ICFSecSecSysGrpMembTable
 	 *	@return All the specific SecSysGrpMemb instances in the database accessible for the Authorization.
 	 */
 	ICFSecSecSysGrpMemb[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorLoginId );
 
 	/**
@@ -308,10 +308,10 @@ public interface ICFSecSecSysGrpMembTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpMemb readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String LoginId );
 
 	/**
@@ -323,10 +323,10 @@ public interface ICFSecSecSysGrpMembTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpMemb[] readRecBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId );
+		IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Read an array of the specific SecSysGrpMemb record instances identified by the duplicate key LoginIdx.
@@ -337,7 +337,7 @@ public interface ICFSecSecSysGrpMembTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpMemb[] readRecByLoginIdx( ICFSecAuthorization Authorization,
 		String LoginId );
@@ -351,11 +351,11 @@ public interface ICFSecSecSysGrpMembTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpMemb[] pageRecBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
-		ICFLibKeyHash256 priorSecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorLoginId );
 
 	/**
@@ -367,10 +367,10 @@ public interface ICFSecSecSysGrpMembTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpMemb[] pageRecByLoginIdx( ICFSecAuthorization Authorization,
 		String LoginId,
-		ICFLibKeyHash256 priorSecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorLoginId );
 }

@@ -99,7 +99,7 @@ public interface ICFSecSecClusGrpTable
 	 *	@param	ClusterId	The SecClusGrp key attribute of the instance generating the id.
 	 */
 	void deleteSecClusGrpByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId );
+		IMCFKeyHash256 argClusterId );
 
 	/**
 	 *	Delete the SecClusGrp instances identified by the key ClusterIdx.
@@ -139,7 +139,7 @@ public interface ICFSecSecClusGrpTable
 	 *	@param	Name	The SecClusGrp key attribute of the instance generating the id.
 	 */
 	void deleteSecClusGrpByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId,
+		IMCFKeyHash256 argClusterId,
 		String argName );
 
 	/**
@@ -199,7 +199,7 @@ public interface ICFSecSecClusGrpTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecClusGrp readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId );
+		IMCFKeyHash256 SecClusGrpId );
 
 	/**
 	 *	Read an array of the derived SecClusGrp record instances identified by the duplicate key ClusterIdx.
@@ -211,7 +211,7 @@ public interface ICFSecSecClusGrpTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	ICFSecSecClusGrp[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId );
+		IMCFKeyHash256 ClusterId );
 
 	/**
 	 *	Read an array of the derived SecClusGrp record instances identified by the duplicate key NameIdx.
@@ -238,7 +238,7 @@ public interface ICFSecSecClusGrpTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecClusGrp readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String Name );
 
 	/**
@@ -251,7 +251,7 @@ public interface ICFSecSecClusGrpTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecClusGrp readRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -266,7 +266,7 @@ public interface ICFSecSecClusGrpTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecClusGrp lockRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -290,10 +290,10 @@ public interface ICFSecSecClusGrpTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecClusGrp readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId );
+		IMCFKeyHash256 SecClusGrpId );
 
 	/**
 	 *	Read an array of the specific SecClusGrp record instances identified by the duplicate key ClusterIdx.
@@ -304,10 +304,10 @@ public interface ICFSecSecClusGrpTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecClusGrp[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId );
+		IMCFKeyHash256 ClusterId );
 
 	/**
 	 *	Read an array of the specific SecClusGrp record instances identified by the duplicate key NameIdx.
@@ -318,7 +318,7 @@ public interface ICFSecSecClusGrpTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecClusGrp[] readRecByNameIdx( ICFSecAuthorization Authorization,
 		String Name );
@@ -335,9 +335,9 @@ public interface ICFSecSecClusGrpTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecClusGrp readRecByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String Name );
 }

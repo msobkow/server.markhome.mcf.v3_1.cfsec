@@ -272,7 +272,7 @@ implements ICFSecJavaFXSecUserPaneCommon
 		public PageDataComponentsSecSessList() {
 		}
 
-		public List<ICFSecSecSessionObj> pageData( ICFLibKeyHash256 priorSecSessionId )
+		public List<ICFSecSecSessionObj> pageData( IMCFKeyHash256 priorSecSessionId )
 		{
 			List<ICFSecSecSessionObj> dataList;
 			ICFSecSecUserObj focus = (ICFSecSecUserObj)getJavaFXFocusAsSecUser();
@@ -320,7 +320,7 @@ implements ICFSecJavaFXSecUserPaneCommon
 		public PageDataChildrenSecProxyList() {
 		}
 
-		public List<ICFSecSecSessionObj> pageData( ICFLibKeyHash256 priorSecSessionId )
+		public List<ICFSecSecSessionObj> pageData( IMCFKeyHash256 priorSecSessionId )
 		{
 			List<ICFSecSecSessionObj> dataList;
 			ICFSecSecUserObj focus = (ICFSecSecUserObj)getJavaFXFocusAsSecUser();
@@ -368,7 +368,7 @@ implements ICFSecJavaFXSecUserPaneCommon
 		public PageDataChildrenSysSecGrpMembList() {
 		}
 
-		public List<ICFSecSecSysGrpMembObj> pageData( ICFLibKeyHash256 priorSecSysGrpId,
+		public List<ICFSecSecSysGrpMembObj> pageData( IMCFKeyHash256 priorSecSysGrpId,
 		String priorLoginId )
 		{
 			List<ICFSecSecSysGrpMembObj> dataList;
@@ -418,7 +418,7 @@ implements ICFSecJavaFXSecUserPaneCommon
 		public PageDataChildrenClusSecGrpMembList() {
 		}
 
-		public List<ICFSecSecClusGrpMembObj> pageData( ICFLibKeyHash256 priorSecClusGrpId,
+		public List<ICFSecSecClusGrpMembObj> pageData( IMCFKeyHash256 priorSecClusGrpId,
 		String priorLoginId )
 		{
 			List<ICFSecSecClusGrpMembObj> dataList;
@@ -468,7 +468,7 @@ implements ICFSecJavaFXSecUserPaneCommon
 		public PageDataChildrenTentSecGrpMembList() {
 		}
 
-		public List<ICFSecSecTentGrpMembObj> pageData( ICFLibKeyHash256 priorSecTentGrpId,
+		public List<ICFSecSecTentGrpMembObj> pageData( IMCFKeyHash256 priorSecTentGrpId,
 		String priorLoginId )
 		{
 			List<ICFSecSecTentGrpMembObj> dataList;

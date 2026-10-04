@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
@@ -47,47 +47,47 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 public interface ICFSecProtSecTentRole
 {
 	public static final String S_INIT_CREATED_BY = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 INIT_CREATED_BY = CFLibDbKeyHash256.fromHex(S_INIT_CREATED_BY);
+	public static final MCFDbKeyHash256 INIT_CREATED_BY = MCFDbKeyHash256.fromHex(S_INIT_CREATED_BY);
 	public static final String S_INIT_UPDATED_BY = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 INIT_UPDATED_BY = CFLibDbKeyHash256.fromHex(S_INIT_UPDATED_BY);
+	public static final MCFDbKeyHash256 INIT_UPDATED_BY = MCFDbKeyHash256.fromHex(S_INIT_UPDATED_BY);
 	public static final String S_SECTENTROLEID_INIT_VALUE = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 SECTENTROLEID_INIT_VALUE = CFLibDbKeyHash256.fromHex( S_SECTENTROLEID_INIT_VALUE );
+	public static final MCFDbKeyHash256 SECTENTROLEID_INIT_VALUE = MCFDbKeyHash256.fromHex( S_SECTENTROLEID_INIT_VALUE );
 	public static final String S_TENANTID_INIT_VALUE = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 TENANTID_INIT_VALUE = CFLibDbKeyHash256.fromHex( S_TENANTID_INIT_VALUE );
+	public static final MCFDbKeyHash256 TENANTID_INIT_VALUE = MCFDbKeyHash256.fromHex( S_TENANTID_INIT_VALUE );
 	public static final String NAME_INIT_VALUE = new String( "" );
 	public final static int CLASS_CODE = 0xa01c;
 	public final static String S_CLASS_CODE = "a01c";
 
 	public int getClassCode();
 
-	public CFLibDbKeyHash256 getCreatedByUserId();
+	public MCFDbKeyHash256 getCreatedByUserId();
 
-	public void setCreatedByUserId( CFLibDbKeyHash256 value );
+	public void setCreatedByUserId( MCFDbKeyHash256 value );
 
 	public LocalDateTime getCreatedAt();
 
 	public void setCreatedAt( LocalDateTime value );
 
-	public CFLibDbKeyHash256 getUpdatedByUserId();
+	public MCFDbKeyHash256 getUpdatedByUserId();
 
-	public void setUpdatedByUserId( CFLibDbKeyHash256 value );
+	public void setUpdatedByUserId( MCFDbKeyHash256 value );
 
 	public LocalDateTime getUpdatedAt();
 
 	public void setUpdatedAt( LocalDateTime value );
 
-	public CFLibDbKeyHash256 getPKey();
-	public void setPKey(CFLibDbKeyHash256 requiredSecTentRoleId);
+	public MCFDbKeyHash256 getPKey();
+	public void setPKey(MCFDbKeyHash256 requiredSecTentRoleId);
 	public List<ICFSecProtSecTentRoleMemb> getOptionalChildrenMembByRole();
 
-	public ICFLibKeyHash256 getRequiredSecTentRoleId();
-	public void setRequiredSecTentRoleId( ICFLibKeyHash256 value );
+	public IMCFKeyHash256 getRequiredSecTentRoleId();
+	public void setRequiredSecTentRoleId( IMCFKeyHash256 value );
 	public int getRequiredRevision();
 	public void setRequiredRevision( int value );
 
 	public ICFSecProtTenant getRequiredOwnerTenant();
 
-	public void setRequiredOwnerTenant(ICFLibKeyHash256 argTenantId);
+	public void setRequiredOwnerTenant(IMCFKeyHash256 argTenantId);
 
 
 	public void setRequiredOwnerTenant(ICFSecProtTenant argObj);
@@ -99,8 +99,8 @@ public interface ICFSecProtSecTentRole
 
 	public void setRequiredContainerSysRole(ICFSecProtSecSysGrp argObj);
 
-	public ICFLibKeyHash256 getRequiredTenantId();
-	public void setRequiredTenantId( ICFLibKeyHash256 value );
+	public IMCFKeyHash256 getRequiredTenantId();
+	public void setRequiredTenantId( IMCFKeyHash256 value );
 	public String getRequiredName();
 	public void setRequiredName( String value );
 	public boolean equals( Object obj );

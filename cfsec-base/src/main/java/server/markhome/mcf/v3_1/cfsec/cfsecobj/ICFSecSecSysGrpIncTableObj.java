@@ -120,7 +120,7 @@ public interface ICFSecSecSysGrpIncTableObj
 	 *	@return	The SecSysGrpInc-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecSecSysGrpIncObj readSecSysGrpInc( ICFLibKeyHash256 SecSysGrpId,
+	ICFSecSecSysGrpIncObj readSecSysGrpInc( IMCFKeyHash256 SecSysGrpId,
 		String InclName );
 
 	/**
@@ -129,7 +129,7 @@ public interface ICFSecSecSysGrpIncTableObj
 	 *	@return	The SecSysGrpInc-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecSecSysGrpIncObj readSecSysGrpInc( ICFLibKeyHash256 SecSysGrpId,
+	ICFSecSecSysGrpIncObj readSecSysGrpInc( IMCFKeyHash256 SecSysGrpId,
 		String InclName,
 		boolean forceRead );
 
@@ -168,7 +168,7 @@ public interface ICFSecSecSysGrpIncTableObj
 	 *	@return	List of ICFSecSecSysGrpIncObj instance, sorted by their primary keys, which
 	 *		may include an empty set.
 	 */
-	List<ICFSecSecSysGrpIncObj> pageAllSecSysGrpInc(ICFLibKeyHash256 priorSecSysGrpId,
+	List<ICFSecSecSysGrpIncObj> pageAllSecSysGrpInc(IMCFKeyHash256 priorSecSysGrpId,
 		String priorInclName );
 
 	/**
@@ -181,7 +181,7 @@ public interface ICFSecSecSysGrpIncTableObj
 	 *	@return	CFSecSecSysGrpIncObj cached instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecSysGrpIncObj readSecSysGrpIncByIdIdx( ICFLibKeyHash256 SecSysGrpId,
+	ICFSecSecSysGrpIncObj readSecSysGrpIncByIdIdx( IMCFKeyHash256 SecSysGrpId,
 		String InclName );
 
 	/**
@@ -194,7 +194,7 @@ public interface ICFSecSecSysGrpIncTableObj
 	 *	@return	CFSecSecSysGrpIncObj refreshed instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecSysGrpIncObj readSecSysGrpIncByIdIdx( ICFLibKeyHash256 SecSysGrpId,
+	ICFSecSecSysGrpIncObj readSecSysGrpIncByIdIdx( IMCFKeyHash256 SecSysGrpId,
 		String InclName,
 		boolean forceRead );
 
@@ -206,7 +206,7 @@ public interface ICFSecSecSysGrpIncTableObj
 	 *	@return	List of CFSecSecSysGrpIncObj cached instances sorted by their primary keys for the duplicate SysGrpIdx key,
 	 *		which may be an empty set.
 	 */
-	List<ICFSecSecSysGrpIncObj> readSecSysGrpIncBySysGrpIdx( ICFLibKeyHash256 SecSysGrpId );
+	List<ICFSecSecSysGrpIncObj> readSecSysGrpIncBySysGrpIdx( IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Get the map of CFSecSecSysGrpIncObj instances sorted by their primary keys for the duplicate SysGrpIdx key.
@@ -216,7 +216,7 @@ public interface ICFSecSecSysGrpIncTableObj
 	 *	@return	List of CFSecSecSysGrpIncObj cached instances sorted by their primary keys for the duplicate SysGrpIdx key,
 	 *		which may be an empty set.
 	 */
-	List<ICFSecSecSysGrpIncObj> readSecSysGrpIncBySysGrpIdx( ICFLibKeyHash256 SecSysGrpId,
+	List<ICFSecSecSysGrpIncObj> readSecSysGrpIncBySysGrpIdx( IMCFKeyHash256 SecSysGrpId,
 		boolean forceRead );
 
 	/**
@@ -240,17 +240,17 @@ public interface ICFSecSecSysGrpIncTableObj
 	List<ICFSecSecSysGrpIncObj> readSecSysGrpIncByNameIdx( String InclName,
 		boolean forceRead );
 
-	ICFSecSecSysGrpIncObj readCachedSecSysGrpIncByIdIdx( ICFLibKeyHash256 SecSysGrpId,
+	ICFSecSecSysGrpIncObj readCachedSecSysGrpIncByIdIdx( IMCFKeyHash256 SecSysGrpId,
 		String InclName );
 
-	List<ICFSecSecSysGrpIncObj> readCachedSecSysGrpIncBySysGrpIdx( ICFLibKeyHash256 SecSysGrpId );
+	List<ICFSecSecSysGrpIncObj> readCachedSecSysGrpIncBySysGrpIdx( IMCFKeyHash256 SecSysGrpId );
 
 	List<ICFSecSecSysGrpIncObj> readCachedSecSysGrpIncByNameIdx( String InclName );
 
-	void deepDisposeSecSysGrpIncByIdIdx( ICFLibKeyHash256 SecSysGrpId,
+	void deepDisposeSecSysGrpIncByIdIdx( IMCFKeyHash256 SecSysGrpId,
 		String InclName );
 
-	void deepDisposeSecSysGrpIncBySysGrpIdx( ICFLibKeyHash256 SecSysGrpId );
+	void deepDisposeSecSysGrpIncBySysGrpIdx( IMCFKeyHash256 SecSysGrpId );
 
 	void deepDisposeSecSysGrpIncByNameIdx( String InclName );
 
@@ -263,8 +263,8 @@ public interface ICFSecSecSysGrpIncTableObj
 	 *	@return	A List of SecSysGrpInc-derived instances sorted by their primary keys,
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
-	List<ICFSecSecSysGrpIncObj> pageSecSysGrpIncBySysGrpIdx( ICFLibKeyHash256 SecSysGrpId,
-		ICFLibKeyHash256 priorSecSysGrpId,
+	List<ICFSecSecSysGrpIncObj> pageSecSysGrpIncBySysGrpIdx( IMCFKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorInclName );
 
 	/**
@@ -277,7 +277,7 @@ public interface ICFSecSecSysGrpIncTableObj
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
 	List<ICFSecSecSysGrpIncObj> pageSecSysGrpIncByNameIdx( String InclName,
-		ICFLibKeyHash256 priorSecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorInclName );
 
 	/**
@@ -297,7 +297,7 @@ public interface ICFSecSecSysGrpIncTableObj
 	 *
 	 *	@param	InclName	The SecSysGrpInc key attribute of the instance generating the id.
 	 */
-	void deleteSecSysGrpIncByIdIdx( ICFLibKeyHash256 SecSysGrpId,
+	void deleteSecSysGrpIncByIdIdx( IMCFKeyHash256 SecSysGrpId,
 		String InclName );
 
 	/**
@@ -305,7 +305,7 @@ public interface ICFSecSecSysGrpIncTableObj
 	 *
 	 *	@param	SecSysGrpId	The SecSysGrpInc key attribute of the instance generating the id.
 	 */
-	void deleteSecSysGrpIncBySysGrpIdx( ICFLibKeyHash256 SecSysGrpId );
+	void deleteSecSysGrpIncBySysGrpIdx( IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Internal use only.

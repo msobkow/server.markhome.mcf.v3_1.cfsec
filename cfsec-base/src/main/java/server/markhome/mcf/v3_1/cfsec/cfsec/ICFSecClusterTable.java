@@ -177,7 +177,7 @@ public interface ICFSecClusterTable
 	 *		no such existing key value.
 	 */
 	ICFSecCluster readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 Id );
+		IMCFKeyHash256 Id );
 
 	/**
 	 *	Read the derived Cluster record instance identified by the unique key UDomNameIdx.
@@ -215,7 +215,7 @@ public interface ICFSecClusterTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecCluster readRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -230,7 +230,7 @@ public interface ICFSecClusterTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecCluster lockRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -252,7 +252,7 @@ public interface ICFSecClusterTable
 	 *	@return All the specific Cluster instances in the database accessible for the Authorization.
 	 */
 	ICFSecCluster[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorId );
+		IMCFKeyHash256 priorId );
 
 	/**
 	 *	Read the specific Cluster record instance identified by the unique key IdIdx.
@@ -264,10 +264,10 @@ public interface ICFSecClusterTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecCluster readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 Id );
+		IMCFKeyHash256 Id );
 
 	/**
 	 *	Read the specific Cluster record instance identified by the unique key UDomNameIdx.
@@ -279,7 +279,7 @@ public interface ICFSecClusterTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecCluster readRecByUDomNameIdx( ICFSecAuthorization Authorization,
 		String FullDomName );
@@ -294,7 +294,7 @@ public interface ICFSecClusterTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecCluster readRecByUDescrIdx( ICFSecAuthorization Authorization,
 		String Description );

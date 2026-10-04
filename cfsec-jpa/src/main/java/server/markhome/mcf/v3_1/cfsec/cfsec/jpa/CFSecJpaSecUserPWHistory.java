@@ -38,7 +38,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 
 @Entity
@@ -60,7 +60,7 @@ public class CFSecJpaSecUserPWHistory
 {
 	// Embedded id's are package-accessible so that the Repository can dereference the attributes of the primary key
 	@AttributeOverrides({
-		@AttributeOverride(name="SecUserId", column = @Column( name="SecUserId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) ),
+		@AttributeOverride(name="SecUserId", column = @Column( name="SecUserId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) ),
 		@AttributeOverride(name="PWSetStamp", column = @Column( name="PWSetStamp", nullable=false ) )
 	})
 	@EmbeddedId
@@ -75,7 +75,7 @@ public class CFSecJpaSecUserPWHistory
 
 	public CFSecJpaSecUserPWHistory() {
 		pkey = new CFSecJpaSecUserPWHistoryPKey();
-		requiredPWReplacedStamp = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+		requiredPWReplacedStamp = MCFXmlUtil.parseTimestamp("2020-01-01T00:00:00");
 	}
 
 	@Override
@@ -91,21 +91,21 @@ public class CFSecJpaSecUserPWHistory
 	@Override
 	public void setPKey(ICFSecSecUserPWHistoryPKey pkey ) {
 		if (pkey == null) {
-			throw new CFLibNullArgumentException(getClass(), "setPKey", 1, "pkey");
+			throw new MCFNullArgumentException(getClass(), "setPKey", 1, "pkey");
 		}
 		else if (!(pkey instanceof CFSecJpaSecUserPWHistoryPKey)) {
-			throw new CFLibUnsupportedClassException(getClass(), "setPKey", "pkey", pkey, "CFSecJpaSecUserPWHistoryPKey");
+			throw new MCFUnsupportedClassException(getClass(), "setPKey", "pkey", pkey, "CFSecJpaSecUserPWHistoryPKey");
 		}
 		this.pkey = (CFSecJpaSecUserPWHistoryPKey)pkey;
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecUserId() {
+	public IMCFKeyHash256 getRequiredSecUserId() {
 		return( pkey.getRequiredSecUserId() );
 	}
 
 	@Override
-	public void setRequiredSecUserId( ICFLibKeyHash256 requiredSecUserId ) {
+	public void setRequiredSecUserId( IMCFKeyHash256 requiredSecUserId ) {
 		pkey.setRequiredSecUserId( requiredSecUserId );
 	}
 
@@ -136,7 +136,7 @@ public class CFSecJpaSecUserPWHistory
 
 	public void setRequiredPWReplacedStamp( LocalDateTime value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredPWReplacedStamp",
 				1,
 				"value" );
@@ -151,13 +151,13 @@ public class CFSecJpaSecUserPWHistory
 
 	public void setRequiredPasswordHash( String value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredPasswordHash",
 				1,
 				"value" );
 		}
 		else if( value.length() > 256 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredPasswordHash",
 				1,
 				"value.length()",
@@ -613,7 +613,7 @@ public class CFSecJpaSecUserPWHistory
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException( getClass(),
+			throw new MCFUnsupportedClassException( getClass(),
 				"compareTo",
 				"obj",
 				obj,

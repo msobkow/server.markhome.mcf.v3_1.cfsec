@@ -89,7 +89,7 @@ public interface ICFSecPubSecUserTable
 	 *	@param	argKey	The primary key identifying the instance to be deleted.
 	 */
 	public void pubdeleteSecUserByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 argKey );
+		IMCFKeyHash256 argKey );
 	/**
 	 *	Delete the SecUser instances identified by the key ULoginIdx.
 	 *
@@ -122,7 +122,7 @@ public interface ICFSecPubSecUserTable
 	 *		no such existing key value.
 	 */
 	public ICFSecPubSecUser pubreadDerived( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 PKey );
+		IMCFKeyHash256 PKey );
 
 	/**
 	 *	Lock the derived SecUser record instance by primary key.
@@ -135,7 +135,7 @@ public interface ICFSecPubSecUserTable
 	 *		no such existing key value.
 	 */
 	public ICFSecPubSecUser publockDerived( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 PKey );
+		IMCFKeyHash256 PKey );
 
 	/**
 	 *	Read all SecUser instances.
@@ -157,7 +157,7 @@ public interface ICFSecPubSecUserTable
 	 *		no such existing key value.
 	 */
 	public ICFSecPubSecUser pubreadDerivedByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 SecUserId );
+		MCFDbKeyHash256 SecUserId );
 
 	/**
 	 *	Read the derived SecUser record instance identified by the unique key ULoginIdx.
@@ -182,10 +182,10 @@ public interface ICFSecPubSecUserTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubSecUser pubreadRec( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 PKey );
+		IMCFKeyHash256 PKey );
 
 	/**
 	 *	Lock the specific SecUser record instance identified by the primary key.
@@ -197,10 +197,10 @@ public interface ICFSecPubSecUserTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubSecUser publockRec( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 PKey );
+		IMCFKeyHash256 PKey );
 
 	/**
 	 *	Read all the specific SecUser record instances.
@@ -219,7 +219,7 @@ public interface ICFSecPubSecUserTable
 	 *	@return All the specific SecUser instances in the database accessible for the Authorization.
 	 */
 	public ICFSecPubSecUser[] pubpageAllRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 priorSecUserId );
+		MCFDbKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read the specific SecUser record instance identified by the unique key IdIdx.
@@ -231,10 +231,10 @@ public interface ICFSecPubSecUserTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubSecUser pubreadRecByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 SecUserId );
+		MCFDbKeyHash256 SecUserId );
 
 	/**
 	 *	Read the specific SecUser record instance identified by the unique key ULoginIdx.
@@ -246,7 +246,7 @@ public interface ICFSecPubSecUserTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubSecUser pubreadRecByULoginIdx( ICFSecPubAuthorization Authorization,
 		String LoginId );

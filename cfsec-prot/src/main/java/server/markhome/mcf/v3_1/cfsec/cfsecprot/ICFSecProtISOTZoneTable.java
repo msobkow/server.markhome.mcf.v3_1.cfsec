@@ -313,7 +313,7 @@ extends ICFSecPubISOTZoneTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOTZone protreadRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -328,7 +328,7 @@ extends ICFSecPubISOTZoneTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOTZone protlockRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -352,7 +352,7 @@ extends ICFSecPubISOTZoneTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOTZone protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
 		short ISOTZoneId );
@@ -368,7 +368,7 @@ extends ICFSecPubISOTZoneTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOTZone[] protreadRecByOffsetIdx( ICFSecPubAuthorization Authorization,
 		short TZHourOffset,
@@ -384,7 +384,7 @@ extends ICFSecPubISOTZoneTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOTZone protreadRecByUTZNameIdx( ICFSecPubAuthorization Authorization,
 		String TZName );
@@ -398,7 +398,7 @@ extends ICFSecPubISOTZoneTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOTZone[] protreadRecByIso8601Idx( ICFSecPubAuthorization Authorization,
 		String Iso8601 );

@@ -120,7 +120,7 @@ public interface ICFSecSecClusRoleMembTableObj
 	 *	@return	The SecClusRoleMemb-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecSecClusRoleMembObj readSecClusRoleMemb( ICFLibKeyHash256 SecClusRoleId,
+	ICFSecSecClusRoleMembObj readSecClusRoleMemb( IMCFKeyHash256 SecClusRoleId,
 		String LoginId );
 
 	/**
@@ -129,7 +129,7 @@ public interface ICFSecSecClusRoleMembTableObj
 	 *	@return	The SecClusRoleMemb-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecSecClusRoleMembObj readSecClusRoleMemb( ICFLibKeyHash256 SecClusRoleId,
+	ICFSecSecClusRoleMembObj readSecClusRoleMemb( IMCFKeyHash256 SecClusRoleId,
 		String LoginId,
 		boolean forceRead );
 
@@ -168,7 +168,7 @@ public interface ICFSecSecClusRoleMembTableObj
 	 *	@return	List of ICFSecSecClusRoleMembObj instance, sorted by their primary keys, which
 	 *		may include an empty set.
 	 */
-	List<ICFSecSecClusRoleMembObj> pageAllSecClusRoleMemb(ICFLibKeyHash256 priorSecClusRoleId,
+	List<ICFSecSecClusRoleMembObj> pageAllSecClusRoleMemb(IMCFKeyHash256 priorSecClusRoleId,
 		String priorLoginId );
 
 	/**
@@ -181,7 +181,7 @@ public interface ICFSecSecClusRoleMembTableObj
 	 *	@return	CFSecSecClusRoleMembObj cached instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecClusRoleMembObj readSecClusRoleMembByIdIdx( ICFLibKeyHash256 SecClusRoleId,
+	ICFSecSecClusRoleMembObj readSecClusRoleMembByIdIdx( IMCFKeyHash256 SecClusRoleId,
 		String LoginId );
 
 	/**
@@ -194,7 +194,7 @@ public interface ICFSecSecClusRoleMembTableObj
 	 *	@return	CFSecSecClusRoleMembObj refreshed instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecClusRoleMembObj readSecClusRoleMembByIdIdx( ICFLibKeyHash256 SecClusRoleId,
+	ICFSecSecClusRoleMembObj readSecClusRoleMembByIdIdx( IMCFKeyHash256 SecClusRoleId,
 		String LoginId,
 		boolean forceRead );
 
@@ -206,7 +206,7 @@ public interface ICFSecSecClusRoleMembTableObj
 	 *	@return	List of CFSecSecClusRoleMembObj cached instances sorted by their primary keys for the duplicate ClusRoleIdx key,
 	 *		which may be an empty set.
 	 */
-	List<ICFSecSecClusRoleMembObj> readSecClusRoleMembByClusRoleIdx( ICFLibKeyHash256 SecClusRoleId );
+	List<ICFSecSecClusRoleMembObj> readSecClusRoleMembByClusRoleIdx( IMCFKeyHash256 SecClusRoleId );
 
 	/**
 	 *	Get the map of CFSecSecClusRoleMembObj instances sorted by their primary keys for the duplicate ClusRoleIdx key.
@@ -216,7 +216,7 @@ public interface ICFSecSecClusRoleMembTableObj
 	 *	@return	List of CFSecSecClusRoleMembObj cached instances sorted by their primary keys for the duplicate ClusRoleIdx key,
 	 *		which may be an empty set.
 	 */
-	List<ICFSecSecClusRoleMembObj> readSecClusRoleMembByClusRoleIdx( ICFLibKeyHash256 SecClusRoleId,
+	List<ICFSecSecClusRoleMembObj> readSecClusRoleMembByClusRoleIdx( IMCFKeyHash256 SecClusRoleId,
 		boolean forceRead );
 
 	/**
@@ -240,17 +240,17 @@ public interface ICFSecSecClusRoleMembTableObj
 	List<ICFSecSecClusRoleMembObj> readSecClusRoleMembByLoginIdx( String LoginId,
 		boolean forceRead );
 
-	ICFSecSecClusRoleMembObj readCachedSecClusRoleMembByIdIdx( ICFLibKeyHash256 SecClusRoleId,
+	ICFSecSecClusRoleMembObj readCachedSecClusRoleMembByIdIdx( IMCFKeyHash256 SecClusRoleId,
 		String LoginId );
 
-	List<ICFSecSecClusRoleMembObj> readCachedSecClusRoleMembByClusRoleIdx( ICFLibKeyHash256 SecClusRoleId );
+	List<ICFSecSecClusRoleMembObj> readCachedSecClusRoleMembByClusRoleIdx( IMCFKeyHash256 SecClusRoleId );
 
 	List<ICFSecSecClusRoleMembObj> readCachedSecClusRoleMembByLoginIdx( String LoginId );
 
-	void deepDisposeSecClusRoleMembByIdIdx( ICFLibKeyHash256 SecClusRoleId,
+	void deepDisposeSecClusRoleMembByIdIdx( IMCFKeyHash256 SecClusRoleId,
 		String LoginId );
 
-	void deepDisposeSecClusRoleMembByClusRoleIdx( ICFLibKeyHash256 SecClusRoleId );
+	void deepDisposeSecClusRoleMembByClusRoleIdx( IMCFKeyHash256 SecClusRoleId );
 
 	void deepDisposeSecClusRoleMembByLoginIdx( String LoginId );
 
@@ -263,8 +263,8 @@ public interface ICFSecSecClusRoleMembTableObj
 	 *	@return	A List of SecClusRoleMemb-derived instances sorted by their primary keys,
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
-	List<ICFSecSecClusRoleMembObj> pageSecClusRoleMembByClusRoleIdx( ICFLibKeyHash256 SecClusRoleId,
-		ICFLibKeyHash256 priorSecClusRoleId,
+	List<ICFSecSecClusRoleMembObj> pageSecClusRoleMembByClusRoleIdx( IMCFKeyHash256 SecClusRoleId,
+		IMCFKeyHash256 priorSecClusRoleId,
 		String priorLoginId );
 
 	/**
@@ -277,7 +277,7 @@ public interface ICFSecSecClusRoleMembTableObj
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
 	List<ICFSecSecClusRoleMembObj> pageSecClusRoleMembByLoginIdx( String LoginId,
-		ICFLibKeyHash256 priorSecClusRoleId,
+		IMCFKeyHash256 priorSecClusRoleId,
 		String priorLoginId );
 
 	/**
@@ -297,7 +297,7 @@ public interface ICFSecSecClusRoleMembTableObj
 	 *
 	 *	@param	LoginId	The SecClusRoleMemb key attribute of the instance generating the id.
 	 */
-	void deleteSecClusRoleMembByIdIdx( ICFLibKeyHash256 SecClusRoleId,
+	void deleteSecClusRoleMembByIdIdx( IMCFKeyHash256 SecClusRoleId,
 		String LoginId );
 
 	/**
@@ -305,7 +305,7 @@ public interface ICFSecSecClusRoleMembTableObj
 	 *
 	 *	@param	SecClusRoleId	The SecClusRoleMemb key attribute of the instance generating the id.
 	 */
-	void deleteSecClusRoleMembByClusRoleIdx( ICFLibKeyHash256 SecClusRoleId );
+	void deleteSecClusRoleMembByClusRoleIdx( IMCFKeyHash256 SecClusRoleId );
 
 	/**
 	 *	Internal use only.

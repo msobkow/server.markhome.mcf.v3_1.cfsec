@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 
 /**
  *	ICFSecProtSecClusRoleMembPKey protected primary key interface for SecClusRoleMemb has CodeVis Protected, meaning that any only user interfaces and application code specific to the defining schema can access it.
@@ -46,8 +46,8 @@ import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
 public interface ICFSecProtSecClusRoleMembPKey
 {
 
-	public ICFLibKeyHash256 getRequiredSecClusRoleId();
-	public void setRequiredSecClusRoleId( ICFLibKeyHash256 value );
+	public IMCFKeyHash256 getRequiredSecClusRoleId();
+	public void setRequiredSecClusRoleId( IMCFKeyHash256 value );
 	public String getRequiredLoginId();
 	public void setRequiredLoginId( String value );
 	@Override

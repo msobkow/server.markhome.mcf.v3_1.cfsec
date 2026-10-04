@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +75,7 @@ public class CFSecJpaSysClusterService {
 			return( null );
 		}
 		if (data.getRequiredContainerCluster() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -86,7 +86,7 @@ public class CFSecJpaSysClusterService {
 				null);
 		}
 		if(data.getRequiredClusterId() == null || data.getRequiredClusterId().isNull()) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredClusterId");
@@ -101,7 +101,7 @@ public class CFSecJpaSysClusterService {
 			return cfsec31SysClusterRepository.save(data);
 		}
 		catch(Exception ex) {
-			throw new CFLibDbException(getClass(),
+			throw new MCFDbException(getClass(),
 				S_ProcName,
 				ex);
 		}
@@ -121,13 +121,13 @@ public class CFSecJpaSysClusterService {
 			return( null );
 		}
 		if (data.getPKey() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.getPKey()");
 		}
 		if (data.getRequiredContainerCluster() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -138,16 +138,16 @@ public class CFSecJpaSysClusterService {
 				null);
 		}
 		if(data.getRequiredClusterId() == null || data.getRequiredClusterId().isNull()) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredClusterId");
 		}
 		// Ensure the entity exists and that the revision matches
 		CFSecJpaSysCluster existing = cfsec31SysClusterRepository.findById(($implCommaIJavaOptAtomType$)(data.getPKey()))
-			.orElseThrow(() -> new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
+			.orElseThrow(() -> new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
 		if (existing.getRequiredRevision() != data.getRequiredRevision()) {
-			throw new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
+			throw new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
 		}
 		// Apply superior data relationships of CFSecSysCluster to existing object
 		existing.setRequiredContainerCluster(data.getRequiredContainerCluster());
@@ -189,7 +189,7 @@ public class CFSecJpaSysClusterService {
 	 *		@return List&lt;CFSecJpaSysCluster&gt; of the found entities, or an empty list if no such entities exist.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public List<CFSecJpaSysCluster> findByClusterIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId) {
+	public List<CFSecJpaSysCluster> findByClusterIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId) {
 		return( cfsec31SysClusterRepository.findByClusterIdx(requiredClusterId));
 	}
 
@@ -227,7 +227,7 @@ public class CFSecJpaSysClusterService {
 	 *		@return A list of locked entities, refreshed from the data store, or an empty list if no such entities exist.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public List<CFSecJpaSysCluster> lockByClusterIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId) {
+	public List<CFSecJpaSysCluster> lockByClusterIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId) {
 		return( cfsec31SysClusterRepository.lockByClusterIdx(requiredClusterId));
 	}
 
@@ -261,7 +261,7 @@ public class CFSecJpaSysClusterService {
 	 *		@param requiredClusterId
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByClusterIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId) {
+	public void deleteByClusterIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId) {
 		cfsec31SysClusterRepository.deleteByClusterIdx(requiredClusterId);
 	}
 

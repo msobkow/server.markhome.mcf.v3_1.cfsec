@@ -268,7 +268,7 @@ extends ICFSecPubISOCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCcy protreadRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -283,7 +283,7 @@ extends ICFSecPubISOCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCcy protlockRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -307,7 +307,7 @@ extends ICFSecPubISOCcyTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCcy protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
 		short ISOCcyId );
@@ -322,7 +322,7 @@ extends ICFSecPubISOCcyTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCcy protreadRecByCcyCdIdx( ICFSecPubAuthorization Authorization,
 		String ISOCode );
@@ -337,7 +337,7 @@ extends ICFSecPubISOCcyTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCcy protreadRecByCcyNmIdx( ICFSecPubAuthorization Authorization,
 		String Name );

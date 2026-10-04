@@ -36,7 +36,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -161,21 +161,21 @@ public class CFSecJpaSchemaService {
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
 	public void bootstrapSecurity() {
 		CFSecJpaSysCluster sysCluster;
-		CFLibDbKeyHash256 systemClusterID;
+		MCFDbKeyHash256 systemClusterID;
 		CFSecJpaCluster systemCluster;
 		CFSecJpaSecUser systemUser;
-		CFLibDbKeyHash256 systemUID;
+		MCFDbKeyHash256 systemUID;
 		CFSecJpaSecUser systemAdminUser;
-		CFLibDbKeyHash256 systemAdminUID;
+		MCFDbKeyHash256 systemAdminUID;
 		CFSecJpaSecSession bootstrapSession;
-		CFLibDbKeyHash256 bootstrapSessionID;
+		MCFDbKeyHash256 bootstrapSessionID;
 		CFSecJpaTenant systemTenant;
-		CFLibDbKeyHash256 systemTenantID;
+		MCFDbKeyHash256 systemTenantID;
 		CFSecJpaSecSysGrp secSystemAdminGroup;
-		CFLibDbKeyHash256 secSystemAdminGroupID;
+		MCFDbKeyHash256 secSystemAdminGroupID;
 		CFSecJpaSecSysGrpMemb secSystemAdminGroupMembSystemAdmin;
 		CFSecJpaSecSysGrp secSysGroupPublic;
-		CFLibDbKeyHash256 secSysGroupPublicID;
+		MCFDbKeyHash256 secSysGroupPublicID;
 		CFSecJpaSecSysGrpInc secSysGroupPublicIncSystemAdmin;
 		systemUser = secuserService.findByULoginIdx("system");
 		if (systemUser != null) {
@@ -190,12 +190,12 @@ public class CFSecJpaSchemaService {
 				}
 			});
 			CFSecAuthorization auth = (CFSecAuthorization)ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization();
-			auth.setAuthUuid6(CFLibUuid6.generateUuid6());
+			auth.setAuthUuid6(MCFUuid6.generateUuid6());
 			auth.setSecUserId(systemUID);
 		
 			systemAdminUser = secuserService.findByULoginIdx("systemadmin");
 			if (systemAdminUser == null) {
-				throw new CFLibNullArgumentException(getClass(), "bootstrapSecurity", 0, "findByULoginIdx('systemadmin')");
+				throw new MCFNullArgumentException(getClass(), "bootstrapSecurity", 0, "findByULoginIdx('systemadmin')");
 			}
 			systemAdminUID = systemAdminUser.getRequiredSecUserId();
 
@@ -204,16 +204,16 @@ public class CFSecJpaSchemaService {
 				sysCluster = sysClusters.get(0);
 				systemClusterID = sysCluster.getRequiredClusterId();
 				if(systemClusterID == null || systemClusterID.isNull()) {
-					throw new CFLibNullArgumentException(getClass(), "bootstrapSecurity", 0, "systemClusterID");
+					throw new MCFNullArgumentException(getClass(), "bootstrapSecurity", 0, "systemClusterID");
 				}
 				systemCluster = clusterService.find(systemClusterID);
 				if (systemCluster == null) {
-					throw new CFLibNullArgumentException(getClass(), "bootstrapSecurity", 0, "systemCluster");
+					throw new MCFNullArgumentException(getClass(), "bootstrapSecurity", 0, "systemCluster");
 				}
 				systemTenant = tenantService.findByUNameIdx(systemClusterID, "system");
 				if( systemTenant == null) {
 					systemTenantID = null;
-					throw new CFLibNullArgumentException(getClass(), "bootstrapSecurity", 0, "systemTenant");
+					throw new MCFNullArgumentException(getClass(), "bootstrapSecurity", 0, "systemTenant");
 				}
 				else {
 					systemTenantID = systemTenant.getPKey();
@@ -229,7 +229,7 @@ public class CFSecJpaSchemaService {
 						}
 					}
 					if (bootstrapSession == null) {
-						throw new CFLibNullArgumentException(getClass(), "bootstrapSecurity", 0, "bootstrapSession");
+						throw new MCFNullArgumentException(getClass(), "bootstrapSecurity", 0, "bootstrapSession");
 					}
 				}
 				bootstrapSessionID = bootstrapSession.getPKey();
@@ -240,28 +240,28 @@ public class CFSecJpaSchemaService {
 
 				secSystemAdminGroup = (CFSecJpaSecSysGrp)(secsysgrpService.findByUNameIdx( "systemadmin"));
 				if (secSystemAdminGroup == null) {
-					throw new CFLibNullArgumentException(getClass(), "bootstrapSecurity", 0, "secSystemAdminGroup");
+					throw new MCFNullArgumentException(getClass(), "bootstrapSecurity", 0, "secSystemAdminGroup");
 				}
 				secSystemAdminGroupID = secSystemAdminGroup.getRequiredSecSysGrpId();
 
 				secSysGroupPublic = (CFSecJpaSecSysGrp)(secsysgrpService.findByUNameIdx( "public"));
 				if (secSysGroupPublic == null) {
-					throw new CFLibNullArgumentException(getClass(), "bootstrapSecurity", 0, "secSysGroupPublic");
+					throw new MCFNullArgumentException(getClass(), "bootstrapSecurity", 0, "secSysGroupPublic");
 				}
 				secSysGroupPublicID = secSysGroupPublic.getRequiredSecSysGrpId();
 
 				secSystemAdminGroupMembSystemAdmin = (CFSecJpaSecSysGrpMemb)(secsysgrpmembService.find(secSystemAdminGroupID, systemUser.getRequiredLoginId()));
 				if (secSystemAdminGroupMembSystemAdmin == null) {
-					throw new CFLibNullArgumentException(getClass(), "bootstrapSecurity", 0, "secSystemAdminGroupMembSystemAdmin");
+					throw new MCFNullArgumentException(getClass(), "bootstrapSecurity", 0, "secSystemAdminGroupMembSystemAdmin");
 				}
 
 				secSysGroupPublicIncSystemAdmin = (CFSecJpaSecSysGrpInc)(secsysgrpincService.find(secSysGroupPublicID, secSystemAdminGroup.getRequiredName()));
 				if (secSysGroupPublicIncSystemAdmin == null) {
-					throw new CFLibNullArgumentException(getClass(), "bootstrapSecurity", 0, "secSysGroupPublicIncSystemAdmin");
+					throw new MCFNullArgumentException(getClass(), "bootstrapSecurity", 0, "secSysGroupPublicIncSystemAdmin");
 				}
 			}
 			else {
-				throw new CFLibNullArgumentException(getClass(), "bootstrapSecurity", 0, "SysClusterSingleton");
+				throw new MCFNullArgumentException(getClass(), "bootstrapSecurity", 0, "SysClusterSingleton");
 			}
 		}
 		else {
@@ -284,37 +284,37 @@ public class CFSecJpaSchemaService {
 		}
 		LocalDateTime now = LocalDateTime.now();
 		if (systemUID == null || systemUID.isNull()) {
-			systemUID = new CFLibDbKeyHash256(0);
+			systemUID = new MCFDbKeyHash256(0);
 		}
 		if (systemAdminUID == null || systemAdminUID.isNull()) {
-			systemAdminUID = new CFLibDbKeyHash256(0);
+			systemAdminUID = new MCFDbKeyHash256(0);
 		}
 		if (bootstrapSessionID == null || bootstrapSessionID.isNull()) {
-			bootstrapSessionID = new CFLibDbKeyHash256(0);
+			bootstrapSessionID = new MCFDbKeyHash256(0);
 		}
 		if (systemClusterID == null || systemClusterID.isNull()) {
-			systemClusterID = new CFLibDbKeyHash256(0);
+			systemClusterID = new MCFDbKeyHash256(0);
 		}
 		if (systemTenantID == null || systemTenantID.isNull()) {
-			systemTenantID = new CFLibDbKeyHash256(0);
+			systemTenantID = new MCFDbKeyHash256(0);
 		}
 		if (secSystemAdminGroupID == null || secSystemAdminGroupID.isNull()) {
-			secSystemAdminGroupID = new CFLibDbKeyHash256(0);
+			secSystemAdminGroupID = new MCFDbKeyHash256(0);
 		}
 		if (secSysGroupPublicID == null || secSysGroupPublicID.isNull()) {
-			secSysGroupPublicID = new CFLibDbKeyHash256(0);
+			secSysGroupPublicID = new MCFDbKeyHash256(0);
 		}
 		if (ICFSecSchema.getSysClusterId() == null || ICFSecSchema.getSysClusterId().isNull()) {
 			ICFSecSchema.setSysClusterId(systemClusterID);
 		}
 		else if ( ! ICFSecSchema.getSysClusterId().equals( systemClusterID )) {
-			throw new CFLibInvalidArgumentException(getClass(), "bootstrapSecurity", "Previously set system cluster id disagrees with new system cluster id", "Previously set system cluster id disagrees with new system cluster id");
+			throw new MCFInvalidArgumentException(getClass(), "bootstrapSecurity", "Previously set system cluster id disagrees with new system cluster id", "Previously set system cluster id disagrees with new system cluster id");
 		}
 		if (ICFSecSchema.getSysTenantId() == null || ICFSecSchema.getSysTenantId().isNull()) {
 			ICFSecSchema.setSysTenantId(systemTenantID);
 		}
 		else if ( ! ICFSecSchema.getSysTenantId().equals( systemTenantID )) {
-			throw new CFLibInvalidArgumentException(getClass(), "bootstrapSecurity", "Previously set system tenant id disagrees with new system tenant id", "Previously set system tenant id disagrees with new system tenant id");
+			throw new MCFInvalidArgumentException(getClass(), "bootstrapSecurity", "Previously set system tenant id disagrees with new system tenant id", "Previously set system tenant id disagrees with new system tenant id");
 		}
 		if (!systemUID.equals(ICFSecSchema.getSystemId())) {
 			ICFSecSchema.setSystemId(systemUID);
@@ -336,7 +336,7 @@ public class CFSecJpaSchemaService {
 			}
 		});
 		CFSecAuthorization auth = (CFSecAuthorization)ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization();
-		auth.setAuthUuid6(CFLibUuid6.generateUuid6());
+		auth.setAuthUuid6(MCFUuid6.generateUuid6());
 		auth.setSecUserId(systemUID);
 		auth.setSecSessionId(bootstrapSessionID);
 		auth.setSecClusterId(systemClusterID);
@@ -528,50 +528,50 @@ public class CFSecJpaSchemaService {
 		String publicGroup = secSysGroupPublic.getRequiredName();
 		
 		ICFSecSecSysGrp secGroupCreate;
-		CFLibDbKeyHash256 secGroupCreateID;
+		MCFDbKeyHash256 secGroupCreateID;
 		ICFSecSecSysGrpInc secGroupCreateIncSystemAdmin;
 		ICFSecSecSysGrp secGroupRead;
-		CFLibDbKeyHash256 secGroupReadID;
+		MCFDbKeyHash256 secGroupReadID;
 		ICFSecSecSysGrpInc secGroupReadIncSystemAdmin;
 		ICFSecSecSysGrpInc secGroupReadIncPublic;
 		ICFSecSecSysGrp secGroupUpdate;
-		CFLibDbKeyHash256 secGroupUpdateID;
+		MCFDbKeyHash256 secGroupUpdateID;
 		ICFSecSecSysGrpInc secGroupUpdateIncSystemAdmin;
 		ICFSecSecSysGrp secGroupDelete;
-		CFLibDbKeyHash256 secGroupDeleteID;
+		MCFDbKeyHash256 secGroupDeleteID;
 		ICFSecSecSysGrpInc secGroupDeleteIncSystemAdmin;
 		ICFSecSecSysGrp secGroupRestore;
-		CFLibDbKeyHash256 secGroupRestoreID;
+		MCFDbKeyHash256 secGroupRestoreID;
 		ICFSecSecSysGrpInc secGroupRestoreIncSystemAdmin;
 		ICFSecSecSysGrp secGroupMutate;
-		CFLibDbKeyHash256 secGroupMutateID;
+		MCFDbKeyHash256 secGroupMutateID;
 		ICFSecSecSysGrpInc secGroupMutateIncSystemAdmin;
 
 		ICFSecSecClusGrp csecGroupCreate;
-		CFLibDbKeyHash256 csecGroupCreateID;
+		MCFDbKeyHash256 csecGroupCreateID;
 		ICFSecSecClusGrp csecGroupRead;
-		CFLibDbKeyHash256 csecGroupReadID;
+		MCFDbKeyHash256 csecGroupReadID;
 		ICFSecSecClusGrp csecGroupUpdate;
-		CFLibDbKeyHash256 csecGroupUpdateID;
+		MCFDbKeyHash256 csecGroupUpdateID;
 		ICFSecSecClusGrp csecGroupDelete;
-		CFLibDbKeyHash256 csecGroupDeleteID;
+		MCFDbKeyHash256 csecGroupDeleteID;
 		ICFSecSecClusGrp csecGroupRestore;
-		CFLibDbKeyHash256 csecGroupRestoreID;
+		MCFDbKeyHash256 csecGroupRestoreID;
 		ICFSecSecClusGrp csecGroupMutate;
-		CFLibDbKeyHash256 csecGroupMutateID;
+		MCFDbKeyHash256 csecGroupMutateID;
 		
 		ICFSecSecTentGrp tsecGroupCreate;
-		CFLibDbKeyHash256 tsecGroupCreateID;
+		MCFDbKeyHash256 tsecGroupCreateID;
 		ICFSecSecTentGrp tsecGroupRead;
-		CFLibDbKeyHash256 tsecGroupReadID;
+		MCFDbKeyHash256 tsecGroupReadID;
 		ICFSecSecTentGrp tsecGroupUpdate;
-		CFLibDbKeyHash256 tsecGroupUpdateID;
+		MCFDbKeyHash256 tsecGroupUpdateID;
 		ICFSecSecTentGrp tsecGroupDelete;
-		CFLibDbKeyHash256 tsecGroupDeleteID;
+		MCFDbKeyHash256 tsecGroupDeleteID;
 		ICFSecSecTentGrp tsecGroupRestore;
-		CFLibDbKeyHash256 tsecGroupRestoreID;
+		MCFDbKeyHash256 tsecGroupRestoreID;
 		ICFSecSecTentGrp tsecGroupMutate;
-		CFLibDbKeyHash256 tsecGroupMutateID;
+		MCFDbKeyHash256 tsecGroupMutateID;
 
 		secGroupCreate = ICFSecSchema.getBackingCFSec().getTableSecSysGrp().readDerivedByUNameIdx(auth, createPermName);
 		if (secGroupCreate != null) {
@@ -655,25 +655,25 @@ public class CFSecJpaSchemaService {
 		}
 
 		if (secGroupCreateID == null || secGroupCreateID.isNull()) {
-			secGroupCreateID = new CFLibDbKeyHash256(0);
+			secGroupCreateID = new MCFDbKeyHash256(0);
 		}
 		if (secGroupReadID == null || secGroupReadID.isNull()) {
-			secGroupReadID = new CFLibDbKeyHash256(0);
+			secGroupReadID = new MCFDbKeyHash256(0);
 		}
 		if (secGroupUpdateID == null || secGroupUpdateID.isNull()) {
-			secGroupUpdateID = new CFLibDbKeyHash256(0);
+			secGroupUpdateID = new MCFDbKeyHash256(0);
 		}
 		if (secGroupDeleteID == null || secGroupDeleteID.isNull()) {
-			secGroupDeleteID = new CFLibDbKeyHash256(0);
+			secGroupDeleteID = new MCFDbKeyHash256(0);
 		}
 		if (hasHistory) {
 			if (secGroupRestoreID == null || secGroupRestoreID.isNull()) {
-				secGroupRestoreID = new CFLibDbKeyHash256(0);
+				secGroupRestoreID = new MCFDbKeyHash256(0);
 			}
 		}
 		if (isMutable) {
 			if (secGroupMutateID == null || secGroupMutateID.isNull()) {
-				secGroupMutateID = new CFLibDbKeyHash256(0);
+				secGroupMutateID = new MCFDbKeyHash256(0);
 			}
 		}
 
@@ -914,25 +914,25 @@ public class CFSecJpaSchemaService {
 			}
 
 			if (csecGroupCreateID == null || csecGroupCreateID.isNull()) {
-				csecGroupCreateID = new CFLibDbKeyHash256(0);
+				csecGroupCreateID = new MCFDbKeyHash256(0);
 			}
 			if (csecGroupReadID == null || csecGroupReadID.isNull()) {
-				csecGroupReadID = new CFLibDbKeyHash256(0);
+				csecGroupReadID = new MCFDbKeyHash256(0);
 			}
 			if (csecGroupUpdateID == null || csecGroupUpdateID.isNull()) {
-				csecGroupUpdateID = new CFLibDbKeyHash256(0);
+				csecGroupUpdateID = new MCFDbKeyHash256(0);
 			}
 			if (csecGroupDeleteID == null || csecGroupDeleteID.isNull()) {
-				csecGroupDeleteID = new CFLibDbKeyHash256(0);
+				csecGroupDeleteID = new MCFDbKeyHash256(0);
 			}
 			if (hasHistory) {
 				if (csecGroupRestoreID == null || csecGroupRestoreID.isNull()) {
-					csecGroupRestoreID = new CFLibDbKeyHash256(0);
+					csecGroupRestoreID = new MCFDbKeyHash256(0);
 				}
 			}
 			if (isMutable) {
 				if (csecGroupMutateID == null || csecGroupMutateID.isNull()) {
-					csecGroupMutateID = new CFLibDbKeyHash256(0);
+					csecGroupMutateID = new MCFDbKeyHash256(0);
 				}
 			}
 
@@ -1087,25 +1087,25 @@ public class CFSecJpaSchemaService {
 			}
 
 			if (tsecGroupCreateID == null || tsecGroupCreateID.isNull()) {
-				tsecGroupCreateID = new CFLibDbKeyHash256(0);
+				tsecGroupCreateID = new MCFDbKeyHash256(0);
 			}
 			if (tsecGroupReadID == null || tsecGroupReadID.isNull()) {
-				tsecGroupReadID = new CFLibDbKeyHash256(0);
+				tsecGroupReadID = new MCFDbKeyHash256(0);
 			}
 			if (tsecGroupUpdateID == null || tsecGroupUpdateID.isNull()) {
-				tsecGroupUpdateID = new CFLibDbKeyHash256(0);
+				tsecGroupUpdateID = new MCFDbKeyHash256(0);
 			}
 			if (tsecGroupDeleteID == null || tsecGroupDeleteID.isNull()) {
-				tsecGroupDeleteID = new CFLibDbKeyHash256(0);
+				tsecGroupDeleteID = new MCFDbKeyHash256(0);
 			}
 			if (hasHistory) {
 				if (tsecGroupRestoreID == null || tsecGroupRestoreID.isNull()) {
-					tsecGroupRestoreID = new CFLibDbKeyHash256(0);
+					tsecGroupRestoreID = new MCFDbKeyHash256(0);
 				}
 			}
 			if (isMutable) {
 				if (tsecGroupMutateID == null || tsecGroupMutateID.isNull()) {
-					tsecGroupMutateID = new CFLibDbKeyHash256(0);
+					tsecGroupMutateID = new MCFDbKeyHash256(0);
 				}
 			}
 
@@ -1205,15 +1205,15 @@ public class CFSecJpaSchemaService {
 	}
 
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void bootstrapAllTablesSecurity(CFLibDbKeyHash256 clusterId, CFLibDbKeyHash256 tenantId, CFSecPubTableData tableData[]) {
+	public void bootstrapAllTablesSecurity(MCFDbKeyHash256 clusterId, MCFDbKeyHash256 tenantId, CFSecPubTableData tableData[]) {
 		LocalDateTime now = LocalDateTime.now();
 		ICFSecSecSession bootstrapSession;
-		CFLibDbKeyHash256 bootstrapSessionID = new CFLibDbKeyHash256(0);
-		CFLibDbKeyHash256 systemUID = ICFSecSchema.getSystemId();
+		MCFDbKeyHash256 bootstrapSessionID = new MCFDbKeyHash256(0);
+		MCFDbKeyHash256 systemUID = ICFSecSchema.getSystemId();
 
 		CFSecAuthorization auth = new CFSecAuthorization();
 		auth.setSecUserId(systemUID);
-		auth.setAuthUuid6(CFLibUuid6.generateUuid6());
+		auth.setAuthUuid6(MCFUuid6.generateUuid6());
 		auth.setSecClusterId(clusterId);
 		auth.setSecTenantId(tenantId);
 		auth.setSecSessionId(bootstrapSessionID);
@@ -1238,22 +1238,22 @@ public class CFSecJpaSchemaService {
 
 		ICFSecSecSysGrp secSystemAdminGroup = ICFSecSchema.getBackingCFSec().getTableSecSysGrp().readDerivedByUNameIdx( auth, "systemadmin");
 		if (secSystemAdminGroup == null) {
-			throw new CFLibNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secSystemAdminGroup");
+			throw new MCFNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secSystemAdminGroup");
 		}
 
 		ICFSecSecSysGrp secSysGroupPublic = ICFSecSchema.getBackingCFSec().getTableSecSysGrp().readDerivedByUNameIdx( auth, "public");
 		if (secSysGroupPublic == null) {
-			throw new CFLibNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secSysGroupPublic");
+			throw new MCFNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secSysGroupPublic");
 		}
 		
 		ICFSecCluster secCluster = ICFSecSchema.getBackingCFSec().getTableCluster().readDerived(auth, clusterId);
 		if (secCluster == null) {
-			throw new CFLibNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secCluster<" + clusterId.toString() + ">");
+			throw new MCFNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secCluster<" + clusterId.toString() + ">");
 		}
 		
 		ICFSecTenant secTenant = ICFSecSchema.getBackingCFSec().getTableTenant().readDerived(auth, tenantId);
 		if (secTenant == null) {
-			throw new CFLibNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secTenant<" + tenantId.toString() + ">");
+			throw new MCFNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secTenant<" + tenantId.toString() + ">");
 		}
 	
 		bootstrapAllTablesSecurity(auth, systemUID, bootstrapSession, secSystemAdminGroup, secSysGroupPublic, secCluster, secTenant, tableData);
@@ -1272,7 +1272,7 @@ public class CFSecJpaSchemaService {
 
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
 	public void bootstrapAllTablesSecurity(ICFSecAuthorization auth,
-		CFLibDbKeyHash256 systemUID,
+		MCFDbKeyHash256 systemUID,
 		ICFSecSecSession bootstrapSession,
 		ICFSecSecSysGrp secSystemAdminGroup,
 		ICFSecSecSysGrp secSysGroupPublic,
@@ -1282,18 +1282,18 @@ public class CFSecJpaSchemaService {
 	{
 		LocalDateTime now = LocalDateTime.now();
 
-		CFLibDbKeyHash256 bootstrapSessionID = bootstrapSession.getRequiredSecSessionId();
+		MCFDbKeyHash256 bootstrapSessionID = bootstrapSession.getRequiredSecSessionId();
 		if (secSystemAdminGroup == null) {
-			throw new CFLibNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secSystemAdminGroup");
+			throw new MCFNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secSystemAdminGroup");
 		}
 		if (secSysGroupPublic == null) {
-			throw new CFLibNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secSysGroupPublic");
+			throw new MCFNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secSysGroupPublic");
 		}
 		if (secCluster == null) {
-			throw new CFLibNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secCluster");
+			throw new MCFNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secCluster");
 		}
 		if (secTenant == null) {
-			throw new CFLibNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secTenant");
+			throw new MCFNullArgumentException(getClass(), "bootstrapAllTablesSecurity", 0, "secTenant");
 		}
 
 		ICFSecSecSysGrp secSysClusGroupSysAdmin = ICFSecSchema.getBackingCFSec().getTableSecSysGrp().readDerivedByUNameIdx(auth, secCluster.getRequiredDescription().toLowerCase() + "clusteradmin");
@@ -1411,7 +1411,7 @@ public class CFSecJpaSchemaService {
 	 *		@return The number of authorizations for the specified permission and user, with an 8-level deep union in play.
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	long countSysSecurityPermsByUserId(String parmPermName, CFLibDbKeyHash256 parmUserId) {
+	long countSysSecurityPermsByUserId(String parmPermName, MCFDbKeyHash256 parmUserId) {
 		EntityManager em = cfsec31EntityManagerFactory.getNativeEntityManagerFactory().createEntityManager();
 		TypedQuery<Long> query = em.createNamedQuery("cFSec31SecUser.countSysSecurityPermsByUserId", Long.class);
 		query.setParameter("parmPermName", parmPermName);
@@ -1435,7 +1435,7 @@ public class CFSecJpaSchemaService {
 	 *		@return The number of authorizations for the specified permission and user, with an 8-level deep union in play.
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	long countClusSecurityPermsByLoginId(String parmPermName, String parmLoginId, CFLibDbKeyHash256 parmClusterId) {
+	long countClusSecurityPermsByLoginId(String parmPermName, String parmLoginId, MCFDbKeyHash256 parmClusterId) {
 		EntityManager em = cfsec31EntityManagerFactory.getNativeEntityManagerFactory().createEntityManager();
 		TypedQuery<Long> query = em.createNamedQuery("cFSec31SecUser.countClusSecurityPermsByLoginId", Long.class);
 		query.setParameter("parmPermName", parmPermName);
@@ -1460,7 +1460,7 @@ public class CFSecJpaSchemaService {
 	 *		@return The number of authorizations for the specified permission and user, with an 8-level deep union in play.
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	long countClusSecurityPermsByUserId(String parmPermName, CFLibDbKeyHash256 parmUserId, CFLibDbKeyHash256 parmClusterId) {
+	long countClusSecurityPermsByUserId(String parmPermName, MCFDbKeyHash256 parmUserId, MCFDbKeyHash256 parmClusterId) {
 		EntityManager em = cfsec31EntityManagerFactory.getNativeEntityManagerFactory().createEntityManager();
 		TypedQuery<Long> query = em.createNamedQuery("cFSec31SecUser.countClusSecurityPermsByUserId", Long.class);
 		query.setParameter("parmPermName", parmPermName);
@@ -1485,7 +1485,7 @@ public class CFSecJpaSchemaService {
 	 *		@return The number of authorizations for the specified permission and user, with an 8-level deep union in play.
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	long countTentSecurityPermsByLoginId(String parmPermName, String parmLoginId, CFLibDbKeyHash256 parmTenantId) {
+	long countTentSecurityPermsByLoginId(String parmPermName, String parmLoginId, MCFDbKeyHash256 parmTenantId) {
 		EntityManager em = cfsec31EntityManagerFactory.getNativeEntityManagerFactory().createEntityManager();
 		TypedQuery<Long> query = em.createNamedQuery("cFSec31SecUser.countTentSecurityPermsByLoginId", Long.class);
 		query.setParameter("parmPermName", parmPermName);
@@ -1510,7 +1510,7 @@ public class CFSecJpaSchemaService {
 	 *		@return The number of authorizations for the specified permission and user, with an 8-level deep union in play.
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	long countTentSecurityPermsByUserId(String parmPermName, CFLibDbKeyHash256 parmUserId, CFLibDbKeyHash256 parmTenantId) {
+	long countTentSecurityPermsByUserId(String parmPermName, MCFDbKeyHash256 parmUserId, MCFDbKeyHash256 parmTenantId) {
 		EntityManager em = cfsec31EntityManagerFactory.getNativeEntityManagerFactory().createEntityManager();
 		TypedQuery<Long> query = em.createNamedQuery("cFSec31SecUser.countTentSecurityPermsByUserId", Long.class);
 		query.setParameter("parmPermName", parmPermName);
@@ -1535,7 +1535,7 @@ public class CFSecJpaSchemaService {
 	 *	@return null if the userLogin does not exist, is null, is empty, or is blank. Otherwise the DbKey for the user.
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFLibDbKeyHash256 mapUserLoginToUserId(String userLogin) {
+	public MCFDbKeyHash256 mapUserLoginToUserId(String userLogin) {
 		final String S_ProcName = "mapUserLoginToUserId";
 		if (userLogin == null || userLogin.isEmpty() || userLogin.isBlank()) {
 			return(null);
@@ -1556,7 +1556,7 @@ public class CFSecJpaSchemaService {
 	 *	@return null if the userId does not exist or is null. Otherwise the userLogin for the user.
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public String mapUserIdToUserLogin(CFLibDbKeyHash256 userId) {
+	public String mapUserIdToUserLogin(MCFDbKeyHash256 userId) {
 		final String S_ProcName = "mapUserIdToUserLogin";
 		if (userId == null || userId.isNull()) {
 			return(null);
@@ -1583,7 +1583,7 @@ public class CFSecJpaSchemaService {
 	 *	@return true if the user is a member of the tenant role or group, the equivalent cluster admin role or group, or the equivalent system admin role or group, otherwise false.
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public boolean probeMemberOfTenantGroup(CFLibDbKeyHash256 userId, CFLibDbKeyHash256 clusterId, CFLibDbKeyHash256 tenantId, String permissionName) {
+	public boolean probeMemberOfTenantGroup(MCFDbKeyHash256 userId, MCFDbKeyHash256 clusterId, MCFDbKeyHash256 tenantId, String permissionName) {
 		if (userId == null || userId.isNull()) {
 			return(false);
 		}
@@ -1623,7 +1623,7 @@ public class CFSecJpaSchemaService {
 	 *	@return true if the user is a member of the tenant role or group, the equivalent cluster admin role or group, or the equivalent system admin role or group, otherwise false.
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public boolean probeMemberOfClusterGroup(CFLibDbKeyHash256 userId, CFLibDbKeyHash256 clusterId, String permissionName) {
+	public boolean probeMemberOfClusterGroup(MCFDbKeyHash256 userId, MCFDbKeyHash256 clusterId, String permissionName) {
 		if (userId == null || userId.isNull()) {
 			return(false);
 		}
@@ -1654,7 +1654,7 @@ public class CFSecJpaSchemaService {
 	 *	@return true if the user is a member of the tenant role or group, the equivalent cluster admin role or group, or the equivalent system admin role or group, otherwise false.
 	 */
 	@Transactional(propagation = Propagation.MANDATORY, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public boolean probeMemberOfSystemGroup(CFLibDbKeyHash256 userId, String permissionName) {
+	public boolean probeMemberOfSystemGroup(MCFDbKeyHash256 userId, String permissionName) {
 		if (userId == null || userId.isNull()) {
 			return(false);
 		}

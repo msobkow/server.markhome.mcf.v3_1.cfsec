@@ -92,11 +92,11 @@ public class CFSecRamSecSysGrpTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByUNameIdx.containsKey( keyUNameIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"SecSysGrpUNameIdx",
 				"SecSysGrpUNameIdx",
@@ -132,7 +132,7 @@ public class CFSecRamSecSysGrpTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -230,7 +230,7 @@ public class CFSecRamSecSysGrpTable
 
 	@Override
 	public ICFSecSecSysGrp readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId )
+		IMCFKeyHash256 SecSysGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrp.readDerivedByIdIdx() ";
 		ICFSecSecSysGrp buff;
@@ -285,7 +285,7 @@ public class CFSecRamSecSysGrpTable
 
 	@Override
 	public ICFSecSecSysGrp readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId )
+		IMCFKeyHash256 SecSysGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecSysGrp.readRecByIdIdx() ";
 		ICFSecSecSysGrp buff = readDerivedByIdIdx( Authorization,
@@ -338,7 +338,7 @@ public class CFSecRamSecSysGrpTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffSecSysGrp existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateSecSysGrp",
 				"Existing record not found",
 				"Existing record not found",
@@ -347,7 +347,7 @@ public class CFSecRamSecSysGrpTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateSecSysGrp",
 				pkey );
 		}
@@ -368,7 +368,7 @@ public class CFSecRamSecSysGrpTable
 
 		if( ! existingKeyUNameIdx.equals( newKeyUNameIdx ) ) {
 			if( dictByUNameIdx.containsKey( newKeyUNameIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateSecSysGrp",
 					"SecSysGrpUNameIdx",
 					"SecSysGrpUNameIdx",
@@ -418,7 +418,7 @@ public class CFSecRamSecSysGrpTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteSecSysGrp",
 				pkey );
 		}

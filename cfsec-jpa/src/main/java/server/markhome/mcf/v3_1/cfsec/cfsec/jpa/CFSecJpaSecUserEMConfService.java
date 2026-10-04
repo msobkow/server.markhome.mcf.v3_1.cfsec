@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +75,7 @@ public class CFSecJpaSecUserEMConfService {
 			return( null );
 		}
 		if (data.getRequiredContainerUser() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -86,19 +86,19 @@ public class CFSecJpaSecUserEMConfService {
 				null);
 		}
 		if(data.getRequiredConfirmEMailAddr() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredConfirmEMailAddr");
 		}
 		if(data.getRequiredEMailSentStamp() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredEMailSentStamp");
 		}
 		if(data.getRequiredEMConfirmationUuid6() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredEMConfirmationUuid6");
@@ -116,7 +116,7 @@ public class CFSecJpaSecUserEMConfService {
 			return cfsec31SecUserEMConfRepository.save(data);
 		}
 		catch(Exception ex) {
-			throw new CFLibDbException(getClass(),
+			throw new MCFDbException(getClass(),
 				S_ProcName,
 				ex);
 		}
@@ -136,13 +136,13 @@ public class CFSecJpaSecUserEMConfService {
 			return( null );
 		}
 		if (data.getPKey() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.getPKey()");
 		}
 		if (data.getRequiredContainerUser() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -153,28 +153,28 @@ public class CFSecJpaSecUserEMConfService {
 				null);
 		}
 		if(data.getRequiredConfirmEMailAddr() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredConfirmEMailAddr");
 		}
 		if(data.getRequiredEMailSentStamp() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredEMailSentStamp");
 		}
 		if(data.getRequiredEMConfirmationUuid6() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredEMConfirmationUuid6");
 		}
 		// Ensure the entity exists and that the revision matches
 		CFSecJpaSecUserEMConf existing = cfsec31SecUserEMConfRepository.findById(($implCommaIJavaOptAtomType$)(data.getPKey()))
-			.orElseThrow(() -> new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
+			.orElseThrow(() -> new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
 		if (existing.getRequiredRevision() != data.getRequiredRevision()) {
-			throw new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
+			throw new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
 		}
 		// Apply superior data relationships of CFSecSecUserEMConf to existing object
 		// Apply data columns of CFSecSecUserEMConf to existing object
@@ -196,7 +196,7 @@ public class CFSecJpaSecUserEMConfService {
 	 *		@return The retrieved entity, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserEMConf find(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public CFSecJpaSecUserEMConf find(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		return( cfsec31SecUserEMConfRepository.get(requiredSecUserId));
 	}
 
@@ -220,7 +220,7 @@ public class CFSecJpaSecUserEMConfService {
 	 *		@return The found entity, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserEMConf findByUUuid6Idx(@Param("eMConfirmationUuid6") ICFLibUuid6 requiredEMConfirmationUuid6) {
+	public CFSecJpaSecUserEMConf findByUUuid6Idx(@Param("eMConfirmationUuid6") IMCFUuid6 requiredEMConfirmationUuid6) {
 		return( cfsec31SecUserEMConfRepository.findByUUuid6Idx(requiredEMConfirmationUuid6));
 	}
 
@@ -318,7 +318,7 @@ public class CFSecJpaSecUserEMConfService {
 	 *		@return The locked entity, refreshed from the data store, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserEMConf lockByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public CFSecJpaSecUserEMConf lockByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		return( cfsec31SecUserEMConfRepository.lockByIdIdx(requiredSecUserId));
 	}
 
@@ -330,7 +330,7 @@ public class CFSecJpaSecUserEMConfService {
 	 *		@return The locked entity, refreshed from the data store, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserEMConf lockByUUuid6Idx(@Param("eMConfirmationUuid6") ICFLibUuid6 requiredEMConfirmationUuid6) {
+	public CFSecJpaSecUserEMConf lockByUUuid6Idx(@Param("eMConfirmationUuid6") IMCFUuid6 requiredEMConfirmationUuid6) {
 		return( cfsec31SecUserEMConfRepository.lockByUUuid6Idx(requiredEMConfirmationUuid6));
 	}
 
@@ -426,7 +426,7 @@ public class CFSecJpaSecUserEMConfService {
 	 *		@param requiredSecUserId
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public void deleteByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		cfsec31SecUserEMConfRepository.deleteByIdIdx(requiredSecUserId);
 	}
 
@@ -436,7 +436,7 @@ public class CFSecJpaSecUserEMConfService {
 	 *		@param requiredEMConfirmationUuid6
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByUUuid6Idx(@Param("eMConfirmationUuid6") ICFLibUuid6 requiredEMConfirmationUuid6) {
+	public void deleteByUUuid6Idx(@Param("eMConfirmationUuid6") IMCFUuid6 requiredEMConfirmationUuid6) {
 		cfsec31SecUserEMConfRepository.deleteByUUuid6Idx(requiredEMConfirmationUuid6);
 	}
 

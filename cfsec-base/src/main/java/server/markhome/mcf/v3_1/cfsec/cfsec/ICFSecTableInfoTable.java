@@ -315,7 +315,7 @@ public interface ICFSecTableInfoTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTableInfo readRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -330,7 +330,7 @@ public interface ICFSecTableInfoTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTableInfo lockRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -354,7 +354,7 @@ public interface ICFSecTableInfoTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTableInfo readRecByIdIdx( ICFSecAuthorization Authorization,
 		int TableInfoId );
@@ -369,7 +369,7 @@ public interface ICFSecTableInfoTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTableInfo readRecByTableNameIdx( ICFSecAuthorization Authorization,
 		String TableName );
@@ -383,7 +383,7 @@ public interface ICFSecTableInfoTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTableInfo[] readRecBySuperNameIdx( ICFSecAuthorization Authorization,
 		String SuperName );
@@ -397,7 +397,7 @@ public interface ICFSecTableInfoTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTableInfo[] readRecBySchemaNameIdx( ICFSecAuthorization Authorization,
 		String SchemaName );
@@ -414,7 +414,7 @@ public interface ICFSecTableInfoTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTableInfo readRecBySchemaBkCodeIdx( ICFSecAuthorization Authorization,
 		String SchemaName,
@@ -430,7 +430,7 @@ public interface ICFSecTableInfoTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecTableInfo readRecBySchemaRTCodeIdx( ICFSecAuthorization Authorization,
 		int RuntimeClassCode );

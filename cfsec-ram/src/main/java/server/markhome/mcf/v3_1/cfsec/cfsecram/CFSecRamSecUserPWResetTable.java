@@ -103,11 +103,11 @@ public class CFSecRamSecUserPWResetTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByUUuid6Idx.containsKey( keyUUuid6Idx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"SecUserPWResetUuid6Idx",
 				"SecUserPWResetUuid6Idx",
@@ -123,7 +123,7 @@ public class CFSecRamSecUserPWResetTable
 				if( null == schema.getTableSecUser().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredSecUserId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
 						"Container",
@@ -173,7 +173,7 @@ public class CFSecRamSecUserPWResetTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -225,7 +225,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset readDerivedByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 PasswordResetUuid6 )
+		IMCFUuid6 PasswordResetUuid6 )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readDerivedByUUuid6Idx";
 		CFSecBuffSecUserPWResetByUUuid6IdxKey key = (CFSecBuffSecUserPWResetByUUuid6IdxKey)schema.getCFSecBuffFactory().getFactorySecUserPWReset().newByUUuid6IdxKey();
@@ -299,7 +299,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		IMCFKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readDerivedByIdIdx() ";
 		ICFSecSecUserPWReset buff;
@@ -361,15 +361,15 @@ public class CFSecRamSecUserPWResetTable
 	 */
 	@Override
 	public ICFSecSecUserPWReset[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecUserId )
+		IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageAllRec";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	@Override
 	public ICFSecSecUserPWReset readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		IMCFKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readRecByIdIdx() ";
 		ICFSecSecUserPWReset buff = readDerivedByIdIdx( Authorization,
@@ -384,7 +384,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public ICFSecSecUserPWReset readRecByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 PasswordResetUuid6 )
+		IMCFUuid6 PasswordResetUuid6 )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWReset.readRecByUUuid6Idx() ";
 		ICFSecSecUserPWReset buff = readDerivedByUUuid6Idx( Authorization,
@@ -442,15 +442,15 @@ public class CFSecRamSecUserPWResetTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecSecUserPWReset[] pageRecBySentEMAddrIdx( ICFSecAuthorization Authorization,
 		String SentToEMailAddr,
-		ICFLibKeyHash256 priorSecUserId )
+		IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageRecBySentEMAddrIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	/**
@@ -462,15 +462,15 @@ public class CFSecRamSecUserPWResetTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecSecUserPWReset[] pageRecByNewAcctIdx( ICFSecAuthorization Authorization,
 		boolean NewAccount,
-		ICFLibKeyHash256 priorSecUserId )
+		IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageRecByNewAcctIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	public ICFSecSecUserPWReset updateSecUserPWReset( ICFSecAuthorization Authorization,
@@ -480,7 +480,7 @@ public class CFSecRamSecUserPWResetTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffSecUserPWReset existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateSecUserPWReset",
 				"Existing record not found",
 				"Existing record not found",
@@ -489,7 +489,7 @@ public class CFSecRamSecUserPWResetTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateSecUserPWReset",
 				pkey );
 		}
@@ -516,7 +516,7 @@ public class CFSecRamSecUserPWResetTable
 
 		if( ! existingKeyUUuid6Idx.equals( newKeyUUuid6Idx ) ) {
 			if( dictByUUuid6Idx.containsKey( newKeyUUuid6Idx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateSecUserPWReset",
 					"SecUserPWResetUuid6Idx",
 					"SecUserPWResetUuid6Idx",
@@ -533,7 +533,7 @@ public class CFSecRamSecUserPWResetTable
 				if( null == schema.getTableSecUser().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredSecUserId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateSecUserPWReset",
 						"Container",
 						"Container",
@@ -599,7 +599,7 @@ public class CFSecRamSecUserPWResetTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteSecUserPWReset",
 				pkey );
 		}
@@ -657,7 +657,7 @@ public class CFSecRamSecUserPWResetTable
 
 	@Override
 	public void deleteSecUserPWResetByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 argPasswordResetUuid6 )
+		IMCFUuid6 argPasswordResetUuid6 )
 	{
 		CFSecBuffSecUserPWResetByUUuid6IdxKey key = (CFSecBuffSecUserPWResetByUUuid6IdxKey)schema.getCFSecBuffFactory().getFactorySecUserPWReset().newByUUuid6IdxKey();
 		key.setRequiredPasswordResetUuid6( argPasswordResetUuid6 );

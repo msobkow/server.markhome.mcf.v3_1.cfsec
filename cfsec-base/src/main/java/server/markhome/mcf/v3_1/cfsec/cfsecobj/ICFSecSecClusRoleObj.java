@@ -44,7 +44,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 
 public interface ICFSecSecClusRoleObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecSecClusRole.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -118,7 +118,7 @@ public interface ICFSecSecClusRoleObj
 	/**
 	 *	End this edition of this SecClusRole instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 
@@ -260,18 +260,18 @@ public interface ICFSecSecClusRoleObj
 	List<ICFSecSecClusRoleMembObj> getOptionalChildrenMembByGrp( boolean forceRead );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecClusRoleId.
+	 *	Get the required IMCFKeyHash256 attribute SecClusRoleId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecClusRoleId.
+	 *	@return	The required IMCFKeyHash256 attribute SecClusRoleId.
 	 */
-	ICFLibKeyHash256 getRequiredSecClusRoleId();
+	IMCFKeyHash256 getRequiredSecClusRoleId();
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute ClusterId.
+	 *	Get the required IMCFKeyHash256 attribute ClusterId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute ClusterId.
+	 *	@return	The required IMCFKeyHash256 attribute ClusterId.
 	 */
-	ICFLibKeyHash256 getRequiredClusterId();
+	IMCFKeyHash256 getRequiredClusterId();
 
 	/**
 	 *	Get the required String attribute Name.

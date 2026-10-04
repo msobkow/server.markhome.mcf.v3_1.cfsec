@@ -87,7 +87,7 @@ public class CFSecRamSecUserPasswordTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		// Validate foreign keys
@@ -99,7 +99,7 @@ public class CFSecRamSecUserPasswordTable
 				if( null == schema.getTableSecUser().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredSecUserId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
 						"Container",
@@ -137,7 +137,7 @@ public class CFSecRamSecUserPasswordTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -217,7 +217,7 @@ public class CFSecRamSecUserPasswordTable
 
 	@Override
 	public ICFSecSecUserPassword readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		IMCFKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserPassword.readDerivedByIdIdx() ";
 		ICFSecSecUserPassword buff;
@@ -272,7 +272,7 @@ public class CFSecRamSecUserPasswordTable
 
 	@Override
 	public ICFSecSecUserPassword readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		IMCFKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserPassword.readRecByIdIdx() ";
 		ICFSecSecUserPassword buff = readDerivedByIdIdx( Authorization,
@@ -310,7 +310,7 @@ public class CFSecRamSecUserPasswordTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffSecUserPassword existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateSecUserPassword",
 				"Existing record not found",
 				"Existing record not found",
@@ -319,7 +319,7 @@ public class CFSecRamSecUserPasswordTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateSecUserPassword",
 				pkey );
 		}
@@ -341,7 +341,7 @@ public class CFSecRamSecUserPasswordTable
 				if( null == schema.getTableSecUser().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredSecUserId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateSecUserPassword",
 						"Container",
 						"Container",
@@ -391,7 +391,7 @@ public class CFSecRamSecUserPasswordTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteSecUserPassword",
 				pkey );
 		}

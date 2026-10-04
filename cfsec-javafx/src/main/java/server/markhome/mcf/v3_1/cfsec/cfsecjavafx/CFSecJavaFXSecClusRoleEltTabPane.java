@@ -144,7 +144,7 @@ implements ICFSecJavaFXSecClusRolePaneCommon
 		public PageDataChildrenMembByGrpList() {
 		}
 
-		public List<ICFSecSecClusRoleMembObj> pageData( ICFLibKeyHash256 priorSecClusRoleId,
+		public List<ICFSecSecClusRoleMembObj> pageData( IMCFKeyHash256 priorSecClusRoleId,
 		String priorLoginId )
 		{
 			List<ICFSecSecClusRoleMembObj> dataList;

@@ -268,7 +268,7 @@ extends ICFSecPubISOCtryTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCtry protreadRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -283,7 +283,7 @@ extends ICFSecPubISOCtryTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCtry protlockRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -307,7 +307,7 @@ extends ICFSecPubISOCtryTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCtry protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
 		short ISOCtryId );
@@ -322,7 +322,7 @@ extends ICFSecPubISOCtryTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCtry protreadRecByISOCodeIdx( ICFSecPubAuthorization Authorization,
 		String ISOCode );
@@ -337,7 +337,7 @@ extends ICFSecPubISOCtryTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCtry protreadRecByNameIdx( ICFSecPubAuthorization Authorization,
 		String Name );

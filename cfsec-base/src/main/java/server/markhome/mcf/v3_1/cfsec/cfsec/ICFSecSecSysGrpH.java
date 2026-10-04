@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
@@ -49,30 +49,30 @@ public interface ICFSecSecSysGrpH
 {
 	public int getClassCode();
 
-	public CFLibDbKeyHash256 getCreatedByUserId();
-	public void setCreatedByUserId( CFLibDbKeyHash256 value );
+	public MCFDbKeyHash256 getCreatedByUserId();
+	public void setCreatedByUserId( MCFDbKeyHash256 value );
 	public LocalDateTime getCreatedAt();
 	public void setCreatedAt( LocalDateTime value );
-	public CFLibDbKeyHash256 getUpdatedByUserId();
-	public void setUpdatedByUserId( CFLibDbKeyHash256 value );
+	public MCFDbKeyHash256 getUpdatedByUserId();
+	public void setUpdatedByUserId( MCFDbKeyHash256 value );
 	public LocalDateTime getUpdatedAt();
 	public void setUpdatedAt( LocalDateTime value );
 
 	public ICFSecSecSysGrpHPKey getPKey();
 	public void setPKey( ICFSecSecSysGrpHPKey pkey );
-	public CFLibDbKeyHash256 getAuditClusterId();
-	public void setAuditClusterId(CFLibDbKeyHash256 auditClusterId);
+	public MCFDbKeyHash256 getAuditClusterId();
+	public void setAuditClusterId(MCFDbKeyHash256 auditClusterId);
 	public LocalDateTime getAuditStamp();
 	public void setAuditStamp(LocalDateTime auditStamp);
 	public short getAuditActionId();
 	public void setAuditActionId(short auditActionId);
 	public int getRequiredRevision();
 	public void setRequiredRevision(int revision);
-	public CFLibDbKeyHash256 getAuditSessionId();
-	public void setAuditSessionId(CFLibDbKeyHash256 auditSessionId);
+	public MCFDbKeyHash256 getAuditSessionId();
+	public void setAuditSessionId(MCFDbKeyHash256 auditSessionId);
 
-	public ICFLibKeyHash256 getRequiredSecSysGrpId();
-	public void setRequiredSecSysGrpId( ICFLibKeyHash256 requiredSecSysGrpId );
+	public IMCFKeyHash256 getRequiredSecSysGrpId();
+	public void setRequiredSecSysGrpId( IMCFKeyHash256 requiredSecSysGrpId );
 
 	public String getRequiredName();
 	public void setRequiredName( String value );

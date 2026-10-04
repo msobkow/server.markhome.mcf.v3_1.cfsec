@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
@@ -51,11 +51,11 @@ import server.markhome.mcf.v3_1.cfsec.cfsecobj.*;
 public class CFSecBuffTableInfoHPKey
 	implements ICFSecTableInfoHPKey, Comparable<Object>, Serializable
 {
-	protected CFLibDbKeyHash256 auditClusterId;
+	protected MCFDbKeyHash256 auditClusterId;
 	protected LocalDateTime auditStamp;
 	protected short auditActionId;
 	protected int requiredRevision;
-	protected CFLibDbKeyHash256 auditSessionId;
+	protected MCFDbKeyHash256 auditSessionId;
 
 	protected int requiredTableInfoId;
 
@@ -64,17 +64,17 @@ public class CFSecBuffTableInfoHPKey
 		auditStamp = LocalDateTime.now();
 		auditActionId = 0;
 		requiredRevision = 1;
-		auditSessionId = CFLibDbKeyHash256.nullGet();
+		auditSessionId = MCFDbKeyHash256.nullGet();
 		requiredTableInfoId = ICFSecPubTableInfo.TABLEINFOID_INIT_VALUE;
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getAuditClusterId() {
+	public MCFDbKeyHash256 getAuditClusterId() {
 		return( auditClusterId );
 	}
 
 	@Override
-	public void setAuditClusterId( CFLibDbKeyHash256 value ) {
+	public void setAuditClusterId( MCFDbKeyHash256 value ) {
 		auditClusterId = value;
 	}
 
@@ -109,12 +109,12 @@ public class CFSecBuffTableInfoHPKey
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getAuditSessionId() {
+	public MCFDbKeyHash256 getAuditSessionId() {
 		return( auditSessionId );
 	}
 
 	@Override
-	public void setAuditSessionId( CFLibDbKeyHash256 value ) {
+	public void setAuditSessionId( MCFDbKeyHash256 value ) {
 		auditSessionId = value;
 	}
 
@@ -126,7 +126,7 @@ public class CFSecBuffTableInfoHPKey
 	@Override
 	public void setRequiredTableInfoId( int value ) {
 		if( value < ICFSecPubTableInfo.TABLEINFOID_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				"setRequiredTableInfoId",
 				1,
 				"value",
@@ -907,7 +907,7 @@ public class CFSecBuffTableInfoHPKey
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException( getClass(),
+			throw new MCFUnsupportedClassException( getClass(),
 				"compareTo",
 				"obj",
 				obj,
@@ -918,7 +918,7 @@ public class CFSecBuffTableInfoHPKey
 	@Override
 	public String getXmlAttrFragment() {
 		String ret = " auditClusterId=\"" + (auditClusterId != null ? auditClusterId.toString() : "null") + "\""
-			+ " auditStamp=\"" + (auditStamp != null ? CFLibXmlUtil.formatTimestamp(auditStamp) : "null") + "\""
+			+ " auditStamp=\"" + (auditStamp != null ? MCFXmlUtil.formatTimestamp(auditStamp) : "null") + "\""
 			+ " auditAction=\"" + auditActionId + "\""
 			+ " revision=\"" + requiredRevision + "\""
 			+ " auditSessionId=\"" + (getAuditSessionId() != null ? getAuditSessionId().toString() : "null") + "\""

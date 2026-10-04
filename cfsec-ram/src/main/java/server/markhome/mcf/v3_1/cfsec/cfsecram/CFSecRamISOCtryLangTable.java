@@ -100,7 +100,7 @@ public class CFSecRamISOCtryLangTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		// Validate foreign keys
@@ -112,7 +112,7 @@ public class CFSecRamISOCtryLangTable
 				if( null == schema.getTableISOCtry().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredISOCtryId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
 						"Container",
@@ -160,7 +160,7 @@ public class CFSecRamISOCtryLangTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -421,7 +421,7 @@ public class CFSecRamISOCtryLangTable
 		pkey = (CFSecBuffISOCtryLangPKey)Buff.getPKey();
 		CFSecBuffISOCtryLang existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateISOCtryLang",
 				"Existing record not found",
 				"Existing record not found",
@@ -430,7 +430,7 @@ public class CFSecRamISOCtryLangTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateISOCtryLang",
 				pkey );
 		}
@@ -458,7 +458,7 @@ public class CFSecRamISOCtryLangTable
 				if( null == schema.getTableISOCtry().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredISOCtryId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateISOCtryLang",
 						"Container",
 						"Container",
@@ -521,7 +521,7 @@ public class CFSecRamISOCtryLangTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteISOCtryLang",
 				pkey );
 		}

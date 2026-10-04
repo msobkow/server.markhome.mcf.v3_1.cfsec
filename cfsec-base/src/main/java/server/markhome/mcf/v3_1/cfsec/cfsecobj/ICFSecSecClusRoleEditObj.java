@@ -160,25 +160,25 @@ public interface ICFSecSecClusRoleEditObj
 	List<ICFSecSecClusRoleMembObj> getOptionalChildrenMembByGrp();
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecClusRoleId.
+	 *	Get the required IMCFKeyHash256 attribute SecClusRoleId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecClusRoleId.
+	 *	@return	The required IMCFKeyHash256 attribute SecClusRoleId.
 	 */
-	ICFLibKeyHash256 getRequiredSecClusRoleId();
+	IMCFKeyHash256 getRequiredSecClusRoleId();
 
 	/**
-	 *	Set the required ICFLibKeyHash256 attribute SecClusRoleId.
+	 *	Set the required IMCFKeyHash256 attribute SecClusRoleId.
 	 *
-	 *	@param value The required ICFLibKeyHash256 attribute SecClusRoleId value to be applied.
+	 *	@param value The required IMCFKeyHash256 attribute SecClusRoleId value to be applied.
 	 */
-	void setRequiredSecClusRoleId(ICFLibKeyHash256 value);
+	void setRequiredSecClusRoleId(IMCFKeyHash256 value);
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute ClusterId.
+	 *	Get the required IMCFKeyHash256 attribute ClusterId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute ClusterId.
+	 *	@return	The required IMCFKeyHash256 attribute ClusterId.
 	 */
-	ICFLibKeyHash256 getRequiredClusterId();
+	IMCFKeyHash256 getRequiredClusterId();
 
 	/**
 	 *	Get the required String attribute Name.

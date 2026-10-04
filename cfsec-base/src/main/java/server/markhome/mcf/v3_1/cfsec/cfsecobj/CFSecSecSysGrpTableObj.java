@@ -112,7 +112,7 @@ public class CFSecSecSysGrpTableObj
 	 */
 	static void setRuntimeClassCode(int argNewClassCode ) {
 		if (argNewClassCode <= 0) {
-			throw new CFLibArgumentUnderflowException(CFSecSecSysGrpTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
+			throw new MCFArgumentUnderflowException(CFSecSecSysGrpTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
 		}
 		runtimeClassCode = argNewClassCode;
 	}
@@ -386,7 +386,7 @@ public class CFSecSecSysGrpTableObj
 			locked = (ICFSecSecSysGrpObj)locked.realise();
 		}
 		else {
-			throw new CFLibCollisionDetectedException( getClass(), "lockSecSysGrp", pkey );
+			throw new MCFCollisionDetectedException( getClass(), "lockSecSysGrp", pkey );
 		}
 		return( locked );
 	}
@@ -421,7 +421,7 @@ public class CFSecSecSysGrpTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -429,7 +429,7 @@ public class CFSecSecSysGrpTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -481,7 +481,7 @@ public class CFSecSecSysGrpTableObj
 				arr[idx++] = valIter.next();
 			}
 			if( idx < len ) {
-				throw new CFLibArgumentUnderflowException( getClass(),
+				throw new MCFArgumentUnderflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -489,7 +489,7 @@ public class CFSecSecSysGrpTableObj
 					len );
 			}
 			else if( valIter.hasNext() ) {
-				throw new CFLibArgumentOverflowException( getClass(),
+				throw new MCFArgumentOverflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -526,14 +526,14 @@ public class CFSecSecSysGrpTableObj
 	}
 
 	@Override
-	public ICFSecSecSysGrpObj readSecSysGrpByIdIdx( ICFLibKeyHash256 SecSysGrpId )
+	public ICFSecSecSysGrpObj readSecSysGrpByIdIdx( IMCFKeyHash256 SecSysGrpId )
 	{
 		return( readSecSysGrpByIdIdx( SecSysGrpId,
 			false ) );
 	}
 
 	@Override
-	public ICFSecSecSysGrpObj readSecSysGrpByIdIdx( ICFLibKeyHash256 SecSysGrpId, boolean forceRead )
+	public ICFSecSecSysGrpObj readSecSysGrpByIdIdx( IMCFKeyHash256 SecSysGrpId, boolean forceRead )
 	{
 		ICFSecSecSysGrpObj obj = readSecSysGrp( SecSysGrpId, forceRead );
 		return( obj );
@@ -618,7 +618,7 @@ public class CFSecSecSysGrpTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -626,7 +626,7 @@ public class CFSecSecSysGrpTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -666,7 +666,7 @@ public class CFSecSecSysGrpTableObj
 	}
 
 	@Override
-	public ICFSecSecSysGrpObj readCachedSecSysGrpByIdIdx( ICFLibKeyHash256 SecSysGrpId )
+	public ICFSecSecSysGrpObj readCachedSecSysGrpByIdIdx( IMCFKeyHash256 SecSysGrpId )
 	{
 		ICFSecSecSysGrpObj obj = null;
 		obj = readCachedSecSysGrp( SecSysGrpId );
@@ -728,7 +728,7 @@ public class CFSecSecSysGrpTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -736,7 +736,7 @@ public class CFSecSecSysGrpTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -787,7 +787,7 @@ public class CFSecSecSysGrpTableObj
 	}
 
 	@Override
-	public void deepDisposeSecSysGrpByIdIdx( ICFLibKeyHash256 SecSysGrpId )
+	public void deepDisposeSecSysGrpByIdIdx( IMCFKeyHash256 SecSysGrpId )
 	{
 		ICFSecSecSysGrpObj obj = readCachedSecSysGrpByIdIdx( SecSysGrpId );
 		if( obj != null ) {
@@ -840,7 +840,7 @@ public class CFSecSecSysGrpTableObj
 	}
 
 	@Override
-	public void deleteSecSysGrpByIdIdx( ICFLibKeyHash256 SecSysGrpId )
+	public void deleteSecSysGrpByIdIdx( IMCFKeyHash256 SecSysGrpId )
 	{
 		ICFSecSecSysGrpObj obj = readSecSysGrp(SecSysGrpId);
 		if( obj != null ) {

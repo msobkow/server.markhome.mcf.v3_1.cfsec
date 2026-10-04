@@ -36,7 +36,7 @@ import java.time.*;
 import java.util.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import java.util.concurrent.atomic.*;
@@ -164,14 +164,14 @@ public interface ICFSecPubSchema
 	public static ICFSecPubAuthorizationCallback getAuthorizationCallback() {
 		ICFSecPubAuthorizationCallback retval = authorizationCallback.get();
 		if (retval == null) {
-			throw new CFLibNullArgumentException(ICFSecPubSchema.class, "getAuthorizationCallback", 0, "authorizationCallback.get()");
+			throw new MCFNullArgumentException(ICFSecPubSchema.class, "getAuthorizationCallback", 0, "authorizationCallback.get()");
 		}
 		return( retval );
 	}
 	
 	public static void setAuthorizationCallback(ICFSecPubAuthorizationCallback callback) {
 		if (callback == null) {
-			throw new CFLibNullArgumentException(ICFSecPubSchema.class, "setAuthorizationCallback", 0, "callback");
+			throw new MCFNullArgumentException(ICFSecPubSchema.class, "setAuthorizationCallback", 0, "callback");
 		}
 		authorizationCallback.set(callback);
 	}
@@ -181,14 +181,14 @@ public interface ICFSecPubSchema
 	public static ICFSecPubSecurityService getSecurityService() {
 		ICFSecPubSecurityService retval = securityService.get();
 		if (retval == null) {
-			throw new CFLibNullArgumentException(ICFSecPubSchema.class, "getSecurityService", 0, "securityService.get()");
+			throw new MCFNullArgumentException(ICFSecPubSchema.class, "getSecurityService", 0, "securityService.get()");
 		}
 		return( retval );
 	}
 	
 	public static void setSecurityService(ICFSecPubSecurityService service) {
 		if (service == null) {
-			throw new CFLibNullArgumentException(ICFSecPubSchema.class, "setSecurityService", 0, "service");
+			throw new MCFNullArgumentException(ICFSecPubSchema.class, "setSecurityService", 0, "service");
 		}
 		securityService.compareAndSet(null, service);
 	}
@@ -222,7 +222,7 @@ public interface ICFSecPubSchema
 		else {
 			retval = lookupAuditActionEnum.get( value );
 			if( retval == null ) {
-				throw new CFLibInvalidArgumentException( fieldOrClassName,
+				throw new MCFInvalidArgumentException( fieldOrClassName,
 					fieldOrClassName,
 					S_ProcName,
 					2,
@@ -284,7 +284,7 @@ public interface ICFSecPubSchema
 		else {
 			retval = lookupOrdinalAuditActionEnum.get( value );
 			if( retval == null ) {
-				throw new CFLibInvalidArgumentException( fieldOrClassName,
+				throw new MCFInvalidArgumentException( fieldOrClassName,
 					fieldOrClassName,
 					S_ProcName,
 					2,
@@ -331,7 +331,7 @@ public interface ICFSecPubSchema
 		else {
 			retval = lookupSecLevelEnum.get( value );
 			if( retval == null ) {
-				throw new CFLibInvalidArgumentException( fieldOrClassName,
+				throw new MCFInvalidArgumentException( fieldOrClassName,
 					fieldOrClassName,
 					S_ProcName,
 					2,
@@ -396,7 +396,7 @@ public interface ICFSecPubSchema
 		else {
 			retval = lookupOrdinalSecLevelEnum.get( value );
 			if( retval == null ) {
-				throw new CFLibInvalidArgumentException( fieldOrClassName,
+				throw new MCFInvalidArgumentException( fieldOrClassName,
 					fieldOrClassName,
 					S_ProcName,
 					2,
@@ -441,7 +441,7 @@ public interface ICFSecPubSchema
 		else {
 			retval = lookupSecAccountStatusEnum.get( value );
 			if( retval == null ) {
-				throw new CFLibInvalidArgumentException( fieldOrClassName,
+				throw new MCFInvalidArgumentException( fieldOrClassName,
 					fieldOrClassName,
 					S_ProcName,
 					2,
@@ -505,7 +505,7 @@ public interface ICFSecPubSchema
 		else {
 			retval = lookupOrdinalSecAccountStatusEnum.get( value );
 			if( retval == null ) {
-				throw new CFLibInvalidArgumentException( fieldOrClassName,
+				throw new MCFInvalidArgumentException( fieldOrClassName,
 					fieldOrClassName,
 					S_ProcName,
 					2,
@@ -517,13 +517,13 @@ public interface ICFSecPubSchema
 		return( retval );
 	}
 
-	static final AtomicReference<CFLibDbKeyHash256> sysClusterId = new AtomicReference<>();
-	static final AtomicReference<CFLibDbKeyHash256> sysTenantId = new AtomicReference<>();
-	static final AtomicReference<CFLibDbKeyHash256> systemId = new AtomicReference<>();
+	static final AtomicReference<MCFDbKeyHash256> sysClusterId = new AtomicReference<>();
+	static final AtomicReference<MCFDbKeyHash256> sysTenantId = new AtomicReference<>();
+	static final AtomicReference<MCFDbKeyHash256> systemId = new AtomicReference<>();
 
 	public static String getPasswordHash(String pw) {
 		if (pw == null || pw.isEmpty()) {
-			throw new CFLibNullArgumentException(ICFSecPubSchema.class, "getPasswordHash", 1, "pw");
+			throw new MCFNullArgumentException(ICFSecPubSchema.class, "getPasswordHash", 1, "pw");
 		}
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-512");
@@ -538,15 +538,15 @@ public interface ICFSecPubSchema
         }
 	}
 
-	public static CFLibDbKeyHash256 getSysClusterId() {
+	public static MCFDbKeyHash256 getSysClusterId() {
 		return (sysClusterId.get());
 	}
 
-	public static void setSysClusterId(CFLibDbKeyHash256 argClusterId) {
+	public static void setSysClusterId(MCFDbKeyHash256 argClusterId) {
 		if (argClusterId == null || argClusterId.isNull()) {
-			throw new CFLibNullArgumentException(ICFSecPubSchema.class, "setSysClusterId", 1, "argClusterId");
+			throw new MCFNullArgumentException(ICFSecPubSchema.class, "setSysClusterId", 1, "argClusterId");
 		}
-		CFLibDbKeyHash256 oldid = sysClusterId.get();
+		MCFDbKeyHash256 oldid = sysClusterId.get();
 		if (oldid == null) {
 			sysClusterId.compareAndSet(null, argClusterId);
 		}
@@ -554,19 +554,19 @@ public interface ICFSecPubSchema
 			sysClusterId.compareAndSet(oldid, argClusterId);
 		}
 		else {
-			throw new CFLibInvalidArgumentException(ICFSecPubSchema.class, "setSysClusterId", "sysClusterId has already been set", "sysClusterId has already been set");
+			throw new MCFInvalidArgumentException(ICFSecPubSchema.class, "setSysClusterId", "sysClusterId has already been set", "sysClusterId has already been set");
 		}
 	}
 
-	public static CFLibDbKeyHash256 getSysTenantId() {
+	public static MCFDbKeyHash256 getSysTenantId() {
 		return (sysTenantId.get());
 	}
 
-	public static void setSysTenantId(CFLibDbKeyHash256 argTenantId) {
+	public static void setSysTenantId(MCFDbKeyHash256 argTenantId) {
 		if (argTenantId == null || argTenantId.isNull()) {
-			throw new CFLibNullArgumentException(ICFSecPubSchema.class, "setSysTenantId", 1, "argTenantId");
+			throw new MCFNullArgumentException(ICFSecPubSchema.class, "setSysTenantId", 1, "argTenantId");
 		}
-		CFLibDbKeyHash256 oldid = sysTenantId.get();
+		MCFDbKeyHash256 oldid = sysTenantId.get();
 		if (oldid == null) {
 			sysTenantId.compareAndSet(null, argTenantId);
 		}
@@ -574,19 +574,19 @@ public interface ICFSecPubSchema
 			sysTenantId.compareAndSet(oldid, argTenantId);
 		}
 		else {
-			throw new CFLibInvalidArgumentException(ICFSecPubSchema.class, "setSysTenantId", "sysTenantId has already been set", "sysTenantId has already been set");
+			throw new MCFInvalidArgumentException(ICFSecPubSchema.class, "setSysTenantId", "sysTenantId has already been set", "sysTenantId has already been set");
 		}
 	}
 
-	public static CFLibDbKeyHash256 getSystemId() {
+	public static MCFDbKeyHash256 getSystemId() {
 		return (systemId.get());
 	}
 
-	public static void setSystemId(CFLibDbKeyHash256 argSystemId) {
+	public static void setSystemId(MCFDbKeyHash256 argSystemId) {
 		if (argSystemId == null || argSystemId.isNull()) {
-			throw new CFLibNullArgumentException(ICFSecPubSchema.class, "setSystemId", 1, "argSystemId");
+			throw new MCFNullArgumentException(ICFSecPubSchema.class, "setSystemId", 1, "argSystemId");
 		}
-		CFLibDbKeyHash256 oldid = systemId.get();
+		MCFDbKeyHash256 oldid = systemId.get();
 		if (oldid == null) {
 			systemId.compareAndSet(null, argSystemId);
 		}
@@ -594,7 +594,7 @@ public interface ICFSecPubSchema
 			systemId.compareAndSet(oldid, argSystemId);
 		}
 		else {
-			throw new CFLibInvalidArgumentException(ICFSecPubSchema.class, "setSystemId", "systemId has already been set", "systemId has already been set");
+			throw new MCFInvalidArgumentException(ICFSecPubSchema.class, "setSystemId", "systemId has already been set", "systemId has already been set");
 		}
 	}
 
@@ -687,7 +687,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The next ISOCcyIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public short nextISOCcyIdGen();
 
@@ -696,7 +696,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The next ISOCtryIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public short nextISOCtryIdGen();
 
@@ -705,7 +705,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The next ISOLangIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public short nextISOLangIdGen();
 
@@ -714,7 +714,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The next ISOTZoneIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public short nextISOTZoneIdGen();
 
@@ -723,7 +723,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The next TableInfoIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public int nextTableInfoIdGen();
 
@@ -732,81 +732,81 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The next ClusterIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
-	public CFLibDbKeyHash256 nextClusterIdGen();
+	public MCFDbKeyHash256 nextClusterIdGen();
 
 	/**
 	 *	Get the next SecSessionIdGen identifier.
 	 *
 	 *	@return	The next SecSessionIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
-	public CFLibDbKeyHash256 nextSecSessionIdGen();
+	public MCFDbKeyHash256 nextSecSessionIdGen();
 
 	/**
 	 *	Get the next SecUserIdGen identifier.
 	 *
 	 *	@return	The next SecUserIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
-	public CFLibDbKeyHash256 nextSecUserIdGen();
+	public MCFDbKeyHash256 nextSecUserIdGen();
 
 	/**
 	 *	Get the next TenantIdGen identifier.
 	 *
 	 *	@return	The next TenantIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
-	public CFLibDbKeyHash256 nextTenantIdGen();
+	public MCFDbKeyHash256 nextTenantIdGen();
 
 	/**
 	 *	Get the next SecSysGrpIdGen identifier.
 	 *
 	 *	@return	The next SecSysGrpIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
-	public CFLibDbKeyHash256 nextSecSysGrpIdGen();
+	public MCFDbKeyHash256 nextSecSysGrpIdGen();
 
 	/**
 	 *	Get the next SecClusGrpIdGen identifier.
 	 *
 	 *	@return	The next SecClusGrpIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
-	public CFLibDbKeyHash256 nextSecClusGrpIdGen();
+	public MCFDbKeyHash256 nextSecClusGrpIdGen();
 
 	/**
 	 *	Get the next SecClusRoleIdGen identifier.
 	 *
 	 *	@return	The next SecClusRoleIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
-	public CFLibDbKeyHash256 nextSecClusRoleIdGen();
+	public MCFDbKeyHash256 nextSecClusRoleIdGen();
 
 	/**
 	 *	Get the next SecTentGrpIdGen identifier.
 	 *
 	 *	@return	The next SecTentGrpIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
-	public CFLibDbKeyHash256 nextSecTentGrpIdGen();
+	public MCFDbKeyHash256 nextSecTentGrpIdGen();
 
 	/**
 	 *	Get the next SecTentRoleIdGen identifier.
 	 *
 	 *	@return	The next SecTentRoleIdGen identifier.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
-	public CFLibDbKeyHash256 nextSecTentRoleIdGen();
+	public MCFDbKeyHash256 nextSecTentRoleIdGen();
 
 	/**
 	 *	Get the factory for CFSecPub data objects.
@@ -823,7 +823,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The Cluster Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubClusterTable getTableCluster();
 
@@ -832,7 +832,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The ISOCcy Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCcyTable getTableISOCcy();
 
@@ -841,7 +841,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The ISOCtry Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtryTable getTableISOCtry();
 
@@ -850,7 +850,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The ISOCtryCcy Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtryCcyTable getTableISOCtryCcy();
 
@@ -859,7 +859,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The ISOCtryLang Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtryLangTable getTableISOCtryLang();
 
@@ -868,7 +868,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The ISOLang Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOLangTable getTableISOLang();
 
@@ -877,7 +877,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The ISOTZone Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOTZoneTable getTableISOTZone();
 
@@ -886,7 +886,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The SecSession Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubSecSessionTable getTableSecSession();
 
@@ -895,7 +895,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The SecSysGrp Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubSecSysGrpTable getTableSecSysGrp();
 
@@ -904,7 +904,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The SecSysRole Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubSecSysRoleTable getTableSecSysRole();
 
@@ -913,7 +913,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The SecUser Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubSecUserTable getTableSecUser();
 
@@ -922,7 +922,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The SysCluster Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubSysClusterTable getTableSysCluster();
 
@@ -931,7 +931,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The TableInfo Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTableInfoTable getTableTableInfo();
 
@@ -940,7 +940,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The Tenant Table interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubTenantTable getTableTenant();
 
@@ -949,7 +949,7 @@ public interface ICFSecPubSchema
 	 *
 	 *	@return	The Table Permissions interface for the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	//public static ICFSecPubTablePerms getTablePerms();
 
@@ -967,10 +967,10 @@ public interface ICFSecPubSchema
 	 *
 	 *	@param	value	The Table Permissions interface to be used by the schema.
 	 *
-	 *	@throws CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws MCFNotSupportedException thrown by client-side implementations.
 	 */
 	//public static void setTablePerms( ICFSecPubTablePerms value );
 
 	public void bootstrapSchema(CFSecPubTableData tableData[]);
-	public void bootstrapAllTablesSecurity(CFLibDbKeyHash256 clusterId, CFLibDbKeyHash256 tenantId, CFSecPubTableData tableData[]);
+	public void bootstrapAllTablesSecurity(MCFDbKeyHash256 clusterId, MCFDbKeyHash256 tenantId, CFSecPubTableData tableData[]);
 }

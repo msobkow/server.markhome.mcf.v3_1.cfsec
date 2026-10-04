@@ -99,7 +99,7 @@ public interface ICFSecProtSecUserEMConfTableObj
 	 *	@return	The SecUserEMConf-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecProtSecUserEMConfObj readSecUserEMConf( CFLibDbKeyHash256 pkey );
+	ICFSecProtSecUserEMConfObj readSecUserEMConf( MCFDbKeyHash256 pkey );
 
 	/**
 	 *	Read a SecUserEMConf-derived instance by it's primary key.
@@ -109,19 +109,19 @@ public interface ICFSecProtSecUserEMConfTableObj
 	 *	@return	The SecUserEMConf-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecProtSecUserEMConfObj readSecUserEMConf( CFLibDbKeyHash256 pkey,
+	ICFSecProtSecUserEMConfObj readSecUserEMConf( MCFDbKeyHash256 pkey,
 		boolean forceRead );
 
-	ICFSecProtSecUserEMConfObj readCachedSecUserEMConf( CFLibDbKeyHash256 pkey );
+	ICFSecProtSecUserEMConfObj readCachedSecUserEMConf( MCFDbKeyHash256 pkey );
 
 	public void reallyDeepDisposeSecUserEMConf( ICFSecProtSecUserEMConfObj obj );
 
-	void deepDisposeSecUserEMConf( CFLibDbKeyHash256 pkey );
+	void deepDisposeSecUserEMConf( MCFDbKeyHash256 pkey );
 
 	/**
 	 *	Internal use only.
 	 */
-	ICFSecProtSecUserEMConfObj lockSecUserEMConf( CFLibDbKeyHash256 pkey );
+	ICFSecProtSecUserEMConfObj lockSecUserEMConf( MCFDbKeyHash256 pkey );
 
 	/**
 	 *	Return a sorted list of all the SecUserEMConf-derived instances in the database.
@@ -147,7 +147,7 @@ public interface ICFSecProtSecUserEMConfTableObj
 	 *	@return	List of ICFSecProtSecUserEMConfObj instance, sorted by their primary keys, which
 	 *		may include an empty set.
 	 */
-	List<ICFSecProtSecUserEMConfObj> pageAllSecUserEMConf(CFLibDbKeyHash256 priorSecUserId );
+	List<ICFSecProtSecUserEMConfObj> pageAllSecUserEMConf(MCFDbKeyHash256 priorSecUserId );
 
 	/**
 	 *	Get the ICFSecProtSecUserEMConfObj instance for the primary key attributes.
@@ -157,7 +157,7 @@ public interface ICFSecProtSecUserEMConfTableObj
 	 *	@return	ICFSecProtSecUserEMConfObj cached instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecProtSecUserEMConfObj readSecUserEMConfByIdIdx( ICFLibKeyHash256 SecUserId );
+	ICFSecProtSecUserEMConfObj readSecUserEMConfByIdIdx( IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Get the ICFSecProtSecUserEMConfObj instance for the primary key attributes.
@@ -167,7 +167,7 @@ public interface ICFSecProtSecUserEMConfTableObj
 	 *	@return	ICFSecProtSecUserEMConfObj refreshed instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecProtSecUserEMConfObj readSecUserEMConfByIdIdx( ICFLibKeyHash256 SecUserId,
+	ICFSecProtSecUserEMConfObj readSecUserEMConfByIdIdx( IMCFKeyHash256 SecUserId,
 		boolean forceRead );
 
 	/**
@@ -178,7 +178,7 @@ public interface ICFSecProtSecUserEMConfTableObj
 	 *	@return	ICFSecProtSecUserEMConfObj cached instance for the unique UUuid6Idx key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecProtSecUserEMConfObj readSecUserEMConfByUUuid6Idx(ICFLibUuid6 EMConfirmationUuid6 );
+	ICFSecProtSecUserEMConfObj readSecUserEMConfByUUuid6Idx(IMCFUuid6 EMConfirmationUuid6 );
 
 	/**
 	 *	Get the ICFSecProtSecUserEMConfObj instance for the unique UUuid6Idx key.
@@ -188,7 +188,7 @@ public interface ICFSecProtSecUserEMConfTableObj
 	 *	@return	ICFSecProtSecUserEMConfObj refreshed instance for the unique UUuid6Idx key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecProtSecUserEMConfObj readSecUserEMConfByUUuid6Idx(ICFLibUuid6 EMConfirmationUuid6,
+	ICFSecProtSecUserEMConfObj readSecUserEMConfByUUuid6Idx(IMCFUuid6 EMConfirmationUuid6,
 		boolean forceRead );
 
 	/**
@@ -254,9 +254,9 @@ public interface ICFSecProtSecUserEMConfTableObj
 	List<ICFSecProtSecUserEMConfObj> readSecUserEMConfByNewAcctIdx( boolean NewAccount,
 		boolean forceRead );
 
-	ICFSecProtSecUserEMConfObj readCachedSecUserEMConfByIdIdx( ICFLibKeyHash256 SecUserId );
+	ICFSecProtSecUserEMConfObj readCachedSecUserEMConfByIdIdx( IMCFKeyHash256 SecUserId );
 
-	ICFSecProtSecUserEMConfObj readCachedSecUserEMConfByUUuid6Idx( ICFLibUuid6 EMConfirmationUuid6 );
+	ICFSecProtSecUserEMConfObj readCachedSecUserEMConfByUUuid6Idx( IMCFUuid6 EMConfirmationUuid6 );
 
 	List<List<ICFSecProtSecUserEMConfObj>> readCachedSecUserEMConfByConfEMAddrIdx( String ConfirmEMailAddr );
 
@@ -264,9 +264,9 @@ public interface ICFSecProtSecUserEMConfTableObj
 
 	List<List<ICFSecProtSecUserEMConfObj>> readCachedSecUserEMConfByNewAcctIdx( boolean NewAccount );
 
-	void deepDisposeSecUserEMConfByIdIdx( ICFLibKeyHash256 SecUserId );
+	void deepDisposeSecUserEMConfByIdIdx( IMCFKeyHash256 SecUserId );
 
-	void deepDisposeSecUserEMConfByUUuid6Idx( ICFLibUuid6 EMConfirmationUuid6 );
+	void deepDisposeSecUserEMConfByUUuid6Idx( IMCFUuid6 EMConfirmationUuid6 );
 
 	void deepDisposeSecUserEMConfByConfEMAddrIdx( String ConfirmEMailAddr );
 
@@ -284,7 +284,7 @@ public interface ICFSecProtSecUserEMConfTableObj
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
 	List<ICFSecProtSecUserEMConfObj> pageSecUserEMConfByConfEMAddrIdx( String ConfirmEMailAddr,
-		CFLibDbKeyHash256 priorSecUserId );
+		MCFDbKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read a page of data as a List of SecUserEMConf-derived instances sorted by their primary keys,
@@ -296,7 +296,7 @@ public interface ICFSecProtSecUserEMConfTableObj
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
 	List<ICFSecProtSecUserEMConfObj> pageSecUserEMConfBySentStampIdx( LocalDateTime EMailSentStamp,
-		CFLibDbKeyHash256 priorSecUserId );
+		MCFDbKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read a page of data as a List of SecUserEMConf-derived instances sorted by their primary keys,
@@ -308,7 +308,7 @@ public interface ICFSecProtSecUserEMConfTableObj
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
 	List<ICFSecProtSecUserEMConfObj> pageSecUserEMConfByNewAcctIdx( boolean NewAccount,
-		CFLibDbKeyHash256 priorSecUserId );
+		MCFDbKeyHash256 priorSecUserId );
 
 	/**
 	 *	Internal use only.
@@ -325,14 +325,14 @@ public interface ICFSecProtSecUserEMConfTableObj
 	 *
 	 *	@param	SecUserId	The SecUserEMConf key attribute of the instance generating the id.
 	 */
-	void deleteSecUserEMConfByIdIdx( ICFLibKeyHash256 SecUserId );
+	void deleteSecUserEMConfByIdIdx( IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Internal use only.
 	 *
 	 *	@param	EMConfirmationUuid6	The SecUserEMConf key attribute of the instance generating the id.
 	 */
-	void deleteSecUserEMConfByUUuid6Idx(ICFLibUuid6 EMConfirmationUuid6 );
+	void deleteSecUserEMConfByUUuid6Idx(IMCFUuid6 EMConfirmationUuid6 );
 
 	/**
 	 *	Internal use only.

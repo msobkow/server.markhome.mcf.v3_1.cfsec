@@ -43,7 +43,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 
 public interface ICFSecProtSecUserPWResetObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecProtSecUserPWReset.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -117,7 +117,7 @@ public interface ICFSecProtSecUserPWResetObj
 	/**
 	 *	End this edition of this SecUserPWReset instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 
@@ -186,18 +186,18 @@ public interface ICFSecProtSecUserPWResetObj
 	/**
 	 *	Get the primary key of this instance.
 	 *
-	 *	@return	CFLibDbKeyHash256 primary key for this instance.
+	 *	@return	MCFDbKeyHash256 primary key for this instance.
 	 */
-	CFLibDbKeyHash256 getPKey();
+	MCFDbKeyHash256 getPKey();
 
 	/**
 	 *	Set the primary key of this instance.
 	 *	<p>
 	 *	This method should only be invoked by implementation internals.
 	 *
-	 *	@param CFLibDbKeyHash256 primary key value for this instance.
+	 *	@param MCFDbKeyHash256 primary key value for this instance.
 	 */
-	void setPKey( CFLibDbKeyHash256 value );
+	void setPKey( MCFDbKeyHash256 value );
 
 	/**
 	 *	Is this a new instance?
@@ -217,11 +217,11 @@ public interface ICFSecProtSecUserPWResetObj
 	void setIsNew( boolean value );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecUserId.
+	 *	Get the required IMCFKeyHash256 attribute SecUserId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecUserId.
+	 *	@return	The required IMCFKeyHash256 attribute SecUserId.
 	 */
-	ICFLibKeyHash256 getRequiredSecUserId();
+	IMCFKeyHash256 getRequiredSecUserId();
 
 	/**
 	 *	Get the required String attribute SentToEMailAddr.
@@ -231,11 +231,11 @@ public interface ICFSecProtSecUserPWResetObj
 	String getRequiredSentToEMailAddr();
 
 	/**
-	 *	Get the required ICFLibUuid6 attribute PasswordResetUuid6.
+	 *	Get the required IMCFUuid6 attribute PasswordResetUuid6.
 	 *
-	 *	@return	The required ICFLibUuid6 attribute PasswordResetUuid6.
+	 *	@return	The required IMCFUuid6 attribute PasswordResetUuid6.
 	 */
-	ICFLibUuid6 getRequiredPasswordResetUuid6();
+	IMCFUuid6 getRequiredPasswordResetUuid6();
 
 	/**
 	 *	Get the required boolean attribute NewAccount.

@@ -67,32 +67,32 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 
 	public CFSecJpaISOTZoneTable(ICFSecSchema schema) {
 		if( schema == null ) {
-			throw new CFLibNullArgumentException(getClass(), "constructor", 1, "schema" );
+			throw new MCFNullArgumentException(getClass(), "constructor", 1, "schema" );
 		}
 		if (schema instanceof CFSecJpaSchema) {
 			this.schema = (CFSecJpaSchema)schema;
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "constructor", "schema", schema, "CFSecJpaSchema");
+			throw new MCFUnsupportedClassException(getClass(), "constructor", "schema", schema, "CFSecJpaSchema");
 		}
 	}
 
 	protected boolean canCreateISOTZone(String S_ProcName, ICFSecAuthorization Authorization) {
 		if (Authorization == null) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
 		}
 		boolean permissionGranted = false;
-		CFLibDbKeyHash256 authUserId = Authorization.getSecUserId();
+		MCFDbKeyHash256 authUserId = Authorization.getSecUserId();
 		if ((!permissionGranted) && (authUserId == null || authUserId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
 		}
 		// Check for "system" user
-		CFLibDbKeyHash256 systemId = ICFSecSchema.getSystemId();
+		MCFDbKeyHash256 systemId = ICFSecSchema.getSystemId();
 		if ((!permissionGranted) && (systemId != null && !systemId.isNull() && systemId.equals(authUserId))) {
 			permissionGranted = true;
 		}
 		else if ((!permissionGranted) && (systemId == null || systemId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
 		}
 		if(!permissionGranted) {
 			permissionGranted = ICFSecSchema.getSecurityService().isMemberOfSystemGroup(Authorization.getSecUserId(), "createisotzone");
@@ -102,20 +102,20 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 
 	protected boolean canReadISOTZone(String S_ProcName, ICFSecAuthorization Authorization) {
 		if (Authorization == null) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
 		}
 		boolean permissionGranted = false;
-		CFLibDbKeyHash256 authUserId = Authorization.getSecUserId();
+		MCFDbKeyHash256 authUserId = Authorization.getSecUserId();
 		if ((!permissionGranted) && (authUserId == null || authUserId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
 		}
 		// Check for "system" user
-		CFLibDbKeyHash256 systemId = ICFSecSchema.getSystemId();
+		MCFDbKeyHash256 systemId = ICFSecSchema.getSystemId();
 		if ((!permissionGranted) && (systemId != null && !systemId.isNull() && systemId.equals(authUserId))) {
 			permissionGranted = true;
 		}
 		else if ((!permissionGranted) && (systemId == null || systemId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
 		}
 		// SecScope Global means anyone can read the table any time
 		permissionGranted = true;
@@ -124,20 +124,20 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 
 	protected boolean canUpdateISOTZone(String S_ProcName, ICFSecAuthorization Authorization) {
 		if (Authorization == null) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
 		}
 		boolean permissionGranted = false;
-		CFLibDbKeyHash256 authUserId = Authorization.getSecUserId();
+		MCFDbKeyHash256 authUserId = Authorization.getSecUserId();
 		if ((!permissionGranted) && (authUserId == null || authUserId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
 		}
 		// Check for "system" user
-		CFLibDbKeyHash256 systemId = ICFSecSchema.getSystemId();
+		MCFDbKeyHash256 systemId = ICFSecSchema.getSystemId();
 		if ((!permissionGranted) && (systemId != null && !systemId.isNull() && systemId.equals(authUserId))) {
 			permissionGranted = true;
 		}
 		else if ((!permissionGranted) && (systemId == null || systemId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
 		}
 		if(!permissionGranted) {
 			permissionGranted = ICFSecSchema.getSecurityService().isMemberOfSystemGroup(Authorization.getSecUserId(), "updateisotzone");
@@ -147,20 +147,20 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 
 	protected boolean canDeleteISOTZone(String S_ProcName, ICFSecAuthorization Authorization) {
 		if (Authorization == null) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
 		}
 		boolean permissionGranted = false;
-		CFLibDbKeyHash256 authUserId = Authorization.getSecUserId();
+		MCFDbKeyHash256 authUserId = Authorization.getSecUserId();
 		if ((!permissionGranted) && (authUserId == null || authUserId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
 		}
 		// Check for "system" user
-		CFLibDbKeyHash256 systemId = ICFSecSchema.getSystemId();
+		MCFDbKeyHash256 systemId = ICFSecSchema.getSystemId();
 		if ((!permissionGranted) && (systemId != null && !systemId.isNull() && systemId.equals(authUserId))) {
 			permissionGranted = true;
 		}
 		else if ((!permissionGranted) && (systemId == null || systemId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
 		}
 		if(!permissionGranted) {
 			permissionGranted = ICFSecSchema.getSecurityService().isMemberOfSystemGroup(Authorization.getSecUserId(), "deleteisotzone");
@@ -183,11 +183,11 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "createISOTZone";
 		boolean permissionGranted = canCreateISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "createisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "createisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		if (rec == null) {
-			throw new CFLibNullArgumentException(getClass(), "createISOTZone", 1, "rec");
+			throw new MCFNullArgumentException(getClass(), "createISOTZone", 1, "rec");
 		}
 		else if (rec instanceof CFSecJpaISOTZone) {
 			CFSecJpaISOTZone jparec = (CFSecJpaISOTZone)rec;
@@ -199,7 +199,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		return(retval);
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "createISOTZone", "rec", rec, "CFSecJpaISOTZone");
+			throw new MCFUnsupportedClassException(getClass(), "createISOTZone", "rec", rec, "CFSecJpaISOTZone");
 		}
 	}
 
@@ -218,11 +218,11 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "updateISOTZone";
 		boolean permissionGranted = canUpdateISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "updateisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "updateisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		if (rec == null) {
-			throw new CFLibNullArgumentException(getClass(), "updateISOTZone", 1, "rec");
+			throw new MCFNullArgumentException(getClass(), "updateISOTZone", 1, "rec");
 		}
 		else if (rec instanceof CFSecJpaISOTZone) {
 			CFSecJpaISOTZone jparec = (CFSecJpaISOTZone)rec;
@@ -232,7 +232,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		return(retval);
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "updateISOTZone", "rec", rec, "CFSecJpaISOTZone");
+			throw new MCFUnsupportedClassException(getClass(), "updateISOTZone", "rec", rec, "CFSecJpaISOTZone");
 		}
 	}
 
@@ -250,7 +250,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "deleteISOTZone";
 		boolean permissionGranted = canDeleteISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		if (rec == null) {
@@ -261,10 +261,10 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 			schema.getJpaHooksSchema().getISOTZoneService().deleteByIdIdx(jparec.getPKey());
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "deleteISOTZone", "rec", rec, "CFSecJpaISOTZone");
+			throw new MCFUnsupportedClassException(getClass(), "deleteISOTZone", "rec", rec, "CFSecJpaISOTZone");
 		}
 
-		throw new CFLibNotImplementedYetException(getClass(), "deleteISOTZone");
+		throw new MCFNotImplementedYetException(getClass(), "deleteISOTZone");
 	}
 
 	/**
@@ -281,7 +281,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "deleteISOTZoneByIdIdx";
 		boolean permissionGranted = canDeleteISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		schema.getJpaHooksSchema().getISOTZoneService().deleteByIdIdx(argKey);
@@ -304,7 +304,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "deleteISOTZoneByOffsetIdx";
 		boolean permissionGranted = canDeleteISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		schema.getJpaHooksSchema().getISOTZoneService().deleteByOffsetIdx(argTZHourOffset,
@@ -326,7 +326,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "deleteISOTZoneByOffsetIdx";
 		boolean permissionGranted = canDeleteISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		schema.getJpaHooksSchema().getISOTZoneService().deleteByOffsetIdx(argKey.getRequiredTZHourOffset(),
@@ -347,7 +347,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "deleteISOTZoneByUTZNameIdx";
 		boolean permissionGranted = canDeleteISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		schema.getJpaHooksSchema().getISOTZoneService().deleteByUTZNameIdx(argTZName);
@@ -368,7 +368,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "deleteISOTZoneByUTZNameIdx";
 		boolean permissionGranted = canDeleteISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		schema.getJpaHooksSchema().getISOTZoneService().deleteByUTZNameIdx(argKey.getRequiredTZName());
@@ -388,7 +388,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "deleteISOTZoneByIso8601Idx";
 		boolean permissionGranted = canDeleteISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		schema.getJpaHooksSchema().getISOTZoneService().deleteByIso8601Idx(argIso8601);
@@ -409,7 +409,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "deleteISOTZoneByIso8601Idx";
 		boolean permissionGranted = canDeleteISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		schema.getJpaHooksSchema().getISOTZoneService().deleteByIso8601Idx(argKey.getRequiredIso8601());
@@ -433,7 +433,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "readDerived";
 		boolean permissionGranted = canReadISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		ICFSecISOTZone retval = schema.getJpaHooksSchema().getISOTZoneService().find(PKey);
@@ -457,7 +457,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "lockDerived";
 		boolean permissionGranted = canUpdateISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "updateisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "updateisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		ICFSecISOTZone retval = schema.getJpaHooksSchema().getISOTZoneService().lockByIdIdx(PKey);
@@ -476,7 +476,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "readAllDerived";
 		boolean permissionGranted = canReadISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		List<CFSecJpaISOTZone> retlist = schema.getJpaHooksSchema().getISOTZoneService().findAll();
@@ -508,7 +508,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 			permissionGranted = canReadISOTZone(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 		ICFSecISOTZone retval = schema.getJpaHooksSchema().getISOTZoneService().find(argISOTZoneId);
 		return(retval);
@@ -536,7 +536,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 			permissionGranted = canReadISOTZone(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 		List<CFSecJpaISOTZone> retlist = schema.getJpaHooksSchema().getISOTZoneService().findByOffsetIdx(argTZHourOffset,
 		argTZMinOffset);
@@ -568,7 +568,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 			permissionGranted = canReadISOTZone(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 		ICFSecISOTZone retval = schema.getJpaHooksSchema().getISOTZoneService().findByUTZNameIdx(argTZName);
 		return(retval);
@@ -593,7 +593,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 			permissionGranted = canReadISOTZone(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 		List<CFSecJpaISOTZone> retlist = schema.getJpaHooksSchema().getISOTZoneService().findByIso8601Idx(argIso8601);
 		ICFSecISOTZone[] retset = new ICFSecISOTZone[retlist.size()];
@@ -614,7 +614,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecISOTZone readRec( ICFSecAuthorization Authorization,
@@ -623,10 +623,10 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "readRec";
 		boolean permissionGranted = canReadISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
-		throw new CFLibNotImplementedYetException(getClass(), "readRec");
+		throw new MCFNotImplementedYetException(getClass(), "readRec");
 	}
 
 	/**
@@ -639,7 +639,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecISOTZone lockRec( ICFSecAuthorization Authorization,
@@ -648,10 +648,10 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "lockRec";
 		boolean permissionGranted = canUpdateISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "updateisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "updateisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
-		throw new CFLibNotImplementedYetException(getClass(), "lockRec");
+		throw new MCFNotImplementedYetException(getClass(), "lockRec");
 	}
 
 	/**
@@ -666,10 +666,10 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 		final String S_ProcName = "readAllRec";
 		boolean permissionGranted = canReadISOTZone(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
-		throw new CFLibNotImplementedYetException(getClass(), "readAllRec");
+		throw new MCFNotImplementedYetException(getClass(), "readAllRec");
 	}
 
 
@@ -683,7 +683,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecISOTZone readRecByIdIdx( ICFSecAuthorization Authorization,
@@ -695,9 +695,9 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 			permissionGranted = canReadISOTZone(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
-		throw new CFLibNotImplementedYetException(getClass(), "readRecByIdIdx");
+		throw new MCFNotImplementedYetException(getClass(), "readRecByIdIdx");
 	}
 
 	/**
@@ -711,7 +711,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecISOTZone[] readRecByOffsetIdx( ICFSecAuthorization Authorization,
@@ -724,9 +724,9 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 			permissionGranted = canReadISOTZone(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
-		throw new CFLibNotImplementedYetException(getClass(), "readRecByOffsetIdx");
+		throw new MCFNotImplementedYetException(getClass(), "readRecByOffsetIdx");
 	}
 
 	/**
@@ -739,7 +739,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecISOTZone readRecByUTZNameIdx( ICFSecAuthorization Authorization,
@@ -751,9 +751,9 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 			permissionGranted = canReadISOTZone(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
-		throw new CFLibNotImplementedYetException(getClass(), "readRecByUTZNameIdx");
+		throw new MCFNotImplementedYetException(getClass(), "readRecByUTZNameIdx");
 	}
 
 	/**
@@ -765,7 +765,7 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecISOTZone[] readRecByIso8601Idx( ICFSecAuthorization Authorization,
@@ -777,8 +777,8 @@ public class CFSecJpaISOTZoneTable implements ICFSecISOTZoneTable
 			permissionGranted = canReadISOTZone(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisotzone", ICFSecSchema.SCHEMA_NAME, ICFSecISOTZoneTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
-		throw new CFLibNotImplementedYetException(getClass(), "readRecByIso8601Idx");
+		throw new MCFNotImplementedYetException(getClass(), "readRecByIso8601Idx");
 	}
 }

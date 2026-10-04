@@ -214,7 +214,7 @@ public interface ICFSecPubISOCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCcy pubreadRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -229,7 +229,7 @@ public interface ICFSecPubISOCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCcy publockRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -253,7 +253,7 @@ public interface ICFSecPubISOCcyTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCcy pubreadRecByIdIdx( ICFSecPubAuthorization Authorization,
 		short ISOCcyId );
@@ -268,7 +268,7 @@ public interface ICFSecPubISOCcyTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCcy pubreadRecByCcyCdIdx( ICFSecPubAuthorization Authorization,
 		String ISOCode );
@@ -283,7 +283,7 @@ public interface ICFSecPubISOCcyTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCcy pubreadRecByCcyNmIdx( ICFSecPubAuthorization Authorization,
 		String Name );

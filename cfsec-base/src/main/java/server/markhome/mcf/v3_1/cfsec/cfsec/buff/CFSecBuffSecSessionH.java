@@ -41,7 +41,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
@@ -53,18 +53,18 @@ public class CFSecBuffSecSessionH
     implements ICFSecSecSessionH, Comparable<Object>, Serializable
 {
     protected CFSecBuffSecSessionHPKey pkey;
-	protected ICFLibKeyHash256 requiredSecUserId;
+	protected IMCFKeyHash256 requiredSecUserId;
 	protected LocalDateTime requiredStart;
 	protected LocalDateTime optionalFinish;
-	protected ICFLibKeyHash256 optionalSecProxyId;
+	protected IMCFKeyHash256 optionalSecProxyId;
 
     public CFSecBuffSecSessionH() {
             // The primary key member attributes are initialized on construction
             pkey = new CFSecBuffSecSessionHPKey();
-		requiredSecUserId = CFLibDbKeyHash256.fromHex( ICFSecPubSecSession.SECUSERID_INIT_VALUE.toString() );
-		requiredStart = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+		requiredSecUserId = MCFDbKeyHash256.fromHex( ICFSecPubSecSession.SECUSERID_INIT_VALUE.toString() );
+		requiredStart = MCFXmlUtil.parseTimestamp("2020-01-01T00:00:00");
 		optionalFinish = null;
-		optionalSecProxyId = CFLibDbKeyHash256.nullGet();
+		optionalSecProxyId = MCFDbKeyHash256.nullGet();
     }
 
     @Override
@@ -84,18 +84,18 @@ public class CFSecBuffSecSessionH
                 this.pkey = (CFSecBuffSecSessionHPKey)pkey;
             }
             else {
-                throw new CFLibUnsupportedClassException(getClass(), "setPKey", "pkey", pkey, "CFSecBuffSecSessionHPKey");
+                throw new MCFUnsupportedClassException(getClass(), "setPKey", "pkey", pkey, "CFSecBuffSecSessionHPKey");
             }
         }
     }
 
     @Override
-    public CFLibDbKeyHash256 getAuditClusterId() {
+    public MCFDbKeyHash256 getAuditClusterId() {
         return pkey.getAuditClusterId();
     }
 
     @Override
-    public void setAuditClusterId(CFLibDbKeyHash256 auditClusterId) {
+    public void setAuditClusterId(MCFDbKeyHash256 auditClusterId) {
         pkey.setAuditClusterId(auditClusterId);
     }
 
@@ -130,23 +130,23 @@ public class CFSecBuffSecSessionH
     }
 
     @Override
-    public CFLibDbKeyHash256 getAuditSessionId() {
+    public MCFDbKeyHash256 getAuditSessionId() {
         return pkey.getAuditSessionId();
     }
 
     @Override
-    public void setAuditSessionId(CFLibDbKeyHash256 auditSessionId) {
+    public void setAuditSessionId(MCFDbKeyHash256 auditSessionId) {
         pkey.setAuditSessionId(auditSessionId);
     }
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecSessionId() {
+	public IMCFKeyHash256 getRequiredSecSessionId() {
 		return(getPKey().getRequiredSecSessionId());
 	}
 
-	public void setRequiredSecSessionId( ICFLibKeyHash256 value ) {
+	public void setRequiredSecSessionId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecSessionId",
 				1,
 				"value" );
@@ -155,13 +155,13 @@ public class CFSecBuffSecSessionH
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecUserId() {
+	public IMCFKeyHash256 getRequiredSecUserId() {
 		return(requiredSecUserId);
 	}
 
-	public void setRequiredSecUserId( ICFLibKeyHash256 value ) {
+	public void setRequiredSecUserId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecUserId",
 				1,
 				"value" );
@@ -176,7 +176,7 @@ public class CFSecBuffSecSessionH
 
 	public void setRequiredStart( LocalDateTime value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredStart",
 				1,
 				"value" );
@@ -194,11 +194,11 @@ public class CFSecBuffSecSessionH
 	}
 
 	@Override
-	public ICFLibKeyHash256 getOptionalSecProxyId() {
+	public IMCFKeyHash256 getOptionalSecProxyId() {
 		return(optionalSecProxyId);
 	}
 
-	public void setOptionalSecProxyId( ICFLibKeyHash256 value ) {
+	public void setOptionalSecProxyId( IMCFKeyHash256 value ) {
 		optionalSecProxyId = value;
 	}
 
@@ -788,7 +788,7 @@ public class CFSecBuffSecSessionH
             return( 0 );
         }
         else {
-            throw new CFLibUnsupportedClassException( getClass(),
+            throw new MCFUnsupportedClassException( getClass(),
                 "compareTo",
                 "obj",
                 obj,

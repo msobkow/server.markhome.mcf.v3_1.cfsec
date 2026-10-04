@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +75,7 @@ public class CFSecJpaSecUserPWResetService {
 			return( null );
 		}
 		if (data.getRequiredContainerUser() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -86,13 +86,13 @@ public class CFSecJpaSecUserPWResetService {
 				null);
 		}
 		if(data.getRequiredSentToEMailAddr() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredSentToEMailAddr");
 		}
 		if(data.getRequiredPasswordResetUuid6() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredPasswordResetUuid6");
@@ -110,7 +110,7 @@ public class CFSecJpaSecUserPWResetService {
 			return cfsec31SecUserPWResetRepository.save(data);
 		}
 		catch(Exception ex) {
-			throw new CFLibDbException(getClass(),
+			throw new MCFDbException(getClass(),
 				S_ProcName,
 				ex);
 		}
@@ -130,13 +130,13 @@ public class CFSecJpaSecUserPWResetService {
 			return( null );
 		}
 		if (data.getPKey() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.getPKey()");
 		}
 		if (data.getRequiredContainerUser() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -147,22 +147,22 @@ public class CFSecJpaSecUserPWResetService {
 				null);
 		}
 		if(data.getRequiredSentToEMailAddr() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredSentToEMailAddr");
 		}
 		if(data.getRequiredPasswordResetUuid6() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredPasswordResetUuid6");
 		}
 		// Ensure the entity exists and that the revision matches
 		CFSecJpaSecUserPWReset existing = cfsec31SecUserPWResetRepository.findById(($implCommaIJavaOptAtomType$)(data.getPKey()))
-			.orElseThrow(() -> new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
+			.orElseThrow(() -> new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
 		if (existing.getRequiredRevision() != data.getRequiredRevision()) {
-			throw new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
+			throw new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
 		}
 		// Apply superior data relationships of CFSecSecUserPWReset to existing object
 		// Apply data columns of CFSecSecUserPWReset to existing object
@@ -183,7 +183,7 @@ public class CFSecJpaSecUserPWResetService {
 	 *		@return The retrieved entity, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserPWReset find(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public CFSecJpaSecUserPWReset find(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		return( cfsec31SecUserPWResetRepository.get(requiredSecUserId));
 	}
 
@@ -207,7 +207,7 @@ public class CFSecJpaSecUserPWResetService {
 	 *		@return The found entity, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserPWReset findByUUuid6Idx(@Param("passwordResetUuid6") ICFLibUuid6 requiredPasswordResetUuid6) {
+	public CFSecJpaSecUserPWReset findByUUuid6Idx(@Param("passwordResetUuid6") IMCFUuid6 requiredPasswordResetUuid6) {
 		return( cfsec31SecUserPWResetRepository.findByUUuid6Idx(requiredPasswordResetUuid6));
 	}
 
@@ -281,7 +281,7 @@ public class CFSecJpaSecUserPWResetService {
 	 *		@return The locked entity, refreshed from the data store, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserPWReset lockByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public CFSecJpaSecUserPWReset lockByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		return( cfsec31SecUserPWResetRepository.lockByIdIdx(requiredSecUserId));
 	}
 
@@ -293,7 +293,7 @@ public class CFSecJpaSecUserPWResetService {
 	 *		@return The locked entity, refreshed from the data store, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserPWReset lockByUUuid6Idx(@Param("passwordResetUuid6") ICFLibUuid6 requiredPasswordResetUuid6) {
+	public CFSecJpaSecUserPWReset lockByUUuid6Idx(@Param("passwordResetUuid6") IMCFUuid6 requiredPasswordResetUuid6) {
 		return( cfsec31SecUserPWResetRepository.lockByUUuid6Idx(requiredPasswordResetUuid6));
 	}
 
@@ -365,7 +365,7 @@ public class CFSecJpaSecUserPWResetService {
 	 *		@param requiredSecUserId
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public void deleteByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		cfsec31SecUserPWResetRepository.deleteByIdIdx(requiredSecUserId);
 	}
 
@@ -375,7 +375,7 @@ public class CFSecJpaSecUserPWResetService {
 	 *		@param requiredPasswordResetUuid6
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByUUuid6Idx(@Param("passwordResetUuid6") ICFLibUuid6 requiredPasswordResetUuid6) {
+	public void deleteByUUuid6Idx(@Param("passwordResetUuid6") IMCFUuid6 requiredPasswordResetUuid6) {
 		cfsec31SecUserPWResetRepository.deleteByUUuid6Idx(requiredPasswordResetUuid6);
 	}
 

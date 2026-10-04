@@ -38,25 +38,25 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 
 public class CFSecJpaSecTentGrpMembByTentGrpIdxKey
 	implements ICFSecSecTentGrpMembByTentGrpIdxKey, Comparable<Object>, Serializable
 {
-	protected ICFLibKeyHash256 requiredSecTentGrpId;
+	protected IMCFKeyHash256 requiredSecTentGrpId;
 	public CFSecJpaSecTentGrpMembByTentGrpIdxKey() {
-		requiredSecTentGrpId = CFLibDbKeyHash256.fromHex( ICFSecProtSecTentGrpMemb.SECTENTGRPID_INIT_VALUE.toString() );
+		requiredSecTentGrpId = MCFDbKeyHash256.fromHex( ICFSecProtSecTentGrpMemb.SECTENTGRPID_INIT_VALUE.toString() );
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecTentGrpId() {
+	public IMCFKeyHash256 getRequiredSecTentGrpId() {
 		return(getPKey().getRequiredSecTentGrpId());
 	}
 
-	public void setRequiredSecTentGrpId( ICFLibKeyHash256 value ) {
+	public void setRequiredSecTentGrpId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecTentGrpId",
 				1,
 				"value" );
@@ -199,7 +199,7 @@ public class CFSecJpaSecTentGrpMembByTentGrpIdxKey
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(),
+			throw new MCFUnsupportedClassException(getClass(),
 				"compareTo",
 				"obj",
 				obj,

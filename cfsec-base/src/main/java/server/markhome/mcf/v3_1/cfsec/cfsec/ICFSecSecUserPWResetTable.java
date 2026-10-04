@@ -99,7 +99,7 @@ public interface ICFSecSecUserPWResetTable
 	 *	@param	PasswordResetUuid6	The SecUserPWReset key attribute of the instance generating the id.
 	 */
 	void deleteSecUserPWResetByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 argPasswordResetUuid6 );
+		IMCFUuid6 argPasswordResetUuid6 );
 
 	/**
 	 *	Delete the SecUserPWReset instances identified by the key UUuid6Idx.
@@ -196,7 +196,7 @@ public interface ICFSecSecUserPWResetTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecUserPWReset readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read the derived SecUserPWReset record instance identified by the unique key UUuid6Idx.
@@ -209,7 +209,7 @@ public interface ICFSecSecUserPWResetTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecUserPWReset readDerivedByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 PasswordResetUuid6 );
+		IMCFUuid6 PasswordResetUuid6 );
 
 	/**
 	 *	Read an array of the derived SecUserPWReset record instances identified by the duplicate key SentEMAddrIdx.
@@ -245,7 +245,7 @@ public interface ICFSecSecUserPWResetTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWReset readRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -260,7 +260,7 @@ public interface ICFSecSecUserPWResetTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWReset lockRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -282,7 +282,7 @@ public interface ICFSecSecUserPWResetTable
 	 *	@return All the specific SecUserPWReset instances in the database accessible for the Authorization.
 	 */
 	ICFSecSecUserPWReset[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read the specific SecUserPWReset record instance identified by the unique key IdIdx.
@@ -294,10 +294,10 @@ public interface ICFSecSecUserPWResetTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWReset readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read the specific SecUserPWReset record instance identified by the unique key UUuid6Idx.
@@ -309,10 +309,10 @@ public interface ICFSecSecUserPWResetTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWReset readRecByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 PasswordResetUuid6 );
+		IMCFUuid6 PasswordResetUuid6 );
 
 	/**
 	 *	Read an array of the specific SecUserPWReset record instances identified by the duplicate key SentEMAddrIdx.
@@ -323,7 +323,7 @@ public interface ICFSecSecUserPWResetTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWReset[] readRecBySentEMAddrIdx( ICFSecAuthorization Authorization,
 		String SentToEMailAddr );
@@ -337,7 +337,7 @@ public interface ICFSecSecUserPWResetTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWReset[] readRecByNewAcctIdx( ICFSecAuthorization Authorization,
 		boolean NewAccount );
@@ -351,11 +351,11 @@ public interface ICFSecSecUserPWResetTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWReset[] pageRecBySentEMAddrIdx( ICFSecAuthorization Authorization,
 		String SentToEMailAddr,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read a page array of the specific SecUserPWReset record instances identified by the duplicate key NewAcctIdx.
@@ -366,9 +366,9 @@ public interface ICFSecSecUserPWResetTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWReset[] pageRecByNewAcctIdx( ICFSecAuthorization Authorization,
 		boolean NewAccount,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 }

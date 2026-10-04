@@ -99,7 +99,7 @@ public interface ICFSecProtClusterTableObj
 	 *	@return	The Cluster-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecProtClusterObj readCluster( CFLibDbKeyHash256 pkey );
+	ICFSecProtClusterObj readCluster( MCFDbKeyHash256 pkey );
 
 	/**
 	 *	Read a Cluster-derived instance by it's primary key.
@@ -109,19 +109,19 @@ public interface ICFSecProtClusterTableObj
 	 *	@return	The Cluster-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecProtClusterObj readCluster( CFLibDbKeyHash256 pkey,
+	ICFSecProtClusterObj readCluster( MCFDbKeyHash256 pkey,
 		boolean forceRead );
 
-	ICFSecProtClusterObj readCachedCluster( CFLibDbKeyHash256 pkey );
+	ICFSecProtClusterObj readCachedCluster( MCFDbKeyHash256 pkey );
 
 	public void reallyDeepDisposeCluster( ICFSecProtClusterObj obj );
 
-	void deepDisposeCluster( CFLibDbKeyHash256 pkey );
+	void deepDisposeCluster( MCFDbKeyHash256 pkey );
 
 	/**
 	 *	Internal use only.
 	 */
-	ICFSecProtClusterObj lockCluster( CFLibDbKeyHash256 pkey );
+	ICFSecProtClusterObj lockCluster( MCFDbKeyHash256 pkey );
 
 	/**
 	 *	Return a sorted list of all the Cluster-derived instances in the database.
@@ -147,7 +147,7 @@ public interface ICFSecProtClusterTableObj
 	 *	@return	List of ICFSecProtClusterObj instance, sorted by their primary keys, which
 	 *		may include an empty set.
 	 */
-	List<ICFSecProtClusterObj> pageAllCluster(CFLibDbKeyHash256 priorId );
+	List<ICFSecProtClusterObj> pageAllCluster(MCFDbKeyHash256 priorId );
 
 	/**
 	 *	Get the ICFSecProtClusterObj instance for the primary key attributes.
@@ -157,7 +157,7 @@ public interface ICFSecProtClusterTableObj
 	 *	@return	ICFSecProtClusterObj cached instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecProtClusterObj readClusterByIdIdx( ICFLibKeyHash256 Id );
+	ICFSecProtClusterObj readClusterByIdIdx( IMCFKeyHash256 Id );
 
 	/**
 	 *	Get the ICFSecProtClusterObj instance for the primary key attributes.
@@ -167,7 +167,7 @@ public interface ICFSecProtClusterTableObj
 	 *	@return	ICFSecProtClusterObj refreshed instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecProtClusterObj readClusterByIdIdx( ICFLibKeyHash256 Id,
+	ICFSecProtClusterObj readClusterByIdIdx( IMCFKeyHash256 Id,
 		boolean forceRead );
 
 	/**
@@ -212,13 +212,13 @@ public interface ICFSecProtClusterTableObj
 	ICFSecProtClusterObj readClusterByUDescrIdx(String Description,
 		boolean forceRead );
 
-	ICFSecProtClusterObj readCachedClusterByIdIdx( ICFLibKeyHash256 Id );
+	ICFSecProtClusterObj readCachedClusterByIdIdx( IMCFKeyHash256 Id );
 
 	ICFSecProtClusterObj readCachedClusterByUDomNameIdx( String FullDomName );
 
 	ICFSecProtClusterObj readCachedClusterByUDescrIdx( String Description );
 
-	void deepDisposeClusterByIdIdx( ICFLibKeyHash256 Id );
+	void deepDisposeClusterByIdIdx( IMCFKeyHash256 Id );
 
 	void deepDisposeClusterByUDomNameIdx( String FullDomName );
 
@@ -239,7 +239,7 @@ public interface ICFSecProtClusterTableObj
 	 *
 	 *	@param	Id	The Cluster key attribute of the instance generating the id.
 	 */
-	void deleteClusterByIdIdx( ICFLibKeyHash256 Id );
+	void deleteClusterByIdIdx( IMCFKeyHash256 Id );
 
 	/**
 	 *	Internal use only.

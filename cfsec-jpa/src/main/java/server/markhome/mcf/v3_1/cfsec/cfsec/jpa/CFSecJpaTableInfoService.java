@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,19 +77,19 @@ public class CFSecJpaTableInfoService {
 		int originalRequiredTableInfoId = data.getRequiredTableInfoId();
 		boolean generatedRequiredTableInfoId = false;
 		if(data.getRequiredSchemaName() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredSchemaName");
 		}
 		if(data.getRequiredTableName() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredTableName");
 		}
 		if( data.getRequiredBackingClassCode() < ICFSecTableInfo.BACKINGCLASSCODE_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"getRequiredBackingClassCode()",
@@ -97,7 +97,7 @@ public class CFSecJpaTableInfoService {
 				ICFSecTableInfo.BACKINGCLASSCODE_MIN_VALUE );
 		}
 		if( data.getRequiredRuntimeClassCode() < ICFSecTableInfo.RUNTIMECLASSCODE_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"getRequiredRuntimeClassCode()",
@@ -105,13 +105,13 @@ public class CFSecJpaTableInfoService {
 				ICFSecTableInfo.RUNTIMECLASSCODE_MIN_VALUE );
 		}
 		if(data.getRequiredSecScopeName() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredSecScopeName");
 		}
 		if(data.getRequiredCodeVis() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredCodeVis");
@@ -129,7 +129,7 @@ public class CFSecJpaTableInfoService {
 				if(generatedRequiredTableInfoId) {
 					data.setRequiredTableInfoId(originalRequiredTableInfoId);
 				}
-			throw new CFLibDbException(getClass(),
+			throw new MCFDbException(getClass(),
 				S_ProcName,
 				ex);
 		}
@@ -149,25 +149,25 @@ public class CFSecJpaTableInfoService {
 			return( null );
 		}
 		if (data.getPKey() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.getPKey()");
 		}
 		if(data.getRequiredSchemaName() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredSchemaName");
 		}
 		if(data.getRequiredTableName() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredTableName");
 		}
 		if( data.getRequiredBackingClassCode() < ICFSecTableInfo.BACKINGCLASSCODE_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"getRequiredBackingClassCode()",
@@ -175,7 +175,7 @@ public class CFSecJpaTableInfoService {
 				ICFSecTableInfo.BACKINGCLASSCODE_MIN_VALUE );
 		}
 		if( data.getRequiredRuntimeClassCode() < ICFSecTableInfo.RUNTIMECLASSCODE_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"getRequiredRuntimeClassCode()",
@@ -183,22 +183,22 @@ public class CFSecJpaTableInfoService {
 				ICFSecTableInfo.RUNTIMECLASSCODE_MIN_VALUE );
 		}
 		if(data.getRequiredSecScopeName() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredSecScopeName");
 		}
 		if(data.getRequiredCodeVis() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredCodeVis");
 		}
 		// Ensure the entity exists and that the revision matches
 		CFSecJpaTableInfo existing = cfsec31TableInfoRepository.findById(($implCommaIJavaOptAtomType$)(data.getPKey()))
-			.orElseThrow(() -> new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
+			.orElseThrow(() -> new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
 		if (existing.getRequiredRevision() != data.getRequiredRevision()) {
-			throw new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
+			throw new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
 		}
 		// Apply superior data relationships of CFSecTableInfo to existing object
 		existing.setOptionalParentSuperRef(data.getOptionalParentSuperRef());

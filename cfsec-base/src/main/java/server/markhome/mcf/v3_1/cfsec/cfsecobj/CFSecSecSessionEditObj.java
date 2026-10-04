@@ -37,7 +37,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
@@ -72,7 +72,7 @@ public class CFSecSecSessionEditObj
 	}
 
 	@Override
-	public ICFLibAnyObj getObjScope() {
+	public IMCFAnyObj getObjScope() {
 		ICFSecSecUserObj scope = getRequiredContainerSecUser();
 		return( scope );
 	}
@@ -80,7 +80,7 @@ public class CFSecSecSessionEditObj
 	@Override
 	public String getObjName() {
 		String objName;
-		CFLibDbKeyHash256 val = rec.getRequiredSecSessionId();
+		MCFDbKeyHash256 val = rec.getRequiredSecSessionId();
 		if (val != null) {
 			objName = val.toString();
 		}
@@ -91,8 +91,8 @@ public class CFSecSecSessionEditObj
 	}
 
 	@Override
-	public ICFLibAnyObj getObjQualifier( Class qualifyingClass ) {
-		ICFLibAnyObj container = this;
+	public IMCFAnyObj getObjQualifier( Class qualifyingClass ) {
+		IMCFAnyObj container = this;
 		if( qualifyingClass != null ) {
 			while( container != null ) {
 				if( container instanceof ICFSecClusterObj ) {
@@ -122,21 +122,21 @@ public class CFSecSecSessionEditObj
 	}
 
 	@Override
-	public ICFLibAnyObj getNamedObject( Class qualifyingClass, String objName ) {
-		ICFLibAnyObj topContainer = getObjQualifier( qualifyingClass );
+	public IMCFAnyObj getNamedObject( Class qualifyingClass, String objName ) {
+		IMCFAnyObj topContainer = getObjQualifier( qualifyingClass );
 		if( topContainer == null ) {
 			return( null );
 		}
-		ICFLibAnyObj namedObject = topContainer.getNamedObject( objName );
+		IMCFAnyObj namedObject = topContainer.getNamedObject( objName );
 		return( namedObject );
 	}
 
 	@Override
-	public ICFLibAnyObj getNamedObject( String objName ) {
+	public IMCFAnyObj getNamedObject( String objName ) {
 		String nextName;
 		String remainingName;
-		ICFLibAnyObj subObj = null;
-		ICFLibAnyObj retObj;
+		IMCFAnyObj subObj = null;
+		IMCFAnyObj retObj;
 		int nextDot = objName.indexOf( '.' );
 		if( nextDot >= 0 ) {
 			nextName = objName.substring( 0, nextDot );
@@ -161,7 +161,7 @@ public class CFSecSecSessionEditObj
 	@Override
 	public String getObjQualifiedName() {
 		String qualName = getObjName();
-		ICFLibAnyObj container = getObjScope();
+		IMCFAnyObj container = getObjScope();
 		String containerName;
 		while( container != null ) {
 			if( container instanceof ICFSecClusterObj ) {
@@ -182,7 +182,7 @@ public class CFSecSecSessionEditObj
 	@Override
 	public String getObjFullName() {
 		String fullName = getObjName();
-		ICFLibAnyObj container = getObjScope();
+		IMCFAnyObj container = getObjScope();
 		String containerName;
 		while( container != null ) {
 			if( container instanceof ICFSecClusterObj ) {
@@ -216,7 +216,7 @@ public class CFSecSecSessionEditObj
 	public ICFSecSecSessionObj read() {
 		ICFSecSecSessionObj retval = getOrigAsSecSession().read();
 		if( retval != orig ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),	"read" );
+			throw new MCFStaleCacheDetectedException( getClass(),	"read" );
 		}
 		copyOrigToRec();
 		return( retval );
@@ -226,7 +226,7 @@ public class CFSecSecSessionEditObj
 	public ICFSecSecSessionObj read( boolean forceRead ) {
 		ICFSecSecSessionObj retval = getOrigAsSecSession().read( forceRead );
 		if( retval != orig ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),	"read" );
+			throw new MCFStaleCacheDetectedException( getClass(),	"read" );
 		}
 		copyOrigToRec();
 		return( retval );
@@ -251,7 +251,7 @@ public class CFSecSecSessionEditObj
 	@Override
 	public CFSecSecSessionEditObj deleteInstance() {
 		if( getIsNew() ) {
-			throw new CFLibCannotDeleteNewInstanceException( getClass(), "delete" );
+			throw new MCFCannotDeleteNewInstanceException( getClass(), "delete" );
 		}
 		getSchema().getSecSessionTableObj().deleteSecSession( getOrigAsSecSession() );
 		return( null );
@@ -274,7 +274,7 @@ public class CFSecSecSessionEditObj
 
 	@Override
 	public ICFSecSecSessionEditObj beginEdit() {
-		throw new CFLibEditAlreadyOpenException( getClass(), "beginEdit" );
+		throw new MCFEditAlreadyOpenException( getClass(), "beginEdit" );
 	}
 
 	@Override
@@ -347,19 +347,19 @@ public class CFSecSecSessionEditObj
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecSessionId() {
+	public IMCFKeyHash256 getRequiredSecSessionId() {
 		return( getPKey() );
 	}
 
 	@Override
-	public void setRequiredSecSessionId(ICFLibKeyHash256 value) {
+	public void setRequiredSecSessionId(IMCFKeyHash256 value) {
 		if (getPKey() != value) {
 			setPKey(value);
 		}
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecUserId() {
+	public IMCFKeyHash256 getRequiredSecUserId() {
 		return( getSecSessionRec().getRequiredSecUserId() );
 	}
 
@@ -388,7 +388,7 @@ public class CFSecSecSessionEditObj
 	}
 
 	@Override
-	public ICFLibKeyHash256 getOptionalSecProxyId() {
+	public IMCFKeyHash256 getOptionalSecProxyId() {
 		return( getSecSessionRec().getOptionalSecProxyId() );
 	}
 

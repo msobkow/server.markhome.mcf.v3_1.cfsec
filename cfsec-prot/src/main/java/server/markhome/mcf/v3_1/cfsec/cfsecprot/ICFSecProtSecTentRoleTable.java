@@ -92,7 +92,7 @@ public interface ICFSecProtSecTentRoleTable
 	 *	@param	argKey	The primary key identifying the instance to be deleted.
 	 */
 	public void protdeleteSecTentRoleByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 argKey );
+		MCFDbKeyHash256 argKey );
 	/**
 	 *	Delete the SecTentRole instances identified by the key TenantIdx.
 	 *
@@ -101,7 +101,7 @@ public interface ICFSecProtSecTentRoleTable
 	 *	@param	TenantId	The SecTentRole key attribute of the instance generating the id.
 	 */
 	public void protdeleteSecTentRoleByTenantIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 argTenantId );
+		IMCFKeyHash256 argTenantId );
 
 	/**
 	 *	Delete the SecTentRole instances identified by the key TenantIdx.
@@ -141,7 +141,7 @@ public interface ICFSecProtSecTentRoleTable
 	 *	@param	Name	The SecTentRole key attribute of the instance generating the id.
 	 */
 	public void protdeleteSecTentRoleByUNameIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 argTenantId,
+		IMCFKeyHash256 argTenantId,
 		String argName );
 
 	/**
@@ -166,7 +166,7 @@ public interface ICFSecProtSecTentRoleTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecTentRole protreadDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the derived SecTentRole record instance by protected primary key.
@@ -179,7 +179,7 @@ public interface ICFSecProtSecTentRoleTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecTentRole protlockDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all SecTentRole instances.
@@ -201,7 +201,7 @@ public interface ICFSecProtSecTentRoleTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecTentRole protreadDerivedByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId );
+		IMCFKeyHash256 SecTentRoleId );
 
 	/**
 	 *	Read an array of the derived SecTentRole record instances identified by the duplicate key TenantIdx.
@@ -213,7 +213,7 @@ public interface ICFSecProtSecTentRoleTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	public ICFSecProtSecTentRole[] protreadDerivedByTenantIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 TenantId );
+		IMCFKeyHash256 TenantId );
 
 	/**
 	 *	Read an array of the derived SecTentRole record instances identified by the duplicate key NameIdx.
@@ -240,7 +240,7 @@ public interface ICFSecProtSecTentRoleTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecTentRole protreadDerivedByUNameIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 TenantId,
+		IMCFKeyHash256 TenantId,
 		String Name );
 
 	/**
@@ -253,10 +253,10 @@ public interface ICFSecProtSecTentRoleTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecTentRole protreadRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the specific SecTentRole record instance identified by the primary key.
@@ -268,10 +268,10 @@ public interface ICFSecProtSecTentRoleTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecTentRole protlockRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all the specific SecTentRole record instances.
@@ -292,10 +292,10 @@ public interface ICFSecProtSecTentRoleTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecTentRole protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecTentRoleId );
+		IMCFKeyHash256 SecTentRoleId );
 
 	/**
 	 *	Read an array of the specific SecTentRole record instances identified by the duplicate key TenantIdx.
@@ -306,10 +306,10 @@ public interface ICFSecProtSecTentRoleTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecTentRole[] protreadRecByTenantIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 TenantId );
+		IMCFKeyHash256 TenantId );
 
 	/**
 	 *	Read an array of the specific SecTentRole record instances identified by the duplicate key NameIdx.
@@ -320,7 +320,7 @@ public interface ICFSecProtSecTentRoleTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecTentRole[] protreadRecByNameIdx( ICFSecPubAuthorization Authorization,
 		String Name );
@@ -337,9 +337,9 @@ public interface ICFSecProtSecTentRoleTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecTentRole protreadRecByUNameIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 TenantId,
+		IMCFKeyHash256 TenantId,
 		String Name );
 }

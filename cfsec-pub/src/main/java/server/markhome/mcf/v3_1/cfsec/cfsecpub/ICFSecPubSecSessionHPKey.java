@@ -35,7 +35,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 //import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 
 /**
@@ -44,8 +44,8 @@ import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
 public interface ICFSecPubSecSessionHPKey
 {
 
-	public CFLibDbKeyHash256 getAuditClusterId();
-	public void setAuditClusterId( CFLibDbKeyHash256 value );
+	public MCFDbKeyHash256 getAuditClusterId();
+	public void setAuditClusterId( MCFDbKeyHash256 value );
 
 	public LocalDateTime getAuditStamp();
 	public void setAuditStamp( LocalDateTime value );
@@ -56,11 +56,11 @@ public interface ICFSecPubSecSessionHPKey
 	public int getRequiredRevision();
 	public void setRequiredRevision( int value );
 
-	public CFLibDbKeyHash256 getAuditSessionId();
-	public void setAuditSessionId( CFLibDbKeyHash256 value );
+	public MCFDbKeyHash256 getAuditSessionId();
+	public void setAuditSessionId( MCFDbKeyHash256 value );
 
-	public CFLibDbKeyHash256 getRequiredSecSessionId();
-	public void setRequiredSecSessionId( CFLibDbKeyHash256 value );
+	public MCFDbKeyHash256 getRequiredSecSessionId();
+	public void setRequiredSecSessionId( MCFDbKeyHash256 value );
 	@Override
 	public boolean equals( Object obj );
 

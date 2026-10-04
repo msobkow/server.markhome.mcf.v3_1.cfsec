@@ -92,7 +92,7 @@ public interface ICFSecSecUserPWHistoryTable
 	 *	@param	PWSetStamp	The SecUserPWHistory key attribute of the instance generating the id.
 	 */
 	void deleteSecUserPWHistoryByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecUserId,
+		IMCFKeyHash256 argSecUserId,
 		LocalDateTime argPWSetStamp );
 	/**
 	 *	Delete the SecUserPWHistory instance identified by the primary key.
@@ -111,7 +111,7 @@ public interface ICFSecSecUserPWHistoryTable
 	 *	@param	SecUserId	The SecUserPWHistory key attribute of the instance generating the id.
 	 */
 	void deleteSecUserPWHistoryByUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecUserId );
+		IMCFKeyHash256 argSecUserId );
 
 	/**
 	 *	Delete the SecUserPWHistory instances identified by the key UserIdx.
@@ -184,7 +184,7 @@ public interface ICFSecSecUserPWHistoryTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecUserPWHistory readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp );
 
 	/**
@@ -222,7 +222,7 @@ public interface ICFSecSecUserPWHistoryTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecUserPWHistory readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp );
 
 	/**
@@ -236,7 +236,7 @@ public interface ICFSecSecUserPWHistoryTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecUserPWHistory readDerivedByUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read the derived SecUserPWHistory record instance identified by the unique key SetStampIdx.
@@ -274,7 +274,7 @@ public interface ICFSecSecUserPWHistoryTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWHistory readRec( ICFSecAuthorization Authorization,
 		ICFSecSecUserPWHistoryPKey PKey );
@@ -289,10 +289,10 @@ public interface ICFSecSecUserPWHistoryTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWHistory readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp );
 
 	/**
@@ -305,7 +305,7 @@ public interface ICFSecSecUserPWHistoryTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWHistory lockRec( ICFSecAuthorization Authorization,
 		ICFSecSecUserPWHistoryPKey PKey );
@@ -327,7 +327,7 @@ public interface ICFSecSecUserPWHistoryTable
 	 *	@return All the specific SecUserPWHistory instances in the database accessible for the Authorization.
 	 */
 	ICFSecSecUserPWHistory[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecUserId,
+		IMCFKeyHash256 priorSecUserId,
 		LocalDateTime priorPWSetStamp );
 
 	/**
@@ -342,10 +342,10 @@ public interface ICFSecSecUserPWHistoryTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWHistory readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp );
 
 	/**
@@ -358,10 +358,10 @@ public interface ICFSecSecUserPWHistoryTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWHistory readRecByUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read the specific SecUserPWHistory record instance identified by the unique key SetStampIdx.
@@ -373,7 +373,7 @@ public interface ICFSecSecUserPWHistoryTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWHistory readRecBySetStampIdx( ICFSecAuthorization Authorization,
 		LocalDateTime PWSetStamp );
@@ -388,7 +388,7 @@ public interface ICFSecSecUserPWHistoryTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPWHistory readRecByReplacedStampIdx( ICFSecAuthorization Authorization,
 		LocalDateTime PWReplacedStamp );

@@ -92,7 +92,7 @@ public interface ICFSecProtSecTentGrpTable
 	 *	@param	argKey	The primary key identifying the instance to be deleted.
 	 */
 	public void protdeleteSecTentGrpByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 argKey );
+		MCFDbKeyHash256 argKey );
 	/**
 	 *	Delete the SecTentGrp instances identified by the key TenantIdx.
 	 *
@@ -101,7 +101,7 @@ public interface ICFSecProtSecTentGrpTable
 	 *	@param	TenantId	The SecTentGrp key attribute of the instance generating the id.
 	 */
 	public void protdeleteSecTentGrpByTenantIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 argTenantId );
+		IMCFKeyHash256 argTenantId );
 
 	/**
 	 *	Delete the SecTentGrp instances identified by the key TenantIdx.
@@ -141,7 +141,7 @@ public interface ICFSecProtSecTentGrpTable
 	 *	@param	Name	The SecTentGrp key attribute of the instance generating the id.
 	 */
 	public void protdeleteSecTentGrpByUNameIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 argTenantId,
+		IMCFKeyHash256 argTenantId,
 		String argName );
 
 	/**
@@ -166,7 +166,7 @@ public interface ICFSecProtSecTentGrpTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecTentGrp protreadDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the derived SecTentGrp record instance by protected primary key.
@@ -179,7 +179,7 @@ public interface ICFSecProtSecTentGrpTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecTentGrp protlockDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all SecTentGrp instances.
@@ -201,7 +201,7 @@ public interface ICFSecProtSecTentGrpTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecTentGrp protreadDerivedByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecTentGrpId );
+		IMCFKeyHash256 SecTentGrpId );
 
 	/**
 	 *	Read an array of the derived SecTentGrp record instances identified by the duplicate key TenantIdx.
@@ -213,7 +213,7 @@ public interface ICFSecProtSecTentGrpTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	public ICFSecProtSecTentGrp[] protreadDerivedByTenantIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 TenantId );
+		IMCFKeyHash256 TenantId );
 
 	/**
 	 *	Read an array of the derived SecTentGrp record instances identified by the duplicate key NameIdx.
@@ -240,7 +240,7 @@ public interface ICFSecProtSecTentGrpTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecTentGrp protreadDerivedByUNameIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 TenantId,
+		IMCFKeyHash256 TenantId,
 		String Name );
 
 	/**
@@ -253,10 +253,10 @@ public interface ICFSecProtSecTentGrpTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecTentGrp protreadRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the specific SecTentGrp record instance identified by the primary key.
@@ -268,10 +268,10 @@ public interface ICFSecProtSecTentGrpTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecTentGrp protlockRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all the specific SecTentGrp record instances.
@@ -292,10 +292,10 @@ public interface ICFSecProtSecTentGrpTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecTentGrp protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecTentGrpId );
+		IMCFKeyHash256 SecTentGrpId );
 
 	/**
 	 *	Read an array of the specific SecTentGrp record instances identified by the duplicate key TenantIdx.
@@ -306,10 +306,10 @@ public interface ICFSecProtSecTentGrpTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecTentGrp[] protreadRecByTenantIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 TenantId );
+		IMCFKeyHash256 TenantId );
 
 	/**
 	 *	Read an array of the specific SecTentGrp record instances identified by the duplicate key NameIdx.
@@ -320,7 +320,7 @@ public interface ICFSecProtSecTentGrpTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecTentGrp[] protreadRecByNameIdx( ICFSecPubAuthorization Authorization,
 		String Name );
@@ -337,9 +337,9 @@ public interface ICFSecProtSecTentGrpTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecTentGrp protreadRecByUNameIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 TenantId,
+		IMCFKeyHash256 TenantId,
 		String Name );
 }

@@ -102,11 +102,11 @@ public class CFSecRamSecClusGrpTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByUNameIdx.containsKey( keyUNameIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"SecClusGrpUNameIdx",
 				"SecClusGrpUNameIdx",
@@ -122,7 +122,7 @@ public class CFSecRamSecClusGrpTable
 				if( null == schema.getTableCluster().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredClusterId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Owner",
 						"Owner",
@@ -142,7 +142,7 @@ public class CFSecRamSecClusGrpTable
 				if( null == schema.getTableSecSysGrp().readDerivedByUNameIdx( Authorization,
 						Buff.getRequiredName() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
 						"Container",
@@ -192,7 +192,7 @@ public class CFSecRamSecClusGrpTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -244,7 +244,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readDerivedByClusterIdx";
 		CFSecBuffSecClusGrpByClusterIdxKey key = (CFSecBuffSecClusGrpByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrp().newByClusterIdxKey();
@@ -300,7 +300,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String Name )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readDerivedByUNameIdx";
@@ -320,7 +320,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId )
+		IMCFKeyHash256 SecClusGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readDerivedByIdIdx() ";
 		ICFSecSecClusGrp buff;
@@ -375,7 +375,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusGrpId )
+		IMCFKeyHash256 SecClusGrpId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readRecByIdIdx() ";
 		ICFSecSecClusGrp buff = readDerivedByIdIdx( Authorization,
@@ -390,7 +390,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readRecByClusterIdx() ";
 		ICFSecSecClusGrp buff;
@@ -426,7 +426,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public ICFSecSecClusGrp readRecByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String Name )
 	{
 		final String S_ProcName = "CFSecRamSecClusGrp.readRecByUNameIdx() ";
@@ -448,7 +448,7 @@ public class CFSecRamSecClusGrpTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffSecClusGrp existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateSecClusGrp",
 				"Existing record not found",
 				"Existing record not found",
@@ -457,7 +457,7 @@ public class CFSecRamSecClusGrpTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateSecClusGrp",
 				pkey );
 		}
@@ -486,7 +486,7 @@ public class CFSecRamSecClusGrpTable
 
 		if( ! existingKeyUNameIdx.equals( newKeyUNameIdx ) ) {
 			if( dictByUNameIdx.containsKey( newKeyUNameIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateSecClusGrp",
 					"SecClusGrpUNameIdx",
 					"SecClusGrpUNameIdx",
@@ -503,7 +503,7 @@ public class CFSecRamSecClusGrpTable
 				if( null == schema.getTableCluster().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredClusterId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateSecClusGrp",
 						"Owner",
 						"Owner",
@@ -523,7 +523,7 @@ public class CFSecRamSecClusGrpTable
 				if( null == schema.getTableSecSysGrp().readDerivedByUNameIdx( Authorization,
 						Buff.getRequiredName() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateSecClusGrp",
 						"Container",
 						"Container",
@@ -589,7 +589,7 @@ public class CFSecRamSecClusGrpTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteSecClusGrp",
 				pkey );
 		}
@@ -650,7 +650,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public void deleteSecClusGrpByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId )
+		IMCFKeyHash256 argClusterId )
 	{
 		CFSecBuffSecClusGrpByClusterIdxKey key = (CFSecBuffSecClusGrpByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrp().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );
@@ -722,7 +722,7 @@ public class CFSecRamSecClusGrpTable
 
 	@Override
 	public void deleteSecClusGrpByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId,
+		IMCFKeyHash256 argClusterId,
 		String argName )
 	{
 		CFSecBuffSecClusGrpByUNameIdxKey key = (CFSecBuffSecClusGrpByUNameIdxKey)schema.getCFSecBuffFactory().getFactorySecClusGrp().newByUNameIdxKey();

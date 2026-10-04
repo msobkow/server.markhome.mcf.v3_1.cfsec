@@ -81,7 +81,7 @@ implements ICFSecJavaFXSecSysRolePaneCommon,
 	protected CFButton buttonDeleteSelected = null;
 	protected List<ICFSecSecSysRoleObj> listOfSecSysRole = null;
 	protected ObservableList<ICFSecSecSysRoleObj> observableListOfSecSysRole = null;
-	protected TableColumn<ICFSecSecSysRoleObj, ICFLibKeyHash256> tableColumnSecSysRoleId = null;
+	protected TableColumn<ICFSecSecSysRoleObj, IMCFKeyHash256> tableColumnSecSysRoleId = null;
 	protected TableColumn<ICFSecSecSysRoleObj, String> tableColumnName = null;
 	protected TableView<ICFSecSecSysRoleObj> dataTable = null;
 
@@ -152,24 +152,24 @@ implements ICFSecJavaFXSecSysRolePaneCommon,
 		}
 		javafxSchema = argSchema;
 		dataTable = new TableView<ICFSecSecSysRoleObj>();
-		tableColumnSecSysRoleId = new TableColumn<ICFSecSecSysRoleObj,ICFLibKeyHash256>( "Security System Role Id" );
-		tableColumnSecSysRoleId.setCellValueFactory( new Callback<CellDataFeatures<ICFSecSecSysRoleObj,ICFLibKeyHash256>,ObservableValue<ICFLibKeyHash256> >() {
-			public ObservableValue<ICFLibKeyHash256> call( CellDataFeatures<ICFSecSecSysRoleObj, ICFLibKeyHash256> p ) {
+		tableColumnSecSysRoleId = new TableColumn<ICFSecSecSysRoleObj,IMCFKeyHash256>( "Security System Role Id" );
+		tableColumnSecSysRoleId.setCellValueFactory( new Callback<CellDataFeatures<ICFSecSecSysRoleObj,IMCFKeyHash256>,ObservableValue<IMCFKeyHash256> >() {
+			public ObservableValue<IMCFKeyHash256> call( CellDataFeatures<ICFSecSecSysRoleObj, IMCFKeyHash256> p ) {
 				ICFSecSecSysRoleObj obj = p.getValue();
 				if( obj == null ) {
 					return( null );
 				}
 				else {
-					ICFLibKeyHash256 value = obj.getRequiredSecSysRoleId();
-					ReadOnlyObjectWrapper<ICFLibKeyHash256> observable = new ReadOnlyObjectWrapper<ICFLibKeyHash256>();
+					IMCFKeyHash256 value = obj.getRequiredSecSysRoleId();
+					ReadOnlyObjectWrapper<IMCFKeyHash256> observable = new ReadOnlyObjectWrapper<IMCFKeyHash256>();
 					observable.setValue( value );
 					return( observable );
 				}
 			}
 		});
-		tableColumnSecSysRoleId.setCellFactory( new Callback<TableColumn<ICFSecSecSysRoleObj,ICFLibKeyHash256>,TableCell<ICFSecSecSysRoleObj,ICFLibKeyHash256>>() {
-			@Override public TableCell<ICFSecSecSysRoleObj,ICFLibKeyHash256> call(
-				TableColumn<ICFSecSecSysRoleObj,ICFLibKeyHash256> arg)
+		tableColumnSecSysRoleId.setCellFactory( new Callback<TableColumn<ICFSecSecSysRoleObj,IMCFKeyHash256>,TableCell<ICFSecSecSysRoleObj,IMCFKeyHash256>>() {
+			@Override public TableCell<ICFSecSecSysRoleObj,IMCFKeyHash256> call(
+				TableColumn<ICFSecSecSysRoleObj,IMCFKeyHash256> arg)
 			{
 				return new CFDbKeyHash256TableCell<ICFSecSecSysRoleObj>();
 			}

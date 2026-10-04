@@ -41,7 +41,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
@@ -50,13 +50,13 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 public class CFSecProtBuffSecUser
 	implements ICFSecProtSecUser, Comparable<Object>, Serializable
 {
-	protected ICFLibKeyHash256 requiredSecUserId;
+	protected IMCFKeyHash256 requiredSecUserId;
 	protected int requiredRevision;
-	protected CFLibDbKeyHash256 createdByUserId = CFLibDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_CREATED_BY);
-	protected CFLibDbKeyHash256 createdBySessionId = CFLibDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
+	protected MCFDbKeyHash256 createdByUserId = MCFDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_CREATED_BY);
+	protected MCFDbKeyHash256 createdBySessionId = MCFDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
 	protected LocalDateTime createdAt = LocalDateTime.now();
-	protected CFLibDbKeyHash256 updatedByUserId = CFLibDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_UPDATED_BY);
-	protected CFLibDbKeyHash256 updatedBySessionId = CFLibDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
+	protected MCFDbKeyHash256 updatedByUserId = MCFDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_UPDATED_BY);
+	protected MCFDbKeyHash256 updatedBySessionId = MCFDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
 	protected LocalDateTime updatedAt = LocalDateTime.now();
 	protected String requiredLoginId;
 	protected ICFSecPubSchema.SecAccountStatusEnum requiredAccountStatus;
@@ -66,7 +66,7 @@ public class CFSecProtBuffSecUser
 	protected String requiredEMailAddress;
 
 	public CFSecProtBuffSecUser() {
-		requiredSecUserId = CFLibDbKeyHash256.fromHex( ICFSecPubSecUser.SECUSERID_INIT_VALUE.toString() );
+		requiredSecUserId = MCFDbKeyHash256.fromHex( ICFSecPubSecUser.SECUSERID_INIT_VALUE.toString() );
 		requiredLoginId = ICFSecPubSecUser.LOGINID_INIT_VALUE;
 		requiredAccountStatus = ICFSecPubSecUser.ACCOUNTSTATUS_INIT_VALUE;
 		optionalDfltSysGrpName = null;
@@ -76,25 +76,25 @@ public class CFSecProtBuffSecUser
 	}
 
 	@Override
-	public ICFLibKeyHash256 getPKey() {
+	public IMCFKeyHash256 getPKey() {
 		return (requiredSecUserId);
 	}
 
 	@Override
-	public void setPKey(ICFLibKeyHash256 requiredSecUserId) {
+	public void setPKey(IMCFKeyHash256 requiredSecUserId) {
 		if(requiredSecUserId != null) {
 			this.requiredSecUserId = requiredSecUserId;
 		}
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecUserId() {
+	public IMCFKeyHash256 getRequiredSecUserId() {
 		return(requiredSecUserId);
 	}
 
-	public void setRequiredSecUserId( ICFLibKeyHash256 value ) {
+	public void setRequiredSecUserId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecUserId",
 				1,
 				"value" );
@@ -103,14 +103,14 @@ public class CFSecProtBuffSecUser
 	}
 
 	@Override
-	public List<ICFSecProtSecSession> getOptionalComponentsSecSess(ICFLibKeyHash256 argSecUserId) {
+	public List<ICFSecProtSecSession> getOptionalComponentsSecSess(IMCFKeyHash256 argSecUserId) {
 		ICFSecProtSchema targetBackingCFSec = ICFSecProtSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalComponentsSecSess", 0, "ICFSecProtSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalComponentsSecSess", 0, "ICFSecProtSchema.getBackingCFSec()");
 		}
 		ICFSecProtSecSessionTable targetTable = targetBackingCFSec.getTableSecSession();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalComponentsSecSess", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecSession()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalComponentsSecSess", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecSession()");
 		}
 		ICFSecProtSecSession[] targetArr = targetTable.readDerivedBySecUserIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredSecUserId());
 		if( targetArr != null ) {
@@ -127,14 +127,14 @@ public class CFSecProtBuffSecUser
 	}
 
 	@Override
-	public List<ICFSecProtSecSession> getOptionalChildrenSecProxy(ICFLibKeyHash256 argSecUserId) {
+	public List<ICFSecProtSecSession> getOptionalChildrenSecProxy(IMCFKeyHash256 argSecUserId) {
 		ICFSecProtSchema targetBackingCFSec = ICFSecProtSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenSecProxy", 0, "ICFSecProtSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenSecProxy", 0, "ICFSecProtSchema.getBackingCFSec()");
 		}
 		ICFSecProtSecSessionTable targetTable = targetBackingCFSec.getTableSecSession();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenSecProxy", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecSession()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenSecProxy", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecSession()");
 		}
 		ICFSecProtSecSession[] targetArr = targetTable.readDerivedBySecProxyIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredSecUserId());
 		if( targetArr != null ) {
@@ -151,38 +151,38 @@ public class CFSecProtBuffSecUser
 	}
 
 	@Override
-	public ICFSecProtSecUserEMConf getOptionalComponentsEMConf(ICFLibKeyHash256 argSecUserId) {
+	public ICFSecProtSecUserEMConf getOptionalComponentsEMConf(IMCFKeyHash256 argSecUserId) {
 		ICFSecProtSchema targetBackingCFSec = ICFSecProtSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalComponentsEMConf", 0, "ICFSecProtSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalComponentsEMConf", 0, "ICFSecProtSchema.getBackingCFSec()");
 		}
 		ICFSecProtSecUserEMConfTable targetTable = targetBackingCFSec.getTableSecUserEMConf();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalComponentsEMConf", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecUserEMConf()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalComponentsEMConf", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecUserEMConf()");
 		}
 		return(targetTable.readDerived(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredSecUserId()));
 	}
 
 	@Override
-	public ICFSecProtSecUserPWReset getOptionalComponentsPWReset(ICFLibKeyHash256 argSecUserId) {
+	public ICFSecProtSecUserPWReset getOptionalComponentsPWReset(IMCFKeyHash256 argSecUserId) {
 		ICFSecProtSchema targetBackingCFSec = ICFSecProtSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalComponentsPWReset", 0, "ICFSecProtSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalComponentsPWReset", 0, "ICFSecProtSchema.getBackingCFSec()");
 		}
 		ICFSecProtSecUserPWResetTable targetTable = targetBackingCFSec.getTableSecUserPWReset();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalComponentsPWReset", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecUserPWReset()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalComponentsPWReset", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecUserPWReset()");
 		}
 		return(targetTable.readDerived(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredSecUserId()));
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getCreatedByUserId() {
+	public MCFDbKeyHash256 getCreatedByUserId() {
 		return( createdByUserId );
 	}
 
 	@Override
-	public void setJustProtCreatedByUserId( CFLibDbKeyHash256 value ) {
+	public void setJustProtCreatedByUserId( MCFDbKeyHash256 value ) {
 		createdByUserId = value;
 	}
 
@@ -197,12 +197,12 @@ public class CFSecProtBuffSecUser
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getUpdatedByUserId() {
+	public MCFDbKeyHash256 getUpdatedByUserId() {
 		return( updatedByUserId );
 	}
 
 	@Override
-	public void setJustProtUpdatedByUserId( CFLibDbKeyHash256 value ) {
+	public void setJustProtUpdatedByUserId( MCFDbKeyHash256 value ) {
 		updatedByUserId = value;
 	}
 
@@ -235,11 +235,11 @@ public class CFSecProtBuffSecUser
 	public List<ICFSecProtSecSysGrpMemb> getOptionalChildrenSysSecGrpMemb(String argLoginId) {
 		ICFSecProtSchema targetBackingCFSec = ICFSecProtSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenSysSecGrpMemb", 0, "ICFSecProtSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenSysSecGrpMemb", 0, "ICFSecProtSchema.getBackingCFSec()");
 		}
 		ICFSecProtSecSysGrpMembTable targetTable = targetBackingCFSec.getTableSecSysGrpMemb();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenSysSecGrpMemb", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecSysGrpMemb()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenSysSecGrpMemb", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecSysGrpMemb()");
 		}
 		ICFSecProtSecSysGrpMemb[] targetArr = targetTable.readDerivedByLoginIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredLoginId());
 		if( targetArr != null ) {
@@ -259,11 +259,11 @@ public class CFSecProtBuffSecUser
 	public List<ICFSecProtSecClusGrpMemb> getOptionalChildrenClusSecGrpMemb(String argLoginId) {
 		ICFSecProtSchema targetBackingCFSec = ICFSecProtSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenClusSecGrpMemb", 0, "ICFSecProtSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenClusSecGrpMemb", 0, "ICFSecProtSchema.getBackingCFSec()");
 		}
 		ICFSecProtSecClusGrpMembTable targetTable = targetBackingCFSec.getTableSecClusGrpMemb();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenClusSecGrpMemb", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecClusGrpMemb()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenClusSecGrpMemb", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecClusGrpMemb()");
 		}
 		ICFSecProtSecClusGrpMemb[] targetArr = targetTable.readDerivedByLoginIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredLoginId());
 		if( targetArr != null ) {
@@ -283,11 +283,11 @@ public class CFSecProtBuffSecUser
 	public List<ICFSecProtSecTentGrpMemb> getOptionalChildrenTentSecGrpMemb(String argLoginId) {
 		ICFSecProtSchema targetBackingCFSec = ICFSecProtSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenTentSecGrpMemb", 0, "ICFSecProtSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenTentSecGrpMemb", 0, "ICFSecProtSchema.getBackingCFSec()");
 		}
 		ICFSecProtSecTentGrpMembTable targetTable = targetBackingCFSec.getTableSecTentGrpMemb();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getOptionalChildrenTentSecGrpMemb", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecTentGrpMemb()");
+			throw new MCFNullArgumentException(getClass(), "getOptionalChildrenTentSecGrpMemb", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecTentGrpMemb()");
 		}
 		ICFSecProtSecTentGrpMemb[] targetArr = targetTable.readDerivedByUserIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredLoginId());
 		if( targetArr != null ) {
@@ -310,13 +310,13 @@ public class CFSecProtBuffSecUser
 
 	public void setRequiredLoginId( String value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredLoginId",
 				1,
 				"value" );
 		}
 		else if( value.length() > 32 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredLoginId",
 				1,
 				"value.length()",
@@ -333,7 +333,7 @@ public class CFSecProtBuffSecUser
 
 	public void setRequiredAccountStatus( ICFSecPubSchema.SecAccountStatusEnum value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredAccountStatus",
 				1,
 				"value" );
@@ -348,7 +348,7 @@ public class CFSecProtBuffSecUser
 
 	public void setOptionalDfltSysGrpName( String value ) {
 		if( value != null && value.length() > 64 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setOptionalDfltSysGrpName",
 				1,
 				"value.length()",
@@ -365,7 +365,7 @@ public class CFSecProtBuffSecUser
 
 	public void setOptionalDfltClusGrpName( String value ) {
 		if( value != null && value.length() > 64 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setOptionalDfltClusGrpName",
 				1,
 				"value.length()",
@@ -382,7 +382,7 @@ public class CFSecProtBuffSecUser
 
 	public void setOptionalDfltTentGrpName( String value ) {
 		if( value != null && value.length() > 64 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setOptionalDfltTentGrpName",
 				1,
 				"value.length()",
@@ -399,13 +399,13 @@ public class CFSecProtBuffSecUser
 
 	public void setRequiredEMailAddress( String value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredEMailAddress",
 				1,
 				"value" );
 		}
 		else if( value.length() > 512 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredEMailAddress",
 				1,
 				"value.length()",
@@ -1517,7 +1517,7 @@ public class CFSecProtBuffSecUser
 			}			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException( getClass(),
+			throw new MCFUnsupportedClassException( getClass(),
 				"compareTo",
 				"obj",
 				obj,

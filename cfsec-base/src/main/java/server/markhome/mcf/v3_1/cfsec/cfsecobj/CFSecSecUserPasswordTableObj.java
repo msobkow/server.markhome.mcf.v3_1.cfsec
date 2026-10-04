@@ -108,7 +108,7 @@ public class CFSecSecUserPasswordTableObj
 	 */
 	static void setRuntimeClassCode(int argNewClassCode ) {
 		if (argNewClassCode <= 0) {
-			throw new CFLibArgumentUnderflowException(CFSecSecUserPasswordTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
+			throw new MCFArgumentUnderflowException(CFSecSecUserPasswordTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
 		}
 		runtimeClassCode = argNewClassCode;
 	}
@@ -351,7 +351,7 @@ public class CFSecSecUserPasswordTableObj
 			locked = (ICFSecSecUserPasswordObj)locked.realise();
 		}
 		else {
-			throw new CFLibCollisionDetectedException( getClass(), "lockSecUserPassword", pkey );
+			throw new MCFCollisionDetectedException( getClass(), "lockSecUserPassword", pkey );
 		}
 		return( locked );
 	}
@@ -386,7 +386,7 @@ public class CFSecSecUserPasswordTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -394,7 +394,7 @@ public class CFSecSecUserPasswordTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -446,7 +446,7 @@ public class CFSecSecUserPasswordTableObj
 				arr[idx++] = valIter.next();
 			}
 			if( idx < len ) {
-				throw new CFLibArgumentUnderflowException( getClass(),
+				throw new MCFArgumentUnderflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -454,7 +454,7 @@ public class CFSecSecUserPasswordTableObj
 					len );
 			}
 			else if( valIter.hasNext() ) {
-				throw new CFLibArgumentOverflowException( getClass(),
+				throw new MCFArgumentOverflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -491,14 +491,14 @@ public class CFSecSecUserPasswordTableObj
 	}
 
 	@Override
-	public ICFSecSecUserPasswordObj readSecUserPasswordByIdIdx( ICFLibKeyHash256 SecUserId )
+	public ICFSecSecUserPasswordObj readSecUserPasswordByIdIdx( IMCFKeyHash256 SecUserId )
 	{
 		return( readSecUserPasswordByIdIdx( SecUserId,
 			false ) );
 	}
 
 	@Override
-	public ICFSecSecUserPasswordObj readSecUserPasswordByIdIdx( ICFLibKeyHash256 SecUserId, boolean forceRead )
+	public ICFSecSecUserPasswordObj readSecUserPasswordByIdIdx( IMCFKeyHash256 SecUserId, boolean forceRead )
 	{
 		ICFSecSecUserPasswordObj obj = readSecUserPassword( SecUserId, forceRead );
 		return( obj );
@@ -550,7 +550,7 @@ public class CFSecSecUserPasswordTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -558,7 +558,7 @@ public class CFSecSecUserPasswordTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -598,7 +598,7 @@ public class CFSecSecUserPasswordTableObj
 	}
 
 	@Override
-	public ICFSecSecUserPasswordObj readCachedSecUserPasswordByIdIdx( ICFLibKeyHash256 SecUserId )
+	public ICFSecSecUserPasswordObj readCachedSecUserPasswordByIdIdx( IMCFKeyHash256 SecUserId )
 	{
 		ICFSecSecUserPasswordObj obj = null;
 		obj = readCachedSecUserPassword( SecUserId );
@@ -624,7 +624,7 @@ public class CFSecSecUserPasswordTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -632,7 +632,7 @@ public class CFSecSecUserPasswordTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -683,7 +683,7 @@ public class CFSecSecUserPasswordTableObj
 	}
 
 	@Override
-	public void deepDisposeSecUserPasswordByIdIdx( ICFLibKeyHash256 SecUserId )
+	public void deepDisposeSecUserPasswordByIdIdx( IMCFKeyHash256 SecUserId )
 	{
 		ICFSecSecUserPasswordObj obj = readCachedSecUserPasswordByIdIdx( SecUserId );
 		if( obj != null ) {
@@ -727,7 +727,7 @@ public class CFSecSecUserPasswordTableObj
 	}
 
 	@Override
-	public void deleteSecUserPasswordByIdIdx( ICFLibKeyHash256 SecUserId )
+	public void deleteSecUserPasswordByIdIdx( IMCFKeyHash256 SecUserId )
 	{
 		ICFSecSecUserPasswordObj obj = readSecUserPassword(SecUserId);
 		if( obj != null ) {

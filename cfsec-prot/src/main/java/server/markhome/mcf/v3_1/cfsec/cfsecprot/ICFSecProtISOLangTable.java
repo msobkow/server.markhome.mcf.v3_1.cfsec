@@ -267,7 +267,7 @@ extends ICFSecPubISOLangTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOLang protreadRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -282,7 +282,7 @@ extends ICFSecPubISOLangTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOLang protlockRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -306,7 +306,7 @@ extends ICFSecPubISOLangTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOLang protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
 		short ISOLangId );
@@ -321,7 +321,7 @@ extends ICFSecPubISOLangTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOLang protreadRecByCode3Idx( ICFSecPubAuthorization Authorization,
 		String ISO6392Code );
@@ -335,7 +335,7 @@ extends ICFSecPubISOLangTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOLang[] protreadRecByCode2Idx( ICFSecPubAuthorization Authorization,
 		String ISO6391Code );

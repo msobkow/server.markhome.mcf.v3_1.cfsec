@@ -41,7 +41,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
@@ -67,7 +67,7 @@ public class CFSecBuffISOTZoneByOffsetIdxKey
 	@Override
 	public void setRequiredTZHourOffset( short value ) {
 		if( value < ICFSecPubISOTZone.TZHOUROFFSET_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				"setRequiredTZHourOffset",
 				1,
 				"value",
@@ -75,7 +75,7 @@ public class CFSecBuffISOTZoneByOffsetIdxKey
 				ICFSecPubISOTZone.TZHOUROFFSET_MIN_VALUE );
 		}
 		if( value > ICFSecISOTZone.TZHOUROFFSET_MAX_VALUE ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredTZHourOffset",
 				1,
 				"value",
@@ -93,7 +93,7 @@ public class CFSecBuffISOTZoneByOffsetIdxKey
 	@Override
 	public void setRequiredTZMinOffset( short value ) {
 		if( value < ICFSecPubISOTZone.TZMINOFFSET_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				"setRequiredTZMinOffset",
 				1,
 				"value",
@@ -101,7 +101,7 @@ public class CFSecBuffISOTZoneByOffsetIdxKey
 				ICFSecPubISOTZone.TZMINOFFSET_MIN_VALUE );
 		}
 		if( value > ICFSecISOTZone.TZMINOFFSET_MAX_VALUE ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredTZMinOffset",
 				1,
 				"value",
@@ -188,7 +188,7 @@ public class CFSecBuffISOTZoneByOffsetIdxKey
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException( getClass(),
+			throw new MCFUnsupportedClassException( getClass(),
 				"compareTo",
 				"obj",
 				obj,

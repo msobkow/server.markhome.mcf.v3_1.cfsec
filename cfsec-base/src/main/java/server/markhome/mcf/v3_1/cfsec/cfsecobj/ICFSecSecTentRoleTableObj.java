@@ -151,7 +151,7 @@ public interface ICFSecSecTentRoleTableObj
 	 *	@return	CFSecSecTentRoleObj cached instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecTentRoleObj readSecTentRoleByIdIdx( ICFLibKeyHash256 SecTentRoleId );
+	ICFSecSecTentRoleObj readSecTentRoleByIdIdx( IMCFKeyHash256 SecTentRoleId );
 
 	/**
 	 *	Get the CFSecSecTentRoleObj instance for the primary key attributes.
@@ -161,7 +161,7 @@ public interface ICFSecSecTentRoleTableObj
 	 *	@return	CFSecSecTentRoleObj refreshed instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecTentRoleObj readSecTentRoleByIdIdx( ICFLibKeyHash256 SecTentRoleId,
+	ICFSecSecTentRoleObj readSecTentRoleByIdIdx( IMCFKeyHash256 SecTentRoleId,
 		boolean forceRead );
 
 	/**
@@ -172,7 +172,7 @@ public interface ICFSecSecTentRoleTableObj
 	 *	@return	List of CFSecSecTentRoleObj cached instances sorted by their primary keys for the duplicate TenantIdx key,
 	 *		which may be an empty set.
 	 */
-	List<ICFSecSecTentRoleObj> readSecTentRoleByTenantIdx( ICFLibKeyHash256 TenantId );
+	List<ICFSecSecTentRoleObj> readSecTentRoleByTenantIdx( IMCFKeyHash256 TenantId );
 
 	/**
 	 *	Get the map of CFSecSecTentRoleObj instances sorted by their primary keys for the duplicate TenantIdx key.
@@ -182,7 +182,7 @@ public interface ICFSecSecTentRoleTableObj
 	 *	@return	List of CFSecSecTentRoleObj cached instances sorted by their primary keys for the duplicate TenantIdx key,
 	 *		which may be an empty set.
 	 */
-	List<ICFSecSecTentRoleObj> readSecTentRoleByTenantIdx( ICFLibKeyHash256 TenantId,
+	List<ICFSecSecTentRoleObj> readSecTentRoleByTenantIdx( IMCFKeyHash256 TenantId,
 		boolean forceRead );
 
 	/**
@@ -216,7 +216,7 @@ public interface ICFSecSecTentRoleTableObj
 	 *	@return	CFSecSecTentRoleObj cached instance for the unique UNameIdx key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecTentRoleObj readSecTentRoleByUNameIdx(ICFLibKeyHash256 TenantId,
+	ICFSecSecTentRoleObj readSecTentRoleByUNameIdx(IMCFKeyHash256 TenantId,
 		String Name );
 
 	/**
@@ -229,26 +229,26 @@ public interface ICFSecSecTentRoleTableObj
 	 *	@return	CFSecSecTentRoleObj refreshed instance for the unique UNameIdx key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecTentRoleObj readSecTentRoleByUNameIdx(ICFLibKeyHash256 TenantId,
+	ICFSecSecTentRoleObj readSecTentRoleByUNameIdx(IMCFKeyHash256 TenantId,
 		String Name,
 		boolean forceRead );
 
-	ICFSecSecTentRoleObj readCachedSecTentRoleByIdIdx( ICFLibKeyHash256 SecTentRoleId );
+	ICFSecSecTentRoleObj readCachedSecTentRoleByIdIdx( IMCFKeyHash256 SecTentRoleId );
 
-	List<ICFSecSecTentRoleObj> readCachedSecTentRoleByTenantIdx( ICFLibKeyHash256 TenantId );
+	List<ICFSecSecTentRoleObj> readCachedSecTentRoleByTenantIdx( IMCFKeyHash256 TenantId );
 
 	List<ICFSecSecTentRoleObj> readCachedSecTentRoleByNameIdx( String Name );
 
-	ICFSecSecTentRoleObj readCachedSecTentRoleByUNameIdx( ICFLibKeyHash256 TenantId,
+	ICFSecSecTentRoleObj readCachedSecTentRoleByUNameIdx( IMCFKeyHash256 TenantId,
 		String Name );
 
-	void deepDisposeSecTentRoleByIdIdx( ICFLibKeyHash256 SecTentRoleId );
+	void deepDisposeSecTentRoleByIdIdx( IMCFKeyHash256 SecTentRoleId );
 
-	void deepDisposeSecTentRoleByTenantIdx( ICFLibKeyHash256 TenantId );
+	void deepDisposeSecTentRoleByTenantIdx( IMCFKeyHash256 TenantId );
 
 	void deepDisposeSecTentRoleByNameIdx( String Name );
 
-	void deepDisposeSecTentRoleByUNameIdx( ICFLibKeyHash256 TenantId,
+	void deepDisposeSecTentRoleByUNameIdx( IMCFKeyHash256 TenantId,
 		String Name );
 
 	/**
@@ -266,14 +266,14 @@ public interface ICFSecSecTentRoleTableObj
 	 *
 	 *	@param	SecTentRoleId	The SecTentRole key attribute of the instance generating the id.
 	 */
-	void deleteSecTentRoleByIdIdx( ICFLibKeyHash256 SecTentRoleId );
+	void deleteSecTentRoleByIdIdx( IMCFKeyHash256 SecTentRoleId );
 
 	/**
 	 *	Internal use only.
 	 *
 	 *	@param	TenantId	The SecTentRole key attribute of the instance generating the id.
 	 */
-	void deleteSecTentRoleByTenantIdx( ICFLibKeyHash256 TenantId );
+	void deleteSecTentRoleByTenantIdx( IMCFKeyHash256 TenantId );
 
 	/**
 	 *	Internal use only.
@@ -289,6 +289,6 @@ public interface ICFSecSecTentRoleTableObj
 	 *
 	 *	@param	Name	The SecTentRole key attribute of the instance generating the id.
 	 */
-	void deleteSecTentRoleByUNameIdx(ICFLibKeyHash256 TenantId,
+	void deleteSecTentRoleByUNameIdx(IMCFKeyHash256 TenantId,
 		String Name );
 }

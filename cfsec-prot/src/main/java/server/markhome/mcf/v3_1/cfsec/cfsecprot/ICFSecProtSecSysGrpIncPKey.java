@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 
 /**
  *	ICFSecProtSecSysGrpIncPKey protected primary key interface for SecSysGrpInc has CodeVis Protected, meaning that any only user interfaces and application code specific to the defining schema can access it.
@@ -46,8 +46,8 @@ import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
 public interface ICFSecProtSecSysGrpIncPKey
 {
 
-	public ICFLibKeyHash256 getRequiredSecSysGrpId();
-	public void setRequiredSecSysGrpId( ICFLibKeyHash256 value );
+	public IMCFKeyHash256 getRequiredSecSysGrpId();
+	public void setRequiredSecSysGrpId( IMCFKeyHash256 value );
 	public String getRequiredInclName();
 	public void setRequiredInclName( String value );
 	@Override

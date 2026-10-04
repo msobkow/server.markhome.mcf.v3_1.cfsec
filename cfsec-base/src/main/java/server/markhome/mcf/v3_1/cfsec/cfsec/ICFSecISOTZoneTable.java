@@ -251,7 +251,7 @@ public interface ICFSecISOTZoneTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecISOTZone readRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -266,7 +266,7 @@ public interface ICFSecISOTZoneTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecISOTZone lockRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -290,7 +290,7 @@ public interface ICFSecISOTZoneTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecISOTZone readRecByIdIdx( ICFSecAuthorization Authorization,
 		short ISOTZoneId );
@@ -306,7 +306,7 @@ public interface ICFSecISOTZoneTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecISOTZone[] readRecByOffsetIdx( ICFSecAuthorization Authorization,
 		short TZHourOffset,
@@ -322,7 +322,7 @@ public interface ICFSecISOTZoneTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecISOTZone readRecByUTZNameIdx( ICFSecAuthorization Authorization,
 		String TZName );
@@ -336,7 +336,7 @@ public interface ICFSecISOTZoneTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecISOTZone[] readRecByIso8601Idx( ICFSecAuthorization Authorization,
 		String Iso8601 );

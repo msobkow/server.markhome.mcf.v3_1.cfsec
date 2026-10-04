@@ -92,11 +92,11 @@ public class CFSecRamSecUserTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByULoginIdx.containsKey( keyULoginIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"SecUserLoginIdx",
 				"SecUserLoginIdx",
@@ -132,7 +132,7 @@ public class CFSecRamSecUserTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -230,7 +230,7 @@ public class CFSecRamSecUserTable
 
 	@Override
 	public ICFSecSecUser readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		IMCFKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUser.readDerivedByIdIdx() ";
 		ICFSecSecUser buff;
@@ -292,15 +292,15 @@ public class CFSecRamSecUserTable
 	 */
 	@Override
 	public ICFSecSecUser[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecUserId )
+		IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageAllRec";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	@Override
 	public ICFSecSecUser readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		IMCFKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUser.readRecByIdIdx() ";
 		ICFSecSecUser buff = readDerivedByIdIdx( Authorization,
@@ -355,15 +355,15 @@ public class CFSecRamSecUserTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecSecUser[] pageRecByEMAddrIdx( ICFSecAuthorization Authorization,
 		String EMailAddress,
-		ICFLibKeyHash256 priorSecUserId )
+		IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageRecByEMAddrIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	public ICFSecSecUser updateSecUser( ICFSecAuthorization Authorization,
@@ -373,7 +373,7 @@ public class CFSecRamSecUserTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffSecUser existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateSecUser",
 				"Existing record not found",
 				"Existing record not found",
@@ -382,7 +382,7 @@ public class CFSecRamSecUserTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateSecUser",
 				pkey );
 		}
@@ -403,7 +403,7 @@ public class CFSecRamSecUserTable
 
 		if( ! existingKeyULoginIdx.equals( newKeyULoginIdx ) ) {
 			if( dictByULoginIdx.containsKey( newKeyULoginIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateSecUser",
 					"SecUserLoginIdx",
 					"SecUserLoginIdx",
@@ -453,7 +453,7 @@ public class CFSecRamSecUserTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteSecUser",
 				pkey );
 		}

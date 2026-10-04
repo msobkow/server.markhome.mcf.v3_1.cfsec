@@ -130,11 +130,11 @@ public interface ICFSecProtSecUserPWResetEditObj
 	void setRequiredContainerUser( ICFSecProtSecUserObj value );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecUserId.
+	 *	Get the required IMCFKeyHash256 attribute SecUserId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecUserId.
+	 *	@return	The required IMCFKeyHash256 attribute SecUserId.
 	 */
-	ICFLibKeyHash256 getRequiredSecUserId();
+	IMCFKeyHash256 getRequiredSecUserId();
 
 	/**
 	 *	Get the required String attribute SentToEMailAddr.
@@ -151,18 +151,18 @@ public interface ICFSecProtSecUserPWResetEditObj
 	void setRequiredSentToEMailAddr(String value);
 
 	/**
-	 *	Get the required ICFLibUuid6 attribute PasswordResetUuid6.
+	 *	Get the required IMCFUuid6 attribute PasswordResetUuid6.
 	 *
-	 *	@return	The required ICFLibUuid6 attribute PasswordResetUuid6.
+	 *	@return	The required IMCFUuid6 attribute PasswordResetUuid6.
 	 */
-	ICFLibUuid6 getRequiredPasswordResetUuid6();
+	IMCFUuid6 getRequiredPasswordResetUuid6();
 
 	/**
-	 *	Set the required ICFLibUuid6 attribute PasswordResetUuid6.
+	 *	Set the required IMCFUuid6 attribute PasswordResetUuid6.
 	 *
-	 *	@param value The required ICFLibUuid6 attribute PasswordResetUuid6 value to be applied.
+	 *	@param value The required IMCFUuid6 attribute PasswordResetUuid6 value to be applied.
 	 */
-	void setRequiredPasswordResetUuid6(ICFLibUuid6 value);
+	void setRequiredPasswordResetUuid6(IMCFUuid6 value);
 
 	/**
 	 *	Get the required boolean attribute NewAccount.

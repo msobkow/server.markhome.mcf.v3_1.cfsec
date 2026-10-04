@@ -168,7 +168,7 @@ public interface ICFSecPubSysClusterTableObj
 	 *	@return	List of CFSecPubSysClusterObj cached instances sorted by their primary keys for the duplicate ClusterIdx key,
 	 *		which may be an empty set.
 	 */
-	List<ICFSecPubSysClusterObj> readSysClusterByClusterIdx( CFLibDbKeyHash256 ClusterId );
+	List<ICFSecPubSysClusterObj> readSysClusterByClusterIdx( MCFDbKeyHash256 ClusterId );
 
 	/**
 	 *	Get the map of CFSecPubSysClusterObj instances sorted by their primary keys for the duplicate ClusterIdx key.
@@ -178,16 +178,16 @@ public interface ICFSecPubSysClusterTableObj
 	 *	@return	List of CFSecPubSysClusterObj cached instances sorted by their primary keys for the duplicate ClusterIdx key,
 	 *		which may be an empty set.
 	 */
-	List<ICFSecPubSysClusterObj> readSysClusterByClusterIdx( CFLibDbKeyHash256 ClusterId,
+	List<ICFSecPubSysClusterObj> readSysClusterByClusterIdx( MCFDbKeyHash256 ClusterId,
 		boolean forceRead );
 
 	ICFSecPubSysClusterObj readCachedSysClusterByIdIdx( int SingletonId );
 
-	List<ICFSecPubSysClusterObj> readCachedSysClusterByClusterIdx( CFLibDbKeyHash256 ClusterId );
+	List<ICFSecPubSysClusterObj> readCachedSysClusterByClusterIdx( MCFDbKeyHash256 ClusterId );
 
 	void deepDisposeSysClusterByIdIdx( int SingletonId );
 
-	void deepDisposeSysClusterByClusterIdx( CFLibDbKeyHash256 ClusterId );
+	void deepDisposeSysClusterByClusterIdx( MCFDbKeyHash256 ClusterId );
 
 	/**
 	 *	Internal use only.
@@ -211,5 +211,5 @@ public interface ICFSecPubSysClusterTableObj
 	 *
 	 *	@param	ClusterId	The SysCluster key attribute of the instance generating the id.
 	 */
-	void deleteSysClusterByClusterIdx( CFLibDbKeyHash256 ClusterId );
+	void deleteSysClusterByClusterIdx( MCFDbKeyHash256 ClusterId );
 }

@@ -151,11 +151,11 @@ public interface ICFSecProtSecSysRoleMembEditObj
 	void setRequiredParentUser( ICFSecProtSecUserObj value );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecSysRoleId.
+	 *	Get the required IMCFKeyHash256 attribute SecSysRoleId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecSysRoleId.
+	 *	@return	The required IMCFKeyHash256 attribute SecSysRoleId.
 	 */
-	ICFLibKeyHash256 getRequiredSecSysRoleId();
+	IMCFKeyHash256 getRequiredSecSysRoleId();
 
 	/**
 	 *	Get the required String attribute LoginId.

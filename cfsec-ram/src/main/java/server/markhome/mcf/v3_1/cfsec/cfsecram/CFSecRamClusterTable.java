@@ -90,11 +90,11 @@ public class CFSecRamClusterTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByUDomNameIdx.containsKey( keyUDomNameIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"ClusterUDomNameIdx",
 				"ClusterUDomNameIdx",
@@ -102,7 +102,7 @@ public class CFSecRamClusterTable
 		}
 
 		if( dictByUDescrIdx.containsKey( keyUDescrIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"ClusterUDescrNameIdx",
 				"ClusterUDescrNameIdx",
@@ -130,7 +130,7 @@ public class CFSecRamClusterTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -218,7 +218,7 @@ public class CFSecRamClusterTable
 
 	@Override
 	public ICFSecCluster readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 Id )
+		IMCFKeyHash256 Id )
 	{
 		final String S_ProcName = "CFSecRamCluster.readDerivedByIdIdx() ";
 		ICFSecCluster buff;
@@ -280,15 +280,15 @@ public class CFSecRamClusterTable
 	 */
 	@Override
 	public ICFSecCluster[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorId )
+		IMCFKeyHash256 priorId )
 	{
 		final String S_ProcName = "pageAllRec";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	@Override
 	public ICFSecCluster readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 Id )
+		IMCFKeyHash256 Id )
 	{
 		final String S_ProcName = "CFSecRamCluster.readRecByIdIdx() ";
 		ICFSecCluster buff = readDerivedByIdIdx( Authorization,
@@ -338,7 +338,7 @@ public class CFSecRamClusterTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffCluster existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateCluster",
 				"Existing record not found",
 				"Existing record not found",
@@ -347,7 +347,7 @@ public class CFSecRamClusterTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateCluster",
 				pkey );
 		}
@@ -368,7 +368,7 @@ public class CFSecRamClusterTable
 
 		if( ! existingKeyUDomNameIdx.equals( newKeyUDomNameIdx ) ) {
 			if( dictByUDomNameIdx.containsKey( newKeyUDomNameIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateCluster",
 					"ClusterUDomNameIdx",
 					"ClusterUDomNameIdx",
@@ -378,7 +378,7 @@ public class CFSecRamClusterTable
 
 		if( ! existingKeyUDescrIdx.equals( newKeyUDescrIdx ) ) {
 			if( dictByUDescrIdx.containsKey( newKeyUDescrIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateCluster",
 					"ClusterUDescrNameIdx",
 					"ClusterUDescrNameIdx",
@@ -418,7 +418,7 @@ public class CFSecRamClusterTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteCluster",
 				pkey );
 		}

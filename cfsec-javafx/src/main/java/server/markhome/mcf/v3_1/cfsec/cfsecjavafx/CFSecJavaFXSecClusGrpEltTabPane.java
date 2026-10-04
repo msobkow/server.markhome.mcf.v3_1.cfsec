@@ -144,7 +144,7 @@ implements ICFSecJavaFXSecClusGrpPaneCommon
 		public PageDataChildrenMembByGrpList() {
 		}
 
-		public List<ICFSecSecClusGrpMembObj> pageData( ICFLibKeyHash256 priorSecClusGrpId,
+		public List<ICFSecSecClusGrpMembObj> pageData( IMCFKeyHash256 priorSecClusGrpId,
 		String priorLoginId )
 		{
 			List<ICFSecSecClusGrpMembObj> dataList;

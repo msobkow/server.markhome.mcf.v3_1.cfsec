@@ -345,7 +345,7 @@ extends ICFSecPubISOCtryCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCtryCcy protreadRec( ICFSecPubAuthorization Authorization,
 		ICFSecProtISOCtryCcyPKey PKey );
@@ -360,7 +360,7 @@ extends ICFSecPubISOCtryCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCtryCcy protreadRec( ICFSecPubAuthorization Authorization,
 		ICFSecPubISOCtryCcyPKey PKey );
@@ -375,7 +375,7 @@ extends ICFSecPubISOCtryCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtryCcy pubreadRec( ICFSecPubAuthorization Authorization,
 		ICFSecProtISOCtryCcyPKey PKey );
@@ -390,7 +390,7 @@ extends ICFSecPubISOCtryCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCtryCcy protreadRec( ICFSecPubAuthorization Authorization,
 		short ISOCtryId,
@@ -406,7 +406,7 @@ extends ICFSecPubISOCtryCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCtryCcy protlockRec( ICFSecPubAuthorization Authorization,
 		ICFSecProtISOCtryCcyPKey PKey );
@@ -421,7 +421,7 @@ extends ICFSecPubISOCtryCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtryCcy publockRec( ICFSecPubAuthorization Authorization,
 		ICFSecProtISOCtryCcyPKey PKey );
@@ -436,7 +436,7 @@ extends ICFSecPubISOCtryCcyTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCtryCcy protlockRec( ICFSecPubAuthorization Authorization,
 		ICFSecPubISOCtryCcyPKey PKey );
@@ -462,7 +462,7 @@ extends ICFSecPubISOCtryCcyTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCtryCcy protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
 		short ISOCtryId,
@@ -477,7 +477,7 @@ extends ICFSecPubISOCtryCcyTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCtryCcy[] protreadRecByCtryIdx( ICFSecPubAuthorization Authorization,
 		short ISOCtryId );
@@ -491,7 +491,7 @@ extends ICFSecPubISOCtryCcyTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtISOCtryCcy[] protreadRecByCcyIdx( ICFSecPubAuthorization Authorization,
 		short ISOCcyId );

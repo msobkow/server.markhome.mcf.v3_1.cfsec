@@ -35,7 +35,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 //import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 
 /**
@@ -47,16 +47,16 @@ public interface ICFSecPubTableInfoH
 
 	public ICFSecPubTableInfoHPKey getPubPKey();
 	public void setPubPKey( ICFSecPubTableInfoHPKey pkey );
-	public CFLibDbKeyHash256 getAuditClusterId();
-	public void setAuditClusterId(CFLibDbKeyHash256 auditClusterId);
+	public MCFDbKeyHash256 getAuditClusterId();
+	public void setAuditClusterId(MCFDbKeyHash256 auditClusterId);
 	public LocalDateTime getAuditStamp();
 	public void setAuditStamp(LocalDateTime auditStamp);
 	public short getAuditActionId();
 	public void setAuditActionId(short auditActionId);
 	public int getRequiredRevision();
 	public void setRequiredRevision(int revision);
-	public CFLibDbKeyHash256 getAuditSessionId();
-	public void setAuditSessionId(CFLibDbKeyHash256 auditSessionId);
+	public MCFDbKeyHash256 getAuditSessionId();
+	public void setAuditSessionId(MCFDbKeyHash256 auditSessionId);
 
 	public int getRequiredTableInfoId();
 	public void setRequiredTableInfoId( int requiredTableInfoId );

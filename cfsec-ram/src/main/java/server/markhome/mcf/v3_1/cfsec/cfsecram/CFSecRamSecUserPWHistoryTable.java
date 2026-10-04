@@ -99,11 +99,11 @@ public class CFSecRamSecUserPWHistoryTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByUserIdx.containsKey( keyUserIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"SecUserPWHistUserIdx",
 				"SecUserPWHistUserIdx",
@@ -111,7 +111,7 @@ public class CFSecRamSecUserPWHistoryTable
 		}
 
 		if( dictBySetStampIdx.containsKey( keySetStampIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"SecUserPWHistSetStampIdx",
 				"SecUserPWHistSetStampIdx",
@@ -119,7 +119,7 @@ public class CFSecRamSecUserPWHistoryTable
 		}
 
 		if( dictByReplacedStampIdx.containsKey( keyReplacedStampIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"SecUserPWHistReplacedStampIdx",
 				"SecUserPWHistReplacedStampIdx",
@@ -149,14 +149,14 @@ public class CFSecRamSecUserPWHistoryTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
 
 	@Override
 	public ICFSecSecUserPWHistory readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp )
 	{
 		{	$implCommaIJavaOptAtomType$ testSecUserId = SecUserId;
@@ -224,7 +224,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 	@Override
 	public ICFSecSecUserPWHistory readDerivedByUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		IMCFKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWHistory.readDerivedByUserIdx";
 		CFSecBuffSecUserPWHistoryByUserIdxKey key = (CFSecBuffSecUserPWHistoryByUserIdxKey)schema.getCFSecBuffFactory().getFactorySecUserPWHistory().newByUserIdxKey();
@@ -278,7 +278,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 	@Override
 	public ICFSecSecUserPWHistory readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWHistory.readDerivedByIdIdx() ";
@@ -297,7 +297,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 	@Override
 	public ICFSecSecUserPWHistory readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp )
 	{
 		CFSecBuffSecUserPWHistoryPKey key = (CFSecBuffSecUserPWHistoryPKey)(schema.getCFSecBuffFactory().getFactorySecUserPWHistory().newPKey());
@@ -355,16 +355,16 @@ public class CFSecRamSecUserPWHistoryTable
 	 */
 	@Override
 	public ICFSecSecUserPWHistory[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecUserId,
+		IMCFKeyHash256 priorSecUserId,
 		LocalDateTime priorPWSetStamp )
 	{
 		final String S_ProcName = "pageAllRec";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	@Override
 	public ICFSecSecUserPWHistory readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWHistory.readRecByIdIdx() ";
@@ -381,7 +381,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 	@Override
 	public ICFSecSecUserPWHistory readRecByUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		IMCFKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserPWHistory.readRecByUserIdx() ";
 		ICFSecSecUserPWHistory buff = readDerivedByUserIdx( Authorization,
@@ -433,7 +433,7 @@ public class CFSecRamSecUserPWHistoryTable
 		pkey = (CFSecBuffSecUserPWHistoryPKey)Buff.getPKey();
 		CFSecBuffSecUserPWHistory existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateSecUserPWHistory",
 				"Existing record not found",
 				"Existing record not found",
@@ -442,7 +442,7 @@ public class CFSecRamSecUserPWHistoryTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateSecUserPWHistory",
 				pkey );
 		}
@@ -469,7 +469,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 		if( ! existingKeyUserIdx.equals( newKeyUserIdx ) ) {
 			if( dictByUserIdx.containsKey( newKeyUserIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateSecUserPWHistory",
 					"SecUserPWHistUserIdx",
 					"SecUserPWHistUserIdx",
@@ -479,7 +479,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 		if( ! existingKeySetStampIdx.equals( newKeySetStampIdx ) ) {
 			if( dictBySetStampIdx.containsKey( newKeySetStampIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateSecUserPWHistory",
 					"SecUserPWHistSetStampIdx",
 					"SecUserPWHistSetStampIdx",
@@ -489,7 +489,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 		if( ! existingKeyReplacedStampIdx.equals( newKeyReplacedStampIdx ) ) {
 			if( dictByReplacedStampIdx.containsKey( newKeyReplacedStampIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateSecUserPWHistory",
 					"SecUserPWHistReplacedStampIdx",
 					"SecUserPWHistReplacedStampIdx",
@@ -532,7 +532,7 @@ public class CFSecRamSecUserPWHistoryTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteSecUserPWHistory",
 				pkey );
 		}
@@ -561,7 +561,7 @@ public class CFSecRamSecUserPWHistoryTable
 	}
 	@Override
 	public void deleteSecUserPWHistoryByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId,
+		IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp )
 	{
 		CFSecBuffSecUserPWHistoryPKey key = (CFSecBuffSecUserPWHistoryPKey)(schema.getCFSecBuffFactory().getFactorySecUserPWHistory().newPKey());
@@ -605,7 +605,7 @@ public class CFSecRamSecUserPWHistoryTable
 
 	@Override
 	public void deleteSecUserPWHistoryByUserIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecUserId )
+		IMCFKeyHash256 argSecUserId )
 	{
 		CFSecBuffSecUserPWHistoryByUserIdxKey key = (CFSecBuffSecUserPWHistoryByUserIdxKey)schema.getCFSecBuffFactory().getFactorySecUserPWHistory().newByUserIdxKey();
 		key.setRequiredSecUserId( argSecUserId );

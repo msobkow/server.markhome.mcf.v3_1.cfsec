@@ -83,11 +83,11 @@ public class CFSecRamSecSysRoleTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByUNameIdx.containsKey( keyUNameIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"SecSysRoleUNameIdx",
 				"SecSysRoleUNameIdx",
@@ -113,7 +113,7 @@ public class CFSecRamSecSysRoleTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -183,7 +183,7 @@ public class CFSecRamSecSysRoleTable
 
 	@Override
 	public ICFSecSecSysRole readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId )
+		IMCFKeyHash256 SecSysRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecSysRole.readDerivedByIdIdx() ";
 		ICFSecSecSysRole buff;
@@ -238,7 +238,7 @@ public class CFSecRamSecSysRoleTable
 
 	@Override
 	public ICFSecSecSysRole readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId )
+		IMCFKeyHash256 SecSysRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecSysRole.readRecByIdIdx() ";
 		ICFSecSecSysRole buff = readDerivedByIdIdx( Authorization,
@@ -273,7 +273,7 @@ public class CFSecRamSecSysRoleTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffSecSysRole existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateSecSysRole",
 				"Existing record not found",
 				"Existing record not found",
@@ -282,7 +282,7 @@ public class CFSecRamSecSysRoleTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateSecSysRole",
 				pkey );
 		}
@@ -297,7 +297,7 @@ public class CFSecRamSecSysRoleTable
 
 		if( ! existingKeyUNameIdx.equals( newKeyUNameIdx ) ) {
 			if( dictByUNameIdx.containsKey( newKeyUNameIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateSecSysRole",
 					"SecSysRoleUNameIdx",
 					"SecSysRoleUNameIdx",
@@ -334,7 +334,7 @@ public class CFSecRamSecSysRoleTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteSecSysRole",
 				pkey );
 		}

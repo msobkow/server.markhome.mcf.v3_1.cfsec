@@ -60,7 +60,7 @@ public class CFSecJpaSecurityCache extends CFSecSecurityCache
 	 *	@return null if the userLogin does not exist, is null, is empty, or is blank. Otherwise the DbKey for the user.
 	 */
 	@Override
-	public CFLibDbKeyHash256 mapUserLoginToUserId(String userLogin) {
+	public MCFDbKeyHash256 mapUserLoginToUserId(String userLogin) {
 		return(((CFSecJpaSchema)(ICFSecSchema.getBackingCFSec())).getSchemaService().mapUserLoginToUserId(userLogin));
 	}
 
@@ -71,7 +71,7 @@ public class CFSecJpaSecurityCache extends CFSecSecurityCache
 	 *	@return null if the userId does not exist or is null. Otherwise the userLogin for the user.
 	 */
 	@Override
-	public String mapUserIdToUserLogin(CFLibDbKeyHash256 userId) {
+	public String mapUserIdToUserLogin(MCFDbKeyHash256 userId) {
 		return(((CFSecJpaSchema)(ICFSecSchema.getBackingCFSec())).getSchemaService().mapUserIdToUserLogin(userId));
 	}
 
@@ -88,7 +88,7 @@ public class CFSecJpaSecurityCache extends CFSecSecurityCache
 	 *	@return true if the user is a member of the tenant role or group, the equivalent cluster admin role or group, or the equivalent system admin role or group, otherwise false.
 	 */
 	@Override
-	public boolean probeMemberOfTenantGroup(CFLibDbKeyHash256 userId, CFLibDbKeyHash256 clusterId, CFLibDbKeyHash256 tenantId, String permissionName) {
+	public boolean probeMemberOfTenantGroup(MCFDbKeyHash256 userId, MCFDbKeyHash256 clusterId, MCFDbKeyHash256 tenantId, String permissionName) {
 		return(((CFSecJpaSchema)(ICFSecSchema.getBackingCFSec())).getSchemaService().probeMemberOfTenantGroup(userId, clusterId, tenantId, permissionName));
 	}
 
@@ -104,7 +104,7 @@ public class CFSecJpaSecurityCache extends CFSecSecurityCache
 	 *	@return true if the user is a member of the tenant role or group, the equivalent cluster admin role or group, or the equivalent system admin role or group, otherwise false.
 	 */
 	@Override
-	public boolean probeMemberOfClusterGroup(CFLibDbKeyHash256 userId, CFLibDbKeyHash256 clusterId, String permissionName) {
+	public boolean probeMemberOfClusterGroup(MCFDbKeyHash256 userId, MCFDbKeyHash256 clusterId, String permissionName) {
 		return(((CFSecJpaSchema)(ICFSecSchema.getBackingCFSec())).getSchemaService().probeMemberOfClusterGroup(userId, clusterId, permissionName));
 	}
 
@@ -118,7 +118,7 @@ public class CFSecJpaSecurityCache extends CFSecSecurityCache
 	 *	@return true if the user is a member of the tenant role or group, the equivalent cluster admin role or group, or the equivalent system admin role or group, otherwise false.
 	 */
 	@Override
-	public boolean probeMemberOfSystemGroup(CFLibDbKeyHash256 userId, String permissionName) {
+	public boolean probeMemberOfSystemGroup(MCFDbKeyHash256 userId, String permissionName) {
 		return(((CFSecJpaSchema)(ICFSecSchema.getBackingCFSec())).getSchemaService().probeMemberOfSystemGroup(userId, permissionName));
 	}
 }

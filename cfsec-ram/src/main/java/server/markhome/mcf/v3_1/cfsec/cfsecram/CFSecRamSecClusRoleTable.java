@@ -102,11 +102,11 @@ public class CFSecRamSecClusRoleTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByUNameIdx.containsKey( keyUNameIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"SecClusRoleUNameIdx",
 				"SecClusRoleUNameIdx",
@@ -122,7 +122,7 @@ public class CFSecRamSecClusRoleTable
 				if( null == schema.getTableCluster().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredClusterId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Owner",
 						"Owner",
@@ -142,7 +142,7 @@ public class CFSecRamSecClusRoleTable
 				if( null == schema.getTableSecSysGrp().readDerivedByUNameIdx( Authorization,
 						Buff.getRequiredName() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
 						"Container",
@@ -192,7 +192,7 @@ public class CFSecRamSecClusRoleTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -244,7 +244,7 @@ public class CFSecRamSecClusRoleTable
 
 	@Override
 	public ICFSecSecClusRole[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSecClusRole.readDerivedByClusterIdx";
 		CFSecBuffSecClusRoleByClusterIdxKey key = (CFSecBuffSecClusRoleByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySecClusRole().newByClusterIdxKey();
@@ -300,7 +300,7 @@ public class CFSecRamSecClusRoleTable
 
 	@Override
 	public ICFSecSecClusRole readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String Name )
 	{
 		final String S_ProcName = "CFSecRamSecClusRole.readDerivedByUNameIdx";
@@ -320,7 +320,7 @@ public class CFSecRamSecClusRoleTable
 
 	@Override
 	public ICFSecSecClusRole readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusRoleId )
+		IMCFKeyHash256 SecClusRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecClusRole.readDerivedByIdIdx() ";
 		ICFSecSecClusRole buff;
@@ -375,7 +375,7 @@ public class CFSecRamSecClusRoleTable
 
 	@Override
 	public ICFSecSecClusRole readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecClusRoleId )
+		IMCFKeyHash256 SecClusRoleId )
 	{
 		final String S_ProcName = "CFSecRamSecClusRole.readRecByIdIdx() ";
 		ICFSecSecClusRole buff = readDerivedByIdIdx( Authorization,
@@ -390,7 +390,7 @@ public class CFSecRamSecClusRoleTable
 
 	@Override
 	public ICFSecSecClusRole[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamSecClusRole.readRecByClusterIdx() ";
 		ICFSecSecClusRole buff;
@@ -426,7 +426,7 @@ public class CFSecRamSecClusRoleTable
 
 	@Override
 	public ICFSecSecClusRole readRecByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String Name )
 	{
 		final String S_ProcName = "CFSecRamSecClusRole.readRecByUNameIdx() ";
@@ -448,7 +448,7 @@ public class CFSecRamSecClusRoleTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffSecClusRole existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateSecClusRole",
 				"Existing record not found",
 				"Existing record not found",
@@ -457,7 +457,7 @@ public class CFSecRamSecClusRoleTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateSecClusRole",
 				pkey );
 		}
@@ -486,7 +486,7 @@ public class CFSecRamSecClusRoleTable
 
 		if( ! existingKeyUNameIdx.equals( newKeyUNameIdx ) ) {
 			if( dictByUNameIdx.containsKey( newKeyUNameIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateSecClusRole",
 					"SecClusRoleUNameIdx",
 					"SecClusRoleUNameIdx",
@@ -503,7 +503,7 @@ public class CFSecRamSecClusRoleTable
 				if( null == schema.getTableCluster().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredClusterId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateSecClusRole",
 						"Owner",
 						"Owner",
@@ -523,7 +523,7 @@ public class CFSecRamSecClusRoleTable
 				if( null == schema.getTableSecSysGrp().readDerivedByUNameIdx( Authorization,
 						Buff.getRequiredName() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateSecClusRole",
 						"Container",
 						"Container",
@@ -589,7 +589,7 @@ public class CFSecRamSecClusRoleTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteSecClusRole",
 				pkey );
 		}
@@ -655,7 +655,7 @@ public class CFSecRamSecClusRoleTable
 
 	@Override
 	public void deleteSecClusRoleByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId )
+		IMCFKeyHash256 argClusterId )
 	{
 		CFSecBuffSecClusRoleByClusterIdxKey key = (CFSecBuffSecClusRoleByClusterIdxKey)schema.getCFSecBuffFactory().getFactorySecClusRole().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );
@@ -727,7 +727,7 @@ public class CFSecRamSecClusRoleTable
 
 	@Override
 	public void deleteSecClusRoleByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId,
+		IMCFKeyHash256 argClusterId,
 		String argName )
 	{
 		CFSecBuffSecClusRoleByUNameIdxKey key = (CFSecBuffSecClusRoleByUNameIdxKey)schema.getCFSecBuffFactory().getFactorySecClusRole().newByUNameIdxKey();

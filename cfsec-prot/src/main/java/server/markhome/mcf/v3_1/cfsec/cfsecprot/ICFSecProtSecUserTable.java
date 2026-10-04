@@ -115,7 +115,7 @@ extends ICFSecPubSecUserTable
 	 *	@param	argKey	The primary key identifying the instance to be deleted.
 	 */
 	public void protdeleteSecUserByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 argKey );
+		MCFDbKeyHash256 argKey );
 	/**
 	 *	Delete the SecUser instances identified by the key ULoginIdx.
 	 *
@@ -186,7 +186,7 @@ extends ICFSecPubSecUserTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecUser protreadDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the derived SecUser record instance by protected primary key.
@@ -199,7 +199,7 @@ extends ICFSecPubSecUserTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecUser protlockDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all SecUser instances.
@@ -221,7 +221,7 @@ extends ICFSecPubSecUserTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecUser protreadDerivedByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read the derived SecUser record instance identified by the unique key ULoginIdx.
@@ -258,10 +258,10 @@ extends ICFSecPubSecUserTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUser protreadRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the specific SecUser record instance identified by the primary key.
@@ -273,10 +273,10 @@ extends ICFSecPubSecUserTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUser protlockRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all the specific SecUser record instances.
@@ -295,7 +295,7 @@ extends ICFSecPubSecUserTable
 	 *	@return All the specific SecUser instances in the database accessible for the Authorization.
 	 */
 	public ICFSecProtSecUser[] protpageAllRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 priorSecUserId );
+		MCFDbKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read the specific SecUser record instance identified by the unique key IdIdx.
@@ -307,10 +307,10 @@ extends ICFSecPubSecUserTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUser protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read the specific SecUser record instance identified by the unique key ULoginIdx.
@@ -322,7 +322,7 @@ extends ICFSecPubSecUserTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUser protreadRecByULoginIdx( ICFSecPubAuthorization Authorization,
 		String LoginId );
@@ -336,7 +336,7 @@ extends ICFSecPubSecUserTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUser[] protreadRecByEMAddrIdx( ICFSecPubAuthorization Authorization,
 		String EMailAddress );
@@ -350,9 +350,9 @@ extends ICFSecPubSecUserTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecUser[] protpageRecByEMAddrIdx( ICFSecPubAuthorization Authorization,
 		String EMailAddress,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 }

@@ -181,18 +181,18 @@ public interface ICFSecSecSysGrpEditObj
 	List<ICFSecSecSysRoleEnablesObj> getOptionalChildrenRoleByEnableName();
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecSysGrpId.
+	 *	Get the required IMCFKeyHash256 attribute SecSysGrpId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecSysGrpId.
+	 *	@return	The required IMCFKeyHash256 attribute SecSysGrpId.
 	 */
-	ICFLibKeyHash256 getRequiredSecSysGrpId();
+	IMCFKeyHash256 getRequiredSecSysGrpId();
 
 	/**
-	 *	Set the required ICFLibKeyHash256 attribute SecSysGrpId.
+	 *	Set the required IMCFKeyHash256 attribute SecSysGrpId.
 	 *
-	 *	@param value The required ICFLibKeyHash256 attribute SecSysGrpId value to be applied.
+	 *	@param value The required IMCFKeyHash256 attribute SecSysGrpId value to be applied.
 	 */
-	void setRequiredSecSysGrpId(ICFLibKeyHash256 value);
+	void setRequiredSecSysGrpId(IMCFKeyHash256 value);
 
 	/**
 	 *	Get the required String attribute Name.

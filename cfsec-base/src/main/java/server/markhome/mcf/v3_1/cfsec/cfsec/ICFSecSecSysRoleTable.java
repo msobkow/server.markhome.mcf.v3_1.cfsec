@@ -158,7 +158,7 @@ public interface ICFSecSecSysRoleTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecSysRole readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId );
+		IMCFKeyHash256 SecSysRoleId );
 
 	/**
 	 *	Read the derived SecSysRole record instance identified by the unique key UNameIdx.
@@ -183,7 +183,7 @@ public interface ICFSecSecSysRoleTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysRole readRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -198,7 +198,7 @@ public interface ICFSecSecSysRoleTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysRole lockRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -222,10 +222,10 @@ public interface ICFSecSecSysRoleTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysRole readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId );
+		IMCFKeyHash256 SecSysRoleId );
 
 	/**
 	 *	Read the specific SecSysRole record instance identified by the unique key UNameIdx.
@@ -237,7 +237,7 @@ public interface ICFSecSecSysRoleTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysRole readRecByUNameIdx( ICFSecAuthorization Authorization,
 		String Name );

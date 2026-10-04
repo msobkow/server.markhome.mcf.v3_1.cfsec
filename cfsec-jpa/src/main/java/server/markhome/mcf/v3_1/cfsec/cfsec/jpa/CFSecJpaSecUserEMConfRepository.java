@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -65,7 +65,7 @@ public interface CFSecJpaSecUserEMConfRepository extends JpaRepository<CFSecJpaS
 	 *		@return The retrieved entity, usually from the JPA cache, or null if no such entity exists.
 	 */
 	@Query("select r from CFSecJpaSecUserEMConf r where r.requiredContainerUser.requiredSecUserId = :secUserId")
-	CFSecJpaSecUserEMConf get(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId);
+	CFSecJpaSecUserEMConf get(@Param("secUserId") IMCFKeyHash256 requiredSecUserId);
 
 	// CFSecJpaSecUserEMConf specified index readers
 
@@ -77,7 +77,7 @@ public interface CFSecJpaSecUserEMConfRepository extends JpaRepository<CFSecJpaS
 	 *		@return The found entity, typically from the JPA cache, or null if no such entity exists.
 	 */
 	@Query("select r from CFSecJpaSecUserEMConf r where r.requiredEMConfirmationUuid6 = :eMConfirmationUuid6")
-	CFSecJpaSecUserEMConf findByUUuid6Idx(@Param("eMConfirmationUuid6") ICFLibUuid6 requiredEMConfirmationUuid6);
+	CFSecJpaSecUserEMConf findByUUuid6Idx(@Param("eMConfirmationUuid6") IMCFUuid6 requiredEMConfirmationUuid6);
 
 	/**
 	 *	CFSecSecUserEMConfByUUuid6IdxKey entity reader convenience method for object-based access.
@@ -165,7 +165,7 @@ public interface CFSecJpaSecUserEMConfRepository extends JpaRepository<CFSecJpaS
 	@Transactional
 	@Lock(LockModeType.WRITE)
 	@Query("select r from CFSecJpaSecUserEMConf r where r.requiredContainerUser.requiredSecUserId = :secUserId")
-	CFSecJpaSecUserEMConf lockByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId);
+	CFSecJpaSecUserEMConf lockByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId);
 
 	/**
 	 *	Argument-based lock database entity for compatibility with the current MSS code factory code base, uses @Transactional to acquire a JPA entity locks, which may or may not imply an actual database lock during the transaction.
@@ -177,7 +177,7 @@ public interface CFSecJpaSecUserEMConfRepository extends JpaRepository<CFSecJpaS
 	@Transactional
 	@Lock(LockModeType.WRITE)
 	@Query("select r from CFSecJpaSecUserEMConf r where r.requiredEMConfirmationUuid6 = :eMConfirmationUuid6")
-	CFSecJpaSecUserEMConf lockByUUuid6Idx(@Param("eMConfirmationUuid6") ICFLibUuid6 requiredEMConfirmationUuid6);
+	CFSecJpaSecUserEMConf lockByUUuid6Idx(@Param("eMConfirmationUuid6") IMCFUuid6 requiredEMConfirmationUuid6);
 
 	/**
 	 *	CFSecSecUserEMConfByUUuid6IdxKey based lock method for object-based access.
@@ -269,7 +269,7 @@ public interface CFSecJpaSecUserEMConfRepository extends JpaRepository<CFSecJpaS
 	@Transactional
 	@Modifying
 	@Query("delete from CFSecJpaSecUserEMConf r where r.requiredContainerUser.requiredSecUserId = :secUserId")
-	void deleteByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId);
+	void deleteByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId);
 
 	/**
 	 *	Argument-based delete entity for compatibility with the current MSS code factory code base, uses @Transactional to acquire a JPA entity lock, which may or may not imply an actual database lock during the transaction.
@@ -279,7 +279,7 @@ public interface CFSecJpaSecUserEMConfRepository extends JpaRepository<CFSecJpaS
 	@Transactional
 	@Modifying
 	@Query("delete from CFSecJpaSecUserEMConf r where r.requiredEMConfirmationUuid6 = :eMConfirmationUuid6")
-	void deleteByUUuid6Idx(@Param("eMConfirmationUuid6") ICFLibUuid6 requiredEMConfirmationUuid6);
+	void deleteByUUuid6Idx(@Param("eMConfirmationUuid6") IMCFUuid6 requiredEMConfirmationUuid6);
 
 	/**
 	 *	CFSecSecUserEMConfByUUuid6IdxKey based lock method for object-based access.

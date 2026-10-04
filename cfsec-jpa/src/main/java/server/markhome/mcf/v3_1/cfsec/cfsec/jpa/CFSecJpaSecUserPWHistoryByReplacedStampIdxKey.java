@@ -38,7 +38,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 
 public class CFSecJpaSecUserPWHistoryByReplacedStampIdxKey
@@ -46,7 +46,7 @@ public class CFSecJpaSecUserPWHistoryByReplacedStampIdxKey
 {
 	protected LocalDateTime requiredPWReplacedStamp;
 	public CFSecJpaSecUserPWHistoryByReplacedStampIdxKey() {
-		requiredPWReplacedStamp = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+		requiredPWReplacedStamp = MCFXmlUtil.parseTimestamp("2020-01-01T00:00:00");
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class CFSecJpaSecUserPWHistoryByReplacedStampIdxKey
 
 	public void setRequiredPWReplacedStamp( LocalDateTime value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredPWReplacedStamp",
 				1,
 				"value" );
@@ -201,7 +201,7 @@ public class CFSecJpaSecUserPWHistoryByReplacedStampIdxKey
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(),
+			throw new MCFUnsupportedClassException(getClass(),
 				"compareTo",
 				"obj",
 				obj,

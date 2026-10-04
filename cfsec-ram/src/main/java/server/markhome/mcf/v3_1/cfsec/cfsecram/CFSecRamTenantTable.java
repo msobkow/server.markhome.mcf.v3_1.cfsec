@@ -93,11 +93,11 @@ public class CFSecRamTenantTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByUNameIdx.containsKey( keyUNameIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"TenantUNameIdx",
 				"TenantUNameIdx",
@@ -113,7 +113,7 @@ public class CFSecRamTenantTable
 				if( null == schema.getTableCluster().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredClusterId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
 						"Container",
@@ -153,7 +153,7 @@ public class CFSecRamTenantTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -205,7 +205,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant[] readDerivedByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerivedByClusterIdx";
 		CFSecBuffTenantByClusterIdxKey key = (CFSecBuffTenantByClusterIdxKey)schema.getCFSecBuffFactory().getFactoryTenant().newByClusterIdxKey();
@@ -233,7 +233,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant readDerivedByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String TenantName )
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerivedByUNameIdx";
@@ -253,7 +253,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 Id )
+		IMCFKeyHash256 Id )
 	{
 		final String S_ProcName = "CFSecRamTenant.readDerivedByIdIdx() ";
 		ICFSecTenant buff;
@@ -315,15 +315,15 @@ public class CFSecRamTenantTable
 	 */
 	@Override
 	public ICFSecTenant[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorId )
+		IMCFKeyHash256 priorId )
 	{
 		final String S_ProcName = "pageAllRec";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	@Override
 	public ICFSecTenant readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 Id )
+		IMCFKeyHash256 Id )
 	{
 		final String S_ProcName = "CFSecRamTenant.readRecByIdIdx() ";
 		ICFSecTenant buff = readDerivedByIdIdx( Authorization,
@@ -338,7 +338,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant[] readRecByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId )
+		IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "CFSecRamTenant.readRecByClusterIdx() ";
 		ICFSecTenant buff;
@@ -356,7 +356,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public ICFSecTenant readRecByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
+		IMCFKeyHash256 ClusterId,
 		String TenantName )
 	{
 		final String S_ProcName = "CFSecRamTenant.readRecByUNameIdx() ";
@@ -380,15 +380,15 @@ public class CFSecRamTenantTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecTenant[] pageRecByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 ClusterId,
-		ICFLibKeyHash256 priorId )
+		IMCFKeyHash256 ClusterId,
+		IMCFKeyHash256 priorId )
 	{
 		final String S_ProcName = "pageRecByClusterIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	public ICFSecTenant updateTenant( ICFSecAuthorization Authorization,
@@ -398,7 +398,7 @@ public class CFSecRamTenantTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffTenant existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateTenant",
 				"Existing record not found",
 				"Existing record not found",
@@ -407,7 +407,7 @@ public class CFSecRamTenantTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateTenant",
 				pkey );
 		}
@@ -430,7 +430,7 @@ public class CFSecRamTenantTable
 
 		if( ! existingKeyUNameIdx.equals( newKeyUNameIdx ) ) {
 			if( dictByUNameIdx.containsKey( newKeyUNameIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateTenant",
 					"TenantUNameIdx",
 					"TenantUNameIdx",
@@ -447,7 +447,7 @@ public class CFSecRamTenantTable
 				if( null == schema.getTableCluster().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredClusterId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateTenant",
 						"Container",
 						"Container",
@@ -500,7 +500,7 @@ public class CFSecRamTenantTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteTenant",
 				pkey );
 		}
@@ -565,7 +565,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public void deleteTenantByClusterIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId )
+		IMCFKeyHash256 argClusterId )
 	{
 		CFSecBuffTenantByClusterIdxKey key = (CFSecBuffTenantByClusterIdxKey)schema.getCFSecBuffFactory().getFactoryTenant().newByClusterIdxKey();
 		key.setRequiredClusterId( argClusterId );
@@ -601,7 +601,7 @@ public class CFSecRamTenantTable
 
 	@Override
 	public void deleteTenantByUNameIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argClusterId,
+		IMCFKeyHash256 argClusterId,
 		String argTenantName )
 	{
 		CFSecBuffTenantByUNameIdxKey key = (CFSecBuffTenantByUNameIdxKey)schema.getCFSecBuffFactory().getFactoryTenant().newByUNameIdxKey();

@@ -59,7 +59,7 @@ public interface ICFSecPubSchemaObj
 	ICFSecPubSecUserObj getSecUser();
 	void setSecUser( ICFSecPubSecUserObj value );
 
-	void setSecSessionId( CFLibDbKeyHash256 value );
+	void setSecSessionId( MCFDbKeyHash256 value );
 	ICFSecPubSecSessionObj getSecSession();
 	void setSecSession( ICFSecPubSecSessionObj value );
 

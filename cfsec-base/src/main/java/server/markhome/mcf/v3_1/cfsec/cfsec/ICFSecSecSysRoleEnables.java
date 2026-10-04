@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 
@@ -46,28 +46,28 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 public interface ICFSecSecSysRoleEnables
 {
 	public static final String S_INIT_CREATED_BY = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 INIT_CREATED_BY = CFLibDbKeyHash256.fromHex(S_INIT_CREATED_BY);
+	public static final MCFDbKeyHash256 INIT_CREATED_BY = MCFDbKeyHash256.fromHex(S_INIT_CREATED_BY);
 	public static final String S_INIT_UPDATED_BY = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 INIT_UPDATED_BY = CFLibDbKeyHash256.fromHex(S_INIT_UPDATED_BY);
+	public static final MCFDbKeyHash256 INIT_UPDATED_BY = MCFDbKeyHash256.fromHex(S_INIT_UPDATED_BY);
 	public static final String S_SECSYSROLEID_INIT_VALUE = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 SECSYSROLEID_INIT_VALUE = CFLibDbKeyHash256.fromHex( S_SECSYSROLEID_INIT_VALUE );
+	public static final MCFDbKeyHash256 SECSYSROLEID_INIT_VALUE = MCFDbKeyHash256.fromHex( S_SECSYSROLEID_INIT_VALUE );
 	public static final String ENABLENAME_INIT_VALUE = new String( "" );
 	public final static int CLASS_CODE = 0xa018;
 	public final static String S_CLASS_CODE = "a018";
 
 	public int getClassCode();
 
-	public CFLibDbKeyHash256 getCreatedByUserId();
+	public MCFDbKeyHash256 getCreatedByUserId();
 
-	public void setCreatedByUserId( CFLibDbKeyHash256 value );
+	public void setCreatedByUserId( MCFDbKeyHash256 value );
 
 	public LocalDateTime getCreatedAt();
 
 	public void setCreatedAt( LocalDateTime value );
 
-	public CFLibDbKeyHash256 getUpdatedByUserId();
+	public MCFDbKeyHash256 getUpdatedByUserId();
 
-	public void setUpdatedByUserId( CFLibDbKeyHash256 value );
+	public void setUpdatedByUserId( MCFDbKeyHash256 value );
 
 	public LocalDateTime getUpdatedAt();
 
@@ -77,7 +77,7 @@ public interface ICFSecSecSysRoleEnables
 	public void setPKey(ICFSecSecSysRoleEnablesPKey pkey );
 	public ICFSecSecSysRole getRequiredContainerSysRole();
 
-	public void setRequiredContainerSysRole(ICFLibKeyHash256 argSecSysRoleId);
+	public void setRequiredContainerSysRole(IMCFKeyHash256 argSecSysRoleId);
 
 	public void setRequiredContainerSysRole(ICFSecSecSysRole argObj);
 
@@ -95,9 +95,9 @@ public interface ICFSecSecSysRoleEnables
 
 	public void setRequiredParentEnableGroup(ICFSecPubSecSysGrp argObj);
 
-	public ICFLibKeyHash256 getRequiredSecSysRoleId();
+	public IMCFKeyHash256 getRequiredSecSysRoleId();
 
-	public void setRequiredSecSysRoleId(ICFLibKeyHash256 value);
+	public void setRequiredSecSysRoleId(IMCFKeyHash256 value);
 
 	public String getRequiredEnableName();
 

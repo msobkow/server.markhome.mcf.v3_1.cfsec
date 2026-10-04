@@ -37,7 +37,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
@@ -129,7 +129,7 @@ public class CFSecSecTentGrpEditObj
 	}
 
 	@Override
-	public ICFLibAnyObj getObjScope() {
+	public IMCFAnyObj getObjScope() {
 		ICFSecSecSysGrpObj scope = getRequiredContainerSysGrp();
 		return( scope );
 	}
@@ -142,8 +142,8 @@ public class CFSecSecTentGrpEditObj
 	}
 
 	@Override
-	public ICFLibAnyObj getObjQualifier( Class qualifyingClass ) {
-		ICFLibAnyObj container = this;
+	public IMCFAnyObj getObjQualifier( Class qualifyingClass ) {
+		IMCFAnyObj container = this;
 		if( qualifyingClass != null ) {
 			while( container != null ) {
 				if( container instanceof ICFSecClusterObj ) {
@@ -173,21 +173,21 @@ public class CFSecSecTentGrpEditObj
 	}
 
 	@Override
-	public ICFLibAnyObj getNamedObject( Class qualifyingClass, String objName ) {
-		ICFLibAnyObj topContainer = getObjQualifier( qualifyingClass );
+	public IMCFAnyObj getNamedObject( Class qualifyingClass, String objName ) {
+		IMCFAnyObj topContainer = getObjQualifier( qualifyingClass );
 		if( topContainer == null ) {
 			return( null );
 		}
-		ICFLibAnyObj namedObject = topContainer.getNamedObject( objName );
+		IMCFAnyObj namedObject = topContainer.getNamedObject( objName );
 		return( namedObject );
 	}
 
 	@Override
-	public ICFLibAnyObj getNamedObject( String objName ) {
+	public IMCFAnyObj getNamedObject( String objName ) {
 		String nextName;
 		String remainingName;
-		ICFLibAnyObj subObj = null;
-		ICFLibAnyObj retObj;
+		IMCFAnyObj subObj = null;
+		IMCFAnyObj retObj;
 		int nextDot = objName.indexOf( '.' );
 		if( nextDot >= 0 ) {
 			nextName = objName.substring( 0, nextDot );
@@ -212,7 +212,7 @@ public class CFSecSecTentGrpEditObj
 	@Override
 	public String getObjQualifiedName() {
 		String qualName = getObjName();
-		ICFLibAnyObj container = getObjScope();
+		IMCFAnyObj container = getObjScope();
 		String containerName;
 		while( container != null ) {
 			if( container instanceof ICFSecClusterObj ) {
@@ -233,7 +233,7 @@ public class CFSecSecTentGrpEditObj
 	@Override
 	public String getObjFullName() {
 		String fullName = getObjName();
-		ICFLibAnyObj container = getObjScope();
+		IMCFAnyObj container = getObjScope();
 		String containerName;
 		while( container != null ) {
 			if( container instanceof ICFSecClusterObj ) {
@@ -267,7 +267,7 @@ public class CFSecSecTentGrpEditObj
 	public ICFSecSecTentGrpObj read() {
 		ICFSecSecTentGrpObj retval = getOrigAsSecTentGrp().read();
 		if( retval != orig ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),	"read" );
+			throw new MCFStaleCacheDetectedException( getClass(),	"read" );
 		}
 		copyOrigToRec();
 		return( retval );
@@ -277,7 +277,7 @@ public class CFSecSecTentGrpEditObj
 	public ICFSecSecTentGrpObj read( boolean forceRead ) {
 		ICFSecSecTentGrpObj retval = getOrigAsSecTentGrp().read( forceRead );
 		if( retval != orig ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),	"read" );
+			throw new MCFStaleCacheDetectedException( getClass(),	"read" );
 		}
 		copyOrigToRec();
 		return( retval );
@@ -302,7 +302,7 @@ public class CFSecSecTentGrpEditObj
 	@Override
 	public CFSecSecTentGrpEditObj deleteInstance() {
 		if( getIsNew() ) {
-			throw new CFLibCannotDeleteNewInstanceException( getClass(), "delete" );
+			throw new MCFCannotDeleteNewInstanceException( getClass(), "delete" );
 		}
 		getSchema().getSecTentGrpTableObj().deleteSecTentGrp( getOrigAsSecTentGrp() );
 		return( null );
@@ -325,7 +325,7 @@ public class CFSecSecTentGrpEditObj
 
 	@Override
 	public ICFSecSecTentGrpEditObj beginEdit() {
-		throw new CFLibEditAlreadyOpenException( getClass(), "beginEdit" );
+		throw new MCFEditAlreadyOpenException( getClass(), "beginEdit" );
 	}
 
 	@Override
@@ -398,12 +398,12 @@ public class CFSecSecTentGrpEditObj
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecTentGrpId() {
+	public IMCFKeyHash256 getRequiredSecTentGrpId() {
 		return( getPKey() );
 	}
 
 	@Override
-	public void setRequiredSecTentGrpId(ICFLibKeyHash256 value) {
+	public void setRequiredSecTentGrpId(IMCFKeyHash256 value) {
 		if (getPKey() != value) {
 			setPKey(value);
 			requiredOwnerTenant = null;
@@ -413,7 +413,7 @@ public class CFSecSecTentGrpEditObj
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredTenantId() {
+	public IMCFKeyHash256 getRequiredTenantId() {
 		return( getSecTentGrpRec().getRequiredTenantId() );
 	}
 

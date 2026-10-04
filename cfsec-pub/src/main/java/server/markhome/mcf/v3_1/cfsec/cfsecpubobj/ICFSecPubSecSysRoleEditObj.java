@@ -108,18 +108,18 @@ public interface ICFSecPubSecSysRoleEditObj
 	void setUpdatedAt( LocalDateTime value );
 
 	/**
-	 *	Get the required CFLibDbKeyHash256 attribute SecSysRoleId.
+	 *	Get the required MCFDbKeyHash256 attribute SecSysRoleId.
 	 *
-	 *	@return	The required CFLibDbKeyHash256 attribute SecSysRoleId.
+	 *	@return	The required MCFDbKeyHash256 attribute SecSysRoleId.
 	 */
-	CFLibDbKeyHash256 getRequiredSecSysRoleId();
+	MCFDbKeyHash256 getRequiredSecSysRoleId();
 
 	/**
-	 *	Set the required CFLibDbKeyHash256 attribute SecSysRoleId.
+	 *	Set the required MCFDbKeyHash256 attribute SecSysRoleId.
 	 *
-	 *	@param value The required CFLibDbKeyHash256 attribute SecSysRoleId value to be applied.
+	 *	@param value The required MCFDbKeyHash256 attribute SecSysRoleId value to be applied.
 	 */
-	void setRequiredSecSysRoleId(CFLibDbKeyHash256 value);
+	void setRequiredSecSysRoleId(MCFDbKeyHash256 value);
 
 	/**
 	 *	Get the required String attribute Name.

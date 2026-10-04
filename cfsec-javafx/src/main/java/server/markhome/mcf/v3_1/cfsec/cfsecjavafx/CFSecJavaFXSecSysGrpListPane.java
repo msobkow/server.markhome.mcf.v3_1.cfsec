@@ -72,7 +72,7 @@ implements ICFSecJavaFXSecSysGrpPaneList
 	protected CFButton buttonEditSelected = null;
 	protected CFButton buttonDeleteSelected = null;
 	protected TableView<ICFSecSecSysGrpObj> dataTable = null;
-	protected TableColumn<ICFSecSecSysGrpObj, ICFLibKeyHash256> tableColumnSecSysGrpId = null;
+	protected TableColumn<ICFSecSecSysGrpObj, IMCFKeyHash256> tableColumnSecSysGrpId = null;
 	protected TableColumn<ICFSecSecSysGrpObj, String> tableColumnName = null;
 	protected TableColumn<ICFSecSecSysGrpObj, ICFSecPubSchema.SecLevelEnum> tableColumnSecLevel = null;
 
@@ -163,24 +163,24 @@ implements ICFSecJavaFXSecSysGrpPaneList
 		javafxSortByChain = sortByChain;
 		setJavaFXDataCollection( argDataCollection );
 		dataTable = new TableView<ICFSecSecSysGrpObj>();
-		tableColumnSecSysGrpId = new TableColumn<ICFSecSecSysGrpObj,ICFLibKeyHash256>( "System Security Group Id" );
-		tableColumnSecSysGrpId.setCellValueFactory( new Callback<CellDataFeatures<ICFSecSecSysGrpObj,ICFLibKeyHash256>,ObservableValue<ICFLibKeyHash256> >() {
-			public ObservableValue<ICFLibKeyHash256> call( CellDataFeatures<ICFSecSecSysGrpObj, ICFLibKeyHash256> p ) {
+		tableColumnSecSysGrpId = new TableColumn<ICFSecSecSysGrpObj,IMCFKeyHash256>( "System Security Group Id" );
+		tableColumnSecSysGrpId.setCellValueFactory( new Callback<CellDataFeatures<ICFSecSecSysGrpObj,IMCFKeyHash256>,ObservableValue<IMCFKeyHash256> >() {
+			public ObservableValue<IMCFKeyHash256> call( CellDataFeatures<ICFSecSecSysGrpObj, IMCFKeyHash256> p ) {
 				ICFSecSecSysGrpObj obj = p.getValue();
 				if( obj == null ) {
 					return( null );
 				}
 				else {
-					ICFLibKeyHash256 value = obj.getRequiredSecSysGrpId();
-					ReadOnlyObjectWrapper<ICFLibKeyHash256> observable = new ReadOnlyObjectWrapper<ICFLibKeyHash256>();
+					IMCFKeyHash256 value = obj.getRequiredSecSysGrpId();
+					ReadOnlyObjectWrapper<IMCFKeyHash256> observable = new ReadOnlyObjectWrapper<IMCFKeyHash256>();
 					observable.setValue( value );
 					return( observable );
 				}
 			}
 		});
-		tableColumnSecSysGrpId.setCellFactory( new Callback<TableColumn<ICFSecSecSysGrpObj,ICFLibKeyHash256>,TableCell<ICFSecSecSysGrpObj,ICFLibKeyHash256>>() {
-			@Override public TableCell<ICFSecSecSysGrpObj,ICFLibKeyHash256> call(
-				TableColumn<ICFSecSecSysGrpObj,ICFLibKeyHash256> arg)
+		tableColumnSecSysGrpId.setCellFactory( new Callback<TableColumn<ICFSecSecSysGrpObj,IMCFKeyHash256>,TableCell<ICFSecSecSysGrpObj,IMCFKeyHash256>>() {
+			@Override public TableCell<ICFSecSecSysGrpObj,IMCFKeyHash256> call(
+				TableColumn<ICFSecSecSysGrpObj,IMCFKeyHash256> arg)
 			{
 				return new CFDbKeyHash256TableCell<ICFSecSecSysGrpObj>();
 			}

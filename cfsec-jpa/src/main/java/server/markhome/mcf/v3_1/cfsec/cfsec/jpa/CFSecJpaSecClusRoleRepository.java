@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -65,7 +65,7 @@ public interface CFSecJpaSecClusRoleRepository extends JpaRepository<CFSecJpaSec
 	 *		@return The retrieved entity, usually from the JPA cache, or null if no such entity exists.
 	 */
 	@Query("select r from CFSecJpaSecClusRole r where r.requiredSecClusRoleId = :secClusRoleId")
-	CFSecJpaSecClusRole get(@Param("secClusRoleId") ICFLibKeyHash256 requiredSecClusRoleId);
+	CFSecJpaSecClusRole get(@Param("secClusRoleId") IMCFKeyHash256 requiredSecClusRoleId);
 
 	// CFSecJpaSecClusRole specified index readers
 
@@ -77,7 +77,7 @@ public interface CFSecJpaSecClusRoleRepository extends JpaRepository<CFSecJpaSec
 	 *		@return List&lt;CFSecJpaSecClusRole&gt; of the found entities, typically from the JPA cache, or an empty list if no such entities exist.
 	 */
 	@Query("select r from CFSecJpaSecClusRole r where r.requiredOwnerCluster.requiredId = :clusterId")
-	List<CFSecJpaSecClusRole> findByClusterIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId);
+	List<CFSecJpaSecClusRole> findByClusterIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId);
 
 	/**
 	 *	CFSecSecClusRoleByClusterIdxKey entity list reader convenience method for object-based access.
@@ -120,7 +120,7 @@ public interface CFSecJpaSecClusRoleRepository extends JpaRepository<CFSecJpaSec
 	 *		@return The found entity, typically from the JPA cache, or null if no such entity exists.
 	 */
 	@Query("select r from CFSecJpaSecClusRole r where r.requiredOwnerCluster.requiredId = :clusterId and r.requiredContainerSysRole.requiredName = :name")
-	CFSecJpaSecClusRole findByUNameIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId,
+	CFSecJpaSecClusRole findByUNameIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId,
 		@Param("name") String requiredName);
 
 	/**
@@ -146,7 +146,7 @@ public interface CFSecJpaSecClusRoleRepository extends JpaRepository<CFSecJpaSec
 	@Transactional
 	@Lock(LockModeType.WRITE)
 	@Query("select r from CFSecJpaSecClusRole r where r.requiredSecClusRoleId = :secClusRoleId")
-	CFSecJpaSecClusRole lockByIdIdx(@Param("secClusRoleId") ICFLibKeyHash256 requiredSecClusRoleId);
+	CFSecJpaSecClusRole lockByIdIdx(@Param("secClusRoleId") IMCFKeyHash256 requiredSecClusRoleId);
 
 	/**
 	 *	Argument-based lock database instance for compatibility with the current MSS code factory code base, uses @Transactional to acquire a JPA entity locks, which may or may not imply an actual database lock during the transaction.
@@ -158,7 +158,7 @@ public interface CFSecJpaSecClusRoleRepository extends JpaRepository<CFSecJpaSec
 	@Transactional
 	@Lock(LockModeType.WRITE)
 	@Query("select r from CFSecJpaSecClusRole r where r.requiredOwnerCluster.requiredId = :clusterId")
-	List<CFSecJpaSecClusRole> lockByClusterIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId);
+	List<CFSecJpaSecClusRole> lockByClusterIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId);
 
 	/**
 	 *	CFSecSecClusRoleByClusterIdxKey based lock method for object-based access.
@@ -205,7 +205,7 @@ public interface CFSecJpaSecClusRoleRepository extends JpaRepository<CFSecJpaSec
 	@Transactional
 	@Lock(LockModeType.WRITE)
 	@Query("select r from CFSecJpaSecClusRole r where r.requiredOwnerCluster.requiredId = :clusterId and r.requiredContainerSysRole.requiredName = :name")
-	CFSecJpaSecClusRole lockByUNameIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId,
+	CFSecJpaSecClusRole lockByUNameIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId,
 		@Param("name") String requiredName);
 
 	/**
@@ -229,7 +229,7 @@ public interface CFSecJpaSecClusRoleRepository extends JpaRepository<CFSecJpaSec
 	@Transactional
 	@Modifying
 	@Query("delete from CFSecJpaSecClusRole r where r.requiredSecClusRoleId = :secClusRoleId")
-	void deleteByIdIdx(@Param("secClusRoleId") ICFLibKeyHash256 requiredSecClusRoleId);
+	void deleteByIdIdx(@Param("secClusRoleId") IMCFKeyHash256 requiredSecClusRoleId);
 
 	/**
 	 *	Argument-based delete entity for compatibility with the current MSS code factory code base, uses @Transactional to acquire a JPA entity lock, which may or may not imply an actual database lock during the transaction.
@@ -239,7 +239,7 @@ public interface CFSecJpaSecClusRoleRepository extends JpaRepository<CFSecJpaSec
 	@Transactional
 	@Modifying
 	@Query("delete from CFSecJpaSecClusRole r where r.requiredOwnerCluster.requiredId = :clusterId")
-	void deleteByClusterIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId);
+	void deleteByClusterIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId);
 
 	/**
 	 *	CFSecSecClusRoleByClusterIdxKey based lock method for object-based access.
@@ -278,7 +278,7 @@ public interface CFSecJpaSecClusRoleRepository extends JpaRepository<CFSecJpaSec
 	@Transactional
 	@Modifying
 	@Query("delete from CFSecJpaSecClusRole r where r.requiredOwnerCluster.requiredId = :clusterId and r.requiredContainerSysRole.requiredName = :name")
-	void deleteByUNameIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId,
+	void deleteByUNameIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId,
 		@Param("name") String requiredName);
 
 	/**

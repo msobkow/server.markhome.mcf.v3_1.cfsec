@@ -177,7 +177,7 @@ public interface ICFSecSecUserTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecUser readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read the derived SecUser record instance identified by the unique key ULoginIdx.
@@ -214,7 +214,7 @@ public interface ICFSecSecUserTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUser readRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -229,7 +229,7 @@ public interface ICFSecSecUserTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUser lockRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -251,7 +251,7 @@ public interface ICFSecSecUserTable
 	 *	@return All the specific SecUser instances in the database accessible for the Authorization.
 	 */
 	ICFSecSecUser[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read the specific SecUser record instance identified by the unique key IdIdx.
@@ -263,10 +263,10 @@ public interface ICFSecSecUserTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUser readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read the specific SecUser record instance identified by the unique key ULoginIdx.
@@ -278,7 +278,7 @@ public interface ICFSecSecUserTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUser readRecByULoginIdx( ICFSecAuthorization Authorization,
 		String LoginId );
@@ -292,7 +292,7 @@ public interface ICFSecSecUserTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUser[] readRecByEMAddrIdx( ICFSecAuthorization Authorization,
 		String EMailAddress );
@@ -306,9 +306,9 @@ public interface ICFSecSecUserTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUser[] pageRecByEMAddrIdx( ICFSecAuthorization Authorization,
 		String EMailAddress,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 }

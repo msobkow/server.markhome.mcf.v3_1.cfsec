@@ -43,7 +43,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 
 public interface ICFSecProtSecUserEMConfObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecProtSecUserEMConf.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -117,7 +117,7 @@ public interface ICFSecProtSecUserEMConfObj
 	/**
 	 *	End this edition of this SecUserEMConf instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 
@@ -186,18 +186,18 @@ public interface ICFSecProtSecUserEMConfObj
 	/**
 	 *	Get the primary key of this instance.
 	 *
-	 *	@return	CFLibDbKeyHash256 primary key for this instance.
+	 *	@return	MCFDbKeyHash256 primary key for this instance.
 	 */
-	CFLibDbKeyHash256 getPKey();
+	MCFDbKeyHash256 getPKey();
 
 	/**
 	 *	Set the primary key of this instance.
 	 *	<p>
 	 *	This method should only be invoked by implementation internals.
 	 *
-	 *	@param CFLibDbKeyHash256 primary key value for this instance.
+	 *	@param MCFDbKeyHash256 primary key value for this instance.
 	 */
-	void setPKey( CFLibDbKeyHash256 value );
+	void setPKey( MCFDbKeyHash256 value );
 
 	/**
 	 *	Is this a new instance?
@@ -217,11 +217,11 @@ public interface ICFSecProtSecUserEMConfObj
 	void setIsNew( boolean value );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecUserId.
+	 *	Get the required IMCFKeyHash256 attribute SecUserId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecUserId.
+	 *	@return	The required IMCFKeyHash256 attribute SecUserId.
 	 */
-	ICFLibKeyHash256 getRequiredSecUserId();
+	IMCFKeyHash256 getRequiredSecUserId();
 
 	/**
 	 *	Get the required String attribute ConfirmEMailAddr.
@@ -238,11 +238,11 @@ public interface ICFSecProtSecUserEMConfObj
 	LocalDateTime getRequiredEMailSentStamp();
 
 	/**
-	 *	Get the required ICFLibUuid6 attribute EMConfirmationUuid6.
+	 *	Get the required IMCFUuid6 attribute EMConfirmationUuid6.
 	 *
-	 *	@return	The required ICFLibUuid6 attribute EMConfirmationUuid6.
+	 *	@return	The required IMCFUuid6 attribute EMConfirmationUuid6.
 	 */
-	ICFLibUuid6 getRequiredEMConfirmationUuid6();
+	IMCFUuid6 getRequiredEMConfirmationUuid6();
 
 	/**
 	 *	Get the required boolean attribute NewAccount.

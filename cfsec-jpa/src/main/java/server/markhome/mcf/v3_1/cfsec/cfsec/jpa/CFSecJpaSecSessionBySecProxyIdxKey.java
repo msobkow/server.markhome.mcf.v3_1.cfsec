@@ -38,23 +38,23 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 
 public class CFSecJpaSecSessionBySecProxyIdxKey
 	implements ICFSecSecSessionBySecProxyIdxKey, Comparable<Object>, Serializable
 {
-	protected ICFLibKeyHash256 optionalSecProxyId;
+	protected IMCFKeyHash256 optionalSecProxyId;
 	public CFSecJpaSecSessionBySecProxyIdxKey() {
-		optionalSecProxyId = CFLibDbKeyHash256.nullGet();
+		optionalSecProxyId = MCFDbKeyHash256.nullGet();
 	}
 
 	@Override
-	public ICFLibKeyHash256 getOptionalSecProxyId() {
+	public IMCFKeyHash256 getOptionalSecProxyId() {
 		return(optionalSecProxyId);
 	}
 
-	public void setOptionalSecProxyId( ICFLibKeyHash256 value ) {
+	public void setOptionalSecProxyId( IMCFKeyHash256 value ) {
 		optionalSecProxyId = value;
 	}
 
@@ -201,7 +201,7 @@ public class CFSecJpaSecSessionBySecProxyIdxKey
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(),
+			throw new MCFUnsupportedClassException(getClass(),
 				"compareTo",
 				"obj",
 				obj,

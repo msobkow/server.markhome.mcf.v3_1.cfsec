@@ -120,7 +120,7 @@ public interface ICFSecSecUserPWHistoryTableObj
 	 *	@return	The SecUserPWHistory-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecSecUserPWHistoryObj readSecUserPWHistory( ICFLibKeyHash256 SecUserId,
+	ICFSecSecUserPWHistoryObj readSecUserPWHistory( IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp );
 
 	/**
@@ -129,7 +129,7 @@ public interface ICFSecSecUserPWHistoryTableObj
 	 *	@return	The SecUserPWHistory-derived instance identified by the primary key,
 	 *		or null if no such key value exists.
 	 */
-	ICFSecSecUserPWHistoryObj readSecUserPWHistory( ICFLibKeyHash256 SecUserId,
+	ICFSecSecUserPWHistoryObj readSecUserPWHistory( IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp,
 		boolean forceRead );
 
@@ -168,7 +168,7 @@ public interface ICFSecSecUserPWHistoryTableObj
 	 *	@return	List of ICFSecSecUserPWHistoryObj instance, sorted by their primary keys, which
 	 *		may include an empty set.
 	 */
-	List<ICFSecSecUserPWHistoryObj> pageAllSecUserPWHistory(ICFLibKeyHash256 priorSecUserId,
+	List<ICFSecSecUserPWHistoryObj> pageAllSecUserPWHistory(IMCFKeyHash256 priorSecUserId,
 		LocalDateTime priorPWSetStamp );
 
 	/**
@@ -181,7 +181,7 @@ public interface ICFSecSecUserPWHistoryTableObj
 	 *	@return	CFSecSecUserPWHistoryObj cached instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecUserPWHistoryObj readSecUserPWHistoryByIdIdx( ICFLibKeyHash256 SecUserId,
+	ICFSecSecUserPWHistoryObj readSecUserPWHistoryByIdIdx( IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp );
 
 	/**
@@ -194,7 +194,7 @@ public interface ICFSecSecUserPWHistoryTableObj
 	 *	@return	CFSecSecUserPWHistoryObj refreshed instance for the primary key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecUserPWHistoryObj readSecUserPWHistoryByIdIdx( ICFLibKeyHash256 SecUserId,
+	ICFSecSecUserPWHistoryObj readSecUserPWHistoryByIdIdx( IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp,
 		boolean forceRead );
 
@@ -206,7 +206,7 @@ public interface ICFSecSecUserPWHistoryTableObj
 	 *	@return	CFSecSecUserPWHistoryObj cached instance for the unique UserIdx key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecUserPWHistoryObj readSecUserPWHistoryByUserIdx(ICFLibKeyHash256 SecUserId );
+	ICFSecSecUserPWHistoryObj readSecUserPWHistoryByUserIdx(IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Get the CFSecSecUserPWHistoryObj instance for the unique UserIdx key.
@@ -216,7 +216,7 @@ public interface ICFSecSecUserPWHistoryTableObj
 	 *	@return	CFSecSecUserPWHistoryObj refreshed instance for the unique UserIdx key, or
 	 *		null if no such instance exists.
 	 */
-	ICFSecSecUserPWHistoryObj readSecUserPWHistoryByUserIdx(ICFLibKeyHash256 SecUserId,
+	ICFSecSecUserPWHistoryObj readSecUserPWHistoryByUserIdx(IMCFKeyHash256 SecUserId,
 		boolean forceRead );
 
 	/**
@@ -261,19 +261,19 @@ public interface ICFSecSecUserPWHistoryTableObj
 	ICFSecSecUserPWHistoryObj readSecUserPWHistoryByReplacedStampIdx(LocalDateTime PWReplacedStamp,
 		boolean forceRead );
 
-	ICFSecSecUserPWHistoryObj readCachedSecUserPWHistoryByIdIdx( ICFLibKeyHash256 SecUserId,
+	ICFSecSecUserPWHistoryObj readCachedSecUserPWHistoryByIdIdx( IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp );
 
-	ICFSecSecUserPWHistoryObj readCachedSecUserPWHistoryByUserIdx( ICFLibKeyHash256 SecUserId );
+	ICFSecSecUserPWHistoryObj readCachedSecUserPWHistoryByUserIdx( IMCFKeyHash256 SecUserId );
 
 	ICFSecSecUserPWHistoryObj readCachedSecUserPWHistoryBySetStampIdx( LocalDateTime PWSetStamp );
 
 	ICFSecSecUserPWHistoryObj readCachedSecUserPWHistoryByReplacedStampIdx( LocalDateTime PWReplacedStamp );
 
-	void deepDisposeSecUserPWHistoryByIdIdx( ICFLibKeyHash256 SecUserId,
+	void deepDisposeSecUserPWHistoryByIdIdx( IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp );
 
-	void deepDisposeSecUserPWHistoryByUserIdx( ICFLibKeyHash256 SecUserId );
+	void deepDisposeSecUserPWHistoryByUserIdx( IMCFKeyHash256 SecUserId );
 
 	void deepDisposeSecUserPWHistoryBySetStampIdx( LocalDateTime PWSetStamp );
 
@@ -296,7 +296,7 @@ public interface ICFSecSecUserPWHistoryTableObj
 	 *
 	 *	@param	PWSetStamp	The SecUserPWHistory key attribute of the instance generating the id.
 	 */
-	void deleteSecUserPWHistoryByIdIdx( ICFLibKeyHash256 SecUserId,
+	void deleteSecUserPWHistoryByIdIdx( IMCFKeyHash256 SecUserId,
 		LocalDateTime PWSetStamp );
 
 	/**
@@ -304,7 +304,7 @@ public interface ICFSecSecUserPWHistoryTableObj
 	 *
 	 *	@param	SecUserId	The SecUserPWHistory key attribute of the instance generating the id.
 	 */
-	void deleteSecUserPWHistoryByUserIdx(ICFLibKeyHash256 SecUserId );
+	void deleteSecUserPWHistoryByUserIdx(IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Internal use only.

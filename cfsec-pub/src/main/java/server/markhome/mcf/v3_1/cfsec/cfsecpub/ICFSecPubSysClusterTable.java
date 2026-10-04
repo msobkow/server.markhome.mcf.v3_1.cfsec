@@ -98,7 +98,7 @@ public interface ICFSecPubSysClusterTable
 	 *	@param	ClusterId	The SysCluster key attribute of the instance generating the id.
 	 */
 	public void pubdeleteSysClusterByClusterIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 argClusterId );
+		MCFDbKeyHash256 argClusterId );
 
 	/**
 	 *	Delete the SysCluster instances identified by the key ClusterIdx.
@@ -169,7 +169,7 @@ public interface ICFSecPubSysClusterTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	public ICFSecPubSysCluster[] pubreadDerivedByClusterIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 ClusterId );
+		MCFDbKeyHash256 ClusterId );
 
 	/**
 	 *	Read the specific SysCluster record instance identified by the primary key.
@@ -181,7 +181,7 @@ public interface ICFSecPubSysClusterTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubSysCluster pubreadRec( ICFSecPubAuthorization Authorization,
 		Integer PKey );
@@ -196,7 +196,7 @@ public interface ICFSecPubSysClusterTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubSysCluster publockRec( ICFSecPubAuthorization Authorization,
 		Integer PKey );
@@ -220,7 +220,7 @@ public interface ICFSecPubSysClusterTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubSysCluster pubreadRecByIdIdx( ICFSecPubAuthorization Authorization,
 		int SingletonId );
@@ -234,8 +234,8 @@ public interface ICFSecPubSysClusterTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubSysCluster[] pubreadRecByClusterIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 ClusterId );
+		MCFDbKeyHash256 ClusterId );
 }

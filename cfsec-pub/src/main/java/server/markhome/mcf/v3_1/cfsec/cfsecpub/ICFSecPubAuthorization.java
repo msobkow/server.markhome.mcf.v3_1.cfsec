@@ -44,11 +44,11 @@ import server.markhome.mcf.v3_1.cflib.keyhash.*;
  */
 public interface ICFSecPubAuthorization
 {
-	public ICFLibUuid6 getAuthUuid6();
+	public IMCFUuid6 getAuthUuid6();
 	public String getAuthUuid6Str();
 
-	public CFLibDbKeyHash256 getSecSessionId();
-	public CFLibDbKeyHash256 getSecUserId();
-	public CFLibDbKeyHash256 getSecClusterId();
-	public CFLibDbKeyHash256 getSecTenantId();
+	public MCFDbKeyHash256 getSecSessionId();
+	public MCFDbKeyHash256 getSecUserId();
+	public MCFDbKeyHash256 getSecClusterId();
+	public MCFDbKeyHash256 getSecTenantId();
 }

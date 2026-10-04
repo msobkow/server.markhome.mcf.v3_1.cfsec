@@ -44,7 +44,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 
 public interface ICFSecSecTentRoleMembObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecSecTentRoleMemb.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -118,7 +118,7 @@ public interface ICFSecSecTentRoleMembObj
 	/**
 	 *	End this edition of this SecTentRoleMemb instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 
@@ -246,11 +246,11 @@ public interface ICFSecSecTentRoleMembObj
 	ICFSecSecUserObj getRequiredParentUser( boolean forceRead );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecTentRoleId.
+	 *	Get the required IMCFKeyHash256 attribute SecTentRoleId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecTentRoleId.
+	 *	@return	The required IMCFKeyHash256 attribute SecTentRoleId.
 	 */
-	ICFLibKeyHash256 getRequiredSecTentRoleId();
+	IMCFKeyHash256 getRequiredSecTentRoleId();
 
 	/**
 	 *	Get the required String attribute LoginId.

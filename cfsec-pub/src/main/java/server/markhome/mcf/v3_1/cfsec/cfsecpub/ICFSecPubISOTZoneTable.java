@@ -250,7 +250,7 @@ public interface ICFSecPubISOTZoneTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOTZone pubreadRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -265,7 +265,7 @@ public interface ICFSecPubISOTZoneTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOTZone publockRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -289,7 +289,7 @@ public interface ICFSecPubISOTZoneTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOTZone pubreadRecByIdIdx( ICFSecPubAuthorization Authorization,
 		short ISOTZoneId );
@@ -305,7 +305,7 @@ public interface ICFSecPubISOTZoneTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOTZone[] pubreadRecByOffsetIdx( ICFSecPubAuthorization Authorization,
 		short TZHourOffset,
@@ -321,7 +321,7 @@ public interface ICFSecPubISOTZoneTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOTZone pubreadRecByUTZNameIdx( ICFSecPubAuthorization Authorization,
 		String TZName );
@@ -335,7 +335,7 @@ public interface ICFSecPubISOTZoneTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOTZone[] pubreadRecByIso8601Idx( ICFSecPubAuthorization Authorization,
 		String Iso8601 );

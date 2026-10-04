@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,22 +74,22 @@ public class CFSecJpaSecUserService {
 		if (data == null) {
 			return( null );
 		}
-		ICFLibKeyHash256 originalRequiredSecUserId = data.getRequiredSecUserId();
+		IMCFKeyHash256 originalRequiredSecUserId = data.getRequiredSecUserId();
 		boolean generatedRequiredSecUserId = false;
 		if(data.getRequiredLoginId() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredLoginId");
 		}
 		if(data.getRequiredAccountStatus() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredAccountStatus");
 		}
 		if(data.getRequiredEMailAddress() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredEMailAddress");
@@ -102,7 +102,7 @@ public class CFSecJpaSecUserService {
 				data.setRequiredRevision(1);
 			}
 			if (data.getRequiredSecUserId() == null || data.getRequiredSecUserId().isNull()) {
-				data.setRequiredSecUserId(new CFLibDbKeyHash256(0));
+				data.setRequiredSecUserId(new MCFDbKeyHash256(0));
 				generatedRequiredSecUserId = true;
 			}
 			LocalDateTime now = LocalDateTime.now();
@@ -114,7 +114,7 @@ public class CFSecJpaSecUserService {
 				if(generatedRequiredSecUserId) {
 					data.setRequiredSecUserId(originalRequiredSecUserId);
 				}
-			throw new CFLibDbException(getClass(),
+			throw new MCFDbException(getClass(),
 				S_ProcName,
 				ex);
 		}
@@ -134,34 +134,34 @@ public class CFSecJpaSecUserService {
 			return( null );
 		}
 		if (data.getPKey() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.getPKey()");
 		}
 		if(data.getRequiredLoginId() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredLoginId");
 		}
 		if(data.getRequiredAccountStatus() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredAccountStatus");
 		}
 		if(data.getRequiredEMailAddress() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredEMailAddress");
 		}
 		// Ensure the entity exists and that the revision matches
 		CFSecJpaSecUser existing = cfsec31SecUserRepository.findById(($implCommaIJavaOptAtomType$)(data.getPKey()))
-			.orElseThrow(() -> new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
+			.orElseThrow(() -> new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
 		if (existing.getRequiredRevision() != data.getRequiredRevision()) {
-			throw new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
+			throw new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
 		}
 		// Apply superior data relationships of CFSecSecUser to existing object
 		// Apply data columns of CFSecSecUser to existing object
@@ -185,7 +185,7 @@ public class CFSecJpaSecUserService {
 	 *		@return The retrieved entity, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUser find(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public CFSecJpaSecUser find(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		return( cfsec31SecUserRepository.get(requiredSecUserId));
 	}
 
@@ -259,7 +259,7 @@ public class CFSecJpaSecUserService {
 	 *		@return The locked entity, refreshed from the data store, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUser lockByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public CFSecJpaSecUser lockByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		return( cfsec31SecUserRepository.lockByIdIdx(requiredSecUserId));
 	}
 
@@ -319,7 +319,7 @@ public class CFSecJpaSecUserService {
 	 *		@param requiredSecUserId
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public void deleteByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		cfsec31SecUserRepository.deleteByIdIdx(requiredSecUserId);
 	}
 

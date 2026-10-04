@@ -112,7 +112,7 @@ public class CFSecSecUserTableObj
 	 */
 	static void setRuntimeClassCode(int argNewClassCode ) {
 		if (argNewClassCode <= 0) {
-			throw new CFLibArgumentUnderflowException(CFSecSecUserTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
+			throw new MCFArgumentUnderflowException(CFSecSecUserTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
 		}
 		runtimeClassCode = argNewClassCode;
 	}
@@ -391,7 +391,7 @@ public class CFSecSecUserTableObj
 			locked = (ICFSecSecUserObj)locked.realise();
 		}
 		else {
-			throw new CFLibCollisionDetectedException( getClass(), "lockSecUser", pkey );
+			throw new MCFCollisionDetectedException( getClass(), "lockSecUser", pkey );
 		}
 		return( locked );
 	}
@@ -426,7 +426,7 @@ public class CFSecSecUserTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -434,7 +434,7 @@ public class CFSecSecUserTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -486,7 +486,7 @@ public class CFSecSecUserTableObj
 				arr[idx++] = valIter.next();
 			}
 			if( idx < len ) {
-				throw new CFLibArgumentUnderflowException( getClass(),
+				throw new MCFArgumentUnderflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -494,7 +494,7 @@ public class CFSecSecUserTableObj
 					len );
 			}
 			else if( valIter.hasNext() ) {
-				throw new CFLibArgumentOverflowException( getClass(),
+				throw new MCFArgumentOverflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -537,7 +537,7 @@ public class CFSecSecUserTableObj
 	 *		may include an empty set.
 	 */
 	@Override
-	public List<ICFSecSecUserObj> pageAllSecUser(ICFLibKeyHash256 priorSecUserId )
+	public List<ICFSecSecUserObj> pageAllSecUser(IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageAllSecUser";
 		Map<$implCommaIJavaOptAtomType$, ICFSecSecUserObj> map = new HashMap<$implCommaIJavaOptAtomType$,ICFSecSecUserObj>();
@@ -559,14 +559,14 @@ public class CFSecSecUserTableObj
 	}
 
 	@Override
-	public ICFSecSecUserObj readSecUserByIdIdx( ICFLibKeyHash256 SecUserId )
+	public ICFSecSecUserObj readSecUserByIdIdx( IMCFKeyHash256 SecUserId )
 	{
 		return( readSecUserByIdIdx( SecUserId,
 			false ) );
 	}
 
 	@Override
-	public ICFSecSecUserObj readSecUserByIdIdx( ICFLibKeyHash256 SecUserId, boolean forceRead )
+	public ICFSecSecUserObj readSecUserByIdIdx( IMCFKeyHash256 SecUserId, boolean forceRead )
 	{
 		ICFSecSecUserObj obj = readSecUser( SecUserId, forceRead );
 		return( obj );
@@ -651,7 +651,7 @@ public class CFSecSecUserTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -659,7 +659,7 @@ public class CFSecSecUserTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -699,7 +699,7 @@ public class CFSecSecUserTableObj
 	}
 
 	@Override
-	public ICFSecSecUserObj readCachedSecUserByIdIdx( ICFLibKeyHash256 SecUserId )
+	public ICFSecSecUserObj readCachedSecUserByIdIdx( IMCFKeyHash256 SecUserId )
 	{
 		ICFSecSecUserObj obj = null;
 		obj = readCachedSecUser( SecUserId );
@@ -761,7 +761,7 @@ public class CFSecSecUserTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -769,7 +769,7 @@ public class CFSecSecUserTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -820,7 +820,7 @@ public class CFSecSecUserTableObj
 	}
 
 	@Override
-	public void deepDisposeSecUserByIdIdx( ICFLibKeyHash256 SecUserId )
+	public void deepDisposeSecUserByIdIdx( IMCFKeyHash256 SecUserId )
 	{
 		ICFSecSecUserObj obj = readCachedSecUserByIdIdx( SecUserId );
 		if( obj != null ) {
@@ -865,7 +865,7 @@ public class CFSecSecUserTableObj
 	 */
 	@Override
 	public List<ICFSecSecUserObj> pageSecUserByEMAddrIdx( String EMailAddress,
-		ICFLibKeyHash256 priorSecUserId )
+		IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageSecUserByEMAddrIdx";
 		ICFSecSecUserByEMAddrIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecUser().newByEMAddrIdxKey();
@@ -906,7 +906,7 @@ public class CFSecSecUserTableObj
 	}
 
 	@Override
-	public void deleteSecUserByIdIdx( ICFLibKeyHash256 SecUserId )
+	public void deleteSecUserByIdIdx( IMCFKeyHash256 SecUserId )
 	{
 		ICFSecSecUserObj obj = readSecUser(SecUserId);
 		if( obj != null ) {

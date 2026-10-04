@@ -239,7 +239,7 @@ public interface ICFSecPubISOCtryLangTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtryLang pubreadRec( ICFSecPubAuthorization Authorization,
 		ICFSecPubISOCtryLangPKey PKey );
@@ -254,7 +254,7 @@ public interface ICFSecPubISOCtryLangTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtryLang pubreadRec( ICFSecPubAuthorization Authorization,
 		short ISOCtryId,
@@ -270,7 +270,7 @@ public interface ICFSecPubISOCtryLangTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtryLang publockRec( ICFSecPubAuthorization Authorization,
 		ICFSecPubISOCtryLangPKey PKey );
@@ -296,7 +296,7 @@ public interface ICFSecPubISOCtryLangTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtryLang pubreadRecByIdIdx( ICFSecPubAuthorization Authorization,
 		short ISOCtryId,
@@ -311,7 +311,7 @@ public interface ICFSecPubISOCtryLangTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtryLang[] pubreadRecByCtryIdx( ICFSecPubAuthorization Authorization,
 		short ISOCtryId );
@@ -325,7 +325,7 @@ public interface ICFSecPubISOCtryLangTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtryLang[] pubreadRecByLangIdx( ICFSecPubAuthorization Authorization,
 		short ISOLangId );

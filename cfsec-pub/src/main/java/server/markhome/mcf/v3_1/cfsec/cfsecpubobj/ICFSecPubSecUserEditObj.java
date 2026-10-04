@@ -115,18 +115,18 @@ public interface ICFSecPubSecUserEditObj
 	List<ICFSecPubSecSessionObj> getOptionalComponentsSecSess();
 
 	/**
-	 *	Get the required CFLibDbKeyHash256 attribute SecUserId.
+	 *	Get the required MCFDbKeyHash256 attribute SecUserId.
 	 *
-	 *	@return	The required CFLibDbKeyHash256 attribute SecUserId.
+	 *	@return	The required MCFDbKeyHash256 attribute SecUserId.
 	 */
-	CFLibDbKeyHash256 getRequiredSecUserId();
+	MCFDbKeyHash256 getRequiredSecUserId();
 
 	/**
-	 *	Set the required CFLibDbKeyHash256 attribute SecUserId.
+	 *	Set the required MCFDbKeyHash256 attribute SecUserId.
 	 *
-	 *	@param value The required CFLibDbKeyHash256 attribute SecUserId value to be applied.
+	 *	@param value The required MCFDbKeyHash256 attribute SecUserId value to be applied.
 	 */
-	void setRequiredSecUserId(CFLibDbKeyHash256 value);
+	void setRequiredSecUserId(MCFDbKeyHash256 value);
 
 	/**
 	 *	Get the required String attribute LoginId.

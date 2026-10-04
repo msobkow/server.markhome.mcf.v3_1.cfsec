@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,16 +74,16 @@ public class CFSecJpaSecSysGrpService {
 		if (data == null) {
 			return( null );
 		}
-		ICFLibKeyHash256 originalRequiredSecSysGrpId = data.getRequiredSecSysGrpId();
+		IMCFKeyHash256 originalRequiredSecSysGrpId = data.getRequiredSecSysGrpId();
 		boolean generatedRequiredSecSysGrpId = false;
 		if(data.getRequiredName() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredName");
 		}
 		if(data.getRequiredSecLevel() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredSecLevel");
@@ -96,7 +96,7 @@ public class CFSecJpaSecSysGrpService {
 				data.setRequiredRevision(1);
 			}
 			if (data.getRequiredSecSysGrpId() == null || data.getRequiredSecSysGrpId().isNull()) {
-				data.setRequiredSecSysGrpId(new CFLibDbKeyHash256(0));
+				data.setRequiredSecSysGrpId(new MCFDbKeyHash256(0));
 				generatedRequiredSecSysGrpId = true;
 			}
 			LocalDateTime now = LocalDateTime.now();
@@ -108,7 +108,7 @@ public class CFSecJpaSecSysGrpService {
 				if(generatedRequiredSecSysGrpId) {
 					data.setRequiredSecSysGrpId(originalRequiredSecSysGrpId);
 				}
-			throw new CFLibDbException(getClass(),
+			throw new MCFDbException(getClass(),
 				S_ProcName,
 				ex);
 		}
@@ -128,28 +128,28 @@ public class CFSecJpaSecSysGrpService {
 			return( null );
 		}
 		if (data.getPKey() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.getPKey()");
 		}
 		if(data.getRequiredName() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredName");
 		}
 		if(data.getRequiredSecLevel() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredSecLevel");
 		}
 		// Ensure the entity exists and that the revision matches
 		CFSecJpaSecSysGrp existing = cfsec31SecSysGrpRepository.findById(($implCommaIJavaOptAtomType$)(data.getPKey()))
-			.orElseThrow(() -> new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
+			.orElseThrow(() -> new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
 		if (existing.getRequiredRevision() != data.getRequiredRevision()) {
-			throw new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
+			throw new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
 		}
 		// Apply superior data relationships of CFSecSecSysGrp to existing object
 		// Apply data columns of CFSecSecSysGrp to existing object
@@ -169,7 +169,7 @@ public class CFSecJpaSecSysGrpService {
 	 *		@return The retrieved entity, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecSysGrp find(@Param("secSysGrpId") ICFLibKeyHash256 requiredSecSysGrpId) {
+	public CFSecJpaSecSysGrp find(@Param("secSysGrpId") IMCFKeyHash256 requiredSecSysGrpId) {
 		return( cfsec31SecSysGrpRepository.get(requiredSecSysGrpId));
 	}
 
@@ -243,7 +243,7 @@ public class CFSecJpaSecSysGrpService {
 	 *		@return The locked entity, refreshed from the data store, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecSysGrp lockByIdIdx(@Param("secSysGrpId") ICFLibKeyHash256 requiredSecSysGrpId) {
+	public CFSecJpaSecSysGrp lockByIdIdx(@Param("secSysGrpId") IMCFKeyHash256 requiredSecSysGrpId) {
 		return( cfsec31SecSysGrpRepository.lockByIdIdx(requiredSecSysGrpId));
 	}
 
@@ -303,7 +303,7 @@ public class CFSecJpaSecSysGrpService {
 	 *		@param requiredSecSysGrpId
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByIdIdx(@Param("secSysGrpId") ICFLibKeyHash256 requiredSecSysGrpId) {
+	public void deleteByIdIdx(@Param("secSysGrpId") IMCFKeyHash256 requiredSecSysGrpId) {
 		cfsec31SecSysGrpRepository.deleteByIdIdx(requiredSecSysGrpId);
 	}
 

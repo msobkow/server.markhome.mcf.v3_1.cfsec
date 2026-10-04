@@ -44,7 +44,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 
 public interface ICFSecSecUserEMConfObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecSecUserEMConf.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -118,7 +118,7 @@ public interface ICFSecSecUserEMConfObj
 	/**
 	 *	End this edition of this SecUserEMConf instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 
@@ -232,11 +232,11 @@ public interface ICFSecSecUserEMConfObj
 	ICFSecSecUserObj getRequiredContainerUser( boolean forceRead );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecUserId.
+	 *	Get the required IMCFKeyHash256 attribute SecUserId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecUserId.
+	 *	@return	The required IMCFKeyHash256 attribute SecUserId.
 	 */
-	ICFLibKeyHash256 getRequiredSecUserId();
+	IMCFKeyHash256 getRequiredSecUserId();
 
 	/**
 	 *	Get the required String attribute ConfirmEMailAddr.
@@ -253,11 +253,11 @@ public interface ICFSecSecUserEMConfObj
 	LocalDateTime getRequiredEMailSentStamp();
 
 	/**
-	 *	Get the required ICFLibUuid6 attribute EMConfirmationUuid6.
+	 *	Get the required IMCFUuid6 attribute EMConfirmationUuid6.
 	 *
-	 *	@return	The required ICFLibUuid6 attribute EMConfirmationUuid6.
+	 *	@return	The required IMCFUuid6 attribute EMConfirmationUuid6.
 	 */
-	ICFLibUuid6 getRequiredEMConfirmationUuid6();
+	IMCFUuid6 getRequiredEMConfirmationUuid6();
 
 	/**
 	 *	Get the required boolean attribute NewAccount.

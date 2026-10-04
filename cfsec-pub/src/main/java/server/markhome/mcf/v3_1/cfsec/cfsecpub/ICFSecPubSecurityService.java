@@ -47,7 +47,7 @@ public interface ICFSecPubSecurityService {
 	 *
 	 *	@return true if the user is a member of the tenant role or group, the equivalent cluster admin role or group, or the equivalent system admin role or group, otherwise false.
 	 */
-	public boolean isMemberOfTenantGroup(String userLogin, CFLibDbKeyHash256 clusterId, CFLibDbKeyHash256 tenantId, String permissionName);
+	public boolean isMemberOfTenantGroup(String userLogin, MCFDbKeyHash256 clusterId, MCFDbKeyHash256 tenantId, String permissionName);
 
 	/**
 	 *	Probe the SecRole*, SecTent* security tables, then the SecClus* security tables, and finally the SecSys* tables
@@ -61,7 +61,7 @@ public interface ICFSecPubSecurityService {
 	 *
 	 *	@return true if the user is a member of the tenant role or group, the equivalent cluster admin role or group, or the equivalent system admin role or group, otherwise false.
 	 */
-	public boolean isMemberOfTenantGroup(CFLibDbKeyHash256 userId, CFLibDbKeyHash256 clusterId, CFLibDbKeyHash256 tenantId, String permissionName);
+	public boolean isMemberOfTenantGroup(MCFDbKeyHash256 userId, MCFDbKeyHash256 clusterId, MCFDbKeyHash256 tenantId, String permissionName);
 
 	/**
 	 *	Probe the SecRole*, SecClus* security tables, and then the SecSys* tables until a probe authorizes the users access
@@ -74,7 +74,7 @@ public interface ICFSecPubSecurityService {
 	 *
 	 *	@return true if the user is a member of the cluster role or group or the equivalent system admin role or group, otherwise false.
 	 */
-	public boolean isMemberOfClusterGroup(String userLogin, CFLibDbKeyHash256 clusterId, String permissionName);
+	public boolean isMemberOfClusterGroup(String userLogin, MCFDbKeyHash256 clusterId, String permissionName);
 
 	/**
 	 *	Probe the SecRole*, SecClus* security tables, and then the SecSys* tables until a probe authorizes the users access
@@ -87,7 +87,7 @@ public interface ICFSecPubSecurityService {
 	 *
 	 *	@return true if the user is a member of the cluster role or group or the equivalent system admin role or group, otherwise false.
 	 */
-	public boolean isMemberOfClusterGroup(CFLibDbKeyHash256 userId, CFLibDbKeyHash256 clusterId, String permissionName);
+	public boolean isMemberOfClusterGroup(MCFDbKeyHash256 userId, MCFDbKeyHash256 clusterId, String permissionName);
 
 	/**
 	 *	Probe the SecRole*, SecSys* tables for authorization of the users access to the permission role or group as a system admin.
@@ -107,5 +107,5 @@ public interface ICFSecPubSecurityService {
 	 *
 	 *	@return true if the user is a member of the specified system role or group, otherwise false.
 	 */
-	public boolean isMemberOfSystemGroup(CFLibDbKeyHash256 userId, String permissionName);
+	public boolean isMemberOfSystemGroup(MCFDbKeyHash256 userId, String permissionName);
 }

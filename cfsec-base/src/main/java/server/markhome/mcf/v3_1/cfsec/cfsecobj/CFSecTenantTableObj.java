@@ -112,7 +112,7 @@ public class CFSecTenantTableObj
 	 */
 	static void setRuntimeClassCode(int argNewClassCode ) {
 		if (argNewClassCode <= 0) {
-			throw new CFLibArgumentUnderflowException(CFSecTenantTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
+			throw new MCFArgumentUnderflowException(CFSecTenantTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
 		}
 		runtimeClassCode = argNewClassCode;
 	}
@@ -399,7 +399,7 @@ public class CFSecTenantTableObj
 			locked = (ICFSecTenantObj)locked.realise();
 		}
 		else {
-			throw new CFLibCollisionDetectedException( getClass(), "lockTenant", pkey );
+			throw new MCFCollisionDetectedException( getClass(), "lockTenant", pkey );
 		}
 		return( locked );
 	}
@@ -434,7 +434,7 @@ public class CFSecTenantTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -442,7 +442,7 @@ public class CFSecTenantTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -494,7 +494,7 @@ public class CFSecTenantTableObj
 				arr[idx++] = valIter.next();
 			}
 			if( idx < len ) {
-				throw new CFLibArgumentUnderflowException( getClass(),
+				throw new MCFArgumentUnderflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -502,7 +502,7 @@ public class CFSecTenantTableObj
 					len );
 			}
 			else if( valIter.hasNext() ) {
-				throw new CFLibArgumentOverflowException( getClass(),
+				throw new MCFArgumentOverflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -545,7 +545,7 @@ public class CFSecTenantTableObj
 	 *		may include an empty set.
 	 */
 	@Override
-	public List<ICFSecTenantObj> pageAllTenant(ICFLibKeyHash256 priorId )
+	public List<ICFSecTenantObj> pageAllTenant(IMCFKeyHash256 priorId )
 	{
 		final String S_ProcName = "pageAllTenant";
 		Map<$implCommaIJavaOptAtomType$, ICFSecTenantObj> map = new HashMap<$implCommaIJavaOptAtomType$,ICFSecTenantObj>();
@@ -567,28 +567,28 @@ public class CFSecTenantTableObj
 	}
 
 	@Override
-	public ICFSecTenantObj readTenantByIdIdx( ICFLibKeyHash256 Id )
+	public ICFSecTenantObj readTenantByIdIdx( IMCFKeyHash256 Id )
 	{
 		return( readTenantByIdIdx( Id,
 			false ) );
 	}
 
 	@Override
-	public ICFSecTenantObj readTenantByIdIdx( ICFLibKeyHash256 Id, boolean forceRead )
+	public ICFSecTenantObj readTenantByIdIdx( IMCFKeyHash256 Id, boolean forceRead )
 	{
 		ICFSecTenantObj obj = readTenant( Id, forceRead );
 		return( obj );
 	}
 
 	@Override
-	public List<ICFSecTenantObj> readTenantByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public List<ICFSecTenantObj> readTenantByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		return( readTenantByClusterIdx( ClusterId,
 			false ) );
 	}
 
 	@Override
-	public List<ICFSecTenantObj> readTenantByClusterIdx( ICFLibKeyHash256 ClusterId,
+	public List<ICFSecTenantObj> readTenantByClusterIdx( IMCFKeyHash256 ClusterId,
 		boolean forceRead )
 	{
 		final String S_ProcName = "readTenantByClusterIdx";
@@ -626,7 +626,7 @@ public class CFSecTenantTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -634,7 +634,7 @@ public class CFSecTenantTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -674,7 +674,7 @@ public class CFSecTenantTableObj
 	}
 
 	@Override
-	public ICFSecTenantObj readTenantByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public ICFSecTenantObj readTenantByUNameIdx( IMCFKeyHash256 ClusterId,
 		String TenantName )
 	{
 		return( readTenantByUNameIdx( ClusterId,
@@ -683,7 +683,7 @@ public class CFSecTenantTableObj
 	}
 
 	@Override
-	public ICFSecTenantObj readTenantByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public ICFSecTenantObj readTenantByUNameIdx( IMCFKeyHash256 ClusterId,
 		String TenantName, boolean forceRead )
 	{
 		if( indexByUNameIdx == null ) {
@@ -712,7 +712,7 @@ public class CFSecTenantTableObj
 	}
 
 	@Override
-	public ICFSecTenantObj readCachedTenantByIdIdx( ICFLibKeyHash256 Id )
+	public ICFSecTenantObj readCachedTenantByIdIdx( IMCFKeyHash256 Id )
 	{
 		ICFSecTenantObj obj = null;
 		obj = readCachedTenant( Id );
@@ -720,7 +720,7 @@ public class CFSecTenantTableObj
 	}
 
 	@Override
-	public List<ICFSecTenantObj> readCachedTenantByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public List<ICFSecTenantObj> readCachedTenantByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "readCachedTenantByClusterIdx";
 		ICFSecTenantByClusterIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactoryTenant().newByClusterIdxKey();
@@ -738,7 +738,7 @@ public class CFSecTenantTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -746,7 +746,7 @@ public class CFSecTenantTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -797,7 +797,7 @@ public class CFSecTenantTableObj
 	}
 
 	@Override
-	public ICFSecTenantObj readCachedTenantByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public ICFSecTenantObj readCachedTenantByUNameIdx( IMCFKeyHash256 ClusterId,
 		String TenantName )
 	{
 		ICFSecTenantObj obj = null;
@@ -835,7 +835,7 @@ public class CFSecTenantTableObj
 	}
 
 	@Override
-	public void deepDisposeTenantByIdIdx( ICFLibKeyHash256 Id )
+	public void deepDisposeTenantByIdIdx( IMCFKeyHash256 Id )
 	{
 		ICFSecTenantObj obj = readCachedTenantByIdIdx( Id );
 		if( obj != null ) {
@@ -844,7 +844,7 @@ public class CFSecTenantTableObj
 	}
 
 	@Override
-	public void deepDisposeTenantByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public void deepDisposeTenantByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "deepDisposeTenantByClusterIdx";
 		ICFSecTenantObj obj;
@@ -861,7 +861,7 @@ public class CFSecTenantTableObj
 	}
 
 	@Override
-	public void deepDisposeTenantByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public void deepDisposeTenantByUNameIdx( IMCFKeyHash256 ClusterId,
 		String TenantName )
 	{
 		ICFSecTenantObj obj = readCachedTenantByUNameIdx( ClusterId,
@@ -881,8 +881,8 @@ public class CFSecTenantTableObj
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
 	@Override
-	public List<ICFSecTenantObj> pageTenantByClusterIdx( ICFLibKeyHash256 ClusterId,
-		ICFLibKeyHash256 priorId )
+	public List<ICFSecTenantObj> pageTenantByClusterIdx( IMCFKeyHash256 ClusterId,
+		IMCFKeyHash256 priorId )
 	{
 		final String S_ProcName = "pageTenantByClusterIdx";
 		ICFSecTenantByClusterIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactoryTenant().newByClusterIdxKey();
@@ -923,7 +923,7 @@ public class CFSecTenantTableObj
 	}
 
 	@Override
-	public void deleteTenantByIdIdx( ICFLibKeyHash256 Id )
+	public void deleteTenantByIdIdx( IMCFKeyHash256 Id )
 	{
 		ICFSecTenantObj obj = readTenant(Id);
 		if( obj != null ) {
@@ -953,7 +953,7 @@ public class CFSecTenantTableObj
 	}
 
 	@Override
-	public void deleteTenantByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public void deleteTenantByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		ICFSecTenantByClusterIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactoryTenant().newByClusterIdxKey();
 		key.setRequiredClusterId( ClusterId );
@@ -987,7 +987,7 @@ public class CFSecTenantTableObj
 	}
 
 	@Override
-	public void deleteTenantByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public void deleteTenantByUNameIdx( IMCFKeyHash256 ClusterId,
 		String TenantName )
 	{
 		if( indexByUNameIdx == null ) {

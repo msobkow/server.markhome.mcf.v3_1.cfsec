@@ -99,7 +99,7 @@ public interface ICFSecSecUserEMConfTable
 	 *	@param	EMConfirmationUuid6	The SecUserEMConf key attribute of the instance generating the id.
 	 */
 	void deleteSecUserEMConfByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 argEMConfirmationUuid6 );
+		IMCFUuid6 argEMConfirmationUuid6 );
 
 	/**
 	 *	Delete the SecUserEMConf instances identified by the key UUuid6Idx.
@@ -215,7 +215,7 @@ public interface ICFSecSecUserEMConfTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecUserEMConf readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read the derived SecUserEMConf record instance identified by the unique key UUuid6Idx.
@@ -228,7 +228,7 @@ public interface ICFSecSecUserEMConfTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecUserEMConf readDerivedByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 EMConfirmationUuid6 );
+		IMCFUuid6 EMConfirmationUuid6 );
 
 	/**
 	 *	Read an array of the derived SecUserEMConf record instances identified by the duplicate key ConfEMAddrIdx.
@@ -276,7 +276,7 @@ public interface ICFSecSecUserEMConfTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserEMConf readRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -291,7 +291,7 @@ public interface ICFSecSecUserEMConfTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserEMConf lockRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -313,7 +313,7 @@ public interface ICFSecSecUserEMConfTable
 	 *	@return All the specific SecUserEMConf instances in the database accessible for the Authorization.
 	 */
 	ICFSecSecUserEMConf[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read the specific SecUserEMConf record instance identified by the unique key IdIdx.
@@ -325,10 +325,10 @@ public interface ICFSecSecUserEMConfTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserEMConf readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read the specific SecUserEMConf record instance identified by the unique key UUuid6Idx.
@@ -340,10 +340,10 @@ public interface ICFSecSecUserEMConfTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserEMConf readRecByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 EMConfirmationUuid6 );
+		IMCFUuid6 EMConfirmationUuid6 );
 
 	/**
 	 *	Read an array of the specific SecUserEMConf record instances identified by the duplicate key ConfEMAddrIdx.
@@ -354,7 +354,7 @@ public interface ICFSecSecUserEMConfTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserEMConf[] readRecByConfEMAddrIdx( ICFSecAuthorization Authorization,
 		String ConfirmEMailAddr );
@@ -368,7 +368,7 @@ public interface ICFSecSecUserEMConfTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserEMConf[] readRecBySentStampIdx( ICFSecAuthorization Authorization,
 		LocalDateTime EMailSentStamp );
@@ -382,7 +382,7 @@ public interface ICFSecSecUserEMConfTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserEMConf[] readRecByNewAcctIdx( ICFSecAuthorization Authorization,
 		boolean NewAccount );
@@ -396,11 +396,11 @@ public interface ICFSecSecUserEMConfTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserEMConf[] pageRecByConfEMAddrIdx( ICFSecAuthorization Authorization,
 		String ConfirmEMailAddr,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read a page array of the specific SecUserEMConf record instances identified by the duplicate key SentStampIdx.
@@ -411,11 +411,11 @@ public interface ICFSecSecUserEMConfTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserEMConf[] pageRecBySentStampIdx( ICFSecAuthorization Authorization,
 		LocalDateTime EMailSentStamp,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 
 	/**
 	 *	Read a page array of the specific SecUserEMConf record instances identified by the duplicate key NewAcctIdx.
@@ -426,9 +426,9 @@ public interface ICFSecSecUserEMConfTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserEMConf[] pageRecByNewAcctIdx( ICFSecAuthorization Authorization,
 		boolean NewAccount,
-		ICFLibKeyHash256 priorSecUserId );
+		IMCFKeyHash256 priorSecUserId );
 }

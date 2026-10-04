@@ -44,7 +44,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 
 public interface ICFSecSecSysRoleEnablesObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecSecSysRoleEnables.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -118,7 +118,7 @@ public interface ICFSecSecSysRoleEnablesObj
 	/**
 	 *	End this edition of this SecSysRoleEnables instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 
@@ -246,11 +246,11 @@ public interface ICFSecSecSysRoleEnablesObj
 	ICFSecSecSysGrpObj getRequiredParentEnableGroup( boolean forceRead );
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecSysRoleId.
+	 *	Get the required IMCFKeyHash256 attribute SecSysRoleId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecSysRoleId.
+	 *	@return	The required IMCFKeyHash256 attribute SecSysRoleId.
 	 */
-	ICFLibKeyHash256 getRequiredSecSysRoleId();
+	IMCFKeyHash256 getRequiredSecSysRoleId();
 
 	/**
 	 *	Get the required String attribute EnableName.

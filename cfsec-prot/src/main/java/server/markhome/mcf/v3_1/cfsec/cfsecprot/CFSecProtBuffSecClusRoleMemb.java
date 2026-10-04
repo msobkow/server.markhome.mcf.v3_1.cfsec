@@ -41,7 +41,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
@@ -52,11 +52,11 @@ public class CFSecProtBuffSecClusRoleMemb
 {
 	protected ICFSecProtSecClusRoleMembPKey pkey = new CFSecProtBuffSecClusRoleMembPKey();
 	protected int requiredRevision;
-	protected CFLibDbKeyHash256 createdByUserId = CFLibDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_CREATED_BY);
-	protected CFLibDbKeyHash256 createdBySessionId = CFLibDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
+	protected MCFDbKeyHash256 createdByUserId = MCFDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_CREATED_BY);
+	protected MCFDbKeyHash256 createdBySessionId = MCFDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
 	protected LocalDateTime createdAt = LocalDateTime.now();
-	protected CFLibDbKeyHash256 updatedByUserId = CFLibDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_UPDATED_BY);
-	protected CFLibDbKeyHash256 updatedBySessionId = CFLibDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
+	protected MCFDbKeyHash256 updatedByUserId = MCFDbKeyHash256.fromHex(ICFSecPubSecUser.S_INIT_UPDATED_BY);
+	protected MCFDbKeyHash256 updatedBySessionId = MCFDbKeyHash256.fromHex(ICFSecPubSecSession.S_SECSESSIONID_INIT_VALUE);
 	protected LocalDateTime updatedAt = LocalDateTime.now();
 
 	public CFSecProtBuffSecClusRoleMemb() {
@@ -71,7 +71,7 @@ public class CFSecProtBuffSecClusRoleMemb
 	@Override
 	public void setPKey(ICFSecProtSecClusRoleMembPKey pkey ) {
 		if (pkey == null) {
-			throw new CFLibNullArgumentException(getClass(), "setPKey", 1, "pkey");
+			throw new MCFNullArgumentException(getClass(), "setPKey", 1, "pkey");
 		}
 		else {
 			this.pkey = pkey;
@@ -79,13 +79,13 @@ public class CFSecProtBuffSecClusRoleMemb
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecClusRoleId() {
+	public IMCFKeyHash256 getRequiredSecClusRoleId() {
 		return(getPKey().getRequiredSecClusRoleId());
 	}
 
-	public void setRequiredSecClusRoleId( ICFLibKeyHash256 value ) {
+	public void setRequiredSecClusRoleId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecClusRoleId",
 				1,
 				"value" );
@@ -100,13 +100,13 @@ public class CFSecProtBuffSecClusRoleMemb
 
 	public void setRequiredLoginId( String value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredLoginId",
 				1,
 				"value" );
 		}
 		else if( value.length() > 32 ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredLoginId",
 				1,
 				"value.length()",
@@ -117,38 +117,38 @@ public class CFSecProtBuffSecClusRoleMemb
 	}
 
 	@Override
-	public ICFSecProtSecClusRole getRequiredContainerRole(ICFLibKeyHash256 argSecClusRoleId) {
+	public ICFSecProtSecClusRole getRequiredContainerRole(IMCFKeyHash256 argSecClusRoleId) {
 		ICFSecProtSchema targetBackingCFSec = ICFSecProtSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getRequiredContainerRole", 0, "ICFSecProtSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getRequiredContainerRole", 0, "ICFSecProtSchema.getBackingCFSec()");
 		}
 		ICFSecProtSecClusRoleTable targetTable = targetBackingCFSec.getTableSecClusRole();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getRequiredContainerRole", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecClusRole()");
+			throw new MCFNullArgumentException(getClass(), "getRequiredContainerRole", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecClusRole()");
 		}
 		return(targetTable.readDerived(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredSecClusRoleId()));
 	}
 
 	@Override
-	public void setRequiredContainerRole(ICFLibKeyHash256 argSecClusRoleId) {
+	public void setRequiredContainerRole(IMCFKeyHash256 argSecClusRoleId) {
 		ICFSecProtSchema targetBackingCFSec = ICFSecProtSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredContainerRole-args", 0, "ICFSecProtSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredContainerRole-args", 0, "ICFSecProtSchema.getBackingCFSec()");
 		}
 		ICFSecProtSecClusRoleTable targetTable = targetBackingCFSec.getTableSecClusRole();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredContainerRole", 0, "ICFSecSchema.getBackingCFSec().getTableSecClusRole()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredContainerRole", 0, "ICFSecSchema.getBackingCFSec().getTableSecClusRole()");
 		}
 		ICFSecProtSecClusRole found = targetTable.readDerived(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), argSecClusRoleId);
 		if (found == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredContainerRole-args", 0, "found");
+			throw new MCFNullArgumentException(getClass(), "setRequiredContainerRole-args", 0, "found");
 		}
 		else if (found instanceof ICFSecProtSecClusRole) || (found instanceof ICFSecProtSecClusRole)) {
 			super.setRequiredContainerRole(argSecClusRoleId);
 		requiredSecClusRoleId = argSecClusRoleId;
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "setRequiredContainerRole-args", "found", found, "ICFSecProtSecClusRoleICFSecProtSecClusRole");
+			throw new MCFUnsupportedClassException(getClass(), "setRequiredContainerRole-args", "found", found, "ICFSecProtSecClusRoleICFSecProtSecClusRole");
 		}
 	}
 
@@ -156,7 +156,7 @@ public class CFSecProtBuffSecClusRoleMemb
 	public void setRequiredContainerRole(ICFSecProtSecClusRole argObj) {
 
 		if(argObj == null) {
-			throw new CFLibNullArgumentException(getClass(), "setContainerRole", 1, "argObj");
+			throw new MCFNullArgumentException(getClass(), "setContainerRole", 1, "argObj");
 		}
 		else {
 			setJustProtRequiredSecClusRoleId(argObj.getRequiredSecClusRoleId());
@@ -167,11 +167,11 @@ public class CFSecProtBuffSecClusRoleMemb
 	public ICFSecProtSecUser getRequiredParentUser(String argLoginId) {
 		ICFSecProtSchema targetBackingCFSec = ICFSecProtSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "getRequiredParentUser", 0, "ICFSecProtSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "getRequiredParentUser", 0, "ICFSecProtSchema.getBackingCFSec()");
 		}
 		ICFSecProtSecUserTable targetTable = targetBackingCFSec.getTableSecUser();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "getRequiredParentUser", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecUser()");
+			throw new MCFNullArgumentException(getClass(), "getRequiredParentUser", 0, "ICFSecProtSchema.getBackingCFSec().getTableSecUser()");
 		}
 		return(targetTable.readDerivedByULoginIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), getRequiredLoginId()));
 	}
@@ -180,22 +180,22 @@ public class CFSecProtBuffSecClusRoleMemb
 	public void setRequiredParentUser(String argLoginId) {
 		ICFSecProtSchema targetBackingCFSec = ICFSecProtSchema.getBackingCFSec();
 		if (targetBackingCFSec == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredParentUser-args", 0, "ICFSecProtSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredParentUser-args", 0, "ICFSecProtSchema.getBackingCFSec()");
 		}
 		ICFSecProtSecUserTable targetTable = targetBackingCFSec.getTableSecUser();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredParentUser", 0, "ICFSecSchema.getBackingCFSec().getTableSecUser()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredParentUser", 0, "ICFSecSchema.getBackingCFSec().getTableSecUser()");
 		}
 		ICFSecProtSecUser found = targetTable.readDerivedByULoginIdx(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), argLoginId);
 		if (found == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredParentUser-args", 0, "found");
+			throw new MCFNullArgumentException(getClass(), "setRequiredParentUser-args", 0, "found");
 		}
 		else if (found instanceof ICFSecProtSecUser) || (found instanceof ICFSecProtSecUser) || (found instanceof ICFSecPubSecUser)) {
 			super.setRequiredParentUser(argLoginId);
 		requiredLoginId = argLoginId;
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "setRequiredParentUser-args", "found", found, "ICFSecProtSecUserICFSecProtSecUserICFSecPubSecUser");
+			throw new MCFUnsupportedClassException(getClass(), "setRequiredParentUser-args", "found", found, "ICFSecProtSecUserICFSecProtSecUserICFSecPubSecUser");
 		}
 	}
 
@@ -203,7 +203,7 @@ public class CFSecProtBuffSecClusRoleMemb
 	public void setRequiredParentUser(ICFSecProtSecUser argObj) {
 
 		if(argObj == null) {
-			throw new CFLibNullArgumentException(getClass(), "setParentUser", 1, "argObj");
+			throw new MCFNullArgumentException(getClass(), "setParentUser", 1, "argObj");
 		}
 		else {
 			setJustProtRequiredLoginId(argObj.getRequiredLoginId());
@@ -216,12 +216,12 @@ public class CFSecProtBuffSecClusRoleMemb
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getCreatedByUserId() {
+	public MCFDbKeyHash256 getCreatedByUserId() {
 		return( createdByUserId );
 	}
 
 	@Override
-	public void setJustProtCreatedByUserId( CFLibDbKeyHash256 value ) {
+	public void setJustProtCreatedByUserId( MCFDbKeyHash256 value ) {
 		createdByUserId = value;
 	}
 
@@ -236,12 +236,12 @@ public class CFSecProtBuffSecClusRoleMemb
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getUpdatedByUserId() {
+	public MCFDbKeyHash256 getUpdatedByUserId() {
 		return( updatedByUserId );
 	}
 
 	@Override
-	public void setJustProtUpdatedByUserId( CFLibDbKeyHash256 value ) {
+	public void setJustProtUpdatedByUserId( MCFDbKeyHash256 value ) {
 		updatedByUserId = value;
 	}
 
@@ -604,7 +604,7 @@ public class CFSecProtBuffSecClusRoleMemb
 			}			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException( getClass(),
+			throw new MCFUnsupportedClassException( getClass(),
 				"compareTo",
 				"obj",
 				obj,

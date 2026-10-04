@@ -92,11 +92,11 @@ public class CFSecRamISOLangTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByCode3Idx.containsKey( keyCode3Idx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"ISOLang6392Idx",
 				"ISOLang6392Idx",
@@ -132,7 +132,7 @@ public class CFSecRamISOLangTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -338,7 +338,7 @@ public class CFSecRamISOLangTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffISOLang existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateISOLang",
 				"Existing record not found",
 				"Existing record not found",
@@ -347,7 +347,7 @@ public class CFSecRamISOLangTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateISOLang",
 				pkey );
 		}
@@ -368,7 +368,7 @@ public class CFSecRamISOLangTable
 
 		if( ! existingKeyCode3Idx.equals( newKeyCode3Idx ) ) {
 			if( dictByCode3Idx.containsKey( newKeyCode3Idx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateISOLang",
 					"ISOLang6392Idx",
 					"ISOLang6392Idx",
@@ -418,7 +418,7 @@ public class CFSecRamISOLangTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteISOLang",
 				pkey );
 		}

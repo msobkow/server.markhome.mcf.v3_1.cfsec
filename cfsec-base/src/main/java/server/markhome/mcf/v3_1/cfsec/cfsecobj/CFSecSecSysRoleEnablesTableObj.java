@@ -112,7 +112,7 @@ public class CFSecSecSysRoleEnablesTableObj
 	 */
 	static void setRuntimeClassCode(int argNewClassCode ) {
 		if (argNewClassCode <= 0) {
-			throw new CFLibArgumentUnderflowException(CFSecSecSysRoleEnablesTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
+			throw new MCFArgumentUnderflowException(CFSecSecSysRoleEnablesTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
 		}
 		runtimeClassCode = argNewClassCode;
 	}
@@ -333,14 +333,14 @@ public class CFSecSecSysRoleEnablesTableObj
 	}
 
 	@Override
-	public ICFSecSecSysRoleEnablesObj readSecSysRoleEnables( ICFLibKeyHash256 SecSysRoleId,
+	public ICFSecSecSysRoleEnablesObj readSecSysRoleEnables( IMCFKeyHash256 SecSysRoleId,
 		String EnableName ) {
 		return( readSecSysRoleEnables( SecSysRoleId,
 			EnableName, false ) );
 	}
 
 	@Override
-	public ICFSecSecSysRoleEnablesObj readSecSysRoleEnables( ICFLibKeyHash256 SecSysRoleId,
+	public ICFSecSecSysRoleEnablesObj readSecSysRoleEnables( IMCFKeyHash256 SecSysRoleId,
 		String EnableName, boolean forceRead ) {
 		ICFSecSecSysRoleEnablesObj obj = null;
 		ICFSecSecSysRoleEnables readRec = schema.getCFSecBackingStore().getTableSecSysRoleEnables().readDerivedByIdIdx( null,
@@ -425,7 +425,7 @@ public class CFSecSecSysRoleEnablesTableObj
 			locked = (ICFSecSecSysRoleEnablesObj)locked.realise();
 		}
 		else {
-			throw new CFLibCollisionDetectedException( getClass(), "lockSecSysRoleEnables", pkey );
+			throw new MCFCollisionDetectedException( getClass(), "lockSecSysRoleEnables", pkey );
 		}
 		return( locked );
 	}
@@ -460,7 +460,7 @@ public class CFSecSecSysRoleEnablesTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -468,7 +468,7 @@ public class CFSecSecSysRoleEnablesTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -520,7 +520,7 @@ public class CFSecSecSysRoleEnablesTableObj
 				arr[idx++] = valIter.next();
 			}
 			if( idx < len ) {
-				throw new CFLibArgumentUnderflowException( getClass(),
+				throw new MCFArgumentUnderflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -528,7 +528,7 @@ public class CFSecSecSysRoleEnablesTableObj
 					len );
 			}
 			else if( valIter.hasNext() ) {
-				throw new CFLibArgumentOverflowException( getClass(),
+				throw new MCFArgumentOverflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -571,7 +571,7 @@ public class CFSecSecSysRoleEnablesTableObj
 	 *		may include an empty set.
 	 */
 	@Override
-	public List<ICFSecSecSysRoleEnablesObj> pageAllSecSysRoleEnables(ICFLibKeyHash256 priorSecSysRoleId,
+	public List<ICFSecSecSysRoleEnablesObj> pageAllSecSysRoleEnables(IMCFKeyHash256 priorSecSysRoleId,
 		String priorEnableName )
 	{
 		final String S_ProcName = "pageAllSecSysRoleEnables";
@@ -595,7 +595,7 @@ public class CFSecSecSysRoleEnablesTableObj
 	}
 
 	@Override
-	public ICFSecSecSysRoleEnablesObj readSecSysRoleEnablesByIdIdx( ICFLibKeyHash256 SecSysRoleId,
+	public ICFSecSecSysRoleEnablesObj readSecSysRoleEnablesByIdIdx( IMCFKeyHash256 SecSysRoleId,
 		String EnableName )
 	{
 		return( readSecSysRoleEnablesByIdIdx( SecSysRoleId,
@@ -604,7 +604,7 @@ public class CFSecSecSysRoleEnablesTableObj
 	}
 
 	@Override
-	public ICFSecSecSysRoleEnablesObj readSecSysRoleEnablesByIdIdx( ICFLibKeyHash256 SecSysRoleId,
+	public ICFSecSecSysRoleEnablesObj readSecSysRoleEnablesByIdIdx( IMCFKeyHash256 SecSysRoleId,
 		String EnableName, boolean forceRead )
 	{
 		ICFSecSecSysRoleEnablesPKey pkey = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecSysRoleEnables().newPKey();
@@ -615,14 +615,14 @@ public class CFSecSecSysRoleEnablesTableObj
 	}
 
 	@Override
-	public List<ICFSecSecSysRoleEnablesObj> readSecSysRoleEnablesBySysRoleIdx( ICFLibKeyHash256 SecSysRoleId )
+	public List<ICFSecSecSysRoleEnablesObj> readSecSysRoleEnablesBySysRoleIdx( IMCFKeyHash256 SecSysRoleId )
 	{
 		return( readSecSysRoleEnablesBySysRoleIdx( SecSysRoleId,
 			false ) );
 	}
 
 	@Override
-	public List<ICFSecSecSysRoleEnablesObj> readSecSysRoleEnablesBySysRoleIdx( ICFLibKeyHash256 SecSysRoleId,
+	public List<ICFSecSecSysRoleEnablesObj> readSecSysRoleEnablesBySysRoleIdx( IMCFKeyHash256 SecSysRoleId,
 		boolean forceRead )
 	{
 		final String S_ProcName = "readSecSysRoleEnablesBySysRoleIdx";
@@ -660,7 +660,7 @@ public class CFSecSecSysRoleEnablesTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -668,7 +668,7 @@ public class CFSecSecSysRoleEnablesTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -753,7 +753,7 @@ public class CFSecSecSysRoleEnablesTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -761,7 +761,7 @@ public class CFSecSecSysRoleEnablesTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -801,7 +801,7 @@ public class CFSecSecSysRoleEnablesTableObj
 	}
 
 	@Override
-	public ICFSecSecSysRoleEnablesObj readCachedSecSysRoleEnablesByIdIdx( ICFLibKeyHash256 SecSysRoleId,
+	public ICFSecSecSysRoleEnablesObj readCachedSecSysRoleEnablesByIdIdx( IMCFKeyHash256 SecSysRoleId,
 		String EnableName )
 	{
 		ICFSecSecSysRoleEnablesObj obj = null;
@@ -815,7 +815,7 @@ public class CFSecSecSysRoleEnablesTableObj
 	}
 
 	@Override
-	public List<ICFSecSecSysRoleEnablesObj> readCachedSecSysRoleEnablesBySysRoleIdx( ICFLibKeyHash256 SecSysRoleId )
+	public List<ICFSecSecSysRoleEnablesObj> readCachedSecSysRoleEnablesBySysRoleIdx( IMCFKeyHash256 SecSysRoleId )
 	{
 		final String S_ProcName = "readCachedSecSysRoleEnablesBySysRoleIdx";
 		ICFSecSecSysRoleEnablesBySysRoleIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecSysRoleEnables().newBySysRoleIdxKey();
@@ -833,7 +833,7 @@ public class CFSecSecSysRoleEnablesTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -841,7 +841,7 @@ public class CFSecSecSysRoleEnablesTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -910,7 +910,7 @@ public class CFSecSecSysRoleEnablesTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -918,7 +918,7 @@ public class CFSecSecSysRoleEnablesTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -969,7 +969,7 @@ public class CFSecSecSysRoleEnablesTableObj
 	}
 
 	@Override
-	public void deepDisposeSecSysRoleEnablesByIdIdx( ICFLibKeyHash256 SecSysRoleId,
+	public void deepDisposeSecSysRoleEnablesByIdIdx( IMCFKeyHash256 SecSysRoleId,
 		String EnableName )
 	{
 		ICFSecSecSysRoleEnablesObj obj = readCachedSecSysRoleEnablesByIdIdx( SecSysRoleId,
@@ -980,7 +980,7 @@ public class CFSecSecSysRoleEnablesTableObj
 	}
 
 	@Override
-	public void deepDisposeSecSysRoleEnablesBySysRoleIdx( ICFLibKeyHash256 SecSysRoleId )
+	public void deepDisposeSecSysRoleEnablesBySysRoleIdx( IMCFKeyHash256 SecSysRoleId )
 	{
 		final String S_ProcName = "deepDisposeSecSysRoleEnablesBySysRoleIdx";
 		ICFSecSecSysRoleEnablesObj obj;
@@ -1023,8 +1023,8 @@ public class CFSecSecSysRoleEnablesTableObj
 	 *		as identified by the key attributes, which may be an empty set.
 	 */
 	@Override
-	public List<ICFSecSecSysRoleEnablesObj> pageSecSysRoleEnablesBySysRoleIdx( ICFLibKeyHash256 SecSysRoleId,
-		ICFLibKeyHash256 priorSecSysRoleId,
+	public List<ICFSecSecSysRoleEnablesObj> pageSecSysRoleEnablesBySysRoleIdx( IMCFKeyHash256 SecSysRoleId,
+		IMCFKeyHash256 priorSecSysRoleId,
 		String priorEnableName )
 	{
 		final String S_ProcName = "pageSecSysRoleEnablesBySysRoleIdx";
@@ -1059,7 +1059,7 @@ public class CFSecSecSysRoleEnablesTableObj
 	 */
 	@Override
 	public List<ICFSecSecSysRoleEnablesObj> pageSecSysRoleEnablesByNameIdx( String EnableName,
-		ICFLibKeyHash256 priorSecSysRoleId,
+		IMCFKeyHash256 priorSecSysRoleId,
 		String priorEnableName )
 	{
 		final String S_ProcName = "pageSecSysRoleEnablesByNameIdx";
@@ -1102,7 +1102,7 @@ public class CFSecSecSysRoleEnablesTableObj
 	}
 
 	@Override
-	public void deleteSecSysRoleEnablesByIdIdx( ICFLibKeyHash256 SecSysRoleId,
+	public void deleteSecSysRoleEnablesByIdIdx( IMCFKeyHash256 SecSysRoleId,
 		String EnableName )
 	{
 		ICFSecSecSysRoleEnablesObj obj = readSecSysRoleEnables(SecSysRoleId,
@@ -1135,7 +1135,7 @@ public class CFSecSecSysRoleEnablesTableObj
 	}
 
 	@Override
-	public void deleteSecSysRoleEnablesBySysRoleIdx( ICFLibKeyHash256 SecSysRoleId )
+	public void deleteSecSysRoleEnablesBySysRoleIdx( IMCFKeyHash256 SecSysRoleId )
 	{
 		ICFSecSecSysRoleEnablesBySysRoleIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecSysRoleEnables().newBySysRoleIdxKey();
 		key.setRequiredSecSysRoleId( SecSysRoleId );

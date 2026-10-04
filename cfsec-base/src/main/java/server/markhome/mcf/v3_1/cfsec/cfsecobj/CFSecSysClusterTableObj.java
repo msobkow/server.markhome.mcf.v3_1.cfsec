@@ -108,7 +108,7 @@ public class CFSecSysClusterTableObj
 	 */
 	static void setRuntimeClassCode(int argNewClassCode ) {
 		if (argNewClassCode <= 0) {
-			throw new CFLibArgumentUnderflowException(CFSecSysClusterTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
+			throw new MCFArgumentUnderflowException(CFSecSysClusterTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
 		}
 		runtimeClassCode = argNewClassCode;
 	}
@@ -351,7 +351,7 @@ public class CFSecSysClusterTableObj
 			locked = (ICFSecSysClusterObj)locked.realise();
 		}
 		else {
-			throw new CFLibCollisionDetectedException( getClass(), "lockSysCluster", pkey );
+			throw new MCFCollisionDetectedException( getClass(), "lockSysCluster", pkey );
 		}
 		return( locked );
 	}
@@ -386,7 +386,7 @@ public class CFSecSysClusterTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -394,7 +394,7 @@ public class CFSecSysClusterTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -446,7 +446,7 @@ public class CFSecSysClusterTableObj
 				arr[idx++] = valIter.next();
 			}
 			if( idx < len ) {
-				throw new CFLibArgumentUnderflowException( getClass(),
+				throw new MCFArgumentUnderflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -454,7 +454,7 @@ public class CFSecSysClusterTableObj
 					len );
 			}
 			else if( valIter.hasNext() ) {
-				throw new CFLibArgumentOverflowException( getClass(),
+				throw new MCFArgumentOverflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -505,14 +505,14 @@ public class CFSecSysClusterTableObj
 	}
 
 	@Override
-	public List<ICFSecSysClusterObj> readSysClusterByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public List<ICFSecSysClusterObj> readSysClusterByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		return( readSysClusterByClusterIdx( ClusterId,
 			false ) );
 	}
 
 	@Override
-	public List<ICFSecSysClusterObj> readSysClusterByClusterIdx( ICFLibKeyHash256 ClusterId,
+	public List<ICFSecSysClusterObj> readSysClusterByClusterIdx( IMCFKeyHash256 ClusterId,
 		boolean forceRead )
 	{
 		final String S_ProcName = "readSysClusterByClusterIdx";
@@ -550,7 +550,7 @@ public class CFSecSysClusterTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -558,7 +558,7 @@ public class CFSecSysClusterTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -606,7 +606,7 @@ public class CFSecSysClusterTableObj
 	}
 
 	@Override
-	public List<ICFSecSysClusterObj> readCachedSysClusterByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public List<ICFSecSysClusterObj> readCachedSysClusterByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "readCachedSysClusterByClusterIdx";
 		ICFSecSysClusterByClusterIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySysCluster().newByClusterIdxKey();
@@ -624,7 +624,7 @@ public class CFSecSysClusterTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -632,7 +632,7 @@ public class CFSecSysClusterTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -692,7 +692,7 @@ public class CFSecSysClusterTableObj
 	}
 
 	@Override
-	public void deepDisposeSysClusterByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public void deepDisposeSysClusterByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "deepDisposeSysClusterByClusterIdx";
 		ICFSecSysClusterObj obj;
@@ -757,7 +757,7 @@ public class CFSecSysClusterTableObj
 	}
 
 	@Override
-	public void deleteSysClusterByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public void deleteSysClusterByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		ICFSecSysClusterByClusterIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySysCluster().newByClusterIdxKey();
 		key.setRequiredClusterId( ClusterId );

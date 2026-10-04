@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 
 import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 
@@ -46,9 +46,9 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprotobj.*;
 public interface ICFSecSecUserPWHistory
 {
 	public static final String S_SECUSERID_INIT_VALUE = "0000000000000000000000000000000000000000000000000000000000000000";
-	public static final CFLibDbKeyHash256 SECUSERID_INIT_VALUE = CFLibDbKeyHash256.fromHex( S_SECUSERID_INIT_VALUE );
-	public static final LocalDateTime PWSETSTAMP_INIT_VALUE = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
-	public static final LocalDateTime PWREPLACEDSTAMP_INIT_VALUE = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+	public static final MCFDbKeyHash256 SECUSERID_INIT_VALUE = MCFDbKeyHash256.fromHex( S_SECUSERID_INIT_VALUE );
+	public static final LocalDateTime PWSETSTAMP_INIT_VALUE = MCFXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+	public static final LocalDateTime PWREPLACEDSTAMP_INIT_VALUE = MCFXmlUtil.parseTimestamp("2020-01-01T00:00:00");
 	public final static int CLASS_CODE = 0xa00d;
 	public final static String S_CLASS_CODE = "a00d";
 
@@ -56,9 +56,9 @@ public interface ICFSecSecUserPWHistory
 
 	public ICFSecSecUserPWHistoryPKey getPKey();
 	public void setPKey(ICFSecSecUserPWHistoryPKey pkey );
-	public ICFLibKeyHash256 getRequiredSecUserId();
+	public IMCFKeyHash256 getRequiredSecUserId();
 
-	public void setRequiredSecUserId(ICFLibKeyHash256 value);
+	public void setRequiredSecUserId(IMCFKeyHash256 value);
 
 	public LocalDateTime getRequiredPWSetStamp();
 

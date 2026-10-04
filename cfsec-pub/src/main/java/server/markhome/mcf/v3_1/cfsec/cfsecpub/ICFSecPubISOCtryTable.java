@@ -214,7 +214,7 @@ public interface ICFSecPubISOCtryTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtry pubreadRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -229,7 +229,7 @@ public interface ICFSecPubISOCtryTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtry publockRec( ICFSecPubAuthorization Authorization,
 		Short PKey );
@@ -253,7 +253,7 @@ public interface ICFSecPubISOCtryTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtry pubreadRecByIdIdx( ICFSecPubAuthorization Authorization,
 		short ISOCtryId );
@@ -268,7 +268,7 @@ public interface ICFSecPubISOCtryTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtry pubreadRecByISOCodeIdx( ICFSecPubAuthorization Authorization,
 		String ISOCode );
@@ -283,7 +283,7 @@ public interface ICFSecPubISOCtryTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecPubISOCtry pubreadRecByNameIdx( ICFSecPubAuthorization Authorization,
 		String Name );

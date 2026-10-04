@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
@@ -52,13 +52,13 @@ import server.markhome.mcf.v3_1.cfsec.cfsecobj.*;
 public class CFSecBuffSecUserPWHistoryHPKey
 	implements ICFSecSecUserPWHistoryHPKey, Comparable<Object>, Serializable
 {
-	protected CFLibDbKeyHash256 auditClusterId;
+	protected MCFDbKeyHash256 auditClusterId;
 	protected LocalDateTime auditStamp;
 	protected short auditActionId;
 	protected int requiredRevision;
-	protected CFLibDbKeyHash256 auditSessionId;
+	protected MCFDbKeyHash256 auditSessionId;
 
-	protected ICFLibKeyHash256 requiredSecUserId;
+	protected IMCFKeyHash256 requiredSecUserId;
 	protected LocalDateTime requiredPWSetStamp;
 
 	public CFSecBuffSecUserPWHistoryHPKey() {
@@ -66,18 +66,18 @@ public class CFSecBuffSecUserPWHistoryHPKey
 		auditStamp = LocalDateTime.now();
 		auditActionId = 0;
 		requiredRevision = 1;
-		auditSessionId = CFLibDbKeyHash256.nullGet();
-		requiredSecUserId = CFLibDbKeyHash256.fromHex( ICFSecSecUserPWHistory.SECUSERID_INIT_VALUE.toString() );
-		requiredPWSetStamp = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+		auditSessionId = MCFDbKeyHash256.nullGet();
+		requiredSecUserId = MCFDbKeyHash256.fromHex( ICFSecSecUserPWHistory.SECUSERID_INIT_VALUE.toString() );
+		requiredPWSetStamp = MCFXmlUtil.parseTimestamp("2020-01-01T00:00:00");
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getAuditClusterId() {
+	public MCFDbKeyHash256 getAuditClusterId() {
 		return( auditClusterId );
 	}
 
 	@Override
-	public void setAuditClusterId( CFLibDbKeyHash256 value ) {
+	public void setAuditClusterId( MCFDbKeyHash256 value ) {
 		auditClusterId = value;
 	}
 
@@ -112,23 +112,23 @@ public class CFSecBuffSecUserPWHistoryHPKey
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getAuditSessionId() {
+	public MCFDbKeyHash256 getAuditSessionId() {
 		return( auditSessionId );
 	}
 
 	@Override
-	public void setAuditSessionId( CFLibDbKeyHash256 value ) {
+	public void setAuditSessionId( MCFDbKeyHash256 value ) {
 		auditSessionId = value;
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecUserId() {
+	public IMCFKeyHash256 getRequiredSecUserId() {
 		return(requiredSecUserId);
 	}
 
-	public void setRequiredSecUserId( ICFLibKeyHash256 value ) {
+	public void setRequiredSecUserId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecUserId",
 				1,
 				"value" );
@@ -143,7 +143,7 @@ public class CFSecBuffSecUserPWHistoryHPKey
 
 	public void setRequiredPWSetStamp( LocalDateTime value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredPWSetStamp",
 				1,
 				"value" );
@@ -650,7 +650,7 @@ public class CFSecBuffSecUserPWHistoryHPKey
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException( getClass(),
+			throw new MCFUnsupportedClassException( getClass(),
 				"compareTo",
 				"obj",
 				obj,
@@ -661,7 +661,7 @@ public class CFSecBuffSecUserPWHistoryHPKey
 	@Override
 	public String getXmlAttrFragment() {
 		String ret = " auditClusterId=\"" + (auditClusterId != null ? auditClusterId.toString() : "null") + "\""
-			+ " auditStamp=\"" + (auditStamp != null ? CFLibXmlUtil.formatTimestamp(auditStamp) : "null") + "\""
+			+ " auditStamp=\"" + (auditStamp != null ? MCFXmlUtil.formatTimestamp(auditStamp) : "null") + "\""
 			+ " auditAction=\"" + auditActionId + "\""
 			+ " revision=\"" + requiredRevision + "\""
 			+ " auditSessionId=\"" + (getAuditSessionId() != null ? getAuditSessionId().toString() : "null") + "\""

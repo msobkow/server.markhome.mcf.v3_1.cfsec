@@ -115,7 +115,7 @@ extends ICFSecPubSecSysRoleTable
 	 *	@param	argKey	The primary key identifying the instance to be deleted.
 	 */
 	public void protdeleteSecSysRoleByIdIdx( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 argKey );
+		MCFDbKeyHash256 argKey );
 	/**
 	 *	Delete the SecSysRole instances identified by the key UNameIdx.
 	 *
@@ -167,7 +167,7 @@ extends ICFSecPubSecSysRoleTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecSysRole protreadDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the derived SecSysRole record instance by protected primary key.
@@ -180,7 +180,7 @@ extends ICFSecPubSecSysRoleTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecSysRole protlockDerived( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all SecSysRole instances.
@@ -202,7 +202,7 @@ extends ICFSecPubSecSysRoleTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecSysRole protreadDerivedByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId );
+		IMCFKeyHash256 SecSysRoleId );
 
 	/**
 	 *	Read the derived SecSysRole record instance identified by the unique key UNameIdx.
@@ -227,10 +227,10 @@ extends ICFSecPubSecSysRoleTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysRole protreadRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Lock the specific SecSysRole record instance identified by the primary key.
@@ -242,10 +242,10 @@ extends ICFSecPubSecSysRoleTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysRole protlockRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 PKey );
+		MCFDbKeyHash256 PKey );
 
 	/**
 	 *	Read all the specific SecSysRole record instances.
@@ -266,10 +266,10 @@ extends ICFSecPubSecSysRoleTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysRole protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecSysRoleId );
+		IMCFKeyHash256 SecSysRoleId );
 
 	/**
 	 *	Read the specific SecSysRole record instance identified by the unique key UNameIdx.
@@ -281,7 +281,7 @@ extends ICFSecPubSecSysRoleTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysRole protreadRecByUNameIdx( ICFSecPubAuthorization Authorization,
 		String Name );

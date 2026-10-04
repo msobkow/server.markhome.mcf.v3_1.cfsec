@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -65,7 +65,7 @@ public interface CFSecJpaSecSysRoleRepository extends JpaRepository<CFSecJpaSecS
 	 *		@return The retrieved entity, usually from the JPA cache, or null if no such entity exists.
 	 */
 	@Query("select r from CFSecJpaSecSysRole r where r.requiredSecSysRoleId = :secSysRoleId")
-	CFSecJpaSecSysRole get(@Param("secSysRoleId") ICFLibKeyHash256 requiredSecSysRoleId);
+	CFSecJpaSecSysRole get(@Param("secSysRoleId") IMCFKeyHash256 requiredSecSysRoleId);
 
 	// CFSecJpaSecSysRole specified index readers
 
@@ -102,7 +102,7 @@ public interface CFSecJpaSecSysRoleRepository extends JpaRepository<CFSecJpaSecS
 	@Transactional
 	@Lock(LockModeType.WRITE)
 	@Query("select r from CFSecJpaSecSysRole r where r.requiredSecSysRoleId = :secSysRoleId")
-	CFSecJpaSecSysRole lockByIdIdx(@Param("secSysRoleId") ICFLibKeyHash256 requiredSecSysRoleId);
+	CFSecJpaSecSysRole lockByIdIdx(@Param("secSysRoleId") IMCFKeyHash256 requiredSecSysRoleId);
 
 	/**
 	 *	Argument-based lock database entity for compatibility with the current MSS code factory code base, uses @Transactional to acquire a JPA entity locks, which may or may not imply an actual database lock during the transaction.
@@ -137,7 +137,7 @@ public interface CFSecJpaSecSysRoleRepository extends JpaRepository<CFSecJpaSecS
 	@Transactional
 	@Modifying
 	@Query("delete from CFSecJpaSecSysRole r where r.requiredSecSysRoleId = :secSysRoleId")
-	void deleteByIdIdx(@Param("secSysRoleId") ICFLibKeyHash256 requiredSecSysRoleId);
+	void deleteByIdIdx(@Param("secSysRoleId") IMCFKeyHash256 requiredSecSysRoleId);
 
 	/**
 	 *	Argument-based delete entity for compatibility with the current MSS code factory code base, uses @Transactional to acquire a JPA entity lock, which may or may not imply an actual database lock during the transaction.

@@ -94,7 +94,7 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *	@param	InclName	The SecSysGrpInc key attribute of the instance generating the id.
 	 */
 	public void protdeleteSecSysGrpIncByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 argSecSysGrpId,
+		IMCFKeyHash256 argSecSysGrpId,
 		String argInclName );
 	/**
 	 *	Delete the SecSysGrpInc instance identified by the primary key.
@@ -113,7 +113,7 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *	@param	SecSysGrpId	The SecSysGrpInc key attribute of the instance generating the id.
 	 */
 	public void protdeleteSecSysGrpIncBySysGrpIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 argSecSysGrpId );
+		IMCFKeyHash256 argSecSysGrpId );
 
 	/**
 	 *	Delete the SecSysGrpInc instances identified by the key SysGrpIdx.
@@ -167,7 +167,7 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecSysGrpInc protreadDerived( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String InclName );
 
 	/**
@@ -205,7 +205,7 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *		no such existing key value.
 	 */
 	public ICFSecProtSecSysGrpInc protreadDerivedByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String InclName );
 
 	/**
@@ -218,7 +218,7 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	public ICFSecProtSecSysGrpInc[] protreadDerivedBySysGrpIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId );
+		IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Read an array of the derived SecSysGrpInc record instances identified by the duplicate key NameIdx.
@@ -242,7 +242,7 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysGrpInc protreadRec( ICFSecPubAuthorization Authorization,
 		ICFSecProtSecSysGrpIncPKey PKey );
@@ -257,10 +257,10 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysGrpInc protreadRec( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String InclName );
 
 	/**
@@ -273,7 +273,7 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysGrpInc protlockRec( ICFSecPubAuthorization Authorization,
 		ICFSecProtSecSysGrpIncPKey PKey );
@@ -295,7 +295,7 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *	@return All the specific SecSysGrpInc instances in the database accessible for the Authorization.
 	 */
 	public ICFSecProtSecSysGrpInc[] protpageAllRec( ICFSecPubAuthorization Authorization,
-		CFLibDbKeyHash256 priorSecSysGrpId,
+		MCFDbKeyHash256 priorSecSysGrpId,
 		String priorInclName );
 
 	/**
@@ -310,10 +310,10 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysGrpInc protreadRecByIdIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String InclName );
 
 	/**
@@ -325,10 +325,10 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysGrpInc[] protreadRecBySysGrpIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId );
+		IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Read an array of the specific SecSysGrpInc record instances identified by the duplicate key NameIdx.
@@ -339,7 +339,7 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysGrpInc[] protreadRecByNameIdx( ICFSecPubAuthorization Authorization,
 		String InclName );
@@ -353,11 +353,11 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysGrpInc[] protpageRecBySysGrpIdx( ICFSecPubAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
-		ICFLibKeyHash256 priorSecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorInclName );
 
 	/**
@@ -369,10 +369,10 @@ public interface ICFSecProtSecSysGrpIncTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	public ICFSecProtSecSysGrpInc[] protpageRecByNameIdx( ICFSecPubAuthorization Authorization,
 		String InclName,
-		ICFLibKeyHash256 priorSecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorInclName );
 }

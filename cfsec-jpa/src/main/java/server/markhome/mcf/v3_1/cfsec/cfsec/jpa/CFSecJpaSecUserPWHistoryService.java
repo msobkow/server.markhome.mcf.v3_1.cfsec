@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,13 +75,13 @@ public class CFSecJpaSecUserPWHistoryService {
 			return( null );
 		}
 		if(data.getRequiredPWReplacedStamp() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredPWReplacedStamp");
 		}
 		if(data.getRequiredPasswordHash() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredPasswordHash");
@@ -96,7 +96,7 @@ public class CFSecJpaSecUserPWHistoryService {
 			return cfsec31SecUserPWHistoryRepository.save(data);
 		}
 		catch(Exception ex) {
-			throw new CFLibDbException(getClass(),
+			throw new MCFDbException(getClass(),
 				S_ProcName,
 				ex);
 		}
@@ -116,28 +116,28 @@ public class CFSecJpaSecUserPWHistoryService {
 			return( null );
 		}
 		if (data.getPKey() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.getPKey()");
 		}
 		if(data.getRequiredPWReplacedStamp() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredPWReplacedStamp");
 		}
 		if(data.getRequiredPasswordHash() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.requiredPasswordHash");
 		}
 		// Ensure the entity exists and that the revision matches
 		CFSecJpaSecUserPWHistory existing = cfsec31SecUserPWHistoryRepository.findById((CFSecJpaSecUserPWHistoryPKey)(data.getPKey()))
-			.orElseThrow(() -> new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
+			.orElseThrow(() -> new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
 		if (existing.getRequiredRevision() != data.getRequiredRevision()) {
-			throw new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
+			throw new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
 		}
 		// Apply superior data relationships of CFSecSecUserPWHistory to existing object
 		// Apply data columns of CFSecSecUserPWHistory to existing object
@@ -156,7 +156,7 @@ public class CFSecJpaSecUserPWHistoryService {
 	 *		@return The retrieved entity, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserPWHistory find(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId,
+	public CFSecJpaSecUserPWHistory find(@Param("secUserId") IMCFKeyHash256 requiredSecUserId,
 		@Param("pWSetStamp") LocalDateTime requiredPWSetStamp) {
 		return( cfsec31SecUserPWHistoryRepository.get(requiredSecUserId,
 			requiredPWSetStamp));
@@ -194,7 +194,7 @@ public class CFSecJpaSecUserPWHistoryService {
 	 *		@return The found entity, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserPWHistory findByUserIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public CFSecJpaSecUserPWHistory findByUserIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		return( cfsec31SecUserPWHistoryRepository.findByUserIdx(requiredSecUserId));
 	}
 
@@ -269,7 +269,7 @@ public class CFSecJpaSecUserPWHistoryService {
 	 *		@return The locked entity, refreshed from the data store, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserPWHistory lockByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId,
+	public CFSecJpaSecUserPWHistory lockByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId,
 		@Param("pWSetStamp") LocalDateTime requiredPWSetStamp) {
 		return( cfsec31SecUserPWHistoryRepository.lockByIdIdx(requiredSecUserId,
 			requiredPWSetStamp));
@@ -295,7 +295,7 @@ public class CFSecJpaSecUserPWHistoryService {
 	 *		@return The locked entity, refreshed from the data store, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecUserPWHistory lockByUserIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public CFSecJpaSecUserPWHistory lockByUserIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		return( cfsec31SecUserPWHistoryRepository.lockByUserIdx(requiredSecUserId));
 	}
 
@@ -368,7 +368,7 @@ public class CFSecJpaSecUserPWHistoryService {
 	 *		@param requiredPWSetStamp
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByIdIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId,
+	public void deleteByIdIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId,
 		@Param("pWSetStamp") LocalDateTime requiredPWSetStamp) {
 		cfsec31SecUserPWHistoryRepository.deleteByIdIdx(requiredSecUserId,
 			requiredPWSetStamp);
@@ -390,7 +390,7 @@ public class CFSecJpaSecUserPWHistoryService {
 	 *		@param requiredSecUserId
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByUserIdx(@Param("secUserId") ICFLibKeyHash256 requiredSecUserId) {
+	public void deleteByUserIdx(@Param("secUserId") IMCFKeyHash256 requiredSecUserId) {
 		cfsec31SecUserPWHistoryRepository.deleteByUserIdx(requiredSecUserId);
 	}
 

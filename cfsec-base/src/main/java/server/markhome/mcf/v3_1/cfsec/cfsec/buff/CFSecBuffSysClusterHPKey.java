@@ -36,7 +36,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpubobj.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecprot.*;
@@ -51,11 +51,11 @@ import server.markhome.mcf.v3_1.cfsec.cfsecobj.*;
 public class CFSecBuffSysClusterHPKey
 	implements ICFSecSysClusterHPKey, Comparable<Object>, Serializable
 {
-	protected CFLibDbKeyHash256 auditClusterId;
+	protected MCFDbKeyHash256 auditClusterId;
 	protected LocalDateTime auditStamp;
 	protected short auditActionId;
 	protected int requiredRevision;
-	protected CFLibDbKeyHash256 auditSessionId;
+	protected MCFDbKeyHash256 auditSessionId;
 
 	protected int requiredSingletonId;
 
@@ -64,17 +64,17 @@ public class CFSecBuffSysClusterHPKey
 		auditStamp = LocalDateTime.now();
 		auditActionId = 0;
 		requiredRevision = 1;
-		auditSessionId = CFLibDbKeyHash256.nullGet();
+		auditSessionId = MCFDbKeyHash256.nullGet();
 		requiredSingletonId = ICFSecPubSysCluster.SINGLETONID_INIT_VALUE;
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getAuditClusterId() {
+	public MCFDbKeyHash256 getAuditClusterId() {
 		return( auditClusterId );
 	}
 
 	@Override
-	public void setAuditClusterId( CFLibDbKeyHash256 value ) {
+	public void setAuditClusterId( MCFDbKeyHash256 value ) {
 		auditClusterId = value;
 	}
 
@@ -109,12 +109,12 @@ public class CFSecBuffSysClusterHPKey
 	}
 
 	@Override
-	public CFLibDbKeyHash256 getAuditSessionId() {
+	public MCFDbKeyHash256 getAuditSessionId() {
 		return( auditSessionId );
 	}
 
 	@Override
-	public void setAuditSessionId( CFLibDbKeyHash256 value ) {
+	public void setAuditSessionId( MCFDbKeyHash256 value ) {
 		auditSessionId = value;
 	}
 
@@ -126,7 +126,7 @@ public class CFSecBuffSysClusterHPKey
 	@Override
 	public void setRequiredSingletonId( int value ) {
 		if( value < ICFSecPubSysCluster.SINGLETONID_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				"setRequiredSingletonId",
 				1,
 				"value",
@@ -134,7 +134,7 @@ public class CFSecBuffSysClusterHPKey
 				ICFSecPubSysCluster.SINGLETONID_MIN_VALUE );
 		}
 		if( value > ICFSecSysCluster.SINGLETONID_MAX_VALUE ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredSingletonId",
 				1,
 				"value",
@@ -915,7 +915,7 @@ public class CFSecBuffSysClusterHPKey
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException( getClass(),
+			throw new MCFUnsupportedClassException( getClass(),
 				"compareTo",
 				"obj",
 				obj,
@@ -926,7 +926,7 @@ public class CFSecBuffSysClusterHPKey
 	@Override
 	public String getXmlAttrFragment() {
 		String ret = " auditClusterId=\"" + (auditClusterId != null ? auditClusterId.toString() : "null") + "\""
-			+ " auditStamp=\"" + (auditStamp != null ? CFLibXmlUtil.formatTimestamp(auditStamp) : "null") + "\""
+			+ " auditStamp=\"" + (auditStamp != null ? MCFXmlUtil.formatTimestamp(auditStamp) : "null") + "\""
 			+ " auditAction=\"" + auditActionId + "\""
 			+ " revision=\"" + requiredRevision + "\""
 			+ " auditSessionId=\"" + (getAuditSessionId() != null ? getAuditSessionId().toString() : "null") + "\""

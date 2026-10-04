@@ -116,11 +116,11 @@ public class CFSecRamTableInfoTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByTableNameIdx.containsKey( keyTableNameIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"TableInfoTableNameIdx",
 				"TableInfoTableNameIdx",
@@ -128,7 +128,7 @@ public class CFSecRamTableInfoTable
 		}
 
 		if( dictBySchemaBkCodeIdx.containsKey( keySchemaBkCodeIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"TableInfoSchemaBkCodeIdx",
 				"TableInfoSchemaBkCodeIdx",
@@ -136,7 +136,7 @@ public class CFSecRamTableInfoTable
 		}
 
 		if( dictBySchemaRTCodeIdx.containsKey( keySchemaRTCodeIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"TableInfoSchemaRTCodeIdx",
 				"TableInfoSchemaRTCodeIdx",
@@ -186,7 +186,7 @@ public class CFSecRamTableInfoTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -508,7 +508,7 @@ public class CFSecRamTableInfoTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffTableInfo existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateTableInfo",
 				"Existing record not found",
 				"Existing record not found",
@@ -517,7 +517,7 @@ public class CFSecRamTableInfoTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateTableInfo",
 				pkey );
 		}
@@ -558,7 +558,7 @@ public class CFSecRamTableInfoTable
 
 		if( ! existingKeyTableNameIdx.equals( newKeyTableNameIdx ) ) {
 			if( dictByTableNameIdx.containsKey( newKeyTableNameIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateTableInfo",
 					"TableInfoTableNameIdx",
 					"TableInfoTableNameIdx",
@@ -568,7 +568,7 @@ public class CFSecRamTableInfoTable
 
 		if( ! existingKeySchemaBkCodeIdx.equals( newKeySchemaBkCodeIdx ) ) {
 			if( dictBySchemaBkCodeIdx.containsKey( newKeySchemaBkCodeIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateTableInfo",
 					"TableInfoSchemaBkCodeIdx",
 					"TableInfoSchemaBkCodeIdx",
@@ -578,7 +578,7 @@ public class CFSecRamTableInfoTable
 
 		if( ! existingKeySchemaRTCodeIdx.equals( newKeySchemaRTCodeIdx ) ) {
 			if( dictBySchemaRTCodeIdx.containsKey( newKeySchemaRTCodeIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateTableInfo",
 					"TableInfoSchemaRTCodeIdx",
 					"TableInfoSchemaRTCodeIdx",
@@ -647,7 +647,7 @@ public class CFSecRamTableInfoTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteTableInfo",
 				pkey );
 		}

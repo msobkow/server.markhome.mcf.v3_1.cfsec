@@ -100,7 +100,7 @@ public class CFSecRamISOCtryCcyTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		// Validate foreign keys
@@ -112,7 +112,7 @@ public class CFSecRamISOCtryCcyTable
 				if( null == schema.getTableISOCtry().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredISOCtryId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
 						"Container",
@@ -160,7 +160,7 @@ public class CFSecRamISOCtryCcyTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -421,7 +421,7 @@ public class CFSecRamISOCtryCcyTable
 		pkey = (CFSecBuffISOCtryCcyPKey)Buff.getPKey();
 		CFSecBuffISOCtryCcy existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateISOCtryCcy",
 				"Existing record not found",
 				"Existing record not found",
@@ -430,7 +430,7 @@ public class CFSecRamISOCtryCcyTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateISOCtryCcy",
 				pkey );
 		}
@@ -458,7 +458,7 @@ public class CFSecRamISOCtryCcyTable
 				if( null == schema.getTableISOCtry().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredISOCtryId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateISOCtryCcy",
 						"Container",
 						"Container",
@@ -521,7 +521,7 @@ public class CFSecRamISOCtryCcyTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteISOCtryCcy",
 				pkey );
 		}

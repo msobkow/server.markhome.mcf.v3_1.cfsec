@@ -122,7 +122,7 @@ public class CFSecJpaSysClusterFactoryService
 					mapped.set(rec);
 					return( mapped ); }
 				default:
-					throw new CFLibUnsupportedClassException(getClass(), "ensureRec",
+					throw new MCFUnsupportedClassException(getClass(), "ensureRec",
 						"Unsupported class code " + rec.getClassCode() + " is not a derivative of CFSecSysCluster",
 						"Unsupported class code " + rec.getClassCode() + " is not a derivative of CFSecSysCluster");
 			}
@@ -150,7 +150,7 @@ public class CFSecJpaSysClusterFactoryService
 					mapped.set(hrec);
 					return( mapped ); }
 				default:
-					throw new CFLibUnsupportedClassException(getClass(), "ensureHRec",
+					throw new MCFUnsupportedClassException(getClass(), "ensureHRec",
 						"Unsupported class code " + hrec.getClassCode() + " is not a derivative of CFSecSysCluster",
 						"Unsupported class code " + hrec.getClassCode() + " is not a derivative of CFSecSysCluster");
 			}

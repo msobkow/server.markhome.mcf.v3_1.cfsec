@@ -122,18 +122,18 @@ public interface ICFSecPubSecSysGrpEditObj
 	ICFSecPubSecSysRoleObj getOptionalComponentsImplSysRole( boolean forceRead );
 
 	/**
-	 *	Get the required CFLibDbKeyHash256 attribute SecSysGrpId.
+	 *	Get the required MCFDbKeyHash256 attribute SecSysGrpId.
 	 *
-	 *	@return	The required CFLibDbKeyHash256 attribute SecSysGrpId.
+	 *	@return	The required MCFDbKeyHash256 attribute SecSysGrpId.
 	 */
-	CFLibDbKeyHash256 getRequiredSecSysGrpId();
+	MCFDbKeyHash256 getRequiredSecSysGrpId();
 
 	/**
-	 *	Set the required CFLibDbKeyHash256 attribute SecSysGrpId.
+	 *	Set the required MCFDbKeyHash256 attribute SecSysGrpId.
 	 *
-	 *	@param value The required CFLibDbKeyHash256 attribute SecSysGrpId value to be applied.
+	 *	@param value The required MCFDbKeyHash256 attribute SecSysGrpId value to be applied.
 	 */
-	void setRequiredSecSysGrpId(CFLibDbKeyHash256 value);
+	void setRequiredSecSysGrpId(MCFDbKeyHash256 value);
 
 	/**
 	 *	Get the required String attribute Name.

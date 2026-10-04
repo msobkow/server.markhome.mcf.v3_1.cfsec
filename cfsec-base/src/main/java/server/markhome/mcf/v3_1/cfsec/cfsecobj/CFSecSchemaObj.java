@@ -53,13 +53,13 @@ public class CFSecSchemaObj
 	protected String secTenantName = "system";
 	protected String secUserName = "system";
 	protected ICFSecClusterObj secCluster = null;
-	protected CFLibDbKeyHash256 secClusterId = null;
+	protected MCFDbKeyHash256 secClusterId = null;
 	protected ICFSecTenantObj secTenant = null;
-	protected CFLibDbKeyHash256 secTenantId = null;
+	protected MCFDbKeyHash256 secTenantId = null;
 	protected ICFSecSecUserObj secUser = null;
-	protected CFLibDbKeyHash256 secSessionUserId = null;
+	protected MCFDbKeyHash256 secSessionUserId = null;
 	protected ICFSecSecSessionObj secSession = null;
-	protected CFLibDbKeyHash256 secSessionSessionId = null;
+	protected MCFDbKeyHash256 secSessionSessionId = null;
 	protected String schemaDbName = SCHEMA_DBNAME;
 	protected String lowerDbSchemaName = SCHEMA_DBNAME.toLowerCase();
 
@@ -132,7 +132,7 @@ public class CFSecSchemaObj
 
 	public void setSecClusterName( String value ) {
 		if( ( value == null ) || ( value.length() <= 0 ) ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setClusterName",
 				1,
 				"value" );
@@ -179,13 +179,13 @@ public class CFSecSchemaObj
 		}
 	}
 
-	public CFLibDbKeyHash256 getSecClusterId() {
+	public MCFDbKeyHash256 getSecClusterId() {
 		return( secClusterId );
 	}
 
 	public void setSecTenantName( String value ) {
 		if( ( value == null ) || ( value.length() <= 0 ) ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setTenantName",
 				1,
 				"value" );
@@ -232,13 +232,13 @@ public class CFSecSchemaObj
 		}
 	}
 
-	public CFLibDbKeyHash256 getSecTenantId() {
+	public MCFDbKeyHash256 getSecTenantId() {
 		return( secTenantId );
 	}
 
 	public void setSecUserName( String value ) {
 		if( ( value == null ) || ( value.length() <= 0 ) ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setUserName",
 				1,
 				"value" );
@@ -305,15 +305,15 @@ public class CFSecSchemaObj
 		}
 	}
 
-	public void setSecSessionId( CFLibDbKeyHash256 value ) {
+	public void setSecSessionId( MCFDbKeyHash256 value ) {
 		secSessionSessionId = value;
 	}
 
-	public CFLibDbKeyHash256 getSecSessionSessionId() {
+	public MCFDbKeyHash256 getSecSessionSessionId() {
 		return( secSessionSessionId );
 	}
 
-	public CFLibDbKeyHash256 getSecSessionUserId() {
+	public MCFDbKeyHash256 getSecSessionUserId() {
 		return( secSessionUserId );
 	}
 
@@ -333,7 +333,7 @@ public class CFSecSchemaObj
 	@Override
 	public void setCFSecBackingStore(ICFSecSchema cfsecBackingStore) {
 		if (cfsecBackingStore == null) {
-			throw new CFLibNullArgumentException(getClass(), "setCFSecBackingStore", 1, "cfsecBackingStore");
+			throw new MCFNullArgumentException(getClass(), "setCFSecBackingStore", 1, "cfsecBackingStore");
 		}
 		this.cfsecBackingStore = cfsecBackingStore;
 	}
@@ -440,7 +440,7 @@ public class CFSecSchemaObj
 			return;
 		}
 		setAuthorization( null );
-		CFLibDbKeyHash256 secSessionId = authorization.getSecSessionId();
+		MCFDbKeyHash256 secSessionId = authorization.getSecSessionId();
 		if( secSessionId != null ) {
 			ICFSecSecSessionObj secSession = getSecSessionTableObj().readSecSessionByIdIdx( secSessionId );
 			if( secSession != null ) {

@@ -116,7 +116,7 @@ public class CFSecSecClusGrpTableObj
 	 */
 	static void setRuntimeClassCode(int argNewClassCode ) {
 		if (argNewClassCode <= 0) {
-			throw new CFLibArgumentUnderflowException(CFSecSecClusGrpTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
+			throw new MCFArgumentUnderflowException(CFSecSecClusGrpTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
 		}
 		runtimeClassCode = argNewClassCode;
 	}
@@ -439,7 +439,7 @@ public class CFSecSecClusGrpTableObj
 			locked = (ICFSecSecClusGrpObj)locked.realise();
 		}
 		else {
-			throw new CFLibCollisionDetectedException( getClass(), "lockSecClusGrp", pkey );
+			throw new MCFCollisionDetectedException( getClass(), "lockSecClusGrp", pkey );
 		}
 		return( locked );
 	}
@@ -474,7 +474,7 @@ public class CFSecSecClusGrpTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -482,7 +482,7 @@ public class CFSecSecClusGrpTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -534,7 +534,7 @@ public class CFSecSecClusGrpTableObj
 				arr[idx++] = valIter.next();
 			}
 			if( idx < len ) {
-				throw new CFLibArgumentUnderflowException( getClass(),
+				throw new MCFArgumentUnderflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -542,7 +542,7 @@ public class CFSecSecClusGrpTableObj
 					len );
 			}
 			else if( valIter.hasNext() ) {
-				throw new CFLibArgumentOverflowException( getClass(),
+				throw new MCFArgumentOverflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -579,28 +579,28 @@ public class CFSecSecClusGrpTableObj
 	}
 
 	@Override
-	public ICFSecSecClusGrpObj readSecClusGrpByIdIdx( ICFLibKeyHash256 SecClusGrpId )
+	public ICFSecSecClusGrpObj readSecClusGrpByIdIdx( IMCFKeyHash256 SecClusGrpId )
 	{
 		return( readSecClusGrpByIdIdx( SecClusGrpId,
 			false ) );
 	}
 
 	@Override
-	public ICFSecSecClusGrpObj readSecClusGrpByIdIdx( ICFLibKeyHash256 SecClusGrpId, boolean forceRead )
+	public ICFSecSecClusGrpObj readSecClusGrpByIdIdx( IMCFKeyHash256 SecClusGrpId, boolean forceRead )
 	{
 		ICFSecSecClusGrpObj obj = readSecClusGrp( SecClusGrpId, forceRead );
 		return( obj );
 	}
 
 	@Override
-	public List<ICFSecSecClusGrpObj> readSecClusGrpByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public List<ICFSecSecClusGrpObj> readSecClusGrpByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		return( readSecClusGrpByClusterIdx( ClusterId,
 			false ) );
 	}
 
 	@Override
-	public List<ICFSecSecClusGrpObj> readSecClusGrpByClusterIdx( ICFLibKeyHash256 ClusterId,
+	public List<ICFSecSecClusGrpObj> readSecClusGrpByClusterIdx( IMCFKeyHash256 ClusterId,
 		boolean forceRead )
 	{
 		final String S_ProcName = "readSecClusGrpByClusterIdx";
@@ -638,7 +638,7 @@ public class CFSecSecClusGrpTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -646,7 +646,7 @@ public class CFSecSecClusGrpTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -731,7 +731,7 @@ public class CFSecSecClusGrpTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -739,7 +739,7 @@ public class CFSecSecClusGrpTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -779,7 +779,7 @@ public class CFSecSecClusGrpTableObj
 	}
 
 	@Override
-	public ICFSecSecClusGrpObj readSecClusGrpByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public ICFSecSecClusGrpObj readSecClusGrpByUNameIdx( IMCFKeyHash256 ClusterId,
 		String Name )
 	{
 		return( readSecClusGrpByUNameIdx( ClusterId,
@@ -788,7 +788,7 @@ public class CFSecSecClusGrpTableObj
 	}
 
 	@Override
-	public ICFSecSecClusGrpObj readSecClusGrpByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public ICFSecSecClusGrpObj readSecClusGrpByUNameIdx( IMCFKeyHash256 ClusterId,
 		String Name, boolean forceRead )
 	{
 		if( indexByUNameIdx == null ) {
@@ -817,7 +817,7 @@ public class CFSecSecClusGrpTableObj
 	}
 
 	@Override
-	public ICFSecSecClusGrpObj readCachedSecClusGrpByIdIdx( ICFLibKeyHash256 SecClusGrpId )
+	public ICFSecSecClusGrpObj readCachedSecClusGrpByIdIdx( IMCFKeyHash256 SecClusGrpId )
 	{
 		ICFSecSecClusGrpObj obj = null;
 		obj = readCachedSecClusGrp( SecClusGrpId );
@@ -825,7 +825,7 @@ public class CFSecSecClusGrpTableObj
 	}
 
 	@Override
-	public List<ICFSecSecClusGrpObj> readCachedSecClusGrpByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public List<ICFSecSecClusGrpObj> readCachedSecClusGrpByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "readCachedSecClusGrpByClusterIdx";
 		ICFSecSecClusGrpByClusterIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecClusGrp().newByClusterIdxKey();
@@ -843,7 +843,7 @@ public class CFSecSecClusGrpTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -851,7 +851,7 @@ public class CFSecSecClusGrpTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -920,7 +920,7 @@ public class CFSecSecClusGrpTableObj
 					arr[idx++] = valIter.next();
 				}
 				if( idx < len ) {
-					throw new CFLibArgumentUnderflowException( getClass(),
+					throw new MCFArgumentUnderflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -928,7 +928,7 @@ public class CFSecSecClusGrpTableObj
 						len );
 				}
 				else if( valIter.hasNext() ) {
-					throw new CFLibArgumentOverflowException( getClass(),
+					throw new MCFArgumentOverflowException( getClass(),
 							S_ProcName,
 							0,
 							"idx",
@@ -979,7 +979,7 @@ public class CFSecSecClusGrpTableObj
 	}
 
 	@Override
-	public ICFSecSecClusGrpObj readCachedSecClusGrpByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public ICFSecSecClusGrpObj readCachedSecClusGrpByUNameIdx( IMCFKeyHash256 ClusterId,
 		String Name )
 	{
 		ICFSecSecClusGrpObj obj = null;
@@ -1017,7 +1017,7 @@ public class CFSecSecClusGrpTableObj
 	}
 
 	@Override
-	public void deepDisposeSecClusGrpByIdIdx( ICFLibKeyHash256 SecClusGrpId )
+	public void deepDisposeSecClusGrpByIdIdx( IMCFKeyHash256 SecClusGrpId )
 	{
 		ICFSecSecClusGrpObj obj = readCachedSecClusGrpByIdIdx( SecClusGrpId );
 		if( obj != null ) {
@@ -1026,7 +1026,7 @@ public class CFSecSecClusGrpTableObj
 	}
 
 	@Override
-	public void deepDisposeSecClusGrpByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public void deepDisposeSecClusGrpByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		final String S_ProcName = "deepDisposeSecClusGrpByClusterIdx";
 		ICFSecSecClusGrpObj obj;
@@ -1060,7 +1060,7 @@ public class CFSecSecClusGrpTableObj
 	}
 
 	@Override
-	public void deepDisposeSecClusGrpByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public void deepDisposeSecClusGrpByUNameIdx( IMCFKeyHash256 ClusterId,
 		String Name )
 	{
 		ICFSecSecClusGrpObj obj = readCachedSecClusGrpByUNameIdx( ClusterId,
@@ -1089,7 +1089,7 @@ public class CFSecSecClusGrpTableObj
 	}
 
 	@Override
-	public void deleteSecClusGrpByIdIdx( ICFLibKeyHash256 SecClusGrpId )
+	public void deleteSecClusGrpByIdIdx( IMCFKeyHash256 SecClusGrpId )
 	{
 		ICFSecSecClusGrpObj obj = readSecClusGrp(SecClusGrpId);
 		if( obj != null ) {
@@ -1119,7 +1119,7 @@ public class CFSecSecClusGrpTableObj
 	}
 
 	@Override
-	public void deleteSecClusGrpByClusterIdx( ICFLibKeyHash256 ClusterId )
+	public void deleteSecClusGrpByClusterIdx( IMCFKeyHash256 ClusterId )
 	{
 		ICFSecSecClusGrpByClusterIdxKey key = schema.getCFSecBackingStore().getCFSecFactory().getFactorySecClusGrp().newByClusterIdxKey();
 		key.setRequiredClusterId( ClusterId );
@@ -1187,7 +1187,7 @@ public class CFSecSecClusGrpTableObj
 	}
 
 	@Override
-	public void deleteSecClusGrpByUNameIdx( ICFLibKeyHash256 ClusterId,
+	public void deleteSecClusGrpByUNameIdx( IMCFKeyHash256 ClusterId,
 		String Name )
 	{
 		if( indexByUNameIdx == null ) {

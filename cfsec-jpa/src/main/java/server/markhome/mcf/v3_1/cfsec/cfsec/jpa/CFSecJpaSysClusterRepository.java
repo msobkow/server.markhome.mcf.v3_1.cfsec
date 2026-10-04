@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -77,7 +77,7 @@ public interface CFSecJpaSysClusterRepository extends JpaRepository<CFSecJpaSysC
 	 *		@return List&lt;CFSecJpaSysCluster&gt; of the found entities, typically from the JPA cache, or an empty list if no such entities exist.
 	 */
 	@Query("select r from CFSecJpaSysCluster r where r.requiredContainerCluster.requiredId = :clusterId")
-	List<CFSecJpaSysCluster> findByClusterIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId);
+	List<CFSecJpaSysCluster> findByClusterIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId);
 
 	/**
 	 *	CFSecSysClusterByClusterIdxKey entity list reader convenience method for object-based access.
@@ -114,7 +114,7 @@ public interface CFSecJpaSysClusterRepository extends JpaRepository<CFSecJpaSysC
 	@Transactional
 	@Lock(LockModeType.WRITE)
 	@Query("select r from CFSecJpaSysCluster r where r.requiredContainerCluster.requiredId = :clusterId")
-	List<CFSecJpaSysCluster> lockByClusterIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId);
+	List<CFSecJpaSysCluster> lockByClusterIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId);
 
 	/**
 	 *	CFSecSysClusterByClusterIdxKey based lock method for object-based access.
@@ -147,7 +147,7 @@ public interface CFSecJpaSysClusterRepository extends JpaRepository<CFSecJpaSysC
 	@Transactional
 	@Modifying
 	@Query("delete from CFSecJpaSysCluster r where r.requiredContainerCluster.requiredId = :clusterId")
-	void deleteByClusterIdx(@Param("clusterId") ICFLibKeyHash256 requiredClusterId);
+	void deleteByClusterIdx(@Param("clusterId") IMCFKeyHash256 requiredClusterId);
 
 	/**
 	 *	CFSecSysClusterByClusterIdxKey based lock method for object-based access.

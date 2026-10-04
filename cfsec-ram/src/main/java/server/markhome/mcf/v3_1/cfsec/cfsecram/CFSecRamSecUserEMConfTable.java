@@ -112,11 +112,11 @@ public class CFSecRamSecUserEMConfTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByUUuid6Idx.containsKey( keyUUuid6Idx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"SecUserEMConfUuid6Idx",
 				"SecUserEMConfUuid6Idx",
@@ -132,7 +132,7 @@ public class CFSecRamSecUserEMConfTable
 				if( null == schema.getTableSecUser().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredSecUserId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						S_ProcName,
 						"Container",
 						"Container",
@@ -192,7 +192,7 @@ public class CFSecRamSecUserEMConfTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -244,7 +244,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf readDerivedByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 EMConfirmationUuid6 )
+		IMCFUuid6 EMConfirmationUuid6 )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readDerivedByUUuid6Idx";
 		CFSecBuffSecUserEMConfByUUuid6IdxKey key = (CFSecBuffSecUserEMConfByUUuid6IdxKey)schema.getCFSecBuffFactory().getFactorySecUserEMConf().newByUUuid6IdxKey();
@@ -346,7 +346,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		IMCFKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readDerivedByIdIdx() ";
 		ICFSecSecUserEMConf buff;
@@ -408,15 +408,15 @@ public class CFSecRamSecUserEMConfTable
 	 */
 	@Override
 	public ICFSecSecUserEMConf[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecUserId )
+		IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageAllRec";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	@Override
 	public ICFSecSecUserEMConf readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId )
+		IMCFKeyHash256 SecUserId )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readRecByIdIdx() ";
 		ICFSecSecUserEMConf buff = readDerivedByIdIdx( Authorization,
@@ -431,7 +431,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public ICFSecSecUserEMConf readRecByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 EMConfirmationUuid6 )
+		IMCFUuid6 EMConfirmationUuid6 )
 	{
 		final String S_ProcName = "CFSecRamSecUserEMConf.readRecByUUuid6Idx() ";
 		ICFSecSecUserEMConf buff = readDerivedByUUuid6Idx( Authorization,
@@ -507,15 +507,15 @@ public class CFSecRamSecUserEMConfTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecSecUserEMConf[] pageRecByConfEMAddrIdx( ICFSecAuthorization Authorization,
 		String ConfirmEMailAddr,
-		ICFLibKeyHash256 priorSecUserId )
+		IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageRecByConfEMAddrIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	/**
@@ -527,15 +527,15 @@ public class CFSecRamSecUserEMConfTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecSecUserEMConf[] pageRecBySentStampIdx( ICFSecAuthorization Authorization,
 		LocalDateTime EMailSentStamp,
-		ICFLibKeyHash256 priorSecUserId )
+		IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageRecBySentStampIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	/**
@@ -547,15 +547,15 @@ public class CFSecRamSecUserEMConfTable
 	 *
 	 *	@return An array of derived buffer instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecSecUserEMConf[] pageRecByNewAcctIdx( ICFSecAuthorization Authorization,
 		boolean NewAccount,
-		ICFLibKeyHash256 priorSecUserId )
+		IMCFKeyHash256 priorSecUserId )
 	{
 		final String S_ProcName = "pageRecByNewAcctIdx";
-		throw new CFLibNotImplementedYetException( getClass(), S_ProcName );
+		throw new MCFNotImplementedYetException( getClass(), S_ProcName );
 	}
 
 	public ICFSecSecUserEMConf updateSecUserEMConf( ICFSecAuthorization Authorization,
@@ -565,7 +565,7 @@ public class CFSecRamSecUserEMConfTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffSecUserEMConf existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateSecUserEMConf",
 				"Existing record not found",
 				"Existing record not found",
@@ -574,7 +574,7 @@ public class CFSecRamSecUserEMConfTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateSecUserEMConf",
 				pkey );
 		}
@@ -607,7 +607,7 @@ public class CFSecRamSecUserEMConfTable
 
 		if( ! existingKeyUUuid6Idx.equals( newKeyUUuid6Idx ) ) {
 			if( dictByUUuid6Idx.containsKey( newKeyUUuid6Idx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateSecUserEMConf",
 					"SecUserEMConfUuid6Idx",
 					"SecUserEMConfUuid6Idx",
@@ -624,7 +624,7 @@ public class CFSecRamSecUserEMConfTable
 				if( null == schema.getTableSecUser().readDerivedByIdIdx( Authorization,
 						Buff.getRequiredSecUserId() ) )
 				{
-					throw new CFLibUnresolvedRelationException( getClass(),
+					throw new MCFUnresolvedRelationException( getClass(),
 						"updateSecUserEMConf",
 						"Container",
 						"Container",
@@ -703,7 +703,7 @@ public class CFSecRamSecUserEMConfTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteSecUserEMConf",
 				pkey );
 		}
@@ -767,7 +767,7 @@ public class CFSecRamSecUserEMConfTable
 
 	@Override
 	public void deleteSecUserEMConfByUUuid6Idx( ICFSecAuthorization Authorization,
-		ICFLibUuid6 argEMConfirmationUuid6 )
+		IMCFUuid6 argEMConfirmationUuid6 )
 	{
 		CFSecBuffSecUserEMConfByUUuid6IdxKey key = (CFSecBuffSecUserEMConfByUUuid6IdxKey)schema.getCFSecBuffFactory().getFactorySecUserEMConf().newByUUuid6IdxKey();
 		key.setRequiredEMConfirmationUuid6( argEMConfirmationUuid6 );

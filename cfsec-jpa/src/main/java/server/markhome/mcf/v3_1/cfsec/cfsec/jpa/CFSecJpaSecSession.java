@@ -38,7 +38,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 
 @Entity
@@ -63,9 +63,9 @@ public class CFSecJpaSecSession
 {
 	@Id
 	@AttributeOverrides({
-		@AttributeOverride(name="bytes", column = @Column( name="SecSessionId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride(name="bytes", column = @Column( name="SecSessionId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected ICFLibKeyHash256 requiredSecSessionId;
+	protected IMCFKeyHash256 requiredSecSessionId;
 	protected int requiredRevision;
 
 	@ManyToOne(fetch=FetchType.LAZY, optional=false)
@@ -76,24 +76,24 @@ public class CFSecJpaSecSession
 	protected CFSecJpaSecUser requiredParentSecProxy;
 
 	@AttributeOverrides({
-		@AttributeOverride(name="bytes", column = @Column( name="SecUserId", nullable=false, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride(name="bytes", column = @Column( name="SecUserId", nullable=false, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected ICFLibKeyHash256 requiredSecUserId;
+	protected IMCFKeyHash256 requiredSecUserId;
 	@Column( name="start_ts", nullable=false )
 	protected LocalDateTime requiredStart;
 	@Column( name="finish_ts", nullable=true )
 	protected LocalDateTime optionalFinish;
 	@AttributeOverrides({
-		@AttributeOverride(name="bytes", column = @Column( name="SecProxyId", nullable=true, length=CFLibDbKeyHash256.HASH_LENGTH ) )
+		@AttributeOverride(name="bytes", column = @Column( name="SecProxyId", nullable=true, length=MCFDbKeyHash256.HASH_LENGTH ) )
 	})
-	protected ICFLibKeyHash256 optionalSecProxyId;
+	protected IMCFKeyHash256 optionalSecProxyId;
 
 	public CFSecJpaSecSession() {
-		requiredSecSessionId = CFLibDbKeyHash256.fromHex( ICFSecPubSecSession.SECSESSIONID_INIT_VALUE.toString() );
-		requiredSecUserId = CFLibDbKeyHash256.fromHex( ICFSecPubSecSession.SECUSERID_INIT_VALUE.toString() );
-		requiredStart = CFLibXmlUtil.parseTimestamp("2020-01-01T00:00:00");
+		requiredSecSessionId = MCFDbKeyHash256.fromHex( ICFSecPubSecSession.SECSESSIONID_INIT_VALUE.toString() );
+		requiredSecUserId = MCFDbKeyHash256.fromHex( ICFSecPubSecSession.SECUSERID_INIT_VALUE.toString() );
+		requiredStart = MCFXmlUtil.parseTimestamp("2020-01-01T00:00:00");
 		optionalFinish = null;
-		optionalSecProxyId = CFLibDbKeyHash256.nullGet();
+		optionalSecProxyId = MCFDbKeyHash256.nullGet();
 	}
 
 	@Override
@@ -109,7 +109,7 @@ public class CFSecJpaSecSession
 	@Override
 	public void setRequiredContainerSecUser(ICFSecSecUser argObj) {
 		if(argObj == null) {
-			throw new CFLibNullArgumentException(getClass(), "setContainerSecUser", 1, "argObj");
+			throw new MCFNullArgumentException(getClass(), "setContainerSecUser", 1, "argObj");
 		}
 		else if (argObj instanceof CFSecJpaSecUser) {
 			requiredContainerSecUser = (CFSecJpaSecUser)argObj;
@@ -120,7 +120,7 @@ public class CFSecJpaSecSession
 			}
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "setContainerSecUser", "argObj", argObj, "CFSecJpaSecUser");
+			throw new MCFUnsupportedClassException(getClass(), "setContainerSecUser", "argObj", argObj, "CFSecJpaSecUser");
 		}
 	}
 
@@ -135,14 +135,14 @@ public class CFSecJpaSecSession
 	}
 
 	@Override
-	public void setRequiredContainerSecUser(ICFLibKeyHash256 argSecUserId) {
+	public void setRequiredContainerSecUser(IMCFKeyHash256 argSecUserId) {
 		ICFSecSchema targetBackingSchema = ICFSecSchema.getBackingCFSec();
 		if (targetBackingSchema == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredContainerSecUser", 0, "ICFSecSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredContainerSecUser", 0, "ICFSecSchema.getBackingCFSec()");
 		}
 		ICFSecSecUserTable targetTable = targetBackingSchema.getTableSecUser();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredContainerSecUser", 0, "ICFSecSchema.getBackingCFSec().getTableSecUser()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredContainerSecUser", 0, "ICFSecSchema.getBackingCFSec().getTableSecUser()");
 		}
 		ICFSecSecUser targetRec = targetTable.readDerived(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), argSecUserId);
 		setRequiredContainerSecUser(targetRec);
@@ -156,7 +156,7 @@ public class CFSecJpaSecSession
 	@Override
 	public void setRequiredParentSecProxy(ICFSecSecUser argObj) {
 		if(argObj == null) {
-			throw new CFLibNullArgumentException(getClass(), "setParentSecProxy", 1, "argObj");
+			throw new MCFNullArgumentException(getClass(), "setParentSecProxy", 1, "argObj");
 		}
 		else if (argObj instanceof CFSecJpaSecUser) {
 			requiredParentSecProxy = (CFSecJpaSecUser)argObj;
@@ -168,7 +168,7 @@ public class CFSecJpaSecSession
 			}
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "setParentSecProxy", "argObj", argObj, "CFSecJpaSecUser");
+			throw new MCFUnsupportedClassException(getClass(), "setParentSecProxy", "argObj", argObj, "CFSecJpaSecUser");
 		}
 	}
 
@@ -183,14 +183,14 @@ public class CFSecJpaSecSession
 	}
 
 	@Override
-	public void setRequiredParentSecProxy(ICFLibKeyHash256 argSecProxyId) {
+	public void setRequiredParentSecProxy(IMCFKeyHash256 argSecProxyId) {
 		ICFSecSchema targetBackingSchema = ICFSecSchema.getBackingCFSec();
 		if (targetBackingSchema == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredParentSecProxy", 0, "ICFSecSchema.getBackingCFSec()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredParentSecProxy", 0, "ICFSecSchema.getBackingCFSec()");
 		}
 		ICFSecSecUserTable targetTable = targetBackingSchema.getTableSecUser();
 		if (targetTable == null) {
-			throw new CFLibNullArgumentException(getClass(), "setRequiredParentSecProxy", 0, "ICFSecSchema.getBackingCFSec().getTableSecUser()");
+			throw new MCFNullArgumentException(getClass(), "setRequiredParentSecProxy", 0, "ICFSecSchema.getBackingCFSec().getTableSecUser()");
 		}
 		ICFSecSecUser targetRec = targetTable.readDerived(ICFSecSchema.getAuthorizationCallback().getEffectiveAuthorization(), argSecProxyId);
 		setRequiredParentSecProxy(targetRec);
@@ -207,13 +207,13 @@ public class CFSecJpaSecSession
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecSessionId() {
+	public IMCFKeyHash256 getRequiredSecSessionId() {
 		return(getPKey().getRequiredSecSessionId());
 	}
 
-	public void setRequiredSecSessionId( ICFLibKeyHash256 value ) {
+	public void setRequiredSecSessionId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecSessionId",
 				1,
 				"value" );
@@ -232,13 +232,13 @@ public class CFSecJpaSecSession
 	}
 
 	@Override
-	public ICFLibKeyHash256 getRequiredSecUserId() {
+	public IMCFKeyHash256 getRequiredSecUserId() {
 		return(requiredSecUserId);
 	}
 
-	public void setRequiredSecUserId( ICFLibKeyHash256 value ) {
+	public void setRequiredSecUserId( IMCFKeyHash256 value ) {
 		if( value == null || value.isNull() ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredSecUserId",
 				1,
 				"value" );
@@ -253,7 +253,7 @@ public class CFSecJpaSecSession
 
 	public void setRequiredStart( LocalDateTime value ) {
 		if( value == null ) {
-			throw new CFLibNullArgumentException( getClass(),
+			throw new MCFNullArgumentException( getClass(),
 				"setRequiredStart",
 				1,
 				"value" );
@@ -271,11 +271,11 @@ public class CFSecJpaSecSession
 	}
 
 	@Override
-	public ICFLibKeyHash256 getOptionalSecProxyId() {
+	public IMCFKeyHash256 getOptionalSecProxyId() {
 		return(optionalSecProxyId);
 	}
 
-	public void setOptionalSecProxyId( ICFLibKeyHash256 value ) {
+	public void setOptionalSecProxyId( IMCFKeyHash256 value ) {
 		optionalSecProxyId = value;
 	}
 
@@ -876,7 +876,7 @@ public class CFSecJpaSecSession
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException( getClass(),
+			throw new MCFUnsupportedClassException( getClass(),
 				"compareTo",
 				"obj",
 				obj,

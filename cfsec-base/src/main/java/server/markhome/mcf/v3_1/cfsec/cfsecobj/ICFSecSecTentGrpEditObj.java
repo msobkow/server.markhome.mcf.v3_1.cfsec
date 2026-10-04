@@ -160,25 +160,25 @@ public interface ICFSecSecTentGrpEditObj
 	List<ICFSecSecTentGrpMembObj> getOptionalChildrenMembByGrp();
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute SecTentGrpId.
+	 *	Get the required IMCFKeyHash256 attribute SecTentGrpId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute SecTentGrpId.
+	 *	@return	The required IMCFKeyHash256 attribute SecTentGrpId.
 	 */
-	ICFLibKeyHash256 getRequiredSecTentGrpId();
+	IMCFKeyHash256 getRequiredSecTentGrpId();
 
 	/**
-	 *	Set the required ICFLibKeyHash256 attribute SecTentGrpId.
+	 *	Set the required IMCFKeyHash256 attribute SecTentGrpId.
 	 *
-	 *	@param value The required ICFLibKeyHash256 attribute SecTentGrpId value to be applied.
+	 *	@param value The required IMCFKeyHash256 attribute SecTentGrpId value to be applied.
 	 */
-	void setRequiredSecTentGrpId(ICFLibKeyHash256 value);
+	void setRequiredSecTentGrpId(IMCFKeyHash256 value);
 
 	/**
-	 *	Get the required ICFLibKeyHash256 attribute TenantId.
+	 *	Get the required IMCFKeyHash256 attribute TenantId.
 	 *
-	 *	@return	The required ICFLibKeyHash256 attribute TenantId.
+	 *	@return	The required IMCFKeyHash256 attribute TenantId.
 	 */
-	ICFLibKeyHash256 getRequiredTenantId();
+	IMCFKeyHash256 getRequiredTenantId();
 
 	/**
 	 *	Get the required String attribute Name.

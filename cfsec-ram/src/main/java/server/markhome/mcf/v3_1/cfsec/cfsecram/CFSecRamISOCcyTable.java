@@ -90,11 +90,11 @@ public class CFSecRamISOCcyTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByCcyCdIdx.containsKey( keyCcyCdIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"ISOCcyCodeIdx",
 				"ISOCcyCodeIdx",
@@ -102,7 +102,7 @@ public class CFSecRamISOCcyTable
 		}
 
 		if( dictByCcyNmIdx.containsKey( keyCcyNmIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"ISOCcyNameIdx",
 				"ISOCcyNameIdx",
@@ -130,7 +130,7 @@ public class CFSecRamISOCcyTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -323,7 +323,7 @@ public class CFSecRamISOCcyTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffISOCcy existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateISOCcy",
 				"Existing record not found",
 				"Existing record not found",
@@ -332,7 +332,7 @@ public class CFSecRamISOCcyTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateISOCcy",
 				pkey );
 		}
@@ -353,7 +353,7 @@ public class CFSecRamISOCcyTable
 
 		if( ! existingKeyCcyCdIdx.equals( newKeyCcyCdIdx ) ) {
 			if( dictByCcyCdIdx.containsKey( newKeyCcyCdIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateISOCcy",
 					"ISOCcyCodeIdx",
 					"ISOCcyCodeIdx",
@@ -363,7 +363,7 @@ public class CFSecRamISOCcyTable
 
 		if( ! existingKeyCcyNmIdx.equals( newKeyCcyNmIdx ) ) {
 			if( dictByCcyNmIdx.containsKey( newKeyCcyNmIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateISOCcy",
 					"ISOCcyNameIdx",
 					"ISOCcyNameIdx",
@@ -403,7 +403,7 @@ public class CFSecRamISOCcyTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteISOCcy",
 				pkey );
 		}

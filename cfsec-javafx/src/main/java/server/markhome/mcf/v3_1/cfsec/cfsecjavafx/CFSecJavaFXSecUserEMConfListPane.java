@@ -77,7 +77,7 @@ implements ICFSecJavaFXSecUserEMConfPaneList
 	protected TableView<ICFSecSecUserEMConfObj> dataTable = null;
 	protected TableColumn<ICFSecSecUserEMConfObj, String> tableColumnConfirmEMailAddr = null;
 	protected TableColumn<ICFSecSecUserEMConfObj, LocalDateTime> tableColumnEMailSentStamp = null;
-	protected TableColumn<ICFSecSecUserEMConfObj, ICFLibUuid6> tableColumnEMConfirmationUuid6 = null;
+	protected TableColumn<ICFSecSecUserEMConfObj, IMCFUuid6> tableColumnEMConfirmationUuid6 = null;
 	protected TableColumn<ICFSecSecUserEMConfObj, Boolean> tableColumnNewAccount = null;
 
 	public final String S_ColumnNames[] = { "Name" };
@@ -213,24 +213,24 @@ implements ICFSecJavaFXSecUserEMConfPaneList
 			}
 		});
 		dataTable.getColumns().add( tableColumnEMailSentStamp );
-		tableColumnEMConfirmationUuid6 = new TableColumn<ICFSecSecUserEMConfObj,ICFLibUuid6>( "EMail Confirmation UUID6" );
-		tableColumnEMConfirmationUuid6.setCellValueFactory( new Callback<CellDataFeatures<ICFSecSecUserEMConfObj,ICFLibUuid6>,ObservableValue<ICFLibUuid6> >() {
-			public ObservableValue<ICFLibUuid6> call( CellDataFeatures<ICFSecSecUserEMConfObj, ICFLibUuid6> p ) {
+		tableColumnEMConfirmationUuid6 = new TableColumn<ICFSecSecUserEMConfObj,IMCFUuid6>( "EMail Confirmation UUID6" );
+		tableColumnEMConfirmationUuid6.setCellValueFactory( new Callback<CellDataFeatures<ICFSecSecUserEMConfObj,IMCFUuid6>,ObservableValue<IMCFUuid6> >() {
+			public ObservableValue<IMCFUuid6> call( CellDataFeatures<ICFSecSecUserEMConfObj, IMCFUuid6> p ) {
 				ICFSecSecUserEMConfObj obj = p.getValue();
 				if( obj == null ) {
 					return( null );
 				}
 				else {
-					ICFLibUuid6 value = obj.getRequiredEMConfirmationUuid6();
-					ReadOnlyObjectWrapper<ICFLibUuid6> observable = new ReadOnlyObjectWrapper<ICFLibUuid6>();
+					IMCFUuid6 value = obj.getRequiredEMConfirmationUuid6();
+					ReadOnlyObjectWrapper<IMCFUuid6> observable = new ReadOnlyObjectWrapper<IMCFUuid6>();
 					observable.setValue( value );
 					return( observable );
 				}
 			}
 		});
-		tableColumnEMConfirmationUuid6.setCellFactory( new Callback<TableColumn<ICFSecSecUserEMConfObj,ICFLibUuid6>,TableCell<ICFSecSecUserEMConfObj,ICFLibUuid6>>() {
-			@Override public TableCell<ICFSecSecUserEMConfObj,ICFLibUuid6> call(
-				TableColumn<ICFSecSecUserEMConfObj,ICFLibUuid6> arg)
+		tableColumnEMConfirmationUuid6.setCellFactory( new Callback<TableColumn<ICFSecSecUserEMConfObj,IMCFUuid6>,TableCell<ICFSecSecUserEMConfObj,IMCFUuid6>>() {
+			@Override public TableCell<ICFSecSecUserEMConfObj,IMCFUuid6> call(
+				TableColumn<ICFSecSecUserEMConfObj,IMCFUuid6> arg)
 			{
 				return new CFUuid6TableCell<ICFSecSecUserEMConfObj>();
 			}

@@ -58,7 +58,7 @@ public class CFSecAuthorization extends CFSecProtAuthorization implements ICFSec
 		super();
 	}
 
-	public CFSecAuthorization(ICFLibUuid6 authUuid6, CFLibDbKeyHash256 secSessionId, CFLibDbKeyHash256 secUserId, CFLibDbKeyHash256 secClusterId, CFLibDbKeyHash256 secTenantId) {
+	public CFSecAuthorization(IMCFUuid6 authUuid6, MCFDbKeyHash256 secSessionId, MCFDbKeyHash256 secUserId, MCFDbKeyHash256 secClusterId, MCFDbKeyHash256 secTenantId) {
 		super(authUuid6, secSessionId, secUserId, secClusterId, secTenantId);
 	}
 
@@ -75,20 +75,20 @@ public class CFSecAuthorization extends CFSecProtAuthorization implements ICFSec
 	}
 
 	@Override
-	public void setAuthUuid6( ICFLibUuid6 value ) {
-		this.authUuid6 = new CFLibUuid6(value.getBytes());
+	public void setAuthUuid6( IMCFUuid6 value ) {
+		this.authUuid6 = new MCFUuid6(value.getBytes());
 		this.authUuid6Str = this.authUuid6.toString();
 	}
 
 	@Override
-	public void setSecClusterId( CFLibDbKeyHash256 clusterId ) {
-		this.secClusterId = new CFLibDbKeyHash256(clusterId);
+	public void setSecClusterId( MCFDbKeyHash256 clusterId ) {
+		this.secClusterId = new MCFDbKeyHash256(clusterId);
 	}
 
 	@Override
 	public void setSecCluster(ICFSecClusterObj cluster) {
 		if (cluster == null) {
-			this.secClusterId = CFLibDbKeyHash256.nullGet();
+			this.secClusterId = MCFDbKeyHash256.nullGet();
 		}
 		else {
 			this.secClusterId = cluster.getRequiredId();
@@ -96,47 +96,47 @@ public class CFSecAuthorization extends CFSecProtAuthorization implements ICFSec
 	}
 
 	@Override
-	public void setSecTenantId( CFLibDbKeyHash256 tenantId ) {
-		this.secTenantId = new CFLibDbKeyHash256(tenantId);
+	public void setSecTenantId( MCFDbKeyHash256 tenantId ) {
+		this.secTenantId = new MCFDbKeyHash256(tenantId);
 	}
 
 	@Override
 	public void setSecTenant(ICFSecTenantObj tenant) {
 		if (tenant == null) {
-			this.secTenantId = CFLibDbKeyHash256.nullGet();
+			this.secTenantId = MCFDbKeyHash256.nullGet();
 		}
 		else {
-			this.secTenantId = new CFLibDbKeyHash256(tenant.getRequiredId());
+			this.secTenantId = new MCFDbKeyHash256(tenant.getRequiredId());
 		}
 	}
 
 	@Override
-	public void setSecSessionId( CFLibDbKeyHash256 sessionId ) {
-		this.secSessionId = new CFLibDbKeyHash256(sessionId);
+	public void setSecSessionId( MCFDbKeyHash256 sessionId ) {
+		this.secSessionId = new MCFDbKeyHash256(sessionId);
 	}
 
 	@Override
 	public void setSecSession(ICFSecSecSessionObj session) {
 		if (session == null) {
-			this.secSessionId = CFLibDbKeyHash256.nullGet();
+			this.secSessionId = MCFDbKeyHash256.nullGet();
 		}
 		else {
-			this.secSessionId = new CFLibDbKeyHash256(session.getRequiredSecSessionId());
+			this.secSessionId = new MCFDbKeyHash256(session.getRequiredSecSessionId());
 		}
 	}
 
 	@Override
-	public void setSecUserId( CFLibDbKeyHash256 userId ) {
-		this.secUserId = new CFLibDbKeyHash256(userId);
+	public void setSecUserId( MCFDbKeyHash256 userId ) {
+		this.secUserId = new MCFDbKeyHash256(userId);
 	}
 
 	@Override
 	public void setSecUser(ICFSecSecUserObj user) {
 		if (user == null) {
-			this.secUserId = CFLibDbKeyHash256.nullGet();
+			this.secUserId = MCFDbKeyHash256.nullGet();
 		}
 		else {
-			this.secUserId = new CFLibDbKeyHash256(user.getRequiredSecUserId());
+			this.secUserId = new MCFDbKeyHash256(user.getRequiredSecUserId());
 		}
 	}
 }

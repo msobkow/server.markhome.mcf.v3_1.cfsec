@@ -67,32 +67,32 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 
 	public CFSecJpaISOLangTable(ICFSecSchema schema) {
 		if( schema == null ) {
-			throw new CFLibNullArgumentException(getClass(), "constructor", 1, "schema" );
+			throw new MCFNullArgumentException(getClass(), "constructor", 1, "schema" );
 		}
 		if (schema instanceof CFSecJpaSchema) {
 			this.schema = (CFSecJpaSchema)schema;
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "constructor", "schema", schema, "CFSecJpaSchema");
+			throw new MCFUnsupportedClassException(getClass(), "constructor", "schema", schema, "CFSecJpaSchema");
 		}
 	}
 
 	protected boolean canCreateISOLang(String S_ProcName, ICFSecAuthorization Authorization) {
 		if (Authorization == null) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
 		}
 		boolean permissionGranted = false;
-		CFLibDbKeyHash256 authUserId = Authorization.getSecUserId();
+		MCFDbKeyHash256 authUserId = Authorization.getSecUserId();
 		if ((!permissionGranted) && (authUserId == null || authUserId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
 		}
 		// Check for "system" user
-		CFLibDbKeyHash256 systemId = ICFSecSchema.getSystemId();
+		MCFDbKeyHash256 systemId = ICFSecSchema.getSystemId();
 		if ((!permissionGranted) && (systemId != null && !systemId.isNull() && systemId.equals(authUserId))) {
 			permissionGranted = true;
 		}
 		else if ((!permissionGranted) && (systemId == null || systemId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
 		}
 		if(!permissionGranted) {
 			permissionGranted = ICFSecSchema.getSecurityService().isMemberOfSystemGroup(Authorization.getSecUserId(), "createisolang");
@@ -102,20 +102,20 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 
 	protected boolean canReadISOLang(String S_ProcName, ICFSecAuthorization Authorization) {
 		if (Authorization == null) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
 		}
 		boolean permissionGranted = false;
-		CFLibDbKeyHash256 authUserId = Authorization.getSecUserId();
+		MCFDbKeyHash256 authUserId = Authorization.getSecUserId();
 		if ((!permissionGranted) && (authUserId == null || authUserId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
 		}
 		// Check for "system" user
-		CFLibDbKeyHash256 systemId = ICFSecSchema.getSystemId();
+		MCFDbKeyHash256 systemId = ICFSecSchema.getSystemId();
 		if ((!permissionGranted) && (systemId != null && !systemId.isNull() && systemId.equals(authUserId))) {
 			permissionGranted = true;
 		}
 		else if ((!permissionGranted) && (systemId == null || systemId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
 		}
 		// SecScope Global means anyone can read the table any time
 		permissionGranted = true;
@@ -124,20 +124,20 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 
 	protected boolean canUpdateISOLang(String S_ProcName, ICFSecAuthorization Authorization) {
 		if (Authorization == null) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
 		}
 		boolean permissionGranted = false;
-		CFLibDbKeyHash256 authUserId = Authorization.getSecUserId();
+		MCFDbKeyHash256 authUserId = Authorization.getSecUserId();
 		if ((!permissionGranted) && (authUserId == null || authUserId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
 		}
 		// Check for "system" user
-		CFLibDbKeyHash256 systemId = ICFSecSchema.getSystemId();
+		MCFDbKeyHash256 systemId = ICFSecSchema.getSystemId();
 		if ((!permissionGranted) && (systemId != null && !systemId.isNull() && systemId.equals(authUserId))) {
 			permissionGranted = true;
 		}
 		else if ((!permissionGranted) && (systemId == null || systemId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
 		}
 		if(!permissionGranted) {
 			permissionGranted = ICFSecSchema.getSecurityService().isMemberOfSystemGroup(Authorization.getSecUserId(), "updateisolang");
@@ -147,20 +147,20 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 
 	protected boolean canDeleteISOLang(String S_ProcName, ICFSecAuthorization Authorization) {
 		if (Authorization == null) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization");
 		}
 		boolean permissionGranted = false;
-		CFLibDbKeyHash256 authUserId = Authorization.getSecUserId();
+		MCFDbKeyHash256 authUserId = Authorization.getSecUserId();
 		if ((!permissionGranted) && (authUserId == null || authUserId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "Authorization.getSecUserId()");
 		}
 		// Check for "system" user
-		CFLibDbKeyHash256 systemId = ICFSecSchema.getSystemId();
+		MCFDbKeyHash256 systemId = ICFSecSchema.getSystemId();
 		if ((!permissionGranted) && (systemId != null && !systemId.isNull() && systemId.equals(authUserId))) {
 			permissionGranted = true;
 		}
 		else if ((!permissionGranted) && (systemId == null || systemId.isNull())) {
-			throw new CFLibNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
+			throw new MCFNullArgumentException(getClass(), S_ProcName, 0, "ICFSecSchema.getSystemId()");
 		}
 		if(!permissionGranted) {
 			permissionGranted = ICFSecSchema.getSecurityService().isMemberOfSystemGroup(Authorization.getSecUserId(), "deleteisolang");
@@ -183,11 +183,11 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "createISOLang";
 		boolean permissionGranted = canCreateISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "createisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "createisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		if (rec == null) {
-			throw new CFLibNullArgumentException(getClass(), "createISOLang", 1, "rec");
+			throw new MCFNullArgumentException(getClass(), "createISOLang", 1, "rec");
 		}
 		else if (rec instanceof CFSecJpaISOLang) {
 			CFSecJpaISOLang jparec = (CFSecJpaISOLang)rec;
@@ -199,7 +199,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		return(retval);
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "createISOLang", "rec", rec, "CFSecJpaISOLang");
+			throw new MCFUnsupportedClassException(getClass(), "createISOLang", "rec", rec, "CFSecJpaISOLang");
 		}
 	}
 
@@ -218,11 +218,11 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "updateISOLang";
 		boolean permissionGranted = canUpdateISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "updateisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "updateisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		if (rec == null) {
-			throw new CFLibNullArgumentException(getClass(), "updateISOLang", 1, "rec");
+			throw new MCFNullArgumentException(getClass(), "updateISOLang", 1, "rec");
 		}
 		else if (rec instanceof CFSecJpaISOLang) {
 			CFSecJpaISOLang jparec = (CFSecJpaISOLang)rec;
@@ -232,7 +232,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		return(retval);
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "updateISOLang", "rec", rec, "CFSecJpaISOLang");
+			throw new MCFUnsupportedClassException(getClass(), "updateISOLang", "rec", rec, "CFSecJpaISOLang");
 		}
 	}
 
@@ -250,7 +250,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "deleteISOLang";
 		boolean permissionGranted = canDeleteISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		if (rec == null) {
@@ -261,10 +261,10 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 			schema.getJpaHooksSchema().getISOLangService().deleteByIdIdx(jparec.getPKey());
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(), "deleteISOLang", "rec", rec, "CFSecJpaISOLang");
+			throw new MCFUnsupportedClassException(getClass(), "deleteISOLang", "rec", rec, "CFSecJpaISOLang");
 		}
 
-		throw new CFLibNotImplementedYetException(getClass(), "deleteISOLang");
+		throw new MCFNotImplementedYetException(getClass(), "deleteISOLang");
 	}
 
 	/**
@@ -281,7 +281,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "deleteISOLangByIdIdx";
 		boolean permissionGranted = canDeleteISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		schema.getJpaHooksSchema().getISOLangService().deleteByIdIdx(argKey);
@@ -301,7 +301,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "deleteISOLangByCode3Idx";
 		boolean permissionGranted = canDeleteISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		schema.getJpaHooksSchema().getISOLangService().deleteByCode3Idx(argISO6392Code);
@@ -322,7 +322,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "deleteISOLangByCode3Idx";
 		boolean permissionGranted = canDeleteISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		schema.getJpaHooksSchema().getISOLangService().deleteByCode3Idx(argKey.getRequiredISO6392Code());
@@ -342,7 +342,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "deleteISOLangByCode2Idx";
 		boolean permissionGranted = canDeleteISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		schema.getJpaHooksSchema().getISOLangService().deleteByCode2Idx(argISO6391Code);
@@ -363,7 +363,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "deleteISOLangByCode2Idx";
 		boolean permissionGranted = canDeleteISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "deleteisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "deleteisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		schema.getJpaHooksSchema().getISOLangService().deleteByCode2Idx(argKey.getOptionalISO6391Code());
@@ -387,7 +387,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "readDerived";
 		boolean permissionGranted = canReadISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		ICFSecISOLang retval = schema.getJpaHooksSchema().getISOLangService().find(PKey);
@@ -411,7 +411,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "lockDerived";
 		boolean permissionGranted = canUpdateISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "updateisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "updateisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		ICFSecISOLang retval = schema.getJpaHooksSchema().getISOLangService().lockByIdIdx(PKey);
@@ -430,7 +430,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "readAllDerived";
 		boolean permissionGranted = canReadISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
 		List<CFSecJpaISOLang> retlist = schema.getJpaHooksSchema().getISOLangService().findAll();
@@ -462,7 +462,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 			permissionGranted = canReadISOLang(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 		ICFSecISOLang retval = schema.getJpaHooksSchema().getISOLangService().find(argISOLangId);
 		return(retval);
@@ -488,7 +488,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 			permissionGranted = canReadISOLang(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 		ICFSecISOLang retval = schema.getJpaHooksSchema().getISOLangService().findByCode3Idx(argISO6392Code);
 		return(retval);
@@ -513,7 +513,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 			permissionGranted = canReadISOLang(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 		List<CFSecJpaISOLang> retlist = schema.getJpaHooksSchema().getISOLangService().findByCode2Idx(argISO6391Code);
 		ICFSecISOLang[] retset = new ICFSecISOLang[retlist.size()];
@@ -534,7 +534,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecISOLang readRec( ICFSecAuthorization Authorization,
@@ -543,10 +543,10 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "readRec";
 		boolean permissionGranted = canReadISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
-		throw new CFLibNotImplementedYetException(getClass(), "readRec");
+		throw new MCFNotImplementedYetException(getClass(), "readRec");
 	}
 
 	/**
@@ -559,7 +559,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecISOLang lockRec( ICFSecAuthorization Authorization,
@@ -568,10 +568,10 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "lockRec";
 		boolean permissionGranted = canUpdateISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "updateisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "updateisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
-		throw new CFLibNotImplementedYetException(getClass(), "lockRec");
+		throw new MCFNotImplementedYetException(getClass(), "lockRec");
 	}
 
 	/**
@@ -586,10 +586,10 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 		final String S_ProcName = "readAllRec";
 		boolean permissionGranted = canReadISOLang(S_ProcName, Authorization);
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
 
-		throw new CFLibNotImplementedYetException(getClass(), "readAllRec");
+		throw new MCFNotImplementedYetException(getClass(), "readAllRec");
 	}
 
 
@@ -603,7 +603,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecISOLang readRecByIdIdx( ICFSecAuthorization Authorization,
@@ -615,9 +615,9 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 			permissionGranted = canReadISOLang(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
-		throw new CFLibNotImplementedYetException(getClass(), "readRecByIdIdx");
+		throw new MCFNotImplementedYetException(getClass(), "readRecByIdIdx");
 	}
 
 	/**
@@ -630,7 +630,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecISOLang readRecByCode3Idx( ICFSecAuthorization Authorization,
@@ -642,9 +642,9 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 			permissionGranted = canReadISOLang(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
-		throw new CFLibNotImplementedYetException(getClass(), "readRecByCode3Idx");
+		throw new MCFNotImplementedYetException(getClass(), "readRecByCode3Idx");
 	}
 
 	/**
@@ -656,7 +656,7 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	@Override
 	public ICFSecISOLang[] readRecByCode2Idx( ICFSecAuthorization Authorization,
@@ -668,8 +668,8 @@ public class CFSecJpaISOLangTable implements ICFSecISOLangTable
 			permissionGranted = canReadISOLang(S_ProcName, Authorization);
 		}
 		if (!permissionGranted) {
-			throw new CFLibPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
+			throw new MCFPermissionDeniedException(getClass(), S_ProcName, "readisolang", ICFSecSchema.SCHEMA_NAME, ICFSecISOLangTable.TABLE_NAME, Authorization.getAuthUuid6().toString());//"Permission '%4$s' denied attempting to access %1$s.%2$s for user id %3$s"
 		}
-		throw new CFLibNotImplementedYetException(getClass(), "readRecByCode2Idx");
+		throw new MCFNotImplementedYetException(getClass(), "readRecByCode2Idx");
 	}
 }

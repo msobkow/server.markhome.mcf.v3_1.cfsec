@@ -40,7 +40,7 @@ import server.markhome.mcf.v3_1.cflib.keyhash.*;
 import server.markhome.mcf.v3_1.cfsec.cfsecpub.*;
 
 public interface ICFSecPubSysClusterObj
-	extends ICFLibAnyObj
+	extends IMCFAnyObj
 {
 	/**
 	 *	Initially, the class code for an object is ICFSecPubSysCluster.CLASS_CODE, but the Obj layer relies on class code translation to map those
@@ -87,7 +87,7 @@ public interface ICFSecPubSysClusterObj
 	/**
 	 *	End this edition of this SysCluster instance.
 	 *
-	 *	@throws	CFLibNotSupportedException if you try to end a read-only view.
+	 *	@throws	MCFNotSupportedException if you try to end a read-only view.
 	 */
 	void endEdit();
 
@@ -208,11 +208,11 @@ public interface ICFSecPubSysClusterObj
 	int getRequiredSingletonId();
 
 	/**
-	 *	Get the required CFLibDbKeyHash256 attribute ClusterId.
+	 *	Get the required MCFDbKeyHash256 attribute ClusterId.
 	 *
-	 *	@return	The required CFLibDbKeyHash256 attribute ClusterId.
+	 *	@return	The required MCFDbKeyHash256 attribute ClusterId.
 	 */
-	CFLibDbKeyHash256 getRequiredClusterId();
+	MCFDbKeyHash256 getRequiredClusterId();
 
 	/**
 	 *	Internal use only.

@@ -38,7 +38,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import server.markhome.mcf.v3_1.cfsec.cfsec.*;
 
 public class CFSecJpaISOTZoneByOffsetIdxKey
@@ -59,7 +59,7 @@ public class CFSecJpaISOTZoneByOffsetIdxKey
 	@Override
 	public void setRequiredTZHourOffset( short value ) {
 		if( value < ICFSecPubISOTZone.TZHOUROFFSET_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				"setRequiredTZHourOffset",
 				1,
 				"value",
@@ -67,7 +67,7 @@ public class CFSecJpaISOTZoneByOffsetIdxKey
 				ICFSecPubISOTZone.TZHOUROFFSET_MIN_VALUE );
 		}
 		if( value > ICFSecPubISOTZone.TZHOUROFFSET_MAX_VALUE ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredTZHourOffset",
 				1,
 				"value",
@@ -85,7 +85,7 @@ public class CFSecJpaISOTZoneByOffsetIdxKey
 	@Override
 	public void setRequiredTZMinOffset( short value ) {
 		if( value < ICFSecPubISOTZone.TZMINOFFSET_MIN_VALUE ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				"setRequiredTZMinOffset",
 				1,
 				"value",
@@ -93,7 +93,7 @@ public class CFSecJpaISOTZoneByOffsetIdxKey
 				ICFSecPubISOTZone.TZMINOFFSET_MIN_VALUE );
 		}
 		if( value > ICFSecPubISOTZone.TZMINOFFSET_MAX_VALUE ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 				"setRequiredTZMinOffset",
 				1,
 				"value",
@@ -206,7 +206,7 @@ public class CFSecJpaISOTZoneByOffsetIdxKey
 			return( 0 );
 		}
 		else {
-			throw new CFLibUnsupportedClassException(getClass(),
+			throw new MCFUnsupportedClassException(getClass(),
 				"compareTo",
 				"obj",
 				obj,

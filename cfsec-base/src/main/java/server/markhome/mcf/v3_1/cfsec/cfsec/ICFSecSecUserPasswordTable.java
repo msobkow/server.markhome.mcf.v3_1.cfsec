@@ -158,7 +158,7 @@ public interface ICFSecSecUserPasswordTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecUserPassword readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read an array of the derived SecUserPassword record instances identified by the duplicate key SetStampIdx.
@@ -182,7 +182,7 @@ public interface ICFSecSecUserPasswordTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPassword readRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -197,7 +197,7 @@ public interface ICFSecSecUserPasswordTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPassword lockRec( ICFSecAuthorization Authorization,
 		$implCommaIJavaOptAtomType$ PKey );
@@ -221,10 +221,10 @@ public interface ICFSecSecUserPasswordTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPassword readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecUserId );
+		IMCFKeyHash256 SecUserId );
 
 	/**
 	 *	Read an array of the specific SecUserPassword record instances identified by the duplicate key SetStampIdx.
@@ -235,7 +235,7 @@ public interface ICFSecSecUserPasswordTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecUserPassword[] readRecBySetStampIdx( ICFSecAuthorization Authorization,
 		LocalDateTime PWSetStamp );

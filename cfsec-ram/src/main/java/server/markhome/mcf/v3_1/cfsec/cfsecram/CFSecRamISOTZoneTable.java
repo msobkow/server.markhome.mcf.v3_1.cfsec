@@ -102,11 +102,11 @@ public class CFSecRamISOTZoneTable
 		// Validate unique indexes
 
 		if( dictByPKey.containsKey( pkey ) ) {
-			throw new CFLibPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
+			throw new MCFPrimaryKeyNotNewException( getClass(), S_ProcName, pkey );
 		}
 
 		if( dictByUTZNameIdx.containsKey( keyUTZNameIdx ) ) {
-			throw new CFLibUniqueIndexViolationException( getClass(),
+			throw new MCFUniqueIndexViolationException( getClass(),
 				S_ProcName,
 				"ISOTZoneUTZNameIdx",
 				"ISOTZoneUTZNameIdx",
@@ -152,7 +152,7 @@ public class CFSecRamISOTZoneTable
 				return( retbuff );
 			}
 			else {
-				throw new CFLibUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
+				throw new MCFUnsupportedClassException(getClass(), S_ProcName, "-create-buff-cloning-", (Integer)classCode, "Classcode not recognized: " + Integer.toString(classCode));
 			}
 		}
 	}
@@ -408,7 +408,7 @@ public class CFSecRamISOTZoneTable
 		$implCommaIJavaOptAtomType$ pkey = ($implCommaIJavaOptAtomType$)Buff.getPKey();
 		CFSecBuffISOTZone existing = dictByPKey.get( pkey );
 		if( existing == null ) {
-			throw new CFLibStaleCacheDetectedException( getClass(),
+			throw new MCFStaleCacheDetectedException( getClass(),
 				"updateISOTZone",
 				"Existing record not found",
 				"Existing record not found",
@@ -417,7 +417,7 @@ public class CFSecRamISOTZoneTable
 				pkey );
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() ) {
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"updateISOTZone",
 				pkey );
 		}
@@ -446,7 +446,7 @@ public class CFSecRamISOTZoneTable
 
 		if( ! existingKeyUTZNameIdx.equals( newKeyUTZNameIdx ) ) {
 			if( dictByUTZNameIdx.containsKey( newKeyUTZNameIdx ) ) {
-				throw new CFLibUniqueIndexViolationException( getClass(),
+				throw new MCFUniqueIndexViolationException( getClass(),
 					"updateISOTZone",
 					"ISOTZoneUTZNameIdx",
 					"ISOTZoneUTZNameIdx",
@@ -509,7 +509,7 @@ public class CFSecRamISOTZoneTable
 		}
 		if( existing.getRequiredRevision() != Buff.getRequiredRevision() )
 		{
-			throw new CFLibCollisionDetectedException( getClass(),
+			throw new MCFCollisionDetectedException( getClass(),
 				"deleteISOTZone",
 				pkey );
 		}

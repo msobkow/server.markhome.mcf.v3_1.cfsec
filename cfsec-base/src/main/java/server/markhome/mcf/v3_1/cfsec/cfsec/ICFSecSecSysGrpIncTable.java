@@ -92,7 +92,7 @@ public interface ICFSecSecSysGrpIncTable
 	 *	@param	InclName	The SecSysGrpInc key attribute of the instance generating the id.
 	 */
 	void deleteSecSysGrpIncByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecSysGrpId,
+		IMCFKeyHash256 argSecSysGrpId,
 		String argInclName );
 	/**
 	 *	Delete the SecSysGrpInc instance identified by the primary key.
@@ -111,7 +111,7 @@ public interface ICFSecSecSysGrpIncTable
 	 *	@param	SecSysGrpId	The SecSysGrpInc key attribute of the instance generating the id.
 	 */
 	void deleteSecSysGrpIncBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 argSecSysGrpId );
+		IMCFKeyHash256 argSecSysGrpId );
 
 	/**
 	 *	Delete the SecSysGrpInc instances identified by the key SysGrpIdx.
@@ -165,7 +165,7 @@ public interface ICFSecSecSysGrpIncTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecSysGrpInc readDerived( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String InclName );
 
 	/**
@@ -203,7 +203,7 @@ public interface ICFSecSecSysGrpIncTable
 	 *		no such existing key value.
 	 */
 	ICFSecSecSysGrpInc readDerivedByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String InclName );
 
 	/**
@@ -216,7 +216,7 @@ public interface ICFSecSecSysGrpIncTable
 	 *	@return An array of derived instances for the specified key, potentially with 0 elements in the set.
 	 */
 	ICFSecSecSysGrpInc[] readDerivedBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId );
+		IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Read an array of the derived SecSysGrpInc record instances identified by the duplicate key NameIdx.
@@ -240,7 +240,7 @@ public interface ICFSecSecSysGrpIncTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpInc readRec( ICFSecAuthorization Authorization,
 		ICFSecSecSysGrpIncPKey PKey );
@@ -255,10 +255,10 @@ public interface ICFSecSecSysGrpIncTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpInc readRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String InclName );
 
 	/**
@@ -271,7 +271,7 @@ public interface ICFSecSecSysGrpIncTable
 	 *	@return The record instance for the specified primary key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpInc lockRec( ICFSecAuthorization Authorization,
 		ICFSecSecSysGrpIncPKey PKey );
@@ -293,7 +293,7 @@ public interface ICFSecSecSysGrpIncTable
 	 *	@return All the specific SecSysGrpInc instances in the database accessible for the Authorization.
 	 */
 	ICFSecSecSysGrpInc[] pageAllRec( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 priorSecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorInclName );
 
 	/**
@@ -308,10 +308,10 @@ public interface ICFSecSecSysGrpIncTable
 	 *	@return The record instance for the specified key, or null if there is
 	 *		no such existing key value.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpInc readRecByIdIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
 		String InclName );
 
 	/**
@@ -323,10 +323,10 @@ public interface ICFSecSecSysGrpIncTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpInc[] readRecBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId );
+		IMCFKeyHash256 SecSysGrpId );
 
 	/**
 	 *	Read an array of the specific SecSysGrpInc record instances identified by the duplicate key NameIdx.
@@ -337,7 +337,7 @@ public interface ICFSecSecSysGrpIncTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpInc[] readRecByNameIdx( ICFSecAuthorization Authorization,
 		String InclName );
@@ -351,11 +351,11 @@ public interface ICFSecSecSysGrpIncTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpInc[] pageRecBySysGrpIdx( ICFSecAuthorization Authorization,
-		ICFLibKeyHash256 SecSysGrpId,
-		ICFLibKeyHash256 priorSecSysGrpId,
+		IMCFKeyHash256 SecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorInclName );
 
 	/**
@@ -367,10 +367,10 @@ public interface ICFSecSecSysGrpIncTable
 	 *
 	 *	@return An array of derived record instances for the specified key, potentially with 0 elements in the set.
 	 *
-	 *	@throws	CFLibNotSupportedException thrown by client-side implementations.
+	 *	@throws	MCFNotSupportedException thrown by client-side implementations.
 	 */
 	ICFSecSecSysGrpInc[] pageRecByNameIdx( ICFSecAuthorization Authorization,
 		String InclName,
-		ICFLibKeyHash256 priorSecSysGrpId,
+		IMCFKeyHash256 priorSecSysGrpId,
 		String priorInclName );
 }

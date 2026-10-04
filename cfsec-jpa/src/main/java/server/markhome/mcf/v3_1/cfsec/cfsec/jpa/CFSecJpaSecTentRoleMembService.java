@@ -35,7 +35,7 @@ import jakarta.persistence.*;
 import server.markhome.mcf.v3_1.cflib.*;
 import server.markhome.mcf.v3_1.cflib.dbutil.*;
 import server.markhome.mcf.v3_1.cflib.keyhash.*;
-import server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil;
+import server.markhome.mcf.v3_1.cflib.xml.MCFXmlUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +75,7 @@ public class CFSecJpaSecTentRoleMembService {
 			return( null );
 		}
 		if (data.getRequiredContainerRole() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -86,7 +86,7 @@ public class CFSecJpaSecTentRoleMembService {
 				null);
 		}
 		if (data.getRequiredParentUser() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Parent",
 				"Parent",
@@ -109,7 +109,7 @@ public class CFSecJpaSecTentRoleMembService {
 			return cfsec31SecTentRoleMembRepository.save(data);
 		}
 		catch(Exception ex) {
-			throw new CFLibDbException(getClass(),
+			throw new MCFDbException(getClass(),
 				S_ProcName,
 				ex);
 		}
@@ -129,13 +129,13 @@ public class CFSecJpaSecTentRoleMembService {
 			return( null );
 		}
 		if (data.getPKey() == null) {
-			throw new CFLibNullArgumentException(getClass(),
+			throw new MCFNullArgumentException(getClass(),
 				S_ProcName,
 				0,
 				"data.getPKey()");
 		}
 		if (data.getRequiredContainerRole() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Container",
 				"Container",
@@ -146,7 +146,7 @@ public class CFSecJpaSecTentRoleMembService {
 				null);
 		}
 		if (data.getRequiredParentUser() == null) {
-			throw new CFLibUnresolvedRelationException(getClass(),
+			throw new MCFUnresolvedRelationException(getClass(),
 				S_ProcName,
 				"Parent",
 				"Parent",
@@ -158,9 +158,9 @@ public class CFSecJpaSecTentRoleMembService {
 		}
 		// Ensure the entity exists and that the revision matches
 		CFSecJpaSecTentRoleMemb existing = cfsec31SecTentRoleMembRepository.findById((CFSecJpaSecTentRoleMembPKey)(data.getPKey()))
-			.orElseThrow(() -> new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
+			.orElseThrow(() -> new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey()));
 		if (existing.getRequiredRevision() != data.getRequiredRevision()) {
-			throw new CFLibCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
+			throw new MCFCollisionDetectedException(getClass(), S_ProcName, data.getPKey());
 		}
 		// Apply superior data relationships of CFSecSecTentRoleMemb to existing object
 		// Apply data columns of CFSecSecTentRoleMemb to existing object
@@ -179,7 +179,7 @@ public class CFSecJpaSecTentRoleMembService {
 	 *		@return The retrieved entity, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecTentRoleMemb find(@Param("secTentRoleId") ICFLibKeyHash256 requiredSecTentRoleId,
+	public CFSecJpaSecTentRoleMemb find(@Param("secTentRoleId") IMCFKeyHash256 requiredSecTentRoleId,
 		@Param("loginId") String requiredLoginId) {
 		return( cfsec31SecTentRoleMembRepository.get(requiredSecTentRoleId,
 			requiredLoginId));
@@ -217,7 +217,7 @@ public class CFSecJpaSecTentRoleMembService {
 	 *		@return List&lt;CFSecJpaSecTentRoleMemb&gt; of the found entities, or an empty list if no such entities exist.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public List<CFSecJpaSecTentRoleMemb> findByTentRoleIdx(@Param("secTentRoleId") ICFLibKeyHash256 requiredSecTentRoleId) {
+	public List<CFSecJpaSecTentRoleMemb> findByTentRoleIdx(@Param("secTentRoleId") IMCFKeyHash256 requiredSecTentRoleId) {
 		return( cfsec31SecTentRoleMembRepository.findByTentRoleIdx(requiredSecTentRoleId));
 	}
 
@@ -268,7 +268,7 @@ public class CFSecJpaSecTentRoleMembService {
 	 *		@return The locked entity, refreshed from the data store, or null if no such entity exists.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public CFSecJpaSecTentRoleMemb lockByIdIdx(@Param("secTentRoleId") ICFLibKeyHash256 requiredSecTentRoleId,
+	public CFSecJpaSecTentRoleMemb lockByIdIdx(@Param("secTentRoleId") IMCFKeyHash256 requiredSecTentRoleId,
 		@Param("loginId") String requiredLoginId) {
 		return( cfsec31SecTentRoleMembRepository.lockByIdIdx(requiredSecTentRoleId,
 			requiredLoginId));
@@ -294,7 +294,7 @@ public class CFSecJpaSecTentRoleMembService {
 	 *		@return A list of locked entities, refreshed from the data store, or an empty list if no such entities exist.
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public List<CFSecJpaSecTentRoleMemb> lockByTentRoleIdx(@Param("secTentRoleId") ICFLibKeyHash256 requiredSecTentRoleId) {
+	public List<CFSecJpaSecTentRoleMemb> lockByTentRoleIdx(@Param("secTentRoleId") IMCFKeyHash256 requiredSecTentRoleId) {
 		return( cfsec31SecTentRoleMembRepository.lockByTentRoleIdx(requiredSecTentRoleId));
 	}
 
@@ -343,7 +343,7 @@ public class CFSecJpaSecTentRoleMembService {
 	 *		@param requiredLoginId
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByIdIdx(@Param("secTentRoleId") ICFLibKeyHash256 requiredSecTentRoleId,
+	public void deleteByIdIdx(@Param("secTentRoleId") IMCFKeyHash256 requiredSecTentRoleId,
 		@Param("loginId") String requiredLoginId) {
 		cfsec31SecTentRoleMembRepository.deleteByIdIdx(requiredSecTentRoleId,
 			requiredLoginId);
@@ -365,7 +365,7 @@ public class CFSecJpaSecTentRoleMembService {
 	 *		@param requiredSecTentRoleId
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, noRollbackFor = NoResultException.class, transactionManager = "cfsec31TransactionManager")
-	public void deleteByTentRoleIdx(@Param("secTentRoleId") ICFLibKeyHash256 requiredSecTentRoleId) {
+	public void deleteByTentRoleIdx(@Param("secTentRoleId") IMCFKeyHash256 requiredSecTentRoleId) {
 		cfsec31SecTentRoleMembRepository.deleteByTentRoleIdx(requiredSecTentRoleId);
 	}
 

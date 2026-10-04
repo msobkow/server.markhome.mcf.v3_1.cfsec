@@ -52,7 +52,7 @@ import server.markhome.mcf.v3_1.cfsec.cfsecprot.ICFSecProtSecurityControl;
  */
 abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSecSecurityService
 {
-	private ConcurrentHashMap<CFLibDbKeyHash256,UserEntry> userById = new ConcurrentHashMap<>();
+	private ConcurrentHashMap<MCFDbKeyHash256,UserEntry> userById = new ConcurrentHashMap<>();
 	private ConcurrentHashMap<String,UserEntry> userByLogin = new ConcurrentHashMap<>();
 
 	/**
@@ -71,7 +71,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 *	@param userLogin 
 	 *	@return null if the userLogin does not exist, is null, is empty, or is blank. Otherwise the DbKey for the user.
 	 */
-	public abstract CFLibDbKeyHash256 mapUserLoginToUserId(String userLogin);
+	public abstract MCFDbKeyHash256 mapUserLoginToUserId(String userLogin);
 
 	/**
 	 *	Map the userId DbKey to the userLogin string.
@@ -79,7 +79,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 *	@param userId
 	 *	@return null if the userId does not exist or is null. Otherwise the userLogin for the user.
 	 */
-	public abstract String mapUserIdToUserLogin(CFLibDbKeyHash256 userId);
+	public abstract String mapUserIdToUserLogin(MCFDbKeyHash256 userId);
 
 	/**
 	 *	Probe the back-end SecRole*, SecTent* security tables, then the SecClus* security tables, and finally the SecSys* tables
@@ -93,7 +93,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 *
 	 *	@return true if the user is a member of the tenant role or group, the equivalent cluster admin role or group, or the equivalent system admin role or group, otherwise false.
 	 */
-	public abstract boolean probeMemberOfTenantGroup(CFLibDbKeyHash256 userId, CFLibDbKeyHash256 clusterId, CFLibDbKeyHash256 tenantId, String permissionName);
+	public abstract boolean probeMemberOfTenantGroup(MCFDbKeyHash256 userId, MCFDbKeyHash256 clusterId, MCFDbKeyHash256 tenantId, String permissionName);
 
 	/**
 	 *	Probe the back-end SecRole*, SecClus* security tables, and finally the SecSys* tables in order until a probe authorizes
@@ -106,7 +106,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 *
 	 *	@return true if the user is a member of the tenant role or group, the equivalent cluster admin role or group, or the equivalent system admin role or group, otherwise false.
 	 */
-	public abstract boolean probeMemberOfClusterGroup(CFLibDbKeyHash256 userId, CFLibDbKeyHash256 clusterId, String permissionName);
+	public abstract boolean probeMemberOfClusterGroup(MCFDbKeyHash256 userId, MCFDbKeyHash256 clusterId, String permissionName);
 
 	/**
 	 *	Probe the back-end SecRole*, and SecSys* tables until a probe authorizes the users access to the permission role or group.
@@ -117,7 +117,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 *
 	 *	@return true if the user is a member of the tenant role or group, the equivalent cluster admin role or group, or the equivalent system admin role or group, otherwise false.
 	 */
-	public abstract boolean probeMemberOfSystemGroup(CFLibDbKeyHash256 userId, String permissionName);
+	public abstract boolean probeMemberOfSystemGroup(MCFDbKeyHash256 userId, String permissionName);
 
 	/***** ICFSecSecurityService implementation */
 
@@ -134,7 +134,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 *	@return true if the user is a member of the tenant role or group, the equivalent cluster admin role or group, or the equivalent system admin role or group, otherwise false.
 	 */
 	@Override
-	public boolean isMemberOfTenantGroup(String userLogin, CFLibDbKeyHash256 clusterId, CFLibDbKeyHash256 tenantId, String permissionName) {
+	public boolean isMemberOfTenantGroup(String userLogin, MCFDbKeyHash256 clusterId, MCFDbKeyHash256 tenantId, String permissionName) {
 		UserEntry entry = resolveUserEntry(userLogin);
 		if( entry == null ) {
 			return( false );
@@ -155,7 +155,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 *	@return true if the user is a member of the tenant role or group, the equivalent cluster admin role or group, or the equivalent system admin role or group, otherwise false.
 	 */
 	@Override
-	public boolean isMemberOfTenantGroup(CFLibDbKeyHash256 userId, CFLibDbKeyHash256 clusterId, CFLibDbKeyHash256 tenantId, String permissionName) {
+	public boolean isMemberOfTenantGroup(MCFDbKeyHash256 userId, MCFDbKeyHash256 clusterId, MCFDbKeyHash256 tenantId, String permissionName) {
 		UserEntry entry = resolveUserEntry(userId);
 		if( entry == null ) {
 			return( false );
@@ -175,7 +175,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 *	@return true if the user is a member of the cluster role or group or the equivalent system admin role or group, otherwise false.
 	 */
 	@Override
-	public boolean isMemberOfClusterGroup(String userLogin, CFLibDbKeyHash256 clusterId, String permissionName) {
+	public boolean isMemberOfClusterGroup(String userLogin, MCFDbKeyHash256 clusterId, String permissionName) {
 		UserEntry entry = resolveUserEntry(userLogin);
 		if( entry == null ) {
 			return( false );
@@ -195,7 +195,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 *	@return true if the user is a member of the cluster role or group or the equivalent system admin role or group, otherwise false.
 	 */
 	@Override
-	public boolean isMemberOfClusterGroup(CFLibDbKeyHash256 userId, CFLibDbKeyHash256 clusterId, String permissionName) {
+	public boolean isMemberOfClusterGroup(MCFDbKeyHash256 userId, MCFDbKeyHash256 clusterId, String permissionName) {
 		UserEntry entry = resolveUserEntry(userId);
 		if( entry == null ) {
 			return( false );
@@ -229,7 +229,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 *	@return true if the user is a member of the specified system role or group, otherwise false.
 	 */
 	@Override
-	public boolean isMemberOfSystemGroup(CFLibDbKeyHash256 userId, String permissionName) {
+	public boolean isMemberOfSystemGroup(MCFDbKeyHash256 userId, String permissionName) {
 		UserEntry entry = resolveUserEntry(userId);
 		if( entry == null ) {
 			return( false );
@@ -247,7 +247,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 */
 	@Override
 	public boolean registerInterest(ICFSecProtSecurityControl securityControl) {
-		throw new CFLibNotImplementedYetException(getClass(), "registerInterest");
+		throw new MCFNotImplementedYetException(getClass(), "registerInterest");
 	}
 
 	/**
@@ -259,7 +259,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 */
 	@Override
 	public boolean forgetInterest(ICFSecProtSecurityControl securityControl) {
-		throw new CFLibNotImplementedYetException(getClass(), "forgetInterest");
+		throw new MCFNotImplementedYetException(getClass(), "forgetInterest");
 	}
 
 	/**
@@ -271,7 +271,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 */
 	@Override
 	public boolean isInterested(ICFSecProtSecurityControl securityControl) {
-		throw new CFLibNotImplementedYetException(getClass(), "isInterested");
+		throw new MCFNotImplementedYetException(getClass(), "isInterested");
 	}
 
 	/**
@@ -279,7 +279,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 */
 	@Override
 	public void forgetAllInterests() {
-		throw new CFLibNotImplementedYetException(getClass(), "forgetAllInterests");
+		throw new MCFNotImplementedYetException(getClass(), "forgetAllInterests");
 	}
 
 	/***** ICFSecSecurityControl implementation */
@@ -306,19 +306,19 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	 *	@param permissionNames List of permission name strings
 	 */
 	public void forgetAbout(List<String> userLogins,
-		List<CFLibDbKeyHash256> userIds,
-		List<CFLibDbKeyHash256> clusterIds,
-		List<CFLibDbKeyHash256> tenantIds,
+		List<MCFDbKeyHash256> userIds,
+		List<MCFDbKeyHash256> clusterIds,
+		List<MCFDbKeyHash256> tenantIds,
 		List<String> permissionNames)
 	{
-		throw new CFLibNotImplementedYetException(getClass(), "forgetAbout");
+		throw new MCFNotImplementedYetException(getClass(), "forgetAbout");
 	}
 
 	/**
 	 *	Forget about everything; reset the controlled cache.  Does not forget interest registrations.
 	 */
 	public void forgetAll() {
-		throw new CFLibNotImplementedYetException(getClass(), "forgetAll");
+		throw new MCFNotImplementedYetException(getClass(), "forgetAll");
 	}
 
 	/***** Internal Implementation Classes And Methods *****/
@@ -329,7 +329,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 		}
 		UserEntry entry = userByLogin.get(userLogin);
 		if (entry == null) {
-			CFLibDbKeyHash256 userId = mapUserLoginToUserId(userLogin);
+			MCFDbKeyHash256 userId = mapUserLoginToUserId(userLogin);
 			if (userId != null && !userId.isNull()) {
 				entry = new UserEntry();
 				entry.userId = userId;
@@ -344,7 +344,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 		return( entry );
 	}
 
-	private UserEntry resolveUserEntry(CFLibDbKeyHash256 userId) {
+	private UserEntry resolveUserEntry(MCFDbKeyHash256 userId) {
 		if (userId == null || userId.isNull()) {
 			return( null );
 		}
@@ -366,7 +366,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	}
 
 	class UserEntry {
-		CFLibDbKeyHash256 userId;
+		MCFDbKeyHash256 userId;
 		String userLogin;
 		long acquiredMillis;
 		long lastUsedMillis;
@@ -374,7 +374,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 		ConcurrentHashMap<String,KeyedPermission> clusPerms = new ConcurrentHashMap<>();
 		ConcurrentHashMap<String,KeyedPermission> tentPerms = new ConcurrentHashMap<>();
 
-		boolean isMemberOfTenantGroup(CFLibDbKeyHash256 clusterId, CFLibDbKeyHash256 tenantId, String permissionName) {
+		boolean isMemberOfTenantGroup(MCFDbKeyHash256 clusterId, MCFDbKeyHash256 tenantId, String permissionName) {
 			KeyedPermission keyperm = tentPerms.get(permissionName);
 			if (keyperm == null) {
 				boolean result = probeMemberOfTenantGroup(userId, clusterId, tenantId, permissionName);
@@ -405,7 +405,7 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 			}
 		}
 
-		boolean isMemberOfClusterGroup(CFLibDbKeyHash256 clusterId, String permissionName) {
+		boolean isMemberOfClusterGroup(MCFDbKeyHash256 clusterId, String permissionName) {
 			KeyedPermission keyperm = clusPerms.get(permissionName);
 			if (keyperm == null) {
 				boolean result = probeMemberOfClusterGroup(userId, clusterId, permissionName);
@@ -467,6 +467,6 @@ abstract public class CFSecSecurityCache implements ICFSecSecurityControl, ICFSe
 	}
 
 	class KeyedPermission extends PermissionBase {
-		ConcurrentHashMap<CFLibDbKeyHash256,Boolean> keyMap = new ConcurrentHashMap<>();
+		ConcurrentHashMap<MCFDbKeyHash256,Boolean> keyMap = new ConcurrentHashMap<>();
 	}
 }

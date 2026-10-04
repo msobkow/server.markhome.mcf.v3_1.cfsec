@@ -112,7 +112,7 @@ public class CFSecClusterTableObj
 	 */
 	static void setRuntimeClassCode(int argNewClassCode ) {
 		if (argNewClassCode <= 0) {
-			throw new CFLibArgumentUnderflowException(CFSecClusterTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
+			throw new MCFArgumentUnderflowException(CFSecClusterTableObj.class, "setRuntimeClassCode", 1, "argNewClassCode", argNewClassCode, 1);
 		}
 		runtimeClassCode = argNewClassCode;
 	}
@@ -370,7 +370,7 @@ public class CFSecClusterTableObj
 			locked = (ICFSecClusterObj)locked.realise();
 		}
 		else {
-			throw new CFLibCollisionDetectedException( getClass(), "lockCluster", pkey );
+			throw new MCFCollisionDetectedException( getClass(), "lockCluster", pkey );
 		}
 		return( locked );
 	}
@@ -405,7 +405,7 @@ public class CFSecClusterTableObj
 			arr[idx++] = valIter.next();
 		}
 		if( idx < len ) {
-			throw new CFLibArgumentUnderflowException( getClass(),
+			throw new MCFArgumentUnderflowException( getClass(),
 				S_ProcName,
 				0,
 				"idx",
@@ -413,7 +413,7 @@ public class CFSecClusterTableObj
 				len );
 		}
 		else if( valIter.hasNext() ) {
-			throw new CFLibArgumentOverflowException( getClass(),
+			throw new MCFArgumentOverflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -465,7 +465,7 @@ public class CFSecClusterTableObj
 				arr[idx++] = valIter.next();
 			}
 			if( idx < len ) {
-				throw new CFLibArgumentUnderflowException( getClass(),
+				throw new MCFArgumentUnderflowException( getClass(),
 					S_ProcName,
 					0,
 					"idx",
@@ -473,7 +473,7 @@ public class CFSecClusterTableObj
 					len );
 			}
 			else if( valIter.hasNext() ) {
-				throw new CFLibArgumentOverflowException( getClass(),
+				throw new MCFArgumentOverflowException( getClass(),
 						S_ProcName,
 						0,
 						"idx",
@@ -516,7 +516,7 @@ public class CFSecClusterTableObj
 	 *		may include an empty set.
 	 */
 	@Override
-	public List<ICFSecClusterObj> pageAllCluster(ICFLibKeyHash256 priorId )
+	public List<ICFSecClusterObj> pageAllCluster(IMCFKeyHash256 priorId )
 	{
 		final String S_ProcName = "pageAllCluster";
 		Map<$implCommaIJavaOptAtomType$, ICFSecClusterObj> map = new HashMap<$implCommaIJavaOptAtomType$,ICFSecClusterObj>();
@@ -538,14 +538,14 @@ public class CFSecClusterTableObj
 	}
 
 	@Override
-	public ICFSecClusterObj readClusterByIdIdx( ICFLibKeyHash256 Id )
+	public ICFSecClusterObj readClusterByIdIdx( IMCFKeyHash256 Id )
 	{
 		return( readClusterByIdIdx( Id,
 			false ) );
 	}
 
 	@Override
-	public ICFSecClusterObj readClusterByIdIdx( ICFLibKeyHash256 Id, boolean forceRead )
+	public ICFSecClusterObj readClusterByIdIdx( IMCFKeyHash256 Id, boolean forceRead )
 	{
 		ICFSecClusterObj obj = readCluster( Id, forceRead );
 		return( obj );
@@ -618,7 +618,7 @@ public class CFSecClusterTableObj
 	}
 
 	@Override
-	public ICFSecClusterObj readCachedClusterByIdIdx( ICFLibKeyHash256 Id )
+	public ICFSecClusterObj readCachedClusterByIdIdx( IMCFKeyHash256 Id )
 	{
 		ICFSecClusterObj obj = null;
 		obj = readCachedCluster( Id );
@@ -698,7 +698,7 @@ public class CFSecClusterTableObj
 	}
 
 	@Override
-	public void deepDisposeClusterByIdIdx( ICFLibKeyHash256 Id )
+	public void deepDisposeClusterByIdIdx( IMCFKeyHash256 Id )
 	{
 		ICFSecClusterObj obj = readCachedClusterByIdIdx( Id );
 		if( obj != null ) {
@@ -743,7 +743,7 @@ public class CFSecClusterTableObj
 	}
 
 	@Override
-	public void deleteClusterByIdIdx( ICFLibKeyHash256 Id )
+	public void deleteClusterByIdIdx( IMCFKeyHash256 Id )
 	{
 		ICFSecClusterObj obj = readCluster(Id);
 		if( obj != null ) {

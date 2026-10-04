@@ -76,7 +76,7 @@ implements ICFSecJavaFXSecUserPWResetPaneList
 	protected CFButton buttonDeleteSelected = null;
 	protected TableView<ICFSecSecUserPWResetObj> dataTable = null;
 	protected TableColumn<ICFSecSecUserPWResetObj, String> tableColumnSentToEMailAddr = null;
-	protected TableColumn<ICFSecSecUserPWResetObj, ICFLibUuid6> tableColumnPasswordResetUuid6 = null;
+	protected TableColumn<ICFSecSecUserPWResetObj, IMCFUuid6> tableColumnPasswordResetUuid6 = null;
 	protected TableColumn<ICFSecSecUserPWResetObj, Boolean> tableColumnNewAccount = null;
 
 	public final String S_ColumnNames[] = { "Name" };
@@ -189,24 +189,24 @@ implements ICFSecJavaFXSecUserPWResetPaneList
 			}
 		});
 		dataTable.getColumns().add( tableColumnSentToEMailAddr );
-		tableColumnPasswordResetUuid6 = new TableColumn<ICFSecSecUserPWResetObj,ICFLibUuid6>( "Password Reset UUID6" );
-		tableColumnPasswordResetUuid6.setCellValueFactory( new Callback<CellDataFeatures<ICFSecSecUserPWResetObj,ICFLibUuid6>,ObservableValue<ICFLibUuid6> >() {
-			public ObservableValue<ICFLibUuid6> call( CellDataFeatures<ICFSecSecUserPWResetObj, ICFLibUuid6> p ) {
+		tableColumnPasswordResetUuid6 = new TableColumn<ICFSecSecUserPWResetObj,IMCFUuid6>( "Password Reset UUID6" );
+		tableColumnPasswordResetUuid6.setCellValueFactory( new Callback<CellDataFeatures<ICFSecSecUserPWResetObj,IMCFUuid6>,ObservableValue<IMCFUuid6> >() {
+			public ObservableValue<IMCFUuid6> call( CellDataFeatures<ICFSecSecUserPWResetObj, IMCFUuid6> p ) {
 				ICFSecSecUserPWResetObj obj = p.getValue();
 				if( obj == null ) {
 					return( null );
 				}
 				else {
-					ICFLibUuid6 value = obj.getRequiredPasswordResetUuid6();
-					ReadOnlyObjectWrapper<ICFLibUuid6> observable = new ReadOnlyObjectWrapper<ICFLibUuid6>();
+					IMCFUuid6 value = obj.getRequiredPasswordResetUuid6();
+					ReadOnlyObjectWrapper<IMCFUuid6> observable = new ReadOnlyObjectWrapper<IMCFUuid6>();
 					observable.setValue( value );
 					return( observable );
 				}
 			}
 		});
-		tableColumnPasswordResetUuid6.setCellFactory( new Callback<TableColumn<ICFSecSecUserPWResetObj,ICFLibUuid6>,TableCell<ICFSecSecUserPWResetObj,ICFLibUuid6>>() {
-			@Override public TableCell<ICFSecSecUserPWResetObj,ICFLibUuid6> call(
-				TableColumn<ICFSecSecUserPWResetObj,ICFLibUuid6> arg)
+		tableColumnPasswordResetUuid6.setCellFactory( new Callback<TableColumn<ICFSecSecUserPWResetObj,IMCFUuid6>,TableCell<ICFSecSecUserPWResetObj,IMCFUuid6>>() {
+			@Override public TableCell<ICFSecSecUserPWResetObj,IMCFUuid6> call(
+				TableColumn<ICFSecSecUserPWResetObj,IMCFUuid6> arg)
 			{
 				return new CFUuid6TableCell<ICFSecSecUserPWResetObj>();
 			}
